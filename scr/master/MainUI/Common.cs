@@ -1,0 +1,129 @@
+﻿using MainUI.Modules;
+using MainUI.Model;
+using MainUI.Workinterface;
+using MainUI.Model.Workinterface;
+using System.IO;
+using System;
+using Sunny.UI;
+using System.Windows.Forms;
+using MainUI.Modules.IOCard;
+using System.Linq;
+
+namespace MainUI
+{
+    public class Common
+    {
+        
+        public static OpcStatusGrp opcStatus = new();
+        public static AIGrp AIgrp;
+        public static AOGrp AOgrp;
+        public static DIGrp DIgrp;
+        public static DOGrp DOgrp;
+        public static TestCon testcon;
+        public static TestPara testpara;
+        public static PLCCalibration plcc;
+        public static TestViewModel mTestViewModel = new();
+        public static ResultAll mResultAll = new();
+
+        public static void Init()
+        {
+            AIgrp = new AIGrp();
+            AOgrp = new AOGrp();
+            DIgrp = new DIGrp();
+            DOgrp = new DOGrp();
+            testcon = new TestCon();
+            testpara = new TestPara();
+            plcc = new PLCCalibration();
+            opcStatus.Init();
+            AIgrp.Init();
+            AOgrp.Init();
+            DIgrp.Init();
+            DOgrp.Init();
+            testcon.Init();
+
+            mode01.Init();
+            mode02.Init();
+            mode03.Init();
+            mode04.Init();
+            mode05.Init();
+            mode06.Init();
+            mode07.Init();
+            status01.Init();
+            status02.Init();
+            status03.Init();
+            status04.Init();
+            status05.Init();
+            status06.Init();
+            status07.Init();
+            satuswrite01.Init();
+            satuswrite02.Init();
+            satuswrite03.Init();
+            satuswrite04.Init();
+            satuswrite05.Init();
+            satuswrite06.Init();
+            satuswrite07.Init();
+        }
+
+        public static string ConvertPdfToBase64(string pdfFilePath)
+        {
+            // 确保文件存在
+            if (!File.Exists(pdfFilePath))
+                throw new FileNotFoundException("PDF文件未找到。");
+
+            // 读取文件内容为字节数组
+            byte[] pdfBytes = File.ReadAllBytes(pdfFilePath);
+
+            // 将字节数组转换为Base64字符串
+            string base64Pdf = Convert.ToBase64String(pdfBytes);
+
+            return base64Pdf;
+        }
+ 
+
+        #region IO板点位
+        public static IOModels mode01 = new IOModels(1);
+        public static IOModels mode02 = new IOModels(2);
+        public static IOModels mode03 = new IOModels(3);
+        public static IOModels mode04 = new IOModels(4);
+        public static IOModels mode05 = new IOModels(5);
+        public static IOModels mode06 = new IOModels(6);
+        public static IOModels mode07 = new IOModels(7);
+
+        public static IOStatus status01 = new IOStatus(1);
+        public static IOStatus status02 = new IOStatus(2);
+        public static IOStatus status03 = new IOStatus(3);
+        public static IOStatus status04 = new IOStatus(4);
+        public static IOStatus status05 = new IOStatus(5);
+        public static IOStatus status06 = new IOStatus(6);
+        public static IOStatus status07 = new IOStatus(7);
+
+        public static SatusWrite satuswrite01 = new SatusWrite(1);
+        public static SatusWrite satuswrite02 = new SatusWrite(2);
+        public static SatusWrite satuswrite03 = new SatusWrite(3);
+        public static SatusWrite satuswrite04 = new SatusWrite(4);
+        public static SatusWrite satuswrite05 = new SatusWrite(5);
+        public static SatusWrite satuswrite06 = new SatusWrite(6);
+        public static SatusWrite satuswrite07 = new SatusWrite(7);
+
+        public static IOModels[] InitModeArray()
+        {
+            IOModels[] modeAry = new[] { mode01, mode02, mode03, mode04, mode05, mode06, mode07 };
+            return modeAry;
+        }
+
+        public static IOStatus[] InitStatusArray()
+        {
+            IOStatus[] statusAry = new[] { status01, status02, status03, status04, status05, status06, status07 };
+            return statusAry;
+        }
+
+        public static SatusWrite[] InitSatusWrite()
+        {
+            SatusWrite[] SatusWriteAry = new[] { satuswrite01, satuswrite02, satuswrite03, satuswrite04, satuswrite05, satuswrite06, satuswrite07 };
+            return SatusWriteAry;
+        }
+        #endregion
+
+
+    }
+}

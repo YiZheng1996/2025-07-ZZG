@@ -6644,6 +6644,272 @@
 								]
 							},
 							{
+								"common.ALLTYPES_NAME": "Servo",
+								"tags": [
+									{
+										"common.ALLTYPES_NAME": "P000",
+										"common.ALLTYPES_DESCRIPTION": "大闸紧急制动",
+										"servermain.TAG_ADDRESS": "DB26.DBD0",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P001",
+										"common.ALLTYPES_DESCRIPTION": "大闸重连位",
+										"servermain.TAG_ADDRESS": "DB26.DBD4",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P002",
+										"common.ALLTYPES_DESCRIPTION": "大闸抑制位",
+										"servermain.TAG_ADDRESS": "DB26.DBD8",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P003",
+										"common.ALLTYPES_DESCRIPTION": "大闸全制动",
+										"servermain.TAG_ADDRESS": "DB26.DBD12",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P004",
+										"common.ALLTYPES_DESCRIPTION": "大闸常用制动区",
+										"servermain.TAG_ADDRESS": "DB26.DBD16",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P005",
+										"common.ALLTYPES_DESCRIPTION": "大闸初制动",
+										"servermain.TAG_ADDRESS": "DB26.DBD20",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P006",
+										"common.ALLTYPES_DESCRIPTION": "大闸运转位",
+										"servermain.TAG_ADDRESS": "DB26.DBD24",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P007",
+										"common.ALLTYPES_DESCRIPTION": "大闸往复位置1代号",
+										"servermain.TAG_ADDRESS": "DB26.DBW36",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P008",
+										"common.ALLTYPES_DESCRIPTION": "大闸往复位置2代号",
+										"servermain.TAG_ADDRESS": "DB26.DBW38",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P009",
+										"common.ALLTYPES_DESCRIPTION": "大闸往复次数",
+										"servermain.TAG_ADDRESS": "DB26.DBW46",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P010",
+										"common.ALLTYPES_DESCRIPTION": "大闸当前位置",
+										"servermain.TAG_ADDRESS": "DB17.DBD22",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P011",
+										"common.ALLTYPES_DESCRIPTION": "伺服启停",
+										"servermain.TAG_ADDRESS": "DB17.DBX2.0",
+										"servermain.TAG_DATA_TYPE": 1,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P012",
+										"common.ALLTYPES_DESCRIPTION": "速度设定值",
+										"servermain.TAG_ADDRESS": "DB17.DBD8",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P013",
+										"common.ALLTYPES_DESCRIPTION": "Error",
+										"servermain.TAG_ADDRESS": "DB17.DBX36.0",
+										"servermain.TAG_DATA_TYPE": 1,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P014",
+										"common.ALLTYPES_DESCRIPTION": "当前报警",
+										"servermain.TAG_ADDRESS": "DB17.DBW32",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P015",
+										"common.ALLTYPES_DESCRIPTION": "当前故障",
+										"servermain.TAG_ADDRESS": "DB17.DBW34",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P016",
+										"common.ALLTYPES_DESCRIPTION": "当前状态",
+										"servermain.TAG_ADDRESS": "DB17.DBW38",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P017",
+										"common.ALLTYPES_DESCRIPTION": "小闸运转位",
+										"servermain.TAG_ADDRESS": "DB26.DBD28",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P018",
+										"common.ALLTYPES_DESCRIPTION": "小闸全制动",
+										"servermain.TAG_ADDRESS": "DB26.DBD32",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P019",
+										"common.ALLTYPES_DESCRIPTION": "小闸往复位置1代号",
+										"servermain.TAG_ADDRESS": "DB26.DBW40",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P020",
+										"common.ALLTYPES_DESCRIPTION": "小闸往复位置2代号",
+										"servermain.TAG_ADDRESS": "DB26.DBW42",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P021",
+										"common.ALLTYPES_DESCRIPTION": "小闸往复次数",
+										"servermain.TAG_ADDRESS": "DB26.DBW48",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P022",
+										"common.ALLTYPES_DESCRIPTION": "小闸当前位置",
+										"servermain.TAG_ADDRESS": "DB27.DBD22",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P023",
+										"common.ALLTYPES_DESCRIPTION": "伺服启停",
+										"servermain.TAG_ADDRESS": "DB27.DBX2.0",
+										"servermain.TAG_DATA_TYPE": 1,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P024",
+										"common.ALLTYPES_DESCRIPTION": "速度设定值",
+										"servermain.TAG_ADDRESS": "DB27.DBD8",
+										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P025",
+										"common.ALLTYPES_DESCRIPTION": "Error",
+										"servermain.TAG_ADDRESS": "DB27.DBX36.0",
+										"servermain.TAG_DATA_TYPE": 1,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P026",
+										"common.ALLTYPES_DESCRIPTION": "当前报警",
+										"servermain.TAG_ADDRESS": "DB27.DBW32",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P027",
+										"common.ALLTYPES_DESCRIPTION": "当前故障",
+										"servermain.TAG_ADDRESS": "DB27.DBW34",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P028",
+										"common.ALLTYPES_DESCRIPTION": "当前状态",
+										"servermain.TAG_ADDRESS": "DB27.DBW38",
+										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									}
+								]
+							},
+							{
 								"common.ALLTYPES_NAME": "TestCon"
 							}
 						]

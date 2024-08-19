@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace MainUI.Model
 {
@@ -100,6 +101,7 @@ namespace MainUI.Model
             {
                 if (row.Table.Columns.Contains(item.Name))
                 {
+                    Debug.WriteLine("Name：" + item.Name);
                     object value = Convert.ChangeType(row[item.Name], item.PropertyType);
                     item.SetValue(this, value, null);
                 }

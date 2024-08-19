@@ -47,7 +47,6 @@ namespace MainUI
         BaseTest baseTest = new();
         string RptFilePath = "";  //报表地址
         string saveRptFile = "";  //报表保存地址
-        frmReport report = null;
         string rn = Environment.NewLine;
         private delegate void Del();
         public ucHMI()
@@ -319,13 +318,7 @@ namespace MainUI
         {
             try
             {
-                report = new frmReport();
-                Common.mTestViewModel.TestNO = "";
-                report.viewMole = Common.mTestViewModel;
-                report.Filename = RptFilePath;
-                report.saveFilepath = saveRptFile + ".xls";
-                report.Opened += Report_Opened;
-                report.ShowDialog();
+         
             }
             catch (Exception ex)
             {
@@ -348,10 +341,7 @@ namespace MainUI
         {
             try
             {
-                report.Write("ModelNumber", Common.mTestViewModel.ModelName);
-                report.Write("byq", Common.mResultAll.value1);
-                report.Write("byh", Common.mResultAll.value2);
-                report.Write("Leakage", Common.mResultAll.xll);
+            
             }
             catch (Exception ex)
             {
@@ -591,12 +581,6 @@ namespace MainUI
             NlogHelper.Default.Fatal("打开CAN掉电试验界面");
             frmPowerDown powerdown = new();
             powerdown.ShowDialog();
-        }
-
-        private void btnFatigueTest_Click(object sender, EventArgs e)
-        {
-            frmWeary weary = new(paraconfig);
-            weary.ShowDialog();
         }
 
         private void btnDataAnalysis_Click(object sender, EventArgs e)

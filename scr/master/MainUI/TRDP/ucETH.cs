@@ -48,7 +48,7 @@ namespace MainUI.TRDP
         public int ModelID { get; set; }
         public void InitModelInfo()
         {
-            ModelBLL bll = new ModelBLL();
+            ModelBLL bll = new();
             DataTable dt = bll.GetList();
             cboModelName.Items.Clear();
             ModelIDAry = new int[dt.Rows.Count];
@@ -73,17 +73,17 @@ namespace MainUI.TRDP
             {
                 int Code1 = 0;
                 int Code2 = 0;
-                if (Code.IndexOf('（') != -1)
+                if (Code.Contains('（'))
                 {
                     Code1 = Code.IndexOf('（');
                     Code2 = Code.IndexOf('）') - 1;
                 }
-                else if (Code.IndexOf('(') != -1)
+                else if (Code.Contains('('))
                 {
                     Code1 = Code.IndexOf('(');
                     Code2 = Code.IndexOf(')') - 1;
                 }
-                Condes[0] = Code.Substring(0, Code.IndexOf('（'));
+                Condes[0] = Code[..Code.IndexOf('（')];
                 Condes[1] = Code.Substring(Code1 + 1, Code2 - Code1);
                 return Condes;
             }
@@ -97,14 +97,16 @@ namespace MainUI.TRDP
         }
 
 
-        ETHImportExcel imp = new ETHImportExcel();
+        ETHImportExcel imp = new();
         private void btnExcelImport_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OpenExcel = new OpenFileDialog();
-            OpenExcel.CheckFileExists = true;
-            OpenExcel.Filter = "Excel文件|*.xls;*.xlsx";
-            OpenExcel.InitialDirectory = @"D:\HNRWS19080-2 制动柜试验台\docs\以太网配置表";
-            OpenExcel.RestoreDirectory = true;
+            OpenFileDialog OpenExcel = new()
+            {
+                CheckFileExists = true,
+                Filter = "Excel文件|*.xls;*.xlsx",
+                InitialDirectory = @"D:\HNRWS19080-2 制动柜试验台\docs\以太网配置表",
+                RestoreDirectory = true
+            };
             string fileType = ".xls,.xlsx";
 
             if (OpenExcel.ShowDialog() == DialogResult.OK)
@@ -121,7 +123,7 @@ namespace MainUI.TRDP
                     {
                         DataTable ExcelTable = ExcelHelper.GetExcelDataTable(ExcelPath);
                         DataTable dt = imp.ModifyColumNmae(ExcelTable);
-                        imp.InsertExcelData(dt, cboModelName.Text);
+                        imp.InsertExcelData(ExcelTable, cboModelName.Text);
                         int cnt = ExcelTable.Rows.Count;
                         GetConfigInfo();
                         lblImpTips.Text = "导入成功";

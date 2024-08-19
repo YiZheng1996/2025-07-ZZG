@@ -31,16 +31,13 @@ namespace MainUI
         private void InitializeComponent()
         {
             this.grpDI = new Sunny.UI.UIGroupBox();
-            this.rwReport1 = new RW.UI.Controls.Report.RWReport();
             this.BtnPrint = new Sunny.UI.UIButton();
             this.BtnClose = new Sunny.UI.UIButton();
             this.grpDI.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rwReport1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpDI
             // 
-            this.grpDI.Controls.Add(this.rwReport1);
             this.grpDI.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpDI.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.grpDI.Location = new System.Drawing.Point(0, 0);
@@ -54,16 +51,6 @@ namespace MainUI
             this.grpDI.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.grpDI.TitleAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.grpDI.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // rwReport1
-            // 
-            this.rwReport1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rwReport1.Filename = null;
-            this.rwReport1.Location = new System.Drawing.Point(0, 32);
-            this.rwReport1.Margin = new System.Windows.Forms.Padding(20, 28, 20, 28);
-            this.rwReport1.Name = "rwReport1";
-            this.rwReport1.Size = new System.Drawing.Size(869, 600);
-            this.rwReport1.TabIndex = 1;
             // 
             // BtnPrint
             // 
@@ -114,14 +101,12 @@ namespace MainUI
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmDispReport_Load);
             this.grpDI.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.rwReport1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private Sunny.UI.UIGroupBox grpDI;
-        private RW.UI.Controls.Report.RWReport rwReport1;
         private UIButton BtnPrint;
         private Sunny.UI.UIButton BtnClose;
     }

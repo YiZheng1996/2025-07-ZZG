@@ -1,45 +1,31 @@
 ﻿using MainUI.Config;
 using Sunny.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.Diagnostics;
 using System.Runtime.Versioning;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace MainUI.Procedure
+namespace ServoTired
 {
     [SupportedOSPlatform("windows")]
-    public partial class frmWeary : UIForm
+    public partial class FrmWeary : UIForm
     {
-        ParaConfig para;
-        public frmWeary(ParaConfig para)
+        ParaConfig para = new("Para");
+        public FrmWeary() => InitializeComponent();
+        private void FrmWeary_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-            this.para = para;
-            Common.AIgrp.AIvalueGrpChanged += AIgrp_AIvalueGrpChanged;
-            Common.DIgrp.DigitalValueChanged += DIgrp_DigitalValueChanged;
+            OPCHelper.Init();
+            OPCHelper.servoGrp.TestConGroupChanged += ServoGrp_TestConGroupChanged;
         }
 
-        private void DIgrp_DigitalValueChanged(object sender, int index, bool value)
+        private void ServoGrp_TestConGroupChanged(object sender, int index, object value)
         {
-            Console.Write(string.Format("DI---下标：{0}，值：{1}\n", index, value));
-        }
-
-        private void AIgrp_AIvalueGrpChanged(object sender, int index, double value)
-        {
-            Console.Write(string.Format("DI---下标：{0}，值：{1}\n", index, value));
+            Debug.Write(string.Format("下标：{0}，值：{1}\n", index, value));
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             BigToken?.Cancel();
             isOperationStarted = false;
+            OPCHelper.Close();
             Close();
             Dispose();
         }
@@ -110,7 +96,7 @@ namespace MainUI.Procedure
 
             para.bigNowTest = 0;
             para.Save();
-            MessageBox.Show("清零成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, "清零成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
 
@@ -132,7 +118,7 @@ namespace MainUI.Procedure
                 {
                     bigNowTest++;
                     Task.Delay(2000).Wait();
-                    Console.Write(bigNowTest + " ");
+                    Debug.Write(bigNowTest + " ");
                     resetEvent.WaitOne();
                 }
             }, BigToken.Token);
@@ -146,5 +132,10 @@ namespace MainUI.Procedure
 
         #endregion
 
+
+        private void btnParaSet_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

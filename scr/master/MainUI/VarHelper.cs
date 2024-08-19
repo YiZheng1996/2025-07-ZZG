@@ -19,10 +19,14 @@ namespace MainUI
         public static OPCDriver opcAIGroup = new();
         public static OPCDriver opcStatus = new();
         public static OPCDriver opcTestCon = new();
+        public static OPCDriver opcServoGroup = new();
         public static OPCDriver opcIO = new("KEPware.KEPServerEx.V6", "IOCard.Device1.");//IO板，OPC节点 名称不能用中文。
         public static string rootRptSave = Application.StartupPath + "\\save";  //报表保存路径
-        public static string ConnectionString = @"Data Source=TestBed.db;";  //数据库连接字符串
-        public static SQLiteDB Database = new();
+        public static OleDB Database = new();
+        public static string ConnectionString = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\DB.mdb;jet oledb:database password=ok";  //Acess数据库连接字符串
+
+        public static string sQLiteConnectionString = @"Data Source=TestBed.db;";  //Sqlite数据库连接字符串
+        public static SQLiteDB sQLiteDB = new();
 
         /// <summary>
         /// 生命信号字节

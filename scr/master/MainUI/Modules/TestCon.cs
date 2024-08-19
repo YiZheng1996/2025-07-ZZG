@@ -13,18 +13,18 @@ namespace MainUI.Modules
     {
         public TestCon()
         {
-            this.Driver = VarHelper.opcTestCon;
+            Driver = VarHelper.opcTestCon;
             InitializeComponent();
         }
 
         public TestCon(IContainer container)
               : base(container)
         {
-            this.Driver = VarHelper.opcTestCon;
+            Driver = VarHelper.opcTestCon;
             InitializeComponent();
         }
         private const int cnt = 0;
-        private object[] TestConList = new object[cnt];
+        private readonly object[] TestConList = [];
         /// <summary>
         /// 对象索引器，电磁阀数组
         /// </summary>
@@ -39,7 +39,7 @@ namespace MainUI.Modules
             set
             {
                 string tag = index.ToString().PadLeft(2, '0');
-                this.Write("TestCon.P" + tag, value);
+                Write("TestCon.P" + tag, value);
             }
         }
         public event ValueGroupHandler<object> TestConGroupChanged;
@@ -47,10 +47,7 @@ namespace MainUI.Modules
         {
             for (int i = 0; i < TestConList.Length; i++)
             {
-                if (TestConGroupChanged != null)
-                {
-                    TestConGroupChanged(this, i, TestConList[i]);
-                }
+                TestConGroupChanged?.Invoke(this, i, TestConList[i]);
             }
         }
         /// <summary>
@@ -59,26 +56,9 @@ namespace MainUI.Modules
         public long HandAuto
         {
             get { return TestConList[0].ToInt(); }
-            set { this.Write("TestCon.P00", value); }
+            set { Write("TestCon.P00", value); }
         }
 
-
-        /// <summary>
-        /// 上极限位
-        /// </summary>
-        public float TopXW
-        {
-            get { return float.Parse(TestConList[1].ToString()); }
-            set { this.Write("TestCon.P01", value); }
-        }
-        /// <summary>
-        /// 下极限位
-        /// </summary>
-        public float DownXW
-        {
-            get { return float.Parse(TestConList[2].ToString()); }
-            set { this.Write("TestCon.P02", value); }
-        }
       
         public override void Init()
         {
@@ -86,13 +66,10 @@ namespace MainUI.Modules
             {
                 int idx = i; // 循环中的i需要用临时变量存储。
                 string opcTag = "TestCon.P" + i.ToString().PadLeft(2, '0');
-                this.Register<object>(opcTag, delegate (object value)
+                Register(opcTag, delegate (object value)
                 {
                     TestConList[idx] = value;
-                    if (TestConGroupChanged != null)
-                    {
-                        TestConGroupChanged(this, idx, value);
-                    }
+                    TestConGroupChanged?.Invoke(this, idx, value);
                 });
             }
             base.Init();

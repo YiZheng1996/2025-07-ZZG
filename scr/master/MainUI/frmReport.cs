@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using RW.UI.Controls.Report;
 using MainUI.Model;
 using MainUI.BLL;
 using RW.Log;
@@ -13,7 +12,6 @@ namespace MainUI
         public TestViewModel viewMole { get; set; }
         public string saveFilepath { get; set; }
         public string Filename { get; set; }  //报表的文件地址
-        public event OpenHandler Opened;
         int rowIndex = 0;
 
         public frmReport()
@@ -28,8 +26,7 @@ namespace MainUI
             try
             {
                 CheckForIllegalCrossThreadCalls = false;
-                rwReport1.Filename = Filename;
-                rwReport1.Init();
+                
             }
             catch (Exception ex)
             {
@@ -53,7 +50,6 @@ namespace MainUI
             rowIndex -= value;
             if (rowIndex < 1)
                 rowIndex = 1;
-            this.rwReport1.ScrollIndex(rowIndex);
         }
         /// <summary>
         /// 下翻
@@ -64,7 +60,7 @@ namespace MainUI
             rowIndex += value;
             if (rowIndex > 100)
                 rowIndex = 100;
-            this.rwReport1.ScrollIndex(rowIndex);
+            
         }
         /// <summary>
         /// 打印
@@ -73,7 +69,7 @@ namespace MainUI
         {
             try
             {
-                rwReport1.Print();
+              
             }
             catch (Exception ex)
             {
@@ -88,13 +84,11 @@ namespace MainUI
         {
             try
             {
-                if (rwReport1 == null)
-                    return;
                 TestRecordBLL recordbll = new(VarHelper.Database, VarHelper.ConnectionString, "Record");
                 int ret = recordbll.SaveData(viewMole.ModelTypeID.ToString(), viewMole.ModelName, "", viewMole.TestNO, RWUser.User.Username, DateTime.Now.ToString(), saveFilepath);
                 if (Directory.Exists(VarHelper.rootRptSave) == false)
                     Directory.CreateDirectory(VarHelper.rootRptSave);
-                rwReport1.SaveAS(saveFilepath);
+                //rwReport1.SaveAS(saveFilepath);
                 
                 MessageBox.Show(this, "本地报表保存成功", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -111,7 +105,8 @@ namespace MainUI
         /// <returns></returns>
         public object Read(string key)
         {
-            return rwReport1.Read(1, key);
+            //return rwReport1.Read(1, key);
+            return "";
         }
         /// <summary>
         /// 将value写入到key中，使用第一个worksheet
@@ -125,22 +120,15 @@ namespace MainUI
         /// </summary>
         public void Write(int sheetIndex, string key, object value)
         {
-            rwReport1.Write(sheetIndex, key, value);
+            
         }
-        /// <summary>
-        /// 报表打开时
-        /// </summary>
-        private void rwReport1_Opened(object sender, EventArgs e)
-        {
-            if (Opened != null)
-                Opened(this, e);
-        }
+
         /// <summary>
         /// 插入图片
         /// </summary>
         public void InsertPicture(string key, string PicturePath)
         {
-            rwReport1.InsertPicture(key, PicturePath);
+          
         }
     }
 }

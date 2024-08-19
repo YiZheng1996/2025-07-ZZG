@@ -14,9 +14,9 @@ namespace MainUI.BLL
 {
     public class UserBLL : BaseBLL
     {
-        public UserBLL() : base(VarHelper.Database, VarHelper.ConnectionString, "Users")
+        public UserBLL() : base(VarHelper.sQLiteDB, VarHelper.sQLiteConnectionString, "Users")
         {
-            ConnectionString = VarHelper.ConnectionString;
+            ConnectionString = VarHelper.sQLiteConnectionString;
         }
 
         public DataSet GetSortedList()

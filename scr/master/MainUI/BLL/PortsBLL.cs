@@ -23,7 +23,7 @@ namespace MainUI.BLL
             if (readOnly != null)
                 where += " and isRead=" + readOnly.Value;
             DataTable dt = GetList();
-            List<Ports> ps = new();
+            List<Ports> ps = [];
             foreach (DataRow row in dt.Rows)
             {
                 ps.Add(new Ports(row));
@@ -37,7 +37,7 @@ namespace MainUI.BLL
             DataTable dt = GetList();
             foreach (DataRow row in dt.Rows)
                 ports.Add(new Ports(row));
-            return ports.OrderBy(p => p.ID).ToList();
+            return [.. ports.OrderBy(p => p.ID)];
         }
 
         public List<Ports> GetAllPorts(int modelID)
@@ -46,7 +46,7 @@ namespace MainUI.BLL
             DataTable dt = GetList(string.Format(" ModelNameID={0}", modelID));
             foreach (DataRow row in dt.Rows)
                 ports.Add(new Ports(row));
-            return ports.OrderBy(p => p.ID).ToList();
+            return [.. ports.OrderBy(p => p.ID)];
         }
 
         public void Modify(Ports port)

@@ -31,7 +31,6 @@ namespace MainUI
         private void InitializeComponent()
         {
             this.grpDI = new Sunny.UI.UIGroupBox();
-            this.rwReport1 = new RW.UI.Controls.Report.RWReport();
             this.btnClose = new Sunny.UI.UIButton();
             this.btnPrint = new Sunny.UI.UIButton();
             this.btnSave = new Sunny.UI.UIButton();
@@ -40,14 +39,12 @@ namespace MainUI
             this.btnPageDown = new Sunny.UI.UIButton();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.grpDI.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rwReport1)).BeginInit();
             this.grpDO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpDI
             // 
-            this.grpDI.Controls.Add(this.rwReport1);
             this.grpDI.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpDI.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.grpDI.Location = new System.Drawing.Point(0, 0);
@@ -61,17 +58,6 @@ namespace MainUI
             this.grpDI.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.grpDI.TitleAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.grpDI.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // rwReport1
-            // 
-            this.rwReport1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rwReport1.Filename = null;
-            this.rwReport1.Location = new System.Drawing.Point(0, 32);
-            this.rwReport1.Margin = new System.Windows.Forms.Padding(797, 1222, 797, 1222);
-            this.rwReport1.Name = "rwReport1";
-            this.rwReport1.Size = new System.Drawing.Size(876, 675);
-            this.rwReport1.TabIndex = 1;
-            this.rwReport1.Opened += new System.EventHandler(this.rwReport1_Opened);
             // 
             // btnClose
             // 
@@ -201,7 +187,6 @@ namespace MainUI
             this.Text = "报表结果";
             this.Load += new System.EventHandler(this.frmReport_Load);
             this.grpDI.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.rwReport1)).EndInit();
             this.grpDO.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
@@ -210,7 +195,6 @@ namespace MainUI
 
         #endregion
         private Sunny.UI.UIGroupBox grpDI;
-        private RW.UI.Controls.Report.RWReport rwReport1;
         private Sunny.UI.UIButton btnClose;
         private UIButton btnPrint;
         private UIButton btnSave;

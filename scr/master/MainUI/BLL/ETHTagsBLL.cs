@@ -8,7 +8,7 @@ namespace MainUI.BLL
 {
     public class ETHTagsBLL : BaseBLL
     {
-        public ETHTagsBLL() : base(VarHelper.Database, VarHelper.ConnectionString, "ETHFullTags") { } 
+        public ETHTagsBLL() : base(VarHelper.Database, VarHelper.ConnectionString, "ETHFullTags") { }
 
         public List<FullTagsETH> GetAllTags()
         {
@@ -22,8 +22,7 @@ namespace MainUI.BLL
                 FullTagsETH tag = new(row);
                 tags.Add(tag);
             }
-            //return tags;
-            return tags.OrderBy(x => x.COMMData.Bit).OrderBy(x => x.COMMData.Offset).OrderBy(x => x.COMMData.Port).ToList();
+            return [.. tags.OrderBy(x => x.COMMData.Bit).OrderBy(x => x.COMMData.Offset).OrderBy(x => x.COMMData.Port)];
         }
 
 
@@ -31,8 +30,8 @@ namespace MainUI.BLL
         {
             string where = "";
             where = " TypeName = '" + typename + "'";
-            DataTable dt = this.GetList(where);
-            List<ETHSignal> si = new List<ETHSignal>();
+            DataTable dt = GetList(where);
+            List<ETHSignal> si = [];
             foreach (DataRow row in dt.Rows)
             {
                 si.Add(new ETHSignal(row));
@@ -41,10 +40,10 @@ namespace MainUI.BLL
             var values = from u in si
                          orderby u.Offset ascending, u.ETHBit ascending
                          select u;
-            si = values.ToList();
+            si = [.. values];
             return si;
         }
-        public List<ETHSignal> GetAllTagsByPort(string portNo,string verno,string typename)
+        public List<ETHSignal> GetAllTagsByPort(string portNo, string verno, string typename)
         {
             string where = "";
             where = "Port='" + portNo + "' and TypeName = '" + typename + "'and VerNo='" + verno + "'";
@@ -64,25 +63,25 @@ namespace MainUI.BLL
 
         public void EditTags(ETHSignal signal)
         {
-            string sql = string.Format("UPDATE {9} SET ETHFullTags.DataLabel = '{0}',ETHFullTags.[PortPattern] = {10},ETHFullTags.[TRDPNo] = {11}, ETHFullTags.DataType = '{1}', ETHFullTags.Description = '{2}', ETHFullTags.Port = '{3}', ETHFullTags.Offset = {4}, ETHFullTags.ETHBit = {5}, ETHFullTags.[Identity] = {6},ETHFullTags.DataUnit='{7}',BitValue={12} WHERE(((ETHFullTags.[ID]) = {8}));", signal.DataLabel, signal.DataType, signal.Description, signal.Port, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.ID, this.TableName, signal.PortPattern,signal.TRDPNo,signal.BitValue);
+            string sql = string.Format("UPDATE {9} SET ETHFullTags.DataLabel = '{0}',ETHFullTags.[PortPattern] = {10},ETHFullTags.[TRDPNo] = {11}, ETHFullTags.DataType = '{1}', ETHFullTags.Description = '{2}', ETHFullTags.Port = '{3}', ETHFullTags.Offset = {4}, ETHFullTags.ETHBit = {5}, ETHFullTags.[Identity] = {6},ETHFullTags.DataUnit='{7}',BitValue={12} WHERE(((ETHFullTags.[ID]) = {8}));", signal.DataLabel, signal.DataType, signal.Description, signal.Port, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.ID, this.TableName, signal.PortPattern, signal.TRDPNo, signal.BitValue);
             Database.ExecuteNonQuery(sql);
         }
 
         public void AddTags(ETHSignal signal)
         {
-            string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,BitValue) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15})", signal.DataLabel, signal.DataType, signal.Description, signal.Port, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.PortPattern, signal.TypeName, this.TableName,signal.TRDPNo,signal.VerNo,signal.IsRead,signal.ETHPassage,signal.BitValue);
+            string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,BitValue) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15})", signal.DataLabel, signal.DataType, signal.Description, signal.Port, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.PortPattern, signal.TypeName, this.TableName, signal.TRDPNo, signal.VerNo, signal.IsRead, signal.ETHPassage, signal.BitValue);
             Database.ExecuteNonQuery(sql);
 
         }
-        public void AddTags(ETHSignal signal ,string verno, string COmID, int ETHPassage)
+        public void AddTags(ETHSignal signal, string verno, string COmID, int ETHPassage)
         {
-            string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,DefaultVersion,BitValue) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},{16})", signal.DataLabel, signal.DataType, signal.Description, COmID, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.PortPattern, signal.TypeName, this.TableName, signal.TRDPNo, verno,signal.IsRead,ETHPassage,signal.DefaultVersion,signal.BitValue);
+            string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,DefaultVersion,BitValue) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},{16})", signal.DataLabel, signal.DataType, signal.Description, COmID, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.PortPattern, signal.TypeName, this.TableName, signal.TRDPNo, verno, signal.IsRead, ETHPassage, signal.DefaultVersion, signal.BitValue);
             Database.ExecuteNonQuery(sql);
 
         }
         public void AddTags1(ETHSignal signal, string verno, string COmID, int ETHPassage)
         {
-            string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,DefaultVersion,BitValue) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},{16})", signal.DataLabel, signal.DataType, signal.Description, COmID, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.PortPattern, signal.TypeName, this.TableName, signal.TRDPNo, verno, signal.IsRead, ETHPassage,false,signal.BitValue);
+            string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,DefaultVersion,BitValue) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},{16})", signal.DataLabel, signal.DataType, signal.Description, COmID, signal.Offset, signal.ETHBit, signal.Identity, signal.DataUnit, signal.PortPattern, signal.TypeName, this.TableName, signal.TRDPNo, verno, signal.IsRead, ETHPassage, false, signal.BitValue);
             Database.ExecuteNonQuery(sql);
 
         }
@@ -91,12 +90,12 @@ namespace MainUI.BLL
             string sql = "delete from " + this.TableName + " where ETHFullTags.id=" + id;
             Database.ExecuteNonQuery(sql);
         }
-        internal void DelTags(string TypeNmae,string port,string verno)
+        internal void DelTags(string TypeNmae, string port, string verno)
         {
-            string sql = "delete from " + this.TableName +"where TypeName ='"+ TypeNmae + "'and Port='" + port+"' and VerNo='"+ verno + "'";
+            string sql = "delete from " + this.TableName + "where TypeName ='" + TypeNmae + "'and Port='" + port + "' and VerNo='" + verno + "'";
             Database.ExecuteNonQuery(sql);
         }
-        public int InserBatch(List<ETHSignal> model,string verNo,string COmID,int ETHPassage)
+        public int InserBatch(List<ETHSignal> model, string verNo, string COmID, int ETHPassage)
         {
             for (int i = 0; i < model.Count(); i++)
             {
@@ -125,7 +124,7 @@ namespace MainUI.BLL
         {
             string sql = string.Format(
                 "update ETHFullTags set [DefaultVersion]={0} where TypeName='{1}'and VerNo <>'{2}'",
-                false, port.TypeName,port.VerNo);
+                false, port.TypeName, port.VerNo);
 
             Database.ExecuteNonQuery(sql);
         }
@@ -133,7 +132,7 @@ namespace MainUI.BLL
         {
             string sql = string.Format(
                 "update ETHFullTags set [DefaultVersion]={1} where  Port='{0}' and TypeName='{2}'and VerNo='{3}'",
-                port.Port, true,port.TypeName,port.VerNo);
+                port.Port, true, port.TypeName, port.VerNo);
 
             Database.ExecuteNonQuery(sql);
         }

@@ -245,7 +245,6 @@ namespace MainUI
             uibtnSSIDataMonitor = new UIButton();
             btnResponseTest = new UIButton();
             btnDataAnalysis = new UIButton();
-            btnFatigueTest = new UIButton();
             btnCANPowerDown = new UIButton();
             uiPanel1 = new UIPanel();
             uiTabControl1 = new UITabControl();
@@ -654,7 +653,7 @@ namespace MainUI
             txtType.Font = new System.Drawing.Font("微软雅黑", 11F);
             txtType.ForeDisableColor = System.Drawing.Color.FromArgb(48, 48, 48);
             txtType.ForeReadOnlyColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            txtType.Location = new System.Drawing.Point(31, 87);
+            txtType.Location = new System.Drawing.Point(23, 87);
             txtType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtType.MinimumSize = new System.Drawing.Size(1, 16);
             txtType.Name = "txtType";
@@ -678,7 +677,7 @@ namespace MainUI
             txtModel.Font = new System.Drawing.Font("微软雅黑", 11F);
             txtModel.ForeDisableColor = System.Drawing.Color.FromArgb(48, 48, 48);
             txtModel.ForeReadOnlyColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            txtModel.Location = new System.Drawing.Point(31, 148);
+            txtModel.Location = new System.Drawing.Point(23, 148);
             txtModel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtModel.MinimumSize = new System.Drawing.Size(1, 16);
             txtModel.Name = "txtModel";
@@ -763,7 +762,7 @@ namespace MainUI
             // 
             uibtnCurve.Cursor = System.Windows.Forms.Cursors.Hand;
             uibtnCurve.Font = new System.Drawing.Font("微软雅黑", 11F);
-            uibtnCurve.Location = new System.Drawing.Point(19, 186);
+            uibtnCurve.Location = new System.Drawing.Point(19, 169);
             uibtnCurve.MinimumSize = new System.Drawing.Size(1, 1);
             uibtnCurve.Name = "uibtnCurve";
             uibtnCurve.ShowFocusLine = true;
@@ -4268,7 +4267,6 @@ namespace MainUI
             uiGroupBox2.Controls.Add(btnResponseTest);
             uiGroupBox2.Controls.Add(uibtnCurve);
             uiGroupBox2.Controls.Add(btnDataAnalysis);
-            uiGroupBox2.Controls.Add(btnFatigueTest);
             uiGroupBox2.Controls.Add(btnCANPowerDown);
             uiGroupBox2.Font = new System.Drawing.Font("微软雅黑", 11F);
             uiGroupBox2.Location = new System.Drawing.Point(2, 279);
@@ -4286,7 +4284,7 @@ namespace MainUI
             // 
             uibtnSSIDataMonitor.Cursor = System.Windows.Forms.Cursors.Hand;
             uibtnSSIDataMonitor.Font = new System.Drawing.Font("微软雅黑", 11F);
-            uibtnSSIDataMonitor.Location = new System.Drawing.Point(19, 224);
+            uibtnSSIDataMonitor.Location = new System.Drawing.Point(19, 214);
             uibtnSSIDataMonitor.MinimumSize = new System.Drawing.Size(1, 1);
             uibtnSSIDataMonitor.Name = "uibtnSSIDataMonitor";
             uibtnSSIDataMonitor.ShowFocusLine = true;
@@ -4301,7 +4299,7 @@ namespace MainUI
             // 
             btnResponseTest.Cursor = System.Windows.Forms.Cursors.Hand;
             btnResponseTest.Font = new System.Drawing.Font("微软雅黑", 11F);
-            btnResponseTest.Location = new System.Drawing.Point(19, 148);
+            btnResponseTest.Location = new System.Drawing.Point(19, 124);
             btnResponseTest.MinimumSize = new System.Drawing.Size(1, 1);
             btnResponseTest.Name = "btnResponseTest";
             btnResponseTest.ShowFocusLine = true;
@@ -4316,7 +4314,7 @@ namespace MainUI
             // 
             btnDataAnalysis.Cursor = System.Windows.Forms.Cursors.Hand;
             btnDataAnalysis.Font = new System.Drawing.Font("微软雅黑", 11F);
-            btnDataAnalysis.Location = new System.Drawing.Point(19, 72);
+            btnDataAnalysis.Location = new System.Drawing.Point(19, 79);
             btnDataAnalysis.MinimumSize = new System.Drawing.Size(1, 1);
             btnDataAnalysis.Name = "btnDataAnalysis";
             btnDataAnalysis.ShowFocusLine = true;
@@ -4326,21 +4324,6 @@ namespace MainUI
             btnDataAnalysis.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
             btnDataAnalysis.TipsText = "1";
             btnDataAnalysis.Click += btnDataAnalysis_Click;
-            // 
-            // btnFatigueTest
-            // 
-            btnFatigueTest.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnFatigueTest.Font = new System.Drawing.Font("微软雅黑", 11F);
-            btnFatigueTest.Location = new System.Drawing.Point(19, 110);
-            btnFatigueTest.MinimumSize = new System.Drawing.Size(1, 1);
-            btnFatigueTest.Name = "btnFatigueTest";
-            btnFatigueTest.ShowFocusLine = true;
-            btnFatigueTest.Size = new System.Drawing.Size(168, 30);
-            btnFatigueTest.TabIndex = 71;
-            btnFatigueTest.Text = "手柄疲劳试验";
-            btnFatigueTest.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
-            btnFatigueTest.TipsText = "1";
-            btnFatigueTest.Click += btnFatigueTest_Click;
             // 
             // btnCANPowerDown
             // 
@@ -8448,7 +8431,6 @@ namespace MainUI
         private UIGroupBox uiGroupBox2;
         private UIButton btnCANPowerDown;
         private UIButton btnDataAnalysis;
-        private UIButton btnFatigueTest;
         private UIButton btnResponseTest;
         private UIPipe uiPipe27;
         private UIPanel uiPanel1;

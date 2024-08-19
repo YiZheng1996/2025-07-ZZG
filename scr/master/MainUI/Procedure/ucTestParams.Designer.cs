@@ -56,7 +56,7 @@
             // 
             uiTabControl1.Controls.Add(tabPage2);
             uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F);
             uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
             uiTabControl1.Location = new System.Drawing.Point(12, 81);
             uiTabControl1.MainPage = "";
@@ -67,7 +67,7 @@
             uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             uiTabControl1.TabIndex = 70;
             uiTabControl1.TabUnSelectedForeColor = System.Drawing.Color.FromArgb(240, 240, 240);
-            uiTabControl1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiTabControl1.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
             // 
             // tabPage2
             // 
@@ -85,7 +85,7 @@
             // txtsmallTestNumber
             // 
             txtsmallTestNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            txtsmallTestNumber.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtsmallTestNumber.Font = new System.Drawing.Font("宋体", 12F);
             txtsmallTestNumber.Location = new System.Drawing.Point(282, 204);
             txtsmallTestNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtsmallTestNumber.MinimumSize = new System.Drawing.Size(1, 16);
@@ -95,11 +95,12 @@
             txtsmallTestNumber.Size = new System.Drawing.Size(150, 29);
             txtsmallTestNumber.TabIndex = 4;
             txtsmallTestNumber.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtsmallTestNumber.Visible = false;
             txtsmallTestNumber.Watermark = "";
             // 
             // uiLabel4
             // 
-            uiLabel4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             uiLabel4.Location = new System.Drawing.Point(141, 207);
             uiLabel4.Name = "uiLabel4";
@@ -107,11 +108,12 @@
             uiLabel4.TabIndex = 3;
             uiLabel4.Text = "小闸试验次数";
             uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            uiLabel4.Visible = false;
             // 
             // txtbigTestNumber
             // 
             txtbigTestNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            txtbigTestNumber.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtbigTestNumber.Font = new System.Drawing.Font("宋体", 12F);
             txtbigTestNumber.Location = new System.Drawing.Point(282, 150);
             txtbigTestNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtbigTestNumber.MinimumSize = new System.Drawing.Size(1, 16);
@@ -121,11 +123,12 @@
             txtbigTestNumber.Size = new System.Drawing.Size(150, 29);
             txtbigTestNumber.TabIndex = 2;
             txtbigTestNumber.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtbigTestNumber.Visible = false;
             txtbigTestNumber.Watermark = "";
             // 
             // uiLabel3
             // 
-            uiLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             uiLabel3.Location = new System.Drawing.Point(141, 153);
             uiLabel3.Name = "uiLabel3";
@@ -133,6 +136,7 @@
             uiLabel3.TabIndex = 0;
             uiLabel3.Text = "大闸试验次数";
             uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            uiLabel3.Visible = false;
             // 
             // uiGroupBox1
             // 
@@ -145,7 +149,7 @@
             uiGroupBox1.Controls.Add(txtModel);
             uiGroupBox1.Controls.Add(uiLabel1);
             uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 11F);
             uiGroupBox1.Location = new System.Drawing.Point(0, 0);
             uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -159,42 +163,42 @@
             // btnEdit
             // 
             btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnEdit.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnEdit.Font = new System.Drawing.Font("微软雅黑", 11F);
             btnEdit.Location = new System.Drawing.Point(511, 586);
             btnEdit.MinimumSize = new System.Drawing.Size(1, 1);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new System.Drawing.Size(120, 40);
             btnEdit.TabIndex = 397;
             btnEdit.Text = "重置";
-            btnEdit.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnEdit.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
             btnEdit.TipsText = "1";
             btnEdit.Click += btnReset_Click;
             // 
             // btnDelete
             // 
             btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnDelete.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnDelete.Font = new System.Drawing.Font("微软雅黑", 11F);
             btnDelete.Location = new System.Drawing.Point(375, 586);
             btnDelete.MinimumSize = new System.Drawing.Size(1, 1);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new System.Drawing.Size(120, 40);
             btnDelete.TabIndex = 396;
             btnDelete.Text = "确定";
-            btnDelete.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnDelete.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
             btnDelete.TipsText = "1";
             btnDelete.Click += btnOK_Click;
             // 
             // btnGet
             // 
             btnGet.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnGet.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnGet.Font = new System.Drawing.Font("微软雅黑", 11F);
             btnGet.Location = new System.Drawing.Point(530, 35);
             btnGet.MinimumSize = new System.Drawing.Size(1, 1);
             btnGet.Name = "btnGet";
             btnGet.Size = new System.Drawing.Size(105, 40);
             btnGet.TabIndex = 389;
             btnGet.Text = "产品选择";
-            btnGet.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnGet.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
             btnGet.TipsText = "1";
             btnGet.Click += btnProductSelection_Click;
             // 
@@ -203,7 +207,7 @@
             txtType.Enabled = false;
             txtType.FillDisableColor = System.Drawing.Color.FromArgb(243, 249, 255);
             txtType.FillReadOnlyColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            txtType.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtType.Font = new System.Drawing.Font("微软雅黑", 11F);
             txtType.Location = new System.Drawing.Point(90, 40);
             txtType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtType.MinimumSize = new System.Drawing.Size(1, 16);
@@ -221,7 +225,7 @@
             // uiLabel2
             // 
             uiLabel2.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
             uiLabel2.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             uiLabel2.Location = new System.Drawing.Point(271, 40);
             uiLabel2.Name = "uiLabel2";
@@ -235,7 +239,7 @@
             txtModel.Enabled = false;
             txtModel.FillDisableColor = System.Drawing.Color.FromArgb(243, 249, 255);
             txtModel.FillReadOnlyColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            txtModel.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtModel.Font = new System.Drawing.Font("微软雅黑", 11F);
             txtModel.Location = new System.Drawing.Point(354, 40);
             txtModel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtModel.MinimumSize = new System.Drawing.Size(1, 16);
@@ -253,7 +257,7 @@
             // uiLabel1
             // 
             uiLabel1.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
             uiLabel1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             uiLabel1.Location = new System.Drawing.Point(8, 40);
             uiLabel1.Name = "uiLabel1";

@@ -27,6 +27,7 @@
     <!--<ApplicationIcon>logo.ico</ApplicationIcon>-->
     <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="CAN\frmCANPortManager.cs">
@@ -82,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\backimg.png" />
+    <Content Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -147,9 +149,6 @@
     </Reference>
     <Reference Include="rw">
       <HintPath>..\Lib\rw.dll</HintPath>
-    </Reference>
-    <Reference Include="rwReport">
-      <HintPath>..\Lib\rwReport.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

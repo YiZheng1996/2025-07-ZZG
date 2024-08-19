@@ -427,7 +427,7 @@ namespace MainUI.Procedure.ExcelImport
         public static DataTable GetExcelDataTable(string filePath, bool cover = false)
         {
             IWorkbook Workbook;
-            DataTable table = new DataTable();
+            DataTable table = new();
             try
             {
                 if (cover)

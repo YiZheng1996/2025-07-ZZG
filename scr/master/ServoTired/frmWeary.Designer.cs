@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWeary));
             btnZeroClearingBig = new Sunny.UI.UIButton();
-            btnGate = new Sunny.UI.UIButton();
+            btnBigGate = new Sunny.UI.UIButton();
             btnClose = new Sunny.UI.UIButton();
             btnParaSet = new Sunny.UI.UIButton();
             uiTitlePanel3 = new Sunny.UI.UITitlePanel();
+            switchLabel6 = new RW.UI.Controls.SwitchLabel();
+            uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
             switchLabel1 = new RW.UI.Controls.SwitchLabel();
             switchLabel2 = new RW.UI.Controls.SwitchLabel();
             switchLabel3 = new RW.UI.Controls.SwitchLabel();
             switchLabel4 = new RW.UI.Controls.SwitchLabel();
             switchLabel5 = new RW.UI.Controls.SwitchLabel();
-            uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
-            switchLabel6 = new RW.UI.Controls.SwitchLabel();
             uiTitlePanel1 = new Sunny.UI.UITitlePanel();
             switchLabel7 = new RW.UI.Controls.SwitchLabel();
             uiRichTextBox2 = new Sunny.UI.UIRichTextBox();
@@ -49,15 +49,16 @@
             switchLabel10 = new RW.UI.Controls.SwitchLabel();
             switchLabel11 = new RW.UI.Controls.SwitchLabel();
             switchLabel12 = new RW.UI.Controls.SwitchLabel();
-            uiButton1 = new Sunny.UI.UIButton();
-            uiButton2 = new Sunny.UI.UIButton();
+            btnSmallGate = new Sunny.UI.UIButton();
+            btnZeroClearingSamll = new Sunny.UI.UIButton();
+            btnCalibration = new Sunny.UI.UIButton();
             uiTitlePanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)switchLabel6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)switchLabel6).BeginInit();
             uiTitlePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)switchLabel7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel8).BeginInit();
@@ -80,32 +81,30 @@
             btnZeroClearingBig.TabIndex = 11;
             btnZeroClearingBig.Text = "次数清零";
             btnZeroClearingBig.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            btnZeroClearingBig.Click += btnZeroClearingBig_Click;
+            btnZeroClearingBig.Click += BtnZeroClearingBig_Click;
             // 
-            // btnGate
+            // btnBigGate
             // 
-            btnGate.Cursor = Cursors.Hand;
-            btnGate.FillColor = Color.FromArgb(110, 190, 40);
-            btnGate.Font = new Font("宋体", 12F);
-            btnGate.Location = new Point(59, 598);
-            btnGate.MinimumSize = new Size(1, 1);
-            btnGate.Name = "btnGate";
-            btnGate.RectColor = Color.FromArgb(110, 190, 40);
-            btnGate.Size = new Size(120, 35);
-            btnGate.TabIndex = 10;
-            btnGate.Text = "开 始";
-            btnGate.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            btnGate.Click += btnGate_Click;
+            btnBigGate.Cursor = Cursors.Hand;
+            btnBigGate.FillColor = Color.FromArgb(110, 190, 40);
+            btnBigGate.Font = new Font("宋体", 12F);
+            btnBigGate.Location = new Point(59, 598);
+            btnBigGate.MinimumSize = new Size(1, 1);
+            btnBigGate.Name = "btnBigGate";
+            btnBigGate.RectColor = Color.FromArgb(110, 190, 40);
+            btnBigGate.Size = new Size(120, 35);
+            btnBigGate.TabIndex = 10;
+            btnBigGate.Text = "开 始";
+            btnBigGate.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnBigGate.Click += btnGate_Click;
             // 
             // btnClose
             // 
             btnClose.Cursor = Cursors.Hand;
-            btnClose.FillColor = Color.FromArgb(230, 80, 80);
             btnClose.Font = new Font("宋体", 12F);
-            btnClose.Location = new Point(466, 701);
+            btnClose.Location = new Point(611, 701);
             btnClose.MinimumSize = new Size(1, 1);
             btnClose.Name = "btnClose";
-            btnClose.RectColor = Color.FromArgb(230, 80, 80);
             btnClose.Size = new Size(144, 35);
             btnClose.TabIndex = 7;
             btnClose.Text = "退 出";
@@ -115,12 +114,10 @@
             // btnParaSet
             // 
             btnParaSet.Cursor = Cursors.Hand;
-            btnParaSet.FillColor = Color.FromArgb(110, 190, 40);
             btnParaSet.Font = new Font("宋体", 12F);
-            btnParaSet.Location = new Point(267, 701);
+            btnParaSet.Location = new Point(375, 701);
             btnParaSet.MinimumSize = new Size(1, 1);
             btnParaSet.Name = "btnParaSet";
-            btnParaSet.RectColor = Color.FromArgb(110, 190, 40);
             btnParaSet.Size = new Size(144, 35);
             btnParaSet.TabIndex = 8;
             btnParaSet.Text = "参数设置";
@@ -137,7 +134,7 @@
             uiTitlePanel3.Controls.Add(switchLabel3);
             uiTitlePanel3.Controls.Add(switchLabel4);
             uiTitlePanel3.Controls.Add(switchLabel5);
-            uiTitlePanel3.Controls.Add(btnGate);
+            uiTitlePanel3.Controls.Add(btnBigGate);
             uiTitlePanel3.Controls.Add(btnZeroClearingBig);
             uiTitlePanel3.Font = new Font("宋体", 12F);
             uiTitlePanel3.Location = new Point(4, 35);
@@ -151,6 +148,33 @@
             uiTitlePanel3.Text = "大闸手柄疲劳试验";
             uiTitlePanel3.TextAlignment = ContentAlignment.MiddleCenter;
             uiTitlePanel3.TitleHeight = 20;
+            // 
+            // switchLabel6
+            // 
+            switchLabel6.Location = new Point(280, 74);
+            switchLabel6.Margin = new Padding(0);
+            switchLabel6.Name = "switchLabel6";
+            switchLabel6.Size = new Size(120, 19);
+            switchLabel6.SwitchTypes = RW.UI.Controls.SwitchTypes.GreenRed;
+            switchLabel6.TabIndex = 18;
+            switchLabel6.Text = "伺服异常";
+            switchLabel6.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // uiRichTextBox1
+            // 
+            uiRichTextBox1.FillColor = Color.White;
+            uiRichTextBox1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiRichTextBox1.Location = new Point(2, 108);
+            uiRichTextBox1.Margin = new Padding(4, 5, 4, 5);
+            uiRichTextBox1.MinimumSize = new Size(1, 1);
+            uiRichTextBox1.Name = "uiRichTextBox1";
+            uiRichTextBox1.Padding = new Padding(2);
+            uiRichTextBox1.ScrollBarStyleInherited = false;
+            uiRichTextBox1.ShowText = false;
+            uiRichTextBox1.Size = new Size(416, 478);
+            uiRichTextBox1.TabIndex = 17;
+            uiRichTextBox1.Text = "正在初始化·····\n初始化完成，需要完成100000次疲劳试验！\n试验开始，当前试验次数为56400次\n第56401次试验开始····\n运转位   →  初制动位\n初制动位 →  全制动位\n全制动位 →  重联位\n\n";
+            uiRichTextBox1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // switchLabel1
             // 
@@ -213,32 +237,6 @@
             switchLabel5.Text = "正向末端";
             switchLabel5.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // uiRichTextBox1
-            // 
-            uiRichTextBox1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiRichTextBox1.Location = new Point(2, 108);
-            uiRichTextBox1.Margin = new Padding(4, 5, 4, 5);
-            uiRichTextBox1.MinimumSize = new Size(1, 1);
-            uiRichTextBox1.Name = "uiRichTextBox1";
-            uiRichTextBox1.Padding = new Padding(2);
-            uiRichTextBox1.ScrollBarStyleInherited = false;
-            uiRichTextBox1.ShowText = false;
-            uiRichTextBox1.Size = new Size(416, 478);
-            uiRichTextBox1.TabIndex = 17;
-            uiRichTextBox1.Text = "正在初始化·····\n初始化完成，需要完成100000次疲劳试验！\n试验开始，当前试验次数为56400次\n第56401次试验开始····\n运转位   →  初制动位\n初制动位 →  全制动位\n全制动位 →  重联位\n\n";
-            uiRichTextBox1.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // switchLabel6
-            // 
-            switchLabel6.Location = new Point(280, 74);
-            switchLabel6.Margin = new Padding(0);
-            switchLabel6.Name = "switchLabel6";
-            switchLabel6.Size = new Size(120, 19);
-            switchLabel6.SwitchTypes = RW.UI.Controls.SwitchTypes.GreenRed;
-            switchLabel6.TabIndex = 18;
-            switchLabel6.Text = "伺服异常";
-            switchLabel6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // uiTitlePanel1
             // 
             uiTitlePanel1.Controls.Add(switchLabel7);
@@ -248,8 +246,8 @@
             uiTitlePanel1.Controls.Add(switchLabel10);
             uiTitlePanel1.Controls.Add(switchLabel11);
             uiTitlePanel1.Controls.Add(switchLabel12);
-            uiTitlePanel1.Controls.Add(uiButton1);
-            uiTitlePanel1.Controls.Add(uiButton2);
+            uiTitlePanel1.Controls.Add(btnSmallGate);
+            uiTitlePanel1.Controls.Add(btnZeroClearingSamll);
             uiTitlePanel1.Font = new Font("宋体", 12F);
             uiTitlePanel1.Location = new Point(448, 35);
             uiTitlePanel1.Margin = new Padding(4, 5, 4, 5);
@@ -276,6 +274,7 @@
             // 
             // uiRichTextBox2
             // 
+            uiRichTextBox2.FillColor = Color.White;
             uiRichTextBox2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiRichTextBox2.Location = new Point(2, 108);
             uiRichTextBox2.Margin = new Padding(4, 5, 4, 5);
@@ -350,39 +349,55 @@
             switchLabel12.Text = "正向末端";
             switchLabel12.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // uiButton1
+            // btnSmallGate
             // 
-            uiButton1.Cursor = Cursors.Hand;
-            uiButton1.FillColor = Color.FromArgb(110, 190, 40);
-            uiButton1.Font = new Font("宋体", 12F);
-            uiButton1.Location = new Point(59, 598);
-            uiButton1.MinimumSize = new Size(1, 1);
-            uiButton1.Name = "uiButton1";
-            uiButton1.RectColor = Color.FromArgb(110, 190, 40);
-            uiButton1.Size = new Size(120, 35);
-            uiButton1.TabIndex = 10;
-            uiButton1.Text = "开 始";
-            uiButton1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnSmallGate.Cursor = Cursors.Hand;
+            btnSmallGate.FillColor = Color.FromArgb(110, 190, 40);
+            btnSmallGate.Font = new Font("宋体", 12F);
+            btnSmallGate.Location = new Point(59, 598);
+            btnSmallGate.MinimumSize = new Size(1, 1);
+            btnSmallGate.Name = "btnSmallGate";
+            btnSmallGate.RectColor = Color.FromArgb(110, 190, 40);
+            btnSmallGate.Size = new Size(120, 35);
+            btnSmallGate.TabIndex = 10;
+            btnSmallGate.Text = "开 始";
+            btnSmallGate.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnSmallGate.Click += btnSmallGate_Click;
             // 
-            // uiButton2
+            // btnZeroClearingSamll
             // 
-            uiButton2.Cursor = Cursors.Hand;
-            uiButton2.FillColor = Color.FromArgb(128, 128, 255);
-            uiButton2.Font = new Font("宋体", 12F);
-            uiButton2.Location = new Point(220, 598);
-            uiButton2.MinimumSize = new Size(1, 1);
-            uiButton2.Name = "uiButton2";
-            uiButton2.RectColor = Color.FromArgb(128, 128, 255);
-            uiButton2.Size = new Size(120, 35);
-            uiButton2.TabIndex = 11;
-            uiButton2.Text = "次数清零";
-            uiButton2.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnZeroClearingSamll.Cursor = Cursors.Hand;
+            btnZeroClearingSamll.FillColor = Color.FromArgb(128, 128, 255);
+            btnZeroClearingSamll.Font = new Font("宋体", 12F);
+            btnZeroClearingSamll.Location = new Point(220, 598);
+            btnZeroClearingSamll.MinimumSize = new Size(1, 1);
+            btnZeroClearingSamll.Name = "btnZeroClearingSamll";
+            btnZeroClearingSamll.RectColor = Color.FromArgb(128, 128, 255);
+            btnZeroClearingSamll.Size = new Size(120, 35);
+            btnZeroClearingSamll.TabIndex = 11;
+            btnZeroClearingSamll.Text = "次数清零";
+            btnZeroClearingSamll.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            // 
+            // btnCalibration
+            // 
+            btnCalibration.Cursor = Cursors.Hand;
+            btnCalibration.Font = new Font("宋体", 12F);
+            btnCalibration.Location = new Point(151, 701);
+            btnCalibration.MinimumSize = new Size(1, 1);
+            btnCalibration.Name = "btnCalibration";
+            btnCalibration.Size = new Size(144, 35);
+            btnCalibration.TabIndex = 11;
+            btnCalibration.Text = "位置校准";
+            btnCalibration.TipsColor = Color.FromArgb(110, 190, 40);
+            btnCalibration.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnCalibration.Click += btnCalibration_Click;
             // 
             // FrmWeary
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(871, 750);
             ControlBox = false;
+            Controls.Add(btnCalibration);
             Controls.Add(uiTitlePanel1);
             Controls.Add(uiTitlePanel3);
             Controls.Add(btnParaSet);
@@ -392,7 +407,6 @@
             MinimizeBox = false;
             Name = "FrmWeary";
             Padding = new Padding(0, 29, 0, 0);
-            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Style = Sunny.UI.UIStyle.Custom;
             Text = "制动控制器手柄疲劳试验";
@@ -402,12 +416,12 @@
             ZoomScaleRect = new Rectangle(15, 15, 735, 635);
             Load += FrmWeary_Load;
             uiTitlePanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)switchLabel6).EndInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel1).EndInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel2).EndInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel3).EndInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel4).EndInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)switchLabel6).EndInit();
             uiTitlePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)switchLabel7).EndInit();
             ((System.ComponentModel.ISupportInitialize)switchLabel8).EndInit();
@@ -420,7 +434,7 @@
 
         #endregion
         private Sunny.UI.UIButton btnZeroClearingBig;
-        private Sunny.UI.UIButton btnGate;
+        private Sunny.UI.UIButton btnBigGate;
         private Sunny.UI.UIButton btnClose;
         private Sunny.UI.UIButton btnParaSet;
         private Sunny.UI.UITitlePanel uiTitlePanel3;
@@ -439,7 +453,8 @@
         private RW.UI.Controls.SwitchLabel switchLabel10;
         private RW.UI.Controls.SwitchLabel switchLabel11;
         private RW.UI.Controls.SwitchLabel switchLabel12;
-        private Sunny.UI.UIButton uiButton1;
-        private Sunny.UI.UIButton uiButton2;
+        private Sunny.UI.UIButton btnSmallGate;
+        private Sunny.UI.UIButton btnZeroClearingSamll;
+        private Sunny.UI.UIButton btnCalibration;
     }
 }

@@ -39,7 +39,7 @@ namespace ServoTired
             }
         }
 
-        public event ValueGroupHandler<object> TestConGroupChanged;
+        public event ValueGroupHandler<object>? TestConGroupChanged;
         public void Fresh()
         {
             for (int i = 0; i < TestConList.Length; i++)

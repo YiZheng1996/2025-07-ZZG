@@ -34,10 +34,7 @@ namespace MainUI
             { Debug.WriteLine(ex.Message); }
             finally
             {
-                if (fs != null)
-                {
-                    fs.Dispose();
-                }
+                fs?.Dispose();
             }
             return fileName;
         }
@@ -69,8 +66,7 @@ namespace MainUI
             }
             finally
             {
-                if (sw != null)
-                    sw.Dispose();
+                sw?.Dispose();
             }
             return ok;
         }
@@ -104,8 +100,7 @@ namespace MainUI
             }
             finally
             {
-                if (sw != null)
-                    sw.Dispose();
+                sw?.Dispose();
             }
             return ok;
         }
@@ -113,8 +108,8 @@ namespace MainUI
         public static List<string> ReadAsList(string path)
         {
             if (!File.Exists(path))
-                return new List<string>();
-            List<string> lstObj = new List<string>();
+                return [];
+            List<string> lstObj = [];
             StreamReader sr = null;
             try
             {
@@ -132,8 +127,7 @@ namespace MainUI
             }
             finally
             {
-                if (sr != null)
-                    sr.Dispose();
+                sr?.Dispose();
             }
             return lstObj;
         }
@@ -179,14 +173,12 @@ namespace MainUI
             }
             finally
             {
-                if (sr != null)
-                    sr.Dispose();
+                sr?.Dispose();
             }
 
             return dt;
         }
-
-        //  dicFault = MiniExcelLibs.MiniExcel.Query<FaultView>("故障解析表.xlsx").ToDictionary(x => x.FaultCode);
+ 
     }
 
 

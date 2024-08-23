@@ -1,3 +1,5 @@
+using System.Configuration;
+
 namespace ServoTired
 {
     internal static class Program
@@ -23,10 +25,13 @@ namespace ServoTired
                 Environment.Exit(0);
             }
             #endregion
-
-
             try
             {
+                //新建实例对象
+                var MyFreeSql = new FreeSql.FreeSqlBuilder()
+                    .UseConnectionString(FreeSql.DataType.Sqlite, ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString)
+                    .Build();
+                if (!MyFreeSql.Ado.ExecuteConnectTest()) throw new Exception("Sqlite数据库连接失败");
                 OPCHelper.Connect();
                 Application.Run(frmWeary);
             }
@@ -34,7 +39,6 @@ namespace ServoTired
             {
                 MessageBox.Show("OPC初始化失败：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
     }
 }

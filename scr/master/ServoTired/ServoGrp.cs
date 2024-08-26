@@ -9,14 +9,14 @@ namespace ServoTired
         public ServoGrp()
         {
             InitializeComponent();
-            Driver = OPCHelper.opcServo;
+            Driver = Helper.opcServo;
         }
 
         public ServoGrp(IContainer container)
         {
             container.Add(this);
             InitializeComponent();
-            Driver = OPCHelper.opcServo;
+            Driver = Helper.opcServo;
         }
 
         private const int cnt = 29;

@@ -1,14 +1,16 @@
 ﻿using RW.Driver;
+using Sunny.UI;
 using System.Net.NetworkInformation;
 
 namespace ServoTired
 {
-    internal class OPCHelper
+    internal class Helper
     {
+        public static IFreeSql? fsql;
         public static OPCDriver opcServo = new();
-        public static ServoGrp servoGrp;
+        public static ServoGrp? servoGrp;
 
-        static OPCHelper()
+        static Helper()
         {
             string kepServerName = "KEPware.KEPServerEx.V6";
             opcServo.ServerName = kepServerName;
@@ -35,6 +37,14 @@ namespace ServoTired
         public static void Close()
         {
             opcServo.Close();
+        }
+
+
+        public static void BindComboBox<T>(UIComboBox comboBox, string displayMember, string valueMember, IEnumerable<T>? dataSource)
+        {
+            comboBox.DataSource = new BindingSource(dataSource, null);
+            comboBox.DisplayMember = displayMember;
+            comboBox.ValueMember = valueMember;
         }
     }
 }

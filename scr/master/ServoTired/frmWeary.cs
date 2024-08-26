@@ -13,11 +13,12 @@ namespace ServoTired
     public partial class FrmWeary : UIForm
     {
         private ParaConfig para = new("Para");
+        TaskManager taskManager = new();
         public FrmWeary() => InitializeComponent();
         private void FrmWeary_Load(object sender, EventArgs e)
         {
-            OPCHelper.Init();
-            OPCHelper.servoGrp.TestConGroupChanged += ServoGrp_TestConGroupChanged;
+            Helper.Init();
+            Helper.servoGrp.TestConGroupChanged += ServoGrp_TestConGroupChanged;
         }
 
         private void ServoGrp_TestConGroupChanged(object sender, int index, object value)
@@ -28,7 +29,7 @@ namespace ServoTired
         private void btnClose_Click(object sender, EventArgs e)
         {
             isOperationStarted = false;
-            OPCHelper.Close();
+            Helper.Close();
             Close();
             Dispose();
         }
@@ -51,7 +52,7 @@ namespace ServoTired
         /// <param name="e"></param>
         private void btnSmallGate_Click(object sender, EventArgs e)
         {
-
+            taskManager.StartTask("小闸疲劳");
         }
         #endregion
 
@@ -62,7 +63,7 @@ namespace ServoTired
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnGate_Click(object sender, EventArgs e)
+        private async void btnGate_Click(object sender, EventArgs e)
         {
             var startColor = Color.FromArgb(255, 128, 128);
             var stopColor = Color.FromArgb(110, 190, 40);
@@ -77,7 +78,7 @@ namespace ServoTired
             }
             else
             {
-                BigToken?.Cancel();
+                await taskManager.StopTaskAsync("大闸疲劳");
                 isOperationStarted = false;
                 btnBigGate.Text = "开 始";
                 btnBigGate.FillColor = stopColor;
@@ -92,7 +93,7 @@ namespace ServoTired
         /// <param name="e"></param>
         private void BtnZeroClearingBig_Click(object sender, EventArgs e)
         {
-            if (BigTask?.Status == TaskStatus.Running)
+            if (!taskManager.IsTaskRunning("大闸疲劳"))
             {
                 MessageBox.Show("大闸手柄疲劳试验正在试验，无法清零次数！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -104,24 +105,10 @@ namespace ServoTired
         }
 
 
-        Task? BigTask;
-        CancellationTokenSource BigToken = new();
+      
         private void BigStartOperation() //开始
         {
-            if (BigTask?.Status == TaskStatus.Running) return;
-            BigToken = new();
-            var bigTestNumber = para.bigTestNumber;
-            var bigNowTest = para.bigNowTest;
-            BigTask = Task.Factory.StartNew(() =>
-            {
-                //TODO：等待电气给出信号点进行试验逻辑编写
-                while (bigNowTest < bigTestNumber & !BigToken.IsCancellationRequested)// & OPCHelper.servoGrp[13].ToBool()
-                {
-                    bigNowTest++;
-                    Task.Delay(1000).Wait();
-                    Debug.Write(bigNowTest + " ");
-                }
-            }, cancellationToken: BigToken.Token);
+            taskManager.StartTask("大闸疲劳");
         }
 
         #endregion
@@ -136,8 +123,8 @@ namespace ServoTired
         {
             if (!Dialog("是否进行位置校准？")) return;
 
-            var bigPosition = OPCHelper.servoGrp[10]; //大闸实时位置
-            var smallPosition = OPCHelper.servoGrp[22]; //小闸实时位置
+            var bigPosition = Helper.servoGrp[10]; //大闸实时位置
+            var smallPosition = Helper.servoGrp[22]; //小闸实时位置
             Adjust(1, 6, bigPosition);
             Adjust(2, 5, bigPosition);
             Adjust(3, 4, bigPosition);
@@ -151,7 +138,7 @@ namespace ServoTired
 
         private void Adjust(int key, int point, object position)
         {
-            if (Dialog(Process(key))) OPCHelper.servoGrp[point] = position;
+            if (Dialog(Process(key))) Helper.servoGrp[point] = position;
         }
 
         private bool Dialog(string text)

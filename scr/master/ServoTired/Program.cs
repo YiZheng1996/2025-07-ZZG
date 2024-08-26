@@ -28,11 +28,11 @@ namespace ServoTired
             try
             {
                 //新建实例对象
-                var MyFreeSql = new FreeSql.FreeSqlBuilder()
+                Helper.fsql = new FreeSql.FreeSqlBuilder()
                     .UseConnectionString(FreeSql.DataType.Sqlite, ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString)
                     .Build();
-                if (!MyFreeSql.Ado.ExecuteConnectTest()) throw new Exception("Sqlite数据库连接失败");
-                OPCHelper.Connect();
+                if (!Helper.fsql.Ado.ExecuteConnectTest()) throw new Exception("Sqlite数据库连接失败");
+                Helper.Connect();
                 Application.Run(frmWeary);
             }
             catch (Exception ex)

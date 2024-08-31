@@ -35,7 +35,7 @@
             btnParaSet = new Sunny.UI.UIButton();
             uiTitlePanel3 = new Sunny.UI.UITitlePanel();
             switchLabel6 = new RW.UI.Controls.SwitchLabel();
-            uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
+            RichTextBig = new Sunny.UI.UIRichTextBox();
             switchLabel1 = new RW.UI.Controls.SwitchLabel();
             switchLabel2 = new RW.UI.Controls.SwitchLabel();
             switchLabel3 = new RW.UI.Controls.SwitchLabel();
@@ -43,7 +43,7 @@
             switchLabel5 = new RW.UI.Controls.SwitchLabel();
             uiTitlePanel1 = new Sunny.UI.UITitlePanel();
             switchLabel7 = new RW.UI.Controls.SwitchLabel();
-            uiRichTextBox2 = new Sunny.UI.UIRichTextBox();
+            RichTextSmall = new Sunny.UI.UIRichTextBox();
             switchLabel8 = new RW.UI.Controls.SwitchLabel();
             switchLabel9 = new RW.UI.Controls.SwitchLabel();
             switchLabel10 = new RW.UI.Controls.SwitchLabel();
@@ -128,7 +128,7 @@
             // uiTitlePanel3
             // 
             uiTitlePanel3.Controls.Add(switchLabel6);
-            uiTitlePanel3.Controls.Add(uiRichTextBox1);
+            uiTitlePanel3.Controls.Add(RichTextBig);
             uiTitlePanel3.Controls.Add(switchLabel1);
             uiTitlePanel3.Controls.Add(switchLabel2);
             uiTitlePanel3.Controls.Add(switchLabel3);
@@ -160,21 +160,21 @@
             switchLabel6.Text = "伺服异常";
             switchLabel6.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // uiRichTextBox1
+            // RichTextBig
             // 
-            uiRichTextBox1.FillColor = Color.White;
-            uiRichTextBox1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiRichTextBox1.Location = new Point(2, 108);
-            uiRichTextBox1.Margin = new Padding(4, 5, 4, 5);
-            uiRichTextBox1.MinimumSize = new Size(1, 1);
-            uiRichTextBox1.Name = "uiRichTextBox1";
-            uiRichTextBox1.Padding = new Padding(2);
-            uiRichTextBox1.ScrollBarStyleInherited = false;
-            uiRichTextBox1.ShowText = false;
-            uiRichTextBox1.Size = new Size(416, 478);
-            uiRichTextBox1.TabIndex = 17;
-            uiRichTextBox1.Text = "正在初始化·····\n初始化完成，需要完成100000次疲劳试验！\n试验开始，当前试验次数为56400次\n第56401次试验开始····\n运转位   →  初制动位\n初制动位 →  全制动位\n全制动位 →  重联位\n\n";
-            uiRichTextBox1.TextAlignment = ContentAlignment.MiddleCenter;
+            RichTextBig.FillColor = Color.White;
+            RichTextBig.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            RichTextBig.Location = new Point(2, 108);
+            RichTextBig.Margin = new Padding(4, 5, 4, 5);
+            RichTextBig.MinimumSize = new Size(1, 1);
+            RichTextBig.Name = "RichTextBig";
+            RichTextBig.Padding = new Padding(2);
+            RichTextBig.ReadOnly = true;
+            RichTextBig.ScrollBarStyleInherited = false;
+            RichTextBig.ShowText = false;
+            RichTextBig.Size = new Size(416, 478);
+            RichTextBig.TabIndex = 17;
+            RichTextBig.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // switchLabel1
             // 
@@ -240,7 +240,7 @@
             // uiTitlePanel1
             // 
             uiTitlePanel1.Controls.Add(switchLabel7);
-            uiTitlePanel1.Controls.Add(uiRichTextBox2);
+            uiTitlePanel1.Controls.Add(RichTextSmall);
             uiTitlePanel1.Controls.Add(switchLabel8);
             uiTitlePanel1.Controls.Add(switchLabel9);
             uiTitlePanel1.Controls.Add(switchLabel10);
@@ -272,21 +272,21 @@
             switchLabel7.Text = "伺服异常";
             switchLabel7.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // uiRichTextBox2
+            // RichTextSmall
             // 
-            uiRichTextBox2.FillColor = Color.White;
-            uiRichTextBox2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiRichTextBox2.Location = new Point(2, 108);
-            uiRichTextBox2.Margin = new Padding(4, 5, 4, 5);
-            uiRichTextBox2.MinimumSize = new Size(1, 1);
-            uiRichTextBox2.Name = "uiRichTextBox2";
-            uiRichTextBox2.Padding = new Padding(2);
-            uiRichTextBox2.ScrollBarStyleInherited = false;
-            uiRichTextBox2.ShowText = false;
-            uiRichTextBox2.Size = new Size(416, 478);
-            uiRichTextBox2.TabIndex = 17;
-            uiRichTextBox2.Text = "正在初始化·····\n初始化完成，需要完成100000次疲劳试验！\n试验开始，当前试验次数为56400次\n第56401次试验开始····\n运转位   →  初制动位\n初制动位 →  全制动位\n全制动位 →  重联位\n\n";
-            uiRichTextBox2.TextAlignment = ContentAlignment.MiddleCenter;
+            RichTextSmall.FillColor = Color.White;
+            RichTextSmall.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            RichTextSmall.Location = new Point(2, 108);
+            RichTextSmall.Margin = new Padding(4, 5, 4, 5);
+            RichTextSmall.MinimumSize = new Size(1, 1);
+            RichTextSmall.Name = "RichTextSmall";
+            RichTextSmall.Padding = new Padding(2);
+            RichTextSmall.ReadOnly = true;
+            RichTextSmall.ScrollBarStyleInherited = false;
+            RichTextSmall.ShowText = false;
+            RichTextSmall.Size = new Size(416, 478);
+            RichTextSmall.TabIndex = 17;
+            RichTextSmall.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // switchLabel8
             // 
@@ -377,6 +377,7 @@
             btnZeroClearingSamll.TabIndex = 11;
             btnZeroClearingSamll.Text = "次数清零";
             btnZeroClearingSamll.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnZeroClearingSamll.Click += btnZeroClearingSamll_Click;
             // 
             // btnCalibration
             // 
@@ -443,11 +444,11 @@
         private RW.UI.Controls.SwitchLabel switchLabel3;
         private RW.UI.Controls.SwitchLabel switchLabel4;
         private RW.UI.Controls.SwitchLabel switchLabel5;
-        private Sunny.UI.UIRichTextBox uiRichTextBox1;
+        private Sunny.UI.UIRichTextBox RichTextBig;
         private RW.UI.Controls.SwitchLabel switchLabel6;
         private Sunny.UI.UITitlePanel uiTitlePanel1;
         private RW.UI.Controls.SwitchLabel switchLabel7;
-        private Sunny.UI.UIRichTextBox uiRichTextBox2;
+        private Sunny.UI.UIRichTextBox RichTextSmall;
         private RW.UI.Controls.SwitchLabel switchLabel8;
         private RW.UI.Controls.SwitchLabel switchLabel9;
         private RW.UI.Controls.SwitchLabel switchLabel10;

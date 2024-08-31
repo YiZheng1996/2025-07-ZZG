@@ -28,13 +28,14 @@ namespace ServoTired.Model
         public int Speed { get; set; }
 
         /// <summary>
-        /// 开始位置ID
+        /// 位置ID，原：开始位置ID
         /// </summary>
         public int StartPositionID { get; set; }
 
         /// <summary>
-        /// 结束位置ID
+        /// 结束位置ID（废弃字段）
         /// </summary>
+        [Obsolete("因修改下位机逻辑，废弃字段，直接用StartPositionID 绑定位置")]
         public int StopPositionID { get; set; }
 
         /// <summary>
@@ -51,8 +52,8 @@ namespace ServoTired.Model
         public int Speed { get; set; }
         public int StartPositionID { get; set; }
         public string StartPosition { get; set; } = string.Empty;
-        public int StopPositionID { get; set; }
-        public string StopPosition { get; set; } = string.Empty;
+        //public int StopPositionID { get; set; }
+        //public string StopPosition { get; set; } = string.Empty;
 
         private int _GearType;
         public int GearType { get => _GearType; set { _GearType = value; UpdateValueB(); } }

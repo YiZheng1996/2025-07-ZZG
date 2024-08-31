@@ -8,7 +8,7 @@ namespace ServoTired
     {
         public static IFreeSql? fsql;
         public static OPCDriver opcServo = new();
-        public static ServoGrp? servoGrp;
+        public static ServoGrp servoGrp;
 
         static Helper()
         {

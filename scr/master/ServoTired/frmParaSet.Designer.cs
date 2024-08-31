@@ -36,8 +36,6 @@
             cobStartPosition = new Sunny.UI.UIComboBox();
             uiLabel1 = new Sunny.UI.UILabel();
             UpGearPpositionTime = new Sunny.UI.UIIntegerUpDown();
-            uiLabel2 = new Sunny.UI.UILabel();
-            cobStopPosition = new Sunny.UI.UIComboBox();
             uiDataGridView1 = new Sunny.UI.UIDataGridView();
             ID = new DataGridViewTextBoxColumn();
             colStepNumber = new DataGridViewTextBoxColumn();
@@ -60,6 +58,10 @@
             uiLabel6 = new Sunny.UI.UILabel();
             UpSpeed = new Sunny.UI.UIIntegerUpDown();
             btnDel = new Sunny.UI.UISymbolButton();
+            uiLine2 = new Sunny.UI.UILine();
+            uiLabel2 = new Sunny.UI.UILabel();
+            UpTestNumber = new Sunny.UI.UIIntegerUpDown();
+            uiLine3 = new Sunny.UI.UILine();
             ((System.ComponentModel.ISupportInitialize)uiDataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +74,7 @@
             cobStartPosition.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cobStartPosition.Items.AddRange(new object[] { "运转位", "初制动", "制动区", "全制动", "抑制位", "重联位", "紧急位" });
             cobStartPosition.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cobStartPosition.Location = new Point(661, 260);
+            cobStartPosition.Location = new Point(661, 233);
             cobStartPosition.Margin = new Padding(4, 5, 4, 5);
             cobStartPosition.MinimumSize = new Size(63, 0);
             cobStartPosition.Name = "cobStartPosition";
@@ -87,17 +89,17 @@
             // 
             uiLabel1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new Point(554, 263);
+            uiLabel1.Location = new Point(554, 236);
             uiLabel1.Name = "uiLabel1";
             uiLabel1.Size = new Size(100, 23);
             uiLabel1.TabIndex = 1;
-            uiLabel1.Text = "开始位置:";
+            uiLabel1.Text = "闸位档位:";
             uiLabel1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // UpGearPpositionTime
             // 
             UpGearPpositionTime.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            UpGearPpositionTime.Location = new Point(661, 168);
+            UpGearPpositionTime.Location = new Point(661, 147);
             UpGearPpositionTime.Margin = new Padding(4, 5, 4, 5);
             UpGearPpositionTime.MinimumSize = new Size(100, 0);
             UpGearPpositionTime.Name = "UpGearPpositionTime";
@@ -106,37 +108,6 @@
             UpGearPpositionTime.TabIndex = 4;
             UpGearPpositionTime.Text = "uiIntegerUpDown1";
             UpGearPpositionTime.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // uiLabel2
-            // 
-            uiLabel2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel2.Location = new Point(554, 309);
-            uiLabel2.Name = "uiLabel2";
-            uiLabel2.Size = new Size(100, 23);
-            uiLabel2.TabIndex = 6;
-            uiLabel2.Text = "结束位置:";
-            uiLabel2.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // cobStopPosition
-            // 
-            cobStopPosition.DataSource = null;
-            cobStopPosition.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            cobStopPosition.FillColor = Color.White;
-            cobStopPosition.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            cobStopPosition.ItemHoverColor = Color.FromArgb(155, 200, 255);
-            cobStopPosition.Items.AddRange(new object[] { "运转位", "初制动", "制动区", "全制动", "抑制位", "重联位", "紧急位" });
-            cobStopPosition.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cobStopPosition.Location = new Point(661, 306);
-            cobStopPosition.Margin = new Padding(4, 5, 4, 5);
-            cobStopPosition.MinimumSize = new Size(63, 0);
-            cobStopPosition.Name = "cobStopPosition";
-            cobStopPosition.Padding = new Padding(0, 0, 30, 2);
-            cobStopPosition.Size = new Size(150, 29);
-            cobStopPosition.SymbolSize = 24;
-            cobStopPosition.TabIndex = 5;
-            cobStopPosition.TextAlignment = ContentAlignment.MiddleLeft;
-            cobStopPosition.Watermark = "";
             // 
             // uiDataGridView1
             // 
@@ -171,7 +142,7 @@
             uiDataGridView1.EnableHeadersVisualStyles = false;
             uiDataGridView1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiDataGridView1.GridColor = Color.FromArgb(80, 160, 255);
-            uiDataGridView1.Location = new Point(0, 35);
+            uiDataGridView1.Location = new Point(1, 35);
             uiDataGridView1.Name = "uiDataGridView1";
             uiDataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -182,15 +153,14 @@
             dataGridViewCellStyle4.SelectionForeColor = Color.White;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             uiDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            uiDataGridView1.RowHeadersVisible = false;
-            uiDataGridView1.RowHeadersWidth = 4;
+            uiDataGridView1.RowHeadersWidth = 20;
             dataGridViewCellStyle5.BackColor = Color.White;
             dataGridViewCellStyle5.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             uiDataGridView1.RowTemplate.Height = 35;
             uiDataGridView1.SelectedIndex = -1;
             uiDataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            uiDataGridView1.Size = new Size(548, 415);
+            uiDataGridView1.Size = new Size(548, 412);
             uiDataGridView1.StripeOddColor = Color.FromArgb(235, 243, 255);
             uiDataGridView1.TabIndex = 7;
             uiDataGridView1.CellClick += uiDataGridView1_CellClick;
@@ -215,17 +185,18 @@
             // colResidenceTime
             // 
             colResidenceTime.DataPropertyName = "ResidenceTime";
-            colResidenceTime.HeaderText = "停留时间";
+            colResidenceTime.HeaderText = "停留时间(ms)";
             colResidenceTime.Name = "colResidenceTime";
             colResidenceTime.ReadOnly = true;
-            colResidenceTime.Width = 80;
+            colResidenceTime.Width = 120;
             // 
             // colSpeed
             // 
             colSpeed.DataPropertyName = "Speed";
-            colSpeed.HeaderText = "电机转速";
+            colSpeed.HeaderText = "转速(LU/m)";
             colSpeed.Name = "colSpeed";
             colSpeed.ReadOnly = true;
+            colSpeed.Width = 120;
             // 
             // colStartPositionID
             // 
@@ -238,7 +209,7 @@
             // colStartPosition
             // 
             colStartPosition.DataPropertyName = "StartPosition";
-            colStartPosition.HeaderText = "开始位置";
+            colStartPosition.HeaderText = "闸位档位";
             colStartPosition.Name = "colStartPosition";
             colStartPosition.ReadOnly = true;
             // 
@@ -248,6 +219,7 @@
             colStopPosition.HeaderText = "结束位置";
             colStopPosition.Name = "colStopPosition";
             colStopPosition.ReadOnly = true;
+            colStopPosition.Visible = false;
             // 
             // colStopPositionID
             // 
@@ -275,7 +247,7 @@
             // btnSave
             // 
             btnSave.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            btnSave.Location = new Point(570, 403);
+            btnSave.Location = new Point(570, 406);
             btnSave.MinimumSize = new Size(1, 1);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(112, 35);
@@ -288,7 +260,7 @@
             // btnClose
             // 
             btnClose.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            btnClose.Location = new Point(700, 403);
+            btnClose.Location = new Point(700, 406);
             btnClose.MinimumSize = new Size(1, 1);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(112, 35);
@@ -302,7 +274,7 @@
             // 
             uiLabel3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiLabel3.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel3.Location = new Point(554, 169);
+            uiLabel3.Location = new Point(554, 148);
             uiLabel3.Name = "uiLabel3";
             uiLabel3.Size = new Size(100, 23);
             uiLabel3.TabIndex = 11;
@@ -313,7 +285,7 @@
             // 
             uiLabel4.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(554, 125);
+            uiLabel4.Location = new Point(554, 108);
             uiLabel4.Name = "uiLabel4";
             uiLabel4.Size = new Size(100, 23);
             uiLabel4.TabIndex = 13;
@@ -323,7 +295,7 @@
             // UpStep
             // 
             UpStep.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            UpStep.Location = new Point(661, 122);
+            UpStep.Location = new Point(661, 104);
             UpStep.Margin = new Padding(4, 5, 4, 5);
             UpStep.MinimumSize = new Size(100, 0);
             UpStep.Name = "UpStep";
@@ -343,13 +315,12 @@
             uiLine1.Name = "uiLine1";
             uiLine1.Size = new Size(269, 29);
             uiLine1.TabIndex = 14;
-            uiLine1.Text = "参数";
             // 
             // uiLabel5
             // 
             uiLabel5.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiLabel5.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new Point(554, 80);
+            uiLabel5.Location = new Point(554, 65);
             uiLabel5.Name = "uiLabel5";
             uiLabel5.Size = new Size(100, 23);
             uiLabel5.TabIndex = 16;
@@ -365,7 +336,7 @@
             cobGearType.ItemHoverColor = Color.FromArgb(155, 200, 255);
             cobGearType.Items.AddRange(new object[] { "大闸", "小闸" });
             cobGearType.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
-            cobGearType.Location = new Point(661, 76);
+            cobGearType.Location = new Point(661, 61);
             cobGearType.Margin = new Padding(4, 5, 4, 5);
             cobGearType.MinimumSize = new Size(63, 0);
             cobGearType.Name = "cobGearType";
@@ -381,7 +352,7 @@
             // 
             uiLabel6.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel6.Location = new Point(554, 216);
+            uiLabel6.Location = new Point(554, 190);
             uiLabel6.Name = "uiLabel6";
             uiLabel6.Size = new Size(100, 23);
             uiLabel6.TabIndex = 18;
@@ -391,7 +362,7 @@
             // UpSpeed
             // 
             UpSpeed.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            UpSpeed.Location = new Point(661, 214);
+            UpSpeed.Location = new Point(661, 190);
             UpSpeed.Margin = new Padding(4, 5, 4, 5);
             UpSpeed.MinimumSize = new Size(100, 0);
             UpSpeed.Name = "UpSpeed";
@@ -405,7 +376,7 @@
             // btnDel
             // 
             btnDel.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            btnDel.Location = new Point(639, 362);
+            btnDel.Location = new Point(639, 365);
             btnDel.MinimumSize = new Size(1, 1);
             btnDel.Name = "btnDel";
             btnDel.Size = new Size(112, 35);
@@ -415,12 +386,62 @@
             btnDel.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnDel.Click += btnDel_Click;
             // 
+            // uiLine2
+            // 
+            uiLine2.BackColor = Color.Transparent;
+            uiLine2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiLine2.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLine2.Location = new Point(555, 271);
+            uiLine2.MinimumSize = new Size(1, 1);
+            uiLine2.Name = "uiLine2";
+            uiLine2.Size = new Size(269, 29);
+            uiLine2.TabIndex = 20;
+            // 
+            // uiLabel2
+            // 
+            uiLabel2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel2.Location = new Point(554, 313);
+            uiLabel2.Name = "uiLabel2";
+            uiLabel2.Size = new Size(100, 23);
+            uiLabel2.TabIndex = 22;
+            uiLabel2.Text = "疲劳次数:";
+            uiLabel2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // UpTestNumber
+            // 
+            UpTestNumber.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            UpTestNumber.Location = new Point(661, 310);
+            UpTestNumber.Margin = new Padding(4, 5, 4, 5);
+            UpTestNumber.MinimumSize = new Size(100, 0);
+            UpTestNumber.Name = "UpTestNumber";
+            UpTestNumber.ShowText = false;
+            UpTestNumber.Size = new Size(151, 29);
+            UpTestNumber.TabIndex = 21;
+            UpTestNumber.Text = "1";
+            UpTestNumber.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiLine3
+            // 
+            uiLine3.BackColor = Color.Transparent;
+            uiLine3.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiLine3.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLine3.Location = new Point(554, 342);
+            uiLine3.MinimumSize = new Size(1, 1);
+            uiLine3.Name = "uiLine3";
+            uiLine3.Size = new Size(269, 29);
+            uiLine3.TabIndex = 23;
+            // 
             // frmParaSet
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(834, 450);
             ControlBox = false;
             Controls.Add(btnDel);
+            Controls.Add(uiLine3);
+            Controls.Add(uiLabel2);
+            Controls.Add(UpTestNumber);
+            Controls.Add(uiLine2);
             Controls.Add(uiLabel6);
             Controls.Add(UpSpeed);
             Controls.Add(uiLabel5);
@@ -432,8 +453,6 @@
             Controls.Add(uiLabel3);
             Controls.Add(btnClose);
             Controls.Add(btnSave);
-            Controls.Add(uiLabel2);
-            Controls.Add(cobStopPosition);
             Controls.Add(UpGearPpositionTime);
             Controls.Add(uiLabel1);
             Controls.Add(cobStartPosition);
@@ -455,8 +474,6 @@
         private Sunny.UI.UIComboBox cobStartPosition;
         private Sunny.UI.UILabel uiLabel1;
         private Sunny.UI.UIIntegerUpDown UpGearPpositionTime;
-        private Sunny.UI.UILabel uiLabel2;
-        private Sunny.UI.UIComboBox cobStopPosition;
         private Sunny.UI.UIDataGridView uiDataGridView1;
         private Sunny.UI.UISymbolButton btnSave;
         private Sunny.UI.UISymbolButton btnClose;
@@ -469,6 +486,10 @@
         private Sunny.UI.UILabel uiLabel6;
         private Sunny.UI.UIIntegerUpDown UpSpeed;
         private Sunny.UI.UISymbolButton btnDel;
+        private Sunny.UI.UILine uiLine2;
+        private Sunny.UI.UILabel uiLabel2;
+        private Sunny.UI.UIIntegerUpDown UpTestNumber;
+        private Sunny.UI.UILine uiLine3;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn colStepNumber;
         private DataGridViewTextBoxColumn colResidenceTime;

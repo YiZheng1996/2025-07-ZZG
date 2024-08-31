@@ -12,10 +12,10 @@ namespace ServoTired.BLL
                 StepNumber = d.StepNumber,
                 ResidenceTime = d.ResidenceTime,
                 StartPositionID = d.StartPositionID,
-                StopPositionID = d.StopPositionID,
                 StartPosition = Helper.fsql.Select<PointModel>().Where(a => a.ID == d.StartPositionID).First().GearPposition,
-                StopPosition = Helper.fsql.Select<PointModel>().Where(p => p.ID == d.StopPositionID).First().GearPposition,
-            }).Where(a => a.GearType == type).ToList();
+            })
+            .Where(a => a.GearType == type)
+            .OrderBy(a => a.StepNumber).ToList();
 
         public bool InsertTable(ServoTiredModel servo) => Helper.fsql?.Insert(servo).ExecuteAffrows() > 0;
 
@@ -23,7 +23,6 @@ namespace ServoTired.BLL
             .Set(a => a.Speed, servo.Speed)
             .Set(a => a.ResidenceTime, servo.ResidenceTime)
             .Set(a => a.StartPositionID, servo.StartPositionID)
-            .Set(a => a.StopPositionID, servo.StopPositionID)
             .Where(a => a.StepNumber == servo.StepNumber)
             .ExecuteAffrows() > 0;
 

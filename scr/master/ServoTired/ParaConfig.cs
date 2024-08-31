@@ -23,11 +23,24 @@ namespace MainUI.Config
             Load();
         }
 
+
         /// <summary>
-        /// 大闸试验次数
+        /// 试验次数
         /// </summary>
-        [IniKeyName("大闸试验次数")]
-        public int bigTestNumber { get; set; }
+        [IniKeyName("试验次数")]
+        public int TestNumber { get; set; }
+
+        ///// <summary>
+        ///// 当前试验次数
+        ///// </summary>
+        //[IniKeyName("当前试验次数")]
+        //public int NowTestNumber { get; set; }
+
+        ///// <summary>
+        ///// 大闸试验次数
+        ///// </summary>
+        //[IniKeyName("大闸试验次数")]
+        //public int bigTestNumber { get; set; }
 
         /// <summary>
         /// 大闸当前试验次数
@@ -35,17 +48,17 @@ namespace MainUI.Config
         [IniKeyName("大闸当前试验次数")]
         public int bigNowTest { get; set; }
 
-        /// <summary>
-        /// 小闸试验次数
-        /// </summary>
-        [IniKeyName("小闸试验次数")]
-        public int smallTestNumber { get; set; }
+        ///// <summary>
+        ///// 小闸试验次数
+        ///// </summary>
+        //[IniKeyName("小闸试验次数")]
+        //public int smallTestNumber { get; set; }
 
         /// <summary>
         /// 小闸当前试验次数
         /// </summary>
         [IniKeyName("小闸当前试验次数")]
-        public int samllGigNowTest { get; set; }
+        public int smallGigNowTest { get; set; }
 
     }
 }

@@ -2624,7 +2624,6 @@ namespace MainUI
             panelEx10.Style.GradientAngle = 90;
             panelEx10.TabIndex = 595;
             panelEx10.Text = "空气源";
-            panelEx10.Click += panelEx10_Click;
             // 
             // uiPanel59
             // 

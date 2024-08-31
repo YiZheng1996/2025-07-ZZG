@@ -1,4 +1,5 @@
-﻿using RW;
+﻿using MainUI.Config;
+using RW;
 using ServoTired.BLL;
 using ServoTired.Model;
 using Sunny.UI;
@@ -10,6 +11,7 @@ namespace ServoTired
     {
         private ServoTiredBLL ServoBLL = new();
         private PointBLL pointBLL = new();
+        private ParaConfig para = new("Para");
         public frmParaSet() => InitializeComponent();
 
         private void InitTable() => uiDataGridView1.DataSource = ServoBLL.GetServoTiredTable(cobGearType.SelectedIndex);
@@ -23,7 +25,6 @@ namespace ServoTired
         private void BtnSave_Click(object sender, EventArgs e)
         {
             if (UpStep.Value == 0 || UpGearPpositionTime.Value == 0) { UIMessageBox.Show("值不能为空！"); return; }
-            if (cobStartPosition.SelectedIndex == cobStopPosition.SelectedIndex) { UIMessageBox.Show("开始位置，结束位置一致！"); return; }
 
             ServoTiredModel model = new()
             {
@@ -32,11 +33,13 @@ namespace ServoTired
                 SGearType = cobGearType.SelectedIndex,
                 ResidenceTime = UpGearPpositionTime.Value,
                 StartPositionID = cobStartPosition.SelectedValue.ToInt32(),
-                StopPositionID = cobStopPosition.SelectedValue.ToInt32(),
+                //StopPositionID = cobStopPosition.SelectedValue.ToInt32(),
             };
 
             if (ServoBLL.ModifyOrAddTable(model))
             {
+                para.TestNumber = UpTestNumber.Value;
+                para.Save();
                 InitTable();
                 UIMessageBox.Show("保存成功！");
             }
@@ -49,6 +52,7 @@ namespace ServoTired
 
         private void FrmParaSet_Load(object sender, EventArgs e)
         {
+            UpTestNumber.Value = para.TestNumber;
             cobGearType.SelectedIndex = 0;
             uiDataGridView1.ClearSelection();
         }
@@ -56,11 +60,11 @@ namespace ServoTired
         private void BindComboBox(int type)
         {
             Helper.BindComboBox(cobStartPosition, "GearPposition", "ID", dataSource: pointBLL.GetPoints(type));
-            Helper.BindComboBox(cobStopPosition, "GearPposition", "ID", dataSource: pointBLL.GetPoints(type));
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
+            if (!FormEx.ShowAskDialog(this, "是否删除？")) return;
             if (ServoBLL.DelTable(UpStep.Value))
             {
                 InitTable();
@@ -70,16 +74,24 @@ namespace ServoTired
 
         private void uiDataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (uiDataGridView1.SelectedRows.Count > 0)// 确保有行被选中
+            try
             {
-                var selectedRow = uiDataGridView1.SelectedRows[0];
-                cobGearType.SelectedIndex = selectedRow.Cells["colGearType"].Value.ToInt32();
-                UpStep.Value = selectedRow.Cells["colStepNumber"].Value.ToInt32();
-                UpGearPpositionTime.Value = selectedRow.Cells["colResidenceTime"].Value.ToInt32();
-                UpSpeed.Value = selectedRow.Cells["colSpeed"].Value.ToInt32();
-                cobStartPosition.SelectedValue = selectedRow.Cells["colStartPositionID"].Value.ToInt32();
-                cobStopPosition.SelectedValue = selectedRow.Cells["colStopPositionID"].Value.ToInt32();
+                if (uiDataGridView1.SelectedRows.Count > 0)// 确保有行被选中
+                {
+                    var selectedRow = uiDataGridView1.SelectedRows[0];
+                    cobGearType.SelectedIndex = selectedRow.Cells["colGearType"].Value.ToInt32();
+                    UpStep.Value = selectedRow.Cells["colStepNumber"].Value.ToInt32();
+                    UpGearPpositionTime.Value = selectedRow.Cells["colResidenceTime"].Value.ToInt32();
+                    UpSpeed.Value = selectedRow.Cells["colSpeed"].Value.ToInt32();
+                    cobStartPosition.SelectedValue = selectedRow.Cells["colStartPositionID"].Value.ToInt32();
+                    //cobStopPosition.SelectedValue = selectedRow.Cells["colStopPositionID"].Value.ToInt32();
+                }
             }
+            catch (Exception ex)
+            {
+                UIMessageBox.Show("选择数据错误！" + ex.Message);
+            }
+
         }
     }
 }

@@ -623,12 +623,5 @@ namespace MainUI
         }
 
 
-        private void panelEx10_Click(object sender, EventArgs e)
-        {
-           
-        
-
-        }
-
     }
 }

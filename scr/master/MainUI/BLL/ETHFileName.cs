@@ -1,4 +1,5 @@
-﻿using MainUI.Model;
+﻿using MainUI.CurrencyHelper;
+using MainUI.Model;
 using RW.Components.Core.BLL;
 using RW.Data;
 using System;

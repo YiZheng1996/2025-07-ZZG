@@ -17,6 +17,7 @@ using System.Runtime.Versioning;
 using static ICSharpCode.SharpZipLib.Zip.ZipEntryFactory;
 using System.Diagnostics;
 using Sunny.UI;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {
@@ -109,8 +110,8 @@ namespace MainUI
                 }
                 else
                 {
-                    RWUser.User.InitUser(dsUser.Rows[0]);
-                    EventLogHelper.Log(EventLogType.Normal, "用户" + RWUser.User.Username + "登录。");
+                    CurrencyHelper.RWUser.User.InitUser(dsUser.Rows[0]);
+                    EventLogHelper.Log(EventLogType.Normal, "用户" + CurrencyHelper.RWUser.User.Username + "登录。");
                     DialogResult = DialogResult.OK;
                     Close();
                 }

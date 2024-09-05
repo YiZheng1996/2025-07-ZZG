@@ -1,7 +1,11 @@
 ﻿using MainUI.Config;
 using Sunny.UI;
 using System;
+using System.IO;
 using System.IO.Ports;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 
 namespace MainUI.Procedure.SSI
 {
@@ -63,6 +67,46 @@ namespace MainUI.Procedure.SSI
         {
             Close();
             port.Close();
+        }
+
+
+        private void SaveDataGridViewToCsv(DataGridView dataGridView, string filePath)
+        {
+            StringBuilder csvContent = new();
+
+            // 添加列标题
+            var columnHeaders = dataGridView.Columns.Cast<DataGridViewColumn>();
+            csvContent.AppendLine(string.Join(",", columnHeaders.Select(column => $"\"{column.HeaderText}\"")));
+
+            // 添加行数据
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (!row.IsNewRow) // 排除新增行
+                {
+                    var cells = row.Cells.Cast<DataGridViewCell>();
+                    csvContent.AppendLine(string.Join(",", cells.Select(cell => $"\"{cell.Value?.ToString().Replace("\"", "\"\"") ?? string.Empty}\"")));
+                }
+            }
+
+            // 写入文件
+            File.WriteAllText(filePath, csvContent.ToString());
+        }
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*",
+                Title = "Save CSV File"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                SaveDataGridViewToCsv(dataGridView1, filePath);
+                MessageBox.Show("文件保存成功!");
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Data;
 using MainUI.Model;
 using RW.Components.Core.BLL;
 using NPOI.SS.Formula.Functions;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.BLL
 {

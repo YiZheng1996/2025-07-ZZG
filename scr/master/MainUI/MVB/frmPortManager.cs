@@ -1,4 +1,5 @@
 ﻿using MainUI.BLL;
+using MainUI.CurrencyHelper;
 using MainUI.Model;
 using MainUI.Procedure;
 using Sunny.UI;

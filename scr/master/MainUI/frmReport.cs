@@ -4,6 +4,7 @@ using System.IO;
 using MainUI.Model;
 using MainUI.BLL;
 using RW.Log;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {

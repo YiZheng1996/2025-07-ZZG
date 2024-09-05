@@ -1,4 +1,5 @@
-﻿using RW.Modules;
+﻿using MainUI.CurrencyHelper;
+using RW.Modules;
 using System.ComponentModel;
 
 namespace MainUI.Modules

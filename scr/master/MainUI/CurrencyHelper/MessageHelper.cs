@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 
-namespace MainUI
+namespace MainUI.CurrencyHelper
 {
     public class MessageHelper
     {
@@ -32,7 +32,7 @@ namespace MainUI
         /// <returns></returns>
         public static bool UIMessageYes(Form form, string text)
         {
-            return FormEx.ShowAskDialog(form, text);
+            return form.ShowAskDialog(text);
         }
     }
 }

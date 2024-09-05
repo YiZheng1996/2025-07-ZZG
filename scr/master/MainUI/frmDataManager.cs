@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MainUI.BLL;
 using System.IO;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {

@@ -6,6 +6,7 @@ using RW.Data;
 using System.Data;
 using RW.Components.Core.BLL;
 using MainUI.Model;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.UI.BLL
 {

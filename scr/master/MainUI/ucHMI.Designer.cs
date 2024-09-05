@@ -33,8 +33,6 @@ namespace MainUI
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucHMI));
             btnProductSelection = new UIButton();
-            uiLabel1 = new UILabel();
-            txtType = new UITextBox();
             txtModel = new UITextBox();
             uiLabel2 = new UILabel();
             uiCheckBoxGroup1 = new UICheckBoxGroup();
@@ -405,6 +403,89 @@ namespace MainUI
             label3 = new System.Windows.Forms.Label();
             uiLedBulb3 = new UILedBulb();
             tabDoOut = new System.Windows.Forms.TabPage();
+            uiGroupBox1 = new UIGroupBox();
+            uiSwitch24 = new UISwitch();
+            uiLabel27 = new UILabel();
+            uiSwitch25 = new UISwitch();
+            uiLabel28 = new UILabel();
+            uiSwitch26 = new UISwitch();
+            uiLabel29 = new UILabel();
+            uiSwitch27 = new UISwitch();
+            uiLabel30 = new UILabel();
+            uiSwitch20 = new UISwitch();
+            uiLabel23 = new UILabel();
+            uiSwitch21 = new UISwitch();
+            uiLabel24 = new UILabel();
+            uiSwitch22 = new UISwitch();
+            uiLabel25 = new UILabel();
+            uiSwitch23 = new UISwitch();
+            uiLabel26 = new UILabel();
+            uiSwitch16 = new UISwitch();
+            uiLabel19 = new UILabel();
+            uiSwitch17 = new UISwitch();
+            uiLabel20 = new UILabel();
+            uiSwitch18 = new UISwitch();
+            uiLabel21 = new UILabel();
+            uiSwitch19 = new UISwitch();
+            uiLabel22 = new UILabel();
+            uiSwitch12 = new UISwitch();
+            uiLabel15 = new UILabel();
+            uiSwitch13 = new UISwitch();
+            uiLabel16 = new UILabel();
+            uiSwitch14 = new UISwitch();
+            uiLabel17 = new UILabel();
+            uiSwitch15 = new UISwitch();
+            uiLabel18 = new UILabel();
+            uiSwitch8 = new UISwitch();
+            uiLabel11 = new UILabel();
+            uiSwitch9 = new UISwitch();
+            uiLabel12 = new UILabel();
+            uiSwitch10 = new UISwitch();
+            uiLabel13 = new UILabel();
+            uiSwitch11 = new UISwitch();
+            uiLabel14 = new UILabel();
+            uiSwitch6 = new UISwitch();
+            uiLabel9 = new UILabel();
+            uiSwitch5 = new UISwitch();
+            uiLabel8 = new UILabel();
+            uiSwitch7 = new UISwitch();
+            uiLabel10 = new UILabel();
+            uiSwitch1 = new UISwitch();
+            uiLabel7 = new UILabel();
+            uiCheckBoxGroup2 = new UICheckBoxGroup();
+            uiSwitch70 = new UISwitch();
+            uiLabel72 = new UILabel();
+            uiSwitch66 = new UISwitch();
+            uiLabel68 = new UILabel();
+            uiLabel69 = new UILabel();
+            uiSwitch68 = new UISwitch();
+            uiLabel71 = new UILabel();
+            uiSwitch69 = new UISwitch();
+            uiSwitch62 = new UISwitch();
+            uiSwitch63 = new UISwitch();
+            uiLabel64 = new UILabel();
+            uiLabel65 = new UILabel();
+            uiLabel66 = new UILabel();
+            uiSwitch64 = new UISwitch();
+            uiLabel67 = new UILabel();
+            uiSwitch65 = new UISwitch();
+            uiSwitch58 = new UISwitch();
+            uiSwitch59 = new UISwitch();
+            uiLabel1 = new UILabel();
+            uiLabel61 = new UILabel();
+            uiLabel62 = new UILabel();
+            uiSwitch60 = new UISwitch();
+            uiLabel63 = new UILabel();
+            uiSwitch61 = new UISwitch();
+            uiSwitch = new UISwitch();
+            uiSwitch4 = new UISwitch();
+            uiLabel3 = new UILabel();
+            uiLabel4 = new UILabel();
+            uiLabel6 = new UILabel();
+            uiSwitch2 = new UISwitch();
+            uiLabel5 = new UILabel();
+            uiSwitch3 = new UISwitch();
+            tabPage1 = new System.Windows.Forms.TabPage();
             uiGroupBox3 = new UIGroupBox();
             uiSwitch56 = new UISwitch();
             uiLabel59 = new UILabel();
@@ -466,65 +547,10 @@ namespace MainUI
             uiSwitch29 = new UISwitch();
             uiLabel31 = new UILabel();
             uiLabel32 = new UILabel();
-            uiGroupBox1 = new UIGroupBox();
-            uiSwitch24 = new UISwitch();
-            uiLabel27 = new UILabel();
-            uiSwitch25 = new UISwitch();
-            uiLabel28 = new UILabel();
-            uiSwitch26 = new UISwitch();
-            uiLabel29 = new UILabel();
-            uiSwitch27 = new UISwitch();
-            uiLabel30 = new UILabel();
-            uiSwitch20 = new UISwitch();
-            uiLabel23 = new UILabel();
-            uiSwitch21 = new UISwitch();
-            uiLabel24 = new UILabel();
-            uiSwitch22 = new UISwitch();
-            uiLabel25 = new UILabel();
-            uiSwitch23 = new UISwitch();
-            uiLabel26 = new UILabel();
-            uiSwitch16 = new UISwitch();
-            uiLabel19 = new UILabel();
-            uiSwitch17 = new UISwitch();
-            uiLabel20 = new UILabel();
-            uiSwitch18 = new UISwitch();
-            uiLabel21 = new UILabel();
-            uiSwitch19 = new UISwitch();
-            uiLabel22 = new UILabel();
-            uiSwitch12 = new UISwitch();
-            uiLabel15 = new UILabel();
-            uiSwitch13 = new UISwitch();
-            uiLabel16 = new UILabel();
-            uiSwitch14 = new UISwitch();
-            uiLabel17 = new UILabel();
-            uiSwitch15 = new UISwitch();
-            uiLabel18 = new UILabel();
-            uiSwitch8 = new UISwitch();
-            uiLabel11 = new UILabel();
-            uiSwitch9 = new UISwitch();
-            uiLabel12 = new UILabel();
-            uiSwitch10 = new UISwitch();
-            uiLabel13 = new UILabel();
-            uiSwitch11 = new UISwitch();
-            uiLabel14 = new UILabel();
-            uiSwitch6 = new UISwitch();
-            uiLabel9 = new UILabel();
-            uiSwitch5 = new UISwitch();
-            uiLabel8 = new UILabel();
-            uiSwitch7 = new UISwitch();
-            uiLabel10 = new UILabel();
-            uiSwitch1 = new UISwitch();
-            uiLabel7 = new UILabel();
-            uiSwitch4 = new UISwitch();
-            uiLabel6 = new UILabel();
-            uiSwitch3 = new UISwitch();
-            uiLabel5 = new UILabel();
-            uiSwitch2 = new UISwitch();
-            uiLabel4 = new UILabel();
-            uiSwitch = new UISwitch();
-            uiLabel3 = new UILabel();
             uiPresentation = new UIRichTextBox();
             uiLine1 = new UILine();
+            uiLine2 = new UILine();
+            BtnExhaust = new UIButton();
             uiCheckBoxGroup1.SuspendLayout();
             uiGroupBox4.SuspendLayout();
             grpAirPath.SuspendLayout();
@@ -614,8 +640,10 @@ namespace MainUI
             uiGroupBox6.SuspendLayout();
             uiGroupBox5.SuspendLayout();
             tabDoOut.SuspendLayout();
-            uiGroupBox3.SuspendLayout();
             uiGroupBox1.SuspendLayout();
+            uiCheckBoxGroup2.SuspendLayout();
+            tabPage1.SuspendLayout();
+            uiGroupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // btnProductSelection
@@ -633,42 +661,6 @@ namespace MainUI
             btnProductSelection.TipsText = "1";
             btnProductSelection.Click += BtnProductSelection_Click;
             // 
-            // uiLabel1
-            // 
-            uiLabel1.BackColor = System.Drawing.Color.Transparent;
-            uiLabel1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            uiLabel1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new System.Drawing.Point(6, 59);
-            uiLabel1.Name = "uiLabel1";
-            uiLabel1.Size = new System.Drawing.Size(75, 23);
-            uiLabel1.TabIndex = 61;
-            uiLabel1.Text = "产品类型";
-            uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtType
-            // 
-            txtType.Enabled = false;
-            txtType.FillDisableColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            txtType.FillReadOnlyColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            txtType.Font = new System.Drawing.Font("微软雅黑", 11F);
-            txtType.ForeDisableColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            txtType.ForeReadOnlyColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            txtType.Location = new System.Drawing.Point(23, 87);
-            txtType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            txtType.MinimumSize = new System.Drawing.Size(1, 16);
-            txtType.Name = "txtType";
-            txtType.Padding = new System.Windows.Forms.Padding(5);
-            txtType.ReadOnly = true;
-            txtType.RectDisableColor = System.Drawing.Color.FromArgb(80, 160, 255);
-            txtType.RectReadOnlyColor = System.Drawing.Color.FromArgb(80, 160, 255);
-            txtType.ShowText = false;
-            txtType.Size = new System.Drawing.Size(169, 29);
-            txtType.Style = UIStyle.Custom;
-            txtType.StyleCustomMode = true;
-            txtType.TabIndex = 62;
-            txtType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            txtType.Watermark = "请选择";
-            // 
             // txtModel
             // 
             txtModel.Enabled = false;
@@ -677,7 +669,7 @@ namespace MainUI
             txtModel.Font = new System.Drawing.Font("微软雅黑", 11F);
             txtModel.ForeDisableColor = System.Drawing.Color.FromArgb(48, 48, 48);
             txtModel.ForeReadOnlyColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            txtModel.Location = new System.Drawing.Point(23, 148);
+            txtModel.Location = new System.Drawing.Point(20, 94);
             txtModel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtModel.MinimumSize = new System.Drawing.Size(1, 16);
             txtModel.Name = "txtModel";
@@ -698,7 +690,7 @@ namespace MainUI
             uiLabel2.BackColor = System.Drawing.Color.Transparent;
             uiLabel2.Font = new System.Drawing.Font("微软雅黑", 11F);
             uiLabel2.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel2.Location = new System.Drawing.Point(6, 121);
+            uiLabel2.Location = new System.Drawing.Point(3, 67);
             uiLabel2.Name = "uiLabel2";
             uiLabel2.Size = new System.Drawing.Size(75, 23);
             uiLabel2.TabIndex = 63;
@@ -710,9 +702,7 @@ namespace MainUI
             uiCheckBoxGroup1.Controls.Add(uibtnOnekeyChange);
             uiCheckBoxGroup1.Controls.Add(btnIOBox);
             uiCheckBoxGroup1.Controls.Add(btnProductSelection);
-            uiCheckBoxGroup1.Controls.Add(uiLabel1);
             uiCheckBoxGroup1.Controls.Add(txtModel);
-            uiCheckBoxGroup1.Controls.Add(txtType);
             uiCheckBoxGroup1.Controls.Add(uiLabel2);
             uiCheckBoxGroup1.Font = new System.Drawing.Font("微软雅黑", 11F);
             uiCheckBoxGroup1.HoverColor = System.Drawing.Color.FromArgb(220, 236, 255);
@@ -722,7 +712,7 @@ namespace MainUI
             uiCheckBoxGroup1.Name = "uiCheckBoxGroup1";
             uiCheckBoxGroup1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             uiCheckBoxGroup1.SelectedIndexes = (System.Collections.Generic.List<int>)resources.GetObject("uiCheckBoxGroup1.SelectedIndexes");
-            uiCheckBoxGroup1.Size = new System.Drawing.Size(207, 273);
+            uiCheckBoxGroup1.Size = new System.Drawing.Size(207, 217);
             uiCheckBoxGroup1.TabIndex = 380;
             uiCheckBoxGroup1.Text = "信息录入";
             uiCheckBoxGroup1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -732,7 +722,7 @@ namespace MainUI
             // 
             uibtnOnekeyChange.Cursor = System.Windows.Forms.Cursors.Hand;
             uibtnOnekeyChange.Font = new System.Drawing.Font("微软雅黑", 11F);
-            uibtnOnekeyChange.Location = new System.Drawing.Point(23, 185);
+            uibtnOnekeyChange.Location = new System.Drawing.Point(20, 131);
             uibtnOnekeyChange.MinimumSize = new System.Drawing.Size(1, 1);
             uibtnOnekeyChange.Name = "uibtnOnekeyChange";
             uibtnOnekeyChange.ShowFocusLine = true;
@@ -747,7 +737,7 @@ namespace MainUI
             // 
             btnIOBox.Cursor = System.Windows.Forms.Cursors.Hand;
             btnIOBox.Font = new System.Drawing.Font("微软雅黑", 11F);
-            btnIOBox.Location = new System.Drawing.Point(23, 227);
+            btnIOBox.Location = new System.Drawing.Point(20, 173);
             btnIOBox.MinimumSize = new System.Drawing.Size(1, 1);
             btnIOBox.Name = "btnIOBox";
             btnIOBox.ShowFocusLine = true;
@@ -1238,7 +1228,7 @@ namespace MainUI
             uiPanel103.Style = UIStyle.Custom;
             uiPanel103.TabIndex = 606;
             uiPanel103.Tag = "3";
-            uiPanel103.Text = "R09";
+            uiPanel103.Text = "R11";
             uiPanel103.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiValve25
@@ -4268,7 +4258,7 @@ namespace MainUI
             uiGroupBox2.Controls.Add(btnDataAnalysis);
             uiGroupBox2.Controls.Add(btnCANPowerDown);
             uiGroupBox2.Font = new System.Drawing.Font("微软雅黑", 11F);
-            uiGroupBox2.Location = new System.Drawing.Point(2, 279);
+            uiGroupBox2.Location = new System.Drawing.Point(2, 215);
             uiGroupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiGroupBox2.MinimumSize = new System.Drawing.Size(1, 1);
             uiGroupBox2.Name = "uiGroupBox2";
@@ -4349,7 +4339,7 @@ namespace MainUI
             uiPanel1.Name = "uiPanel1";
             uiPanel1.Size = new System.Drawing.Size(486, 958);
             uiPanel1.TabIndex = 393;
-            uiPanel1.Text = "uiPanel1";
+            uiPanel1.Text = null;
             uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiTabControl1
@@ -4358,6 +4348,7 @@ namespace MainUI
             uiTabControl1.Controls.Add(tabAIinput);
             uiTabControl1.Controls.Add(tabDIinput);
             uiTabControl1.Controls.Add(tabDoOut);
+            uiTabControl1.Controls.Add(tabPage1);
             uiTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             uiTabControl1.Font = new System.Drawing.Font("宋体", 12F);
@@ -4387,7 +4378,7 @@ namespace MainUI
             tabAIinput.Controls.Add(uiTitlePanel1);
             tabAIinput.Location = new System.Drawing.Point(0, 0);
             tabAIinput.Name = "tabAIinput";
-            tabAIinput.Size = new System.Drawing.Size(486, 918);
+            tabAIinput.Size = new System.Drawing.Size(486, 878);
             tabAIinput.TabIndex = 0;
             tabAIinput.Text = "AI/O信号";
             // 
@@ -4399,12 +4390,12 @@ namespace MainUI
             uiTitlePanel2.Controls.Add(btnVoltageInput);
             uiTitlePanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             uiTitlePanel2.Font = new System.Drawing.Font("宋体", 12F);
-            uiTitlePanel2.Location = new System.Drawing.Point(0, 525);
+            uiTitlePanel2.Location = new System.Drawing.Point(0, 521);
             uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiTitlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
             uiTitlePanel2.Name = "uiTitlePanel2";
             uiTitlePanel2.ShowText = false;
-            uiTitlePanel2.Size = new System.Drawing.Size(486, 393);
+            uiTitlePanel2.Size = new System.Drawing.Size(486, 357);
             uiTitlePanel2.TabIndex = 506;
             uiTitlePanel2.Text = "AO控制";
             uiTitlePanel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5954,12 +5945,12 @@ namespace MainUI
             uiGroupBox6.Controls.Add(uiLedBulb24);
             uiGroupBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             uiGroupBox6.Font = new System.Drawing.Font("宋体", 12F);
-            uiGroupBox6.Location = new System.Drawing.Point(0, -527);
+            uiGroupBox6.Location = new System.Drawing.Point(0, -495);
             uiGroupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiGroupBox6.MinimumSize = new System.Drawing.Size(1, 1);
             uiGroupBox6.Name = "uiGroupBox6";
             uiGroupBox6.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            uiGroupBox6.Size = new System.Drawing.Size(200, 547);
+            uiGroupBox6.Size = new System.Drawing.Size(200, 515);
             uiGroupBox6.TabIndex = 9;
             uiGroupBox6.Text = "EIU 110V+检测";
             uiGroupBox6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -6550,21 +6541,1143 @@ namespace MainUI
             // 
             tabDoOut.AutoScroll = true;
             tabDoOut.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            tabDoOut.Controls.Add(uiGroupBox3);
             tabDoOut.Controls.Add(uiGroupBox1);
-            tabDoOut.Controls.Add(uiSwitch4);
-            tabDoOut.Controls.Add(uiLabel6);
-            tabDoOut.Controls.Add(uiSwitch3);
-            tabDoOut.Controls.Add(uiLabel5);
-            tabDoOut.Controls.Add(uiSwitch2);
-            tabDoOut.Controls.Add(uiLabel4);
-            tabDoOut.Controls.Add(uiSwitch);
-            tabDoOut.Controls.Add(uiLabel3);
+            tabDoOut.Controls.Add(uiCheckBoxGroup2);
             tabDoOut.Location = new System.Drawing.Point(0, 0);
             tabDoOut.Name = "tabDoOut";
             tabDoOut.Size = new System.Drawing.Size(200, 0);
             tabDoOut.TabIndex = 2;
-            tabDoOut.Text = "DO输入信号";
+            tabDoOut.Text = "DO输出信号1";
+            // 
+            // uiGroupBox1
+            // 
+            uiGroupBox1.Controls.Add(uiSwitch24);
+            uiGroupBox1.Controls.Add(uiLabel27);
+            uiGroupBox1.Controls.Add(uiSwitch25);
+            uiGroupBox1.Controls.Add(uiLabel28);
+            uiGroupBox1.Controls.Add(uiSwitch26);
+            uiGroupBox1.Controls.Add(uiLabel29);
+            uiGroupBox1.Controls.Add(uiSwitch27);
+            uiGroupBox1.Controls.Add(uiLabel30);
+            uiGroupBox1.Controls.Add(uiSwitch20);
+            uiGroupBox1.Controls.Add(uiLabel23);
+            uiGroupBox1.Controls.Add(uiSwitch21);
+            uiGroupBox1.Controls.Add(uiLabel24);
+            uiGroupBox1.Controls.Add(uiSwitch22);
+            uiGroupBox1.Controls.Add(uiLabel25);
+            uiGroupBox1.Controls.Add(uiSwitch23);
+            uiGroupBox1.Controls.Add(uiLabel26);
+            uiGroupBox1.Controls.Add(uiSwitch16);
+            uiGroupBox1.Controls.Add(uiLabel19);
+            uiGroupBox1.Controls.Add(uiSwitch17);
+            uiGroupBox1.Controls.Add(uiLabel20);
+            uiGroupBox1.Controls.Add(uiSwitch18);
+            uiGroupBox1.Controls.Add(uiLabel21);
+            uiGroupBox1.Controls.Add(uiSwitch19);
+            uiGroupBox1.Controls.Add(uiLabel22);
+            uiGroupBox1.Controls.Add(uiSwitch12);
+            uiGroupBox1.Controls.Add(uiLabel15);
+            uiGroupBox1.Controls.Add(uiSwitch13);
+            uiGroupBox1.Controls.Add(uiLabel16);
+            uiGroupBox1.Controls.Add(uiSwitch14);
+            uiGroupBox1.Controls.Add(uiLabel17);
+            uiGroupBox1.Controls.Add(uiSwitch15);
+            uiGroupBox1.Controls.Add(uiLabel18);
+            uiGroupBox1.Controls.Add(uiSwitch8);
+            uiGroupBox1.Controls.Add(uiLabel11);
+            uiGroupBox1.Controls.Add(uiSwitch9);
+            uiGroupBox1.Controls.Add(uiLabel12);
+            uiGroupBox1.Controls.Add(uiSwitch10);
+            uiGroupBox1.Controls.Add(uiLabel13);
+            uiGroupBox1.Controls.Add(uiSwitch11);
+            uiGroupBox1.Controls.Add(uiLabel14);
+            uiGroupBox1.Controls.Add(uiSwitch6);
+            uiGroupBox1.Controls.Add(uiLabel9);
+            uiGroupBox1.Controls.Add(uiSwitch5);
+            uiGroupBox1.Controls.Add(uiLabel8);
+            uiGroupBox1.Controls.Add(uiSwitch7);
+            uiGroupBox1.Controls.Add(uiLabel10);
+            uiGroupBox1.Controls.Add(uiSwitch1);
+            uiGroupBox1.Controls.Add(uiLabel7);
+            uiGroupBox1.Font = new System.Drawing.Font("宋体", 12F);
+            uiGroupBox1.Location = new System.Drawing.Point(0, 0);
+            uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
+            uiGroupBox1.Name = "uiGroupBox1";
+            uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            uiGroupBox1.Size = new System.Drawing.Size(486, 414);
+            uiGroupBox1.TabIndex = 27;
+            uiGroupBox1.Text = "EIU 110V+控制";
+            uiGroupBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch24
+            // 
+            uiSwitch24.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch24.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch24.Location = new System.Drawing.Point(377, 345);
+            uiSwitch24.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch24.Name = "uiSwitch24";
+            uiSwitch24.Radius = 0;
+            uiSwitch24.Size = new System.Drawing.Size(75, 29);
+            uiSwitch24.TabIndex = 67;
+            uiSwitch24.Tag = "29";
+            uiSwitch24.Click += DO_Click;
+            // 
+            // uiLabel27
+            // 
+            uiLabel27.AutoSize = true;
+            uiLabel27.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel27.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel27.Location = new System.Drawing.Point(373, 376);
+            uiLabel27.Name = "uiLabel27";
+            uiLabel27.Size = new System.Drawing.Size(87, 16);
+            uiLabel27.TabIndex = 68;
+            uiLabel27.Text = "控制开关24";
+            uiLabel27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch25
+            // 
+            uiSwitch25.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch25.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch25.Location = new System.Drawing.Point(266, 345);
+            uiSwitch25.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch25.Name = "uiSwitch25";
+            uiSwitch25.Radius = 0;
+            uiSwitch25.Size = new System.Drawing.Size(75, 29);
+            uiSwitch25.TabIndex = 65;
+            uiSwitch25.Tag = "28";
+            uiSwitch25.Click += DO_Click;
+            // 
+            // uiLabel28
+            // 
+            uiLabel28.AutoSize = true;
+            uiLabel28.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel28.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel28.Location = new System.Drawing.Point(264, 376);
+            uiLabel28.Name = "uiLabel28";
+            uiLabel28.Size = new System.Drawing.Size(87, 16);
+            uiLabel28.TabIndex = 66;
+            uiLabel28.Text = "控制开关23";
+            uiLabel28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch26
+            // 
+            uiSwitch26.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch26.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch26.Location = new System.Drawing.Point(145, 345);
+            uiSwitch26.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch26.Name = "uiSwitch26";
+            uiSwitch26.Radius = 0;
+            uiSwitch26.Size = new System.Drawing.Size(75, 29);
+            uiSwitch26.TabIndex = 63;
+            uiSwitch26.Tag = "27";
+            uiSwitch26.Click += DO_Click;
+            // 
+            // uiLabel29
+            // 
+            uiLabel29.AutoSize = true;
+            uiLabel29.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel29.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel29.Location = new System.Drawing.Point(140, 376);
+            uiLabel29.Name = "uiLabel29";
+            uiLabel29.Size = new System.Drawing.Size(87, 16);
+            uiLabel29.TabIndex = 64;
+            uiLabel29.Text = "控制开关22";
+            uiLabel29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch27
+            // 
+            uiSwitch27.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch27.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch27.Location = new System.Drawing.Point(24, 345);
+            uiSwitch27.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch27.Name = "uiSwitch27";
+            uiSwitch27.Radius = 0;
+            uiSwitch27.Size = new System.Drawing.Size(75, 29);
+            uiSwitch27.TabIndex = 61;
+            uiSwitch27.Tag = "26";
+            uiSwitch27.Click += DO_Click;
+            // 
+            // uiLabel30
+            // 
+            uiLabel30.AutoSize = true;
+            uiLabel30.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel30.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel30.Location = new System.Drawing.Point(27, 376);
+            uiLabel30.Name = "uiLabel30";
+            uiLabel30.Size = new System.Drawing.Size(87, 16);
+            uiLabel30.TabIndex = 62;
+            uiLabel30.Text = "控制开关21";
+            uiLabel30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch20
+            // 
+            uiSwitch20.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch20.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch20.Location = new System.Drawing.Point(376, 286);
+            uiSwitch20.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch20.Name = "uiSwitch20";
+            uiSwitch20.Radius = 0;
+            uiSwitch20.Size = new System.Drawing.Size(75, 29);
+            uiSwitch20.TabIndex = 59;
+            uiSwitch20.Tag = "23";
+            uiSwitch20.Click += DO_Click;
+            // 
+            // uiLabel23
+            // 
+            uiLabel23.AutoSize = true;
+            uiLabel23.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel23.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel23.Location = new System.Drawing.Point(372, 317);
+            uiLabel23.Name = "uiLabel23";
+            uiLabel23.Size = new System.Drawing.Size(87, 16);
+            uiLabel23.TabIndex = 60;
+            uiLabel23.Text = "控制开关20";
+            uiLabel23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch21
+            // 
+            uiSwitch21.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch21.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch21.Location = new System.Drawing.Point(265, 286);
+            uiSwitch21.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch21.Name = "uiSwitch21";
+            uiSwitch21.Radius = 0;
+            uiSwitch21.Size = new System.Drawing.Size(75, 29);
+            uiSwitch21.TabIndex = 57;
+            uiSwitch21.Tag = "22";
+            uiSwitch21.Click += DO_Click;
+            // 
+            // uiLabel24
+            // 
+            uiLabel24.AutoSize = true;
+            uiLabel24.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel24.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel24.Location = new System.Drawing.Point(263, 317);
+            uiLabel24.Name = "uiLabel24";
+            uiLabel24.Size = new System.Drawing.Size(87, 16);
+            uiLabel24.TabIndex = 58;
+            uiLabel24.Text = "控制开关19";
+            uiLabel24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch22
+            // 
+            uiSwitch22.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch22.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch22.Location = new System.Drawing.Point(144, 286);
+            uiSwitch22.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch22.Name = "uiSwitch22";
+            uiSwitch22.Radius = 0;
+            uiSwitch22.Size = new System.Drawing.Size(75, 29);
+            uiSwitch22.TabIndex = 55;
+            uiSwitch22.Tag = "21";
+            uiSwitch22.Click += DO_Click;
+            // 
+            // uiLabel25
+            // 
+            uiLabel25.AutoSize = true;
+            uiLabel25.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel25.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel25.Location = new System.Drawing.Point(139, 317);
+            uiLabel25.Name = "uiLabel25";
+            uiLabel25.Size = new System.Drawing.Size(87, 16);
+            uiLabel25.TabIndex = 56;
+            uiLabel25.Text = "控制开关18";
+            uiLabel25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch23
+            // 
+            uiSwitch23.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch23.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch23.Location = new System.Drawing.Point(23, 286);
+            uiSwitch23.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch23.Name = "uiSwitch23";
+            uiSwitch23.Radius = 0;
+            uiSwitch23.Size = new System.Drawing.Size(75, 29);
+            uiSwitch23.TabIndex = 53;
+            uiSwitch23.Tag = "20";
+            uiSwitch23.Click += DO_Click;
+            // 
+            // uiLabel26
+            // 
+            uiLabel26.AutoSize = true;
+            uiLabel26.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel26.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel26.Location = new System.Drawing.Point(24, 317);
+            uiLabel26.Name = "uiLabel26";
+            uiLabel26.Size = new System.Drawing.Size(87, 16);
+            uiLabel26.TabIndex = 54;
+            uiLabel26.Text = "控制开关17";
+            uiLabel26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch16
+            // 
+            uiSwitch16.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch16.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch16.Location = new System.Drawing.Point(376, 222);
+            uiSwitch16.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch16.Name = "uiSwitch16";
+            uiSwitch16.Radius = 0;
+            uiSwitch16.Size = new System.Drawing.Size(75, 29);
+            uiSwitch16.TabIndex = 51;
+            uiSwitch16.Tag = "19";
+            uiSwitch16.Click += DO_Click;
+            // 
+            // uiLabel19
+            // 
+            uiLabel19.AutoSize = true;
+            uiLabel19.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel19.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel19.Location = new System.Drawing.Point(372, 253);
+            uiLabel19.Name = "uiLabel19";
+            uiLabel19.Size = new System.Drawing.Size(87, 16);
+            uiLabel19.TabIndex = 52;
+            uiLabel19.Text = "控制开关16";
+            uiLabel19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch17
+            // 
+            uiSwitch17.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch17.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch17.Location = new System.Drawing.Point(265, 222);
+            uiSwitch17.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch17.Name = "uiSwitch17";
+            uiSwitch17.Radius = 0;
+            uiSwitch17.Size = new System.Drawing.Size(75, 29);
+            uiSwitch17.TabIndex = 49;
+            uiSwitch17.Tag = "18";
+            uiSwitch17.Click += DO_Click;
+            // 
+            // uiLabel20
+            // 
+            uiLabel20.AutoSize = true;
+            uiLabel20.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel20.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel20.Location = new System.Drawing.Point(263, 253);
+            uiLabel20.Name = "uiLabel20";
+            uiLabel20.Size = new System.Drawing.Size(87, 16);
+            uiLabel20.TabIndex = 50;
+            uiLabel20.Text = "控制开关15";
+            uiLabel20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch18
+            // 
+            uiSwitch18.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch18.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch18.Location = new System.Drawing.Point(144, 222);
+            uiSwitch18.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch18.Name = "uiSwitch18";
+            uiSwitch18.Radius = 0;
+            uiSwitch18.Size = new System.Drawing.Size(75, 29);
+            uiSwitch18.TabIndex = 47;
+            uiSwitch18.Tag = "17";
+            uiSwitch18.Click += DO_Click;
+            // 
+            // uiLabel21
+            // 
+            uiLabel21.AutoSize = true;
+            uiLabel21.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel21.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel21.Location = new System.Drawing.Point(139, 253);
+            uiLabel21.Name = "uiLabel21";
+            uiLabel21.Size = new System.Drawing.Size(87, 16);
+            uiLabel21.TabIndex = 48;
+            uiLabel21.Text = "控制开关14";
+            uiLabel21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch19
+            // 
+            uiSwitch19.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch19.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch19.Location = new System.Drawing.Point(23, 222);
+            uiSwitch19.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch19.Name = "uiSwitch19";
+            uiSwitch19.Radius = 0;
+            uiSwitch19.Size = new System.Drawing.Size(75, 29);
+            uiSwitch19.TabIndex = 45;
+            uiSwitch19.Tag = "16";
+            uiSwitch19.Click += DO_Click;
+            // 
+            // uiLabel22
+            // 
+            uiLabel22.AutoSize = true;
+            uiLabel22.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel22.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel22.Location = new System.Drawing.Point(20, 253);
+            uiLabel22.Name = "uiLabel22";
+            uiLabel22.Size = new System.Drawing.Size(87, 16);
+            uiLabel22.TabIndex = 46;
+            uiLabel22.Text = "控制开关13";
+            uiLabel22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch12
+            // 
+            uiSwitch12.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch12.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch12.Location = new System.Drawing.Point(376, 158);
+            uiSwitch12.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch12.Name = "uiSwitch12";
+            uiSwitch12.Radius = 0;
+            uiSwitch12.Size = new System.Drawing.Size(75, 29);
+            uiSwitch12.TabIndex = 43;
+            uiSwitch12.Tag = "15";
+            uiSwitch12.Click += DO_Click;
+            // 
+            // uiLabel15
+            // 
+            uiLabel15.AutoSize = true;
+            uiLabel15.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel15.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel15.Location = new System.Drawing.Point(372, 189);
+            uiLabel15.Name = "uiLabel15";
+            uiLabel15.Size = new System.Drawing.Size(87, 16);
+            uiLabel15.TabIndex = 44;
+            uiLabel15.Text = "控制开关12";
+            uiLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch13
+            // 
+            uiSwitch13.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch13.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch13.Location = new System.Drawing.Point(265, 158);
+            uiSwitch13.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch13.Name = "uiSwitch13";
+            uiSwitch13.Radius = 0;
+            uiSwitch13.Size = new System.Drawing.Size(75, 29);
+            uiSwitch13.TabIndex = 41;
+            uiSwitch13.Tag = "14";
+            uiSwitch13.Click += DO_Click;
+            // 
+            // uiLabel16
+            // 
+            uiLabel16.AutoSize = true;
+            uiLabel16.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel16.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel16.Location = new System.Drawing.Point(265, 189);
+            uiLabel16.Name = "uiLabel16";
+            uiLabel16.Size = new System.Drawing.Size(87, 16);
+            uiLabel16.TabIndex = 42;
+            uiLabel16.Text = "控制开关11";
+            uiLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch14
+            // 
+            uiSwitch14.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch14.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch14.Location = new System.Drawing.Point(144, 158);
+            uiSwitch14.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch14.Name = "uiSwitch14";
+            uiSwitch14.Radius = 0;
+            uiSwitch14.Size = new System.Drawing.Size(75, 29);
+            uiSwitch14.TabIndex = 39;
+            uiSwitch14.Tag = "13";
+            uiSwitch14.Click += DO_Click;
+            // 
+            // uiLabel17
+            // 
+            uiLabel17.AutoSize = true;
+            uiLabel17.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel17.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel17.Location = new System.Drawing.Point(139, 189);
+            uiLabel17.Name = "uiLabel17";
+            uiLabel17.Size = new System.Drawing.Size(87, 16);
+            uiLabel17.TabIndex = 40;
+            uiLabel17.Text = "控制开关10";
+            uiLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch15
+            // 
+            uiSwitch15.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch15.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch15.Location = new System.Drawing.Point(23, 158);
+            uiSwitch15.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch15.Name = "uiSwitch15";
+            uiSwitch15.Radius = 0;
+            uiSwitch15.Size = new System.Drawing.Size(75, 29);
+            uiSwitch15.TabIndex = 37;
+            uiSwitch15.Tag = "12";
+            uiSwitch15.Click += DO_Click;
+            // 
+            // uiLabel18
+            // 
+            uiLabel18.AutoSize = true;
+            uiLabel18.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel18.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel18.Location = new System.Drawing.Point(27, 189);
+            uiLabel18.Name = "uiLabel18";
+            uiLabel18.Size = new System.Drawing.Size(79, 16);
+            uiLabel18.TabIndex = 38;
+            uiLabel18.Text = "控制开关9";
+            uiLabel18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch8
+            // 
+            uiSwitch8.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch8.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch8.Location = new System.Drawing.Point(376, 95);
+            uiSwitch8.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch8.Name = "uiSwitch8";
+            uiSwitch8.Radius = 0;
+            uiSwitch8.Size = new System.Drawing.Size(75, 29);
+            uiSwitch8.TabIndex = 35;
+            uiSwitch8.Tag = "11";
+            uiSwitch8.Click += DO_Click;
+            // 
+            // uiLabel11
+            // 
+            uiLabel11.AutoSize = true;
+            uiLabel11.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel11.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel11.Location = new System.Drawing.Point(373, 126);
+            uiLabel11.Name = "uiLabel11";
+            uiLabel11.Size = new System.Drawing.Size(79, 16);
+            uiLabel11.TabIndex = 36;
+            uiLabel11.Text = "控制开关8";
+            uiLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch9
+            // 
+            uiSwitch9.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch9.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch9.Location = new System.Drawing.Point(265, 95);
+            uiSwitch9.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch9.Name = "uiSwitch9";
+            uiSwitch9.Radius = 0;
+            uiSwitch9.Size = new System.Drawing.Size(75, 29);
+            uiSwitch9.TabIndex = 33;
+            uiSwitch9.Tag = "10";
+            uiSwitch9.Click += DO_Click;
+            // 
+            // uiLabel12
+            // 
+            uiLabel12.AutoSize = true;
+            uiLabel12.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel12.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel12.Location = new System.Drawing.Point(264, 126);
+            uiLabel12.Name = "uiLabel12";
+            uiLabel12.Size = new System.Drawing.Size(79, 16);
+            uiLabel12.TabIndex = 34;
+            uiLabel12.Text = "控制开关7";
+            uiLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch10
+            // 
+            uiSwitch10.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch10.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch10.Location = new System.Drawing.Point(144, 95);
+            uiSwitch10.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch10.Name = "uiSwitch10";
+            uiSwitch10.Radius = 0;
+            uiSwitch10.Size = new System.Drawing.Size(75, 29);
+            uiSwitch10.TabIndex = 31;
+            uiSwitch10.Tag = "9";
+            uiSwitch10.Click += DO_Click;
+            // 
+            // uiLabel13
+            // 
+            uiLabel13.AutoSize = true;
+            uiLabel13.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel13.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel13.Location = new System.Drawing.Point(139, 126);
+            uiLabel13.Name = "uiLabel13";
+            uiLabel13.Size = new System.Drawing.Size(79, 16);
+            uiLabel13.TabIndex = 32;
+            uiLabel13.Tag = "";
+            uiLabel13.Text = "控制开关6";
+            uiLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch11
+            // 
+            uiSwitch11.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch11.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch11.Location = new System.Drawing.Point(23, 95);
+            uiSwitch11.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch11.Name = "uiSwitch11";
+            uiSwitch11.Radius = 0;
+            uiSwitch11.Size = new System.Drawing.Size(75, 29);
+            uiSwitch11.TabIndex = 29;
+            uiSwitch11.Tag = "8";
+            uiSwitch11.Click += DO_Click;
+            // 
+            // uiLabel14
+            // 
+            uiLabel14.AutoSize = true;
+            uiLabel14.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel14.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel14.Location = new System.Drawing.Point(25, 126);
+            uiLabel14.Name = "uiLabel14";
+            uiLabel14.Size = new System.Drawing.Size(79, 16);
+            uiLabel14.TabIndex = 30;
+            uiLabel14.Text = "控制开关5";
+            uiLabel14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch6
+            // 
+            uiSwitch6.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch6.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch6.Location = new System.Drawing.Point(376, 32);
+            uiSwitch6.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch6.Name = "uiSwitch6";
+            uiSwitch6.Radius = 0;
+            uiSwitch6.Size = new System.Drawing.Size(75, 29);
+            uiSwitch6.TabIndex = 27;
+            uiSwitch6.Tag = "7";
+            uiSwitch6.Click += DO_Click;
+            // 
+            // uiLabel9
+            // 
+            uiLabel9.AutoSize = true;
+            uiLabel9.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel9.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel9.Location = new System.Drawing.Point(373, 63);
+            uiLabel9.Name = "uiLabel9";
+            uiLabel9.Size = new System.Drawing.Size(79, 16);
+            uiLabel9.TabIndex = 28;
+            uiLabel9.Text = "控制开关4";
+            uiLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch5
+            // 
+            uiSwitch5.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch5.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch5.Location = new System.Drawing.Point(265, 32);
+            uiSwitch5.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch5.Name = "uiSwitch5";
+            uiSwitch5.Radius = 0;
+            uiSwitch5.Size = new System.Drawing.Size(75, 29);
+            uiSwitch5.TabIndex = 25;
+            uiSwitch5.Tag = "6";
+            uiSwitch5.Click += DO_Click;
+            // 
+            // uiLabel8
+            // 
+            uiLabel8.AutoSize = true;
+            uiLabel8.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel8.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel8.Location = new System.Drawing.Point(267, 63);
+            uiLabel8.Name = "uiLabel8";
+            uiLabel8.Size = new System.Drawing.Size(79, 16);
+            uiLabel8.TabIndex = 26;
+            uiLabel8.Text = "控制开关3";
+            uiLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch7
+            // 
+            uiSwitch7.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch7.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch7.Location = new System.Drawing.Point(144, 32);
+            uiSwitch7.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch7.Name = "uiSwitch7";
+            uiSwitch7.Radius = 0;
+            uiSwitch7.Size = new System.Drawing.Size(75, 29);
+            uiSwitch7.TabIndex = 23;
+            uiSwitch7.Tag = "5";
+            uiSwitch7.Click += DO_Click;
+            // 
+            // uiLabel10
+            // 
+            uiLabel10.AutoSize = true;
+            uiLabel10.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel10.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel10.Location = new System.Drawing.Point(140, 63);
+            uiLabel10.Name = "uiLabel10";
+            uiLabel10.Size = new System.Drawing.Size(79, 16);
+            uiLabel10.TabIndex = 24;
+            uiLabel10.Text = "控制开关2";
+            uiLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch1
+            // 
+            uiSwitch1.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch1.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch1.Location = new System.Drawing.Point(23, 32);
+            uiSwitch1.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch1.Name = "uiSwitch1";
+            uiSwitch1.Radius = 0;
+            uiSwitch1.Size = new System.Drawing.Size(75, 29);
+            uiSwitch1.TabIndex = 21;
+            uiSwitch1.Tag = "4";
+            uiSwitch1.Click += DO_Click;
+            // 
+            // uiLabel7
+            // 
+            uiLabel7.AutoSize = true;
+            uiLabel7.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel7.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel7.Location = new System.Drawing.Point(21, 63);
+            uiLabel7.Name = "uiLabel7";
+            uiLabel7.Size = new System.Drawing.Size(79, 16);
+            uiLabel7.TabIndex = 22;
+            uiLabel7.Text = "控制开关1";
+            uiLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiCheckBoxGroup2
+            // 
+            uiCheckBoxGroup2.Controls.Add(uiSwitch70);
+            uiCheckBoxGroup2.Controls.Add(uiLabel72);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch66);
+            uiCheckBoxGroup2.Controls.Add(uiLabel68);
+            uiCheckBoxGroup2.Controls.Add(uiLabel69);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch68);
+            uiCheckBoxGroup2.Controls.Add(uiLabel71);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch69);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch62);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch63);
+            uiCheckBoxGroup2.Controls.Add(uiLabel64);
+            uiCheckBoxGroup2.Controls.Add(uiLabel65);
+            uiCheckBoxGroup2.Controls.Add(uiLabel66);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch64);
+            uiCheckBoxGroup2.Controls.Add(uiLabel67);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch65);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch58);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch59);
+            uiCheckBoxGroup2.Controls.Add(uiLabel1);
+            uiCheckBoxGroup2.Controls.Add(uiLabel61);
+            uiCheckBoxGroup2.Controls.Add(uiLabel62);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch60);
+            uiCheckBoxGroup2.Controls.Add(uiLabel63);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch61);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch4);
+            uiCheckBoxGroup2.Controls.Add(uiLabel3);
+            uiCheckBoxGroup2.Controls.Add(uiLabel4);
+            uiCheckBoxGroup2.Controls.Add(uiLabel6);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch2);
+            uiCheckBoxGroup2.Controls.Add(uiLabel5);
+            uiCheckBoxGroup2.Controls.Add(uiSwitch3);
+            uiCheckBoxGroup2.Font = new System.Drawing.Font("微软雅黑", 11F);
+            uiCheckBoxGroup2.HoverColor = System.Drawing.Color.FromArgb(220, 236, 255);
+            uiCheckBoxGroup2.Location = new System.Drawing.Point(0, 410);
+            uiCheckBoxGroup2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            uiCheckBoxGroup2.MinimumSize = new System.Drawing.Size(1, 1);
+            uiCheckBoxGroup2.Name = "uiCheckBoxGroup2";
+            uiCheckBoxGroup2.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            uiCheckBoxGroup2.SelectedIndexes = (System.Collections.Generic.List<int>)resources.GetObject("uiCheckBoxGroup2.SelectedIndexes");
+            uiCheckBoxGroup2.Size = new System.Drawing.Size(486, 468);
+            uiCheckBoxGroup2.TabIndex = 382;
+            uiCheckBoxGroup2.Text = "信号控制";
+            uiCheckBoxGroup2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            uiCheckBoxGroup2.TitleAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // uiSwitch70
+            // 
+            uiSwitch70.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch70.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch70.Location = new System.Drawing.Point(362, 178);
+            uiSwitch70.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch70.Name = "uiSwitch70";
+            uiSwitch70.Radius = 0;
+            uiSwitch70.Size = new System.Drawing.Size(75, 29);
+            uiSwitch70.TabIndex = 45;
+            uiSwitch70.Tag = "66";
+            uiSwitch70.Click += DO_Click;
+            // 
+            // uiLabel72
+            // 
+            uiLabel72.AutoSize = true;
+            uiLabel72.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel72.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel72.Location = new System.Drawing.Point(328, 209);
+            uiLabel72.Name = "uiLabel72";
+            uiLabel72.Size = new System.Drawing.Size(151, 16);
+            uiLabel72.TabIndex = 46;
+            uiLabel72.Text = "制动显示屏电源控制";
+            uiLabel72.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch66
+            // 
+            uiSwitch66.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch66.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch66.Location = new System.Drawing.Point(201, 318);
+            uiSwitch66.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch66.Name = "uiSwitch66";
+            uiSwitch66.Radius = 0;
+            uiSwitch66.Size = new System.Drawing.Size(75, 29);
+            uiSwitch66.TabIndex = 37;
+            uiSwitch66.Tag = "71";
+            uiSwitch66.Click += DO_Click;
+            // 
+            // uiLabel68
+            // 
+            uiLabel68.AutoSize = true;
+            uiLabel68.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel68.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel68.Location = new System.Drawing.Point(211, 351);
+            uiLabel68.Name = "uiLabel68";
+            uiLabel68.Size = new System.Drawing.Size(71, 16);
+            uiLabel68.TabIndex = 38;
+            uiLabel68.Text = "CAN2切换";
+            uiLabel68.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel69
+            // 
+            uiLabel69.AutoSize = true;
+            uiLabel69.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel69.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel69.Location = new System.Drawing.Point(321, 351);
+            uiLabel69.Name = "uiLabel69";
+            uiLabel69.Size = new System.Drawing.Size(159, 16);
+            uiLabel69.TabIndex = 40;
+            uiLabel69.Text = "大小闸1SSI电源切换1";
+            uiLabel69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch68
+            // 
+            uiSwitch68.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch68.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch68.Location = new System.Drawing.Point(362, 318);
+            uiSwitch68.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch68.Name = "uiSwitch68";
+            uiSwitch68.Radius = 0;
+            uiSwitch68.Size = new System.Drawing.Size(75, 29);
+            uiSwitch68.TabIndex = 39;
+            uiSwitch68.Tag = "72";
+            uiSwitch68.Text = "uiSwitch68";
+            uiSwitch68.Click += DO_Click;
+            // 
+            // uiLabel71
+            // 
+            uiLabel71.AutoSize = true;
+            uiLabel71.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel71.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel71.Location = new System.Drawing.Point(7, 421);
+            uiLabel71.Name = "uiLabel71";
+            uiLabel71.Size = new System.Drawing.Size(159, 16);
+            uiLabel71.TabIndex = 42;
+            uiLabel71.Text = "大小闸1SSI电源切换1";
+            uiLabel71.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch69
+            // 
+            uiSwitch69.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch69.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch69.Location = new System.Drawing.Point(41, 388);
+            uiSwitch69.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch69.Name = "uiSwitch69";
+            uiSwitch69.Radius = 0;
+            uiSwitch69.Size = new System.Drawing.Size(75, 29);
+            uiSwitch69.TabIndex = 41;
+            uiSwitch69.Tag = "73";
+            uiSwitch69.Text = "uiSwitch69";
+            uiSwitch69.Click += DO_Click;
+            // 
+            // uiSwitch62
+            // 
+            uiSwitch62.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch62.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch62.Location = new System.Drawing.Point(41, 248);
+            uiSwitch62.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch62.Name = "uiSwitch62";
+            uiSwitch62.Radius = 0;
+            uiSwitch62.Size = new System.Drawing.Size(75, 29);
+            uiSwitch62.TabIndex = 29;
+            uiSwitch62.Tag = "67";
+            uiSwitch62.Click += DO_Click;
+            // 
+            // uiSwitch63
+            // 
+            uiSwitch63.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch63.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch63.Location = new System.Drawing.Point(41, 318);
+            uiSwitch63.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch63.Name = "uiSwitch63";
+            uiSwitch63.Radius = 0;
+            uiSwitch63.Size = new System.Drawing.Size(75, 29);
+            uiSwitch63.TabIndex = 35;
+            uiSwitch63.Tag = "70";
+            uiSwitch63.Text = "uiSwitch63";
+            uiSwitch63.Click += DO_Click;
+            // 
+            // uiLabel64
+            // 
+            uiLabel64.AutoSize = true;
+            uiLabel64.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel64.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel64.Location = new System.Drawing.Point(33, 281);
+            uiLabel64.Name = "uiLabel64";
+            uiLabel64.Size = new System.Drawing.Size(95, 16);
+            uiLabel64.TabIndex = 30;
+            uiLabel64.Text = "EIU电源控制";
+            uiLabel64.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel65
+            // 
+            uiLabel65.AutoSize = true;
+            uiLabel65.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel65.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel65.Location = new System.Drawing.Point(195, 281);
+            uiLabel65.Name = "uiLabel65";
+            uiLabel65.Size = new System.Drawing.Size(111, 16);
+            uiLabel65.TabIndex = 32;
+            uiLabel65.Text = "110V负极控制1";
+            uiLabel65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel66
+            // 
+            uiLabel66.AutoSize = true;
+            uiLabel66.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel66.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel66.Location = new System.Drawing.Point(46, 351);
+            uiLabel66.Name = "uiLabel66";
+            uiLabel66.Size = new System.Drawing.Size(71, 16);
+            uiLabel66.TabIndex = 36;
+            uiLabel66.Text = "CAN1切换";
+            uiLabel66.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch64
+            // 
+            uiSwitch64.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch64.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch64.Location = new System.Drawing.Point(201, 248);
+            uiSwitch64.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch64.Name = "uiSwitch64";
+            uiSwitch64.Radius = 0;
+            uiSwitch64.Size = new System.Drawing.Size(75, 29);
+            uiSwitch64.TabIndex = 31;
+            uiSwitch64.Tag = "68";
+            uiSwitch64.Text = "uiSwitch64";
+            uiSwitch64.Click += DO_Click;
+            // 
+            // uiLabel67
+            // 
+            uiLabel67.AutoSize = true;
+            uiLabel67.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel67.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel67.Location = new System.Drawing.Point(347, 281);
+            uiLabel67.Name = "uiLabel67";
+            uiLabel67.Size = new System.Drawing.Size(111, 16);
+            uiLabel67.TabIndex = 34;
+            uiLabel67.Text = "110V负极控制2";
+            uiLabel67.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch65
+            // 
+            uiSwitch65.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch65.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch65.Location = new System.Drawing.Point(362, 248);
+            uiSwitch65.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch65.Name = "uiSwitch65";
+            uiSwitch65.Radius = 0;
+            uiSwitch65.Size = new System.Drawing.Size(75, 29);
+            uiSwitch65.TabIndex = 33;
+            uiSwitch65.Tag = "69";
+            uiSwitch65.Text = "uiSwitch65";
+            uiSwitch65.Click += DO_Click;
+            // 
+            // uiSwitch58
+            // 
+            uiSwitch58.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch58.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch58.Location = new System.Drawing.Point(201, 108);
+            uiSwitch58.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch58.Name = "uiSwitch58";
+            uiSwitch58.Radius = 0;
+            uiSwitch58.Size = new System.Drawing.Size(75, 29);
+            uiSwitch58.TabIndex = 21;
+            uiSwitch58.Tag = "62";
+            uiSwitch58.Click += DO_Click;
+            // 
+            // uiSwitch59
+            // 
+            uiSwitch59.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch59.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch59.Location = new System.Drawing.Point(201, 178);
+            uiSwitch59.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch59.Name = "uiSwitch59";
+            uiSwitch59.Radius = 0;
+            uiSwitch59.Size = new System.Drawing.Size(75, 29);
+            uiSwitch59.TabIndex = 27;
+            uiSwitch59.Tag = "65";
+            uiSwitch59.Text = "uiSwitch59";
+            uiSwitch59.Click += DO_Click;
+            // 
+            // uiLabel1
+            // 
+            uiLabel1.AutoSize = true;
+            uiLabel1.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel1.Location = new System.Drawing.Point(187, 139);
+            uiLabel1.Name = "uiLabel1";
+            uiLabel1.Size = new System.Drawing.Size(119, 16);
+            uiLabel1.TabIndex = 22;
+            uiLabel1.Text = "辅压机电源控制";
+            uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel61
+            // 
+            uiLabel61.AutoSize = true;
+            uiLabel61.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel61.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel61.Location = new System.Drawing.Point(346, 139);
+            uiLabel61.Name = "uiLabel61";
+            uiLabel61.Size = new System.Drawing.Size(119, 16);
+            uiLabel61.TabIndex = 24;
+            uiLabel61.Text = "制动柜电源控制";
+            uiLabel61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel62
+            // 
+            uiLabel62.AutoSize = true;
+            uiLabel62.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel62.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel62.Location = new System.Drawing.Point(181, 209);
+            uiLabel62.Name = "uiLabel62";
+            uiLabel62.Size = new System.Drawing.Size(127, 16);
+            uiLabel62.TabIndex = 28;
+            uiLabel62.Text = "制动控制器电源2";
+            uiLabel62.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch60
+            // 
+            uiSwitch60.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch60.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch60.Location = new System.Drawing.Point(362, 108);
+            uiSwitch60.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch60.Name = "uiSwitch60";
+            uiSwitch60.Radius = 0;
+            uiSwitch60.Size = new System.Drawing.Size(75, 29);
+            uiSwitch60.TabIndex = 23;
+            uiSwitch60.Tag = "63";
+            uiSwitch60.Text = "uiSwitch60";
+            uiSwitch60.Click += DO_Click;
+            // 
+            // uiLabel63
+            // 
+            uiLabel63.AutoSize = true;
+            uiLabel63.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel63.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel63.Location = new System.Drawing.Point(13, 209);
+            uiLabel63.Name = "uiLabel63";
+            uiLabel63.Size = new System.Drawing.Size(127, 16);
+            uiLabel63.TabIndex = 26;
+            uiLabel63.Text = "制动控制器电源1";
+            uiLabel63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch61
+            // 
+            uiSwitch61.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch61.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch61.Location = new System.Drawing.Point(41, 178);
+            uiSwitch61.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch61.Name = "uiSwitch61";
+            uiSwitch61.Radius = 0;
+            uiSwitch61.Size = new System.Drawing.Size(75, 29);
+            uiSwitch61.TabIndex = 25;
+            uiSwitch61.Tag = "64";
+            uiSwitch61.Text = "uiSwitch61";
+            uiSwitch61.Click += DO_Click;
+            // 
+            // uiSwitch
+            // 
+            uiSwitch.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch.Location = new System.Drawing.Point(41, 38);
+            uiSwitch.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch.Name = "uiSwitch";
+            uiSwitch.Radius = 0;
+            uiSwitch.Size = new System.Drawing.Size(75, 29);
+            uiSwitch.TabIndex = 13;
+            uiSwitch.Tag = "0";
+            uiSwitch.Click += DO_Click;
+            // 
+            // uiSwitch4
+            // 
+            uiSwitch4.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch4.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch4.Location = new System.Drawing.Point(41, 108);
+            uiSwitch4.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch4.Name = "uiSwitch4";
+            uiSwitch4.Radius = 0;
+            uiSwitch4.Size = new System.Drawing.Size(75, 29);
+            uiSwitch4.TabIndex = 19;
+            uiSwitch4.Tag = "3";
+            uiSwitch4.Click += DO_Click;
+            // 
+            // uiLabel3
+            // 
+            uiLabel3.AutoSize = true;
+            uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel3.Location = new System.Drawing.Point(32, 70);
+            uiLabel3.Name = "uiLabel3";
+            uiLabel3.Size = new System.Drawing.Size(95, 16);
+            uiLabel3.TabIndex = 14;
+            uiLabel3.Text = "大小闸1控制";
+            uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel4
+            // 
+            uiLabel4.AutoSize = true;
+            uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel4.Location = new System.Drawing.Point(205, 70);
+            uiLabel4.Name = "uiLabel4";
+            uiLabel4.Size = new System.Drawing.Size(95, 16);
+            uiLabel4.TabIndex = 16;
+            uiLabel4.Text = "大小闸2控制";
+            uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiLabel6
+            // 
+            uiLabel6.AutoSize = true;
+            uiLabel6.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel6.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel6.Location = new System.Drawing.Point(11, 139);
+            uiLabel6.Name = "uiLabel6";
+            uiLabel6.Size = new System.Drawing.Size(135, 16);
+            uiLabel6.TabIndex = 20;
+            uiLabel6.Text = "制动显示器2控制1";
+            uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch2
+            // 
+            uiSwitch2.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch2.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch2.Location = new System.Drawing.Point(201, 38);
+            uiSwitch2.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch2.Name = "uiSwitch2";
+            uiSwitch2.Radius = 0;
+            uiSwitch2.Size = new System.Drawing.Size(75, 29);
+            uiSwitch2.TabIndex = 15;
+            uiSwitch2.Tag = "1";
+            uiSwitch2.Text = "uiSwitch2";
+            uiSwitch2.Click += DO_Click;
+            // 
+            // uiLabel5
+            // 
+            uiLabel5.AutoSize = true;
+            uiLabel5.Font = new System.Drawing.Font("宋体", 12F);
+            uiLabel5.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLabel5.Location = new System.Drawing.Point(330, 70);
+            uiLabel5.Name = "uiLabel5";
+            uiLabel5.Size = new System.Drawing.Size(135, 16);
+            uiLabel5.TabIndex = 18;
+            uiLabel5.Text = "制动显示器1控制1";
+            uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiSwitch3
+            // 
+            uiSwitch3.Font = new System.Drawing.Font("宋体", 12F);
+            uiSwitch3.InActiveColor = System.Drawing.Color.LightBlue;
+            uiSwitch3.Location = new System.Drawing.Point(361, 38);
+            uiSwitch3.MinimumSize = new System.Drawing.Size(1, 1);
+            uiSwitch3.Name = "uiSwitch3";
+            uiSwitch3.Radius = 0;
+            uiSwitch3.Size = new System.Drawing.Size(75, 29);
+            uiSwitch3.TabIndex = 17;
+            uiSwitch3.Tag = "2";
+            uiSwitch3.Text = "uiSwitch3";
+            uiSwitch3.Click += DO_Click;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(uiGroupBox3);
+            tabPage1.Location = new System.Drawing.Point(0, 0);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new System.Drawing.Size(200, 0);
+            tabPage1.TabIndex = 3;
+            tabPage1.Text = "DO输出信号2";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // uiGroupBox3
             // 
@@ -6629,12 +7742,12 @@ namespace MainUI
             uiGroupBox3.Controls.Add(uiLabel31);
             uiGroupBox3.Controls.Add(uiLabel32);
             uiGroupBox3.Font = new System.Drawing.Font("宋体", 12F);
-            uiGroupBox3.Location = new System.Drawing.Point(3, 453);
+            uiGroupBox3.Location = new System.Drawing.Point(0, 0);
             uiGroupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiGroupBox3.MinimumSize = new System.Drawing.Size(1, 1);
             uiGroupBox3.Name = "uiGroupBox3";
             uiGroupBox3.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            uiGroupBox3.Size = new System.Drawing.Size(465, 520);
+            uiGroupBox3.Size = new System.Drawing.Size(486, 878);
             uiGroupBox3.TabIndex = 28;
             uiGroupBox3.Text = "EPCU DC24V控制";
             uiGroupBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -6657,11 +7770,11 @@ namespace MainUI
             uiLabel59.AutoSize = true;
             uiLabel59.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel59.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel59.Location = new System.Drawing.Point(132, 492);
+            uiLabel59.Location = new System.Drawing.Point(144, 492);
             uiLabel59.Name = "uiLabel59";
-            uiLabel59.Size = new System.Drawing.Size(95, 16);
+            uiLabel59.Size = new System.Drawing.Size(71, 16);
             uiLabel59.TabIndex = 128;
-            uiLabel59.Text = "110V电磁阀4";
+            uiLabel59.Text = "电磁阀28";
             uiLabel59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiSwitch57
@@ -6682,11 +7795,11 @@ namespace MainUI
             uiLabel60.AutoSize = true;
             uiLabel60.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel60.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel60.Location = new System.Drawing.Point(18, 492);
+            uiLabel60.Location = new System.Drawing.Point(24, 492);
             uiLabel60.Name = "uiLabel60";
-            uiLabel60.Size = new System.Drawing.Size(95, 16);
+            uiLabel60.Size = new System.Drawing.Size(71, 16);
             uiLabel60.TabIndex = 126;
-            uiLabel60.Text = "110V电磁阀3";
+            uiLabel60.Text = "电磁阀27";
             uiLabel60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiSwitch53
@@ -6707,11 +7820,11 @@ namespace MainUI
             uiLabel56.AutoSize = true;
             uiLabel56.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel56.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel56.Location = new System.Drawing.Point(367, 429);
+            uiLabel56.Location = new System.Drawing.Point(377, 429);
             uiLabel56.Name = "uiLabel56";
-            uiLabel56.Size = new System.Drawing.Size(95, 16);
+            uiLabel56.Size = new System.Drawing.Size(71, 16);
             uiLabel56.TabIndex = 124;
-            uiLabel56.Text = "110V电磁阀2";
+            uiLabel56.Text = "电磁阀26";
             uiLabel56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiSwitch54
@@ -6732,11 +7845,11 @@ namespace MainUI
             uiLabel57.AutoSize = true;
             uiLabel57.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel57.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel57.Location = new System.Drawing.Point(259, 429);
+            uiLabel57.Location = new System.Drawing.Point(268, 429);
             uiLabel57.Name = "uiLabel57";
-            uiLabel57.Size = new System.Drawing.Size(95, 16);
+            uiLabel57.Size = new System.Drawing.Size(71, 16);
             uiLabel57.TabIndex = 122;
-            uiLabel57.Text = "110V电磁阀1";
+            uiLabel57.Text = "电磁阀25";
             uiLabel57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiSwitch55
@@ -6782,7 +7895,7 @@ namespace MainUI
             uiLabel55.AutoSize = true;
             uiLabel55.Font = new System.Drawing.Font("宋体", 12F);
             uiLabel55.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel55.Location = new System.Drawing.Point(21, 427);
+            uiLabel55.Location = new System.Drawing.Point(24, 427);
             uiLabel55.Name = "uiLabel55";
             uiLabel55.Size = new System.Drawing.Size(71, 16);
             uiLabel55.TabIndex = 118;
@@ -7149,7 +8262,7 @@ namespace MainUI
             uiSwitch38.Radius = 0;
             uiSwitch38.Size = new System.Drawing.Size(75, 29);
             uiSwitch38.TabIndex = 87;
-            uiSwitch38.Tag = "41";
+            uiSwitch38.Tag = "39";
             uiSwitch38.Click += DO_Click;
             // 
             // uiLabel41
@@ -7174,7 +8287,7 @@ namespace MainUI
             uiSwitch39.Radius = 0;
             uiSwitch39.Size = new System.Drawing.Size(75, 29);
             uiSwitch39.TabIndex = 85;
-            uiSwitch39.Tag = "40";
+            uiSwitch39.Tag = "38";
             uiSwitch39.Click += DO_Click;
             // 
             // uiLabel42
@@ -7199,7 +8312,7 @@ namespace MainUI
             uiSwitch34.Radius = 0;
             uiSwitch34.Size = new System.Drawing.Size(75, 29);
             uiSwitch34.TabIndex = 83;
-            uiSwitch34.Tag = "39";
+            uiSwitch34.Tag = "37";
             uiSwitch34.Click += DO_Click;
             // 
             // uiLabel37
@@ -7224,7 +8337,7 @@ namespace MainUI
             uiSwitch35.Radius = 0;
             uiSwitch35.Size = new System.Drawing.Size(75, 29);
             uiSwitch35.TabIndex = 81;
-            uiSwitch35.Tag = "38";
+            uiSwitch35.Tag = "36";
             uiSwitch35.Click += DO_Click;
             // 
             // uiLabel38
@@ -7249,7 +8362,7 @@ namespace MainUI
             uiSwitch32.Radius = 0;
             uiSwitch32.Size = new System.Drawing.Size(75, 29);
             uiSwitch32.TabIndex = 79;
-            uiSwitch32.Tag = "37";
+            uiSwitch32.Tag = "35";
             uiSwitch32.Click += DO_Click;
             // 
             // uiLabel35
@@ -7274,7 +8387,7 @@ namespace MainUI
             uiSwitch33.Radius = 0;
             uiSwitch33.Size = new System.Drawing.Size(75, 29);
             uiSwitch33.TabIndex = 77;
-            uiSwitch33.Tag = "36";
+            uiSwitch33.Tag = "34";
             uiSwitch33.Click += DO_Click;
             // 
             // uiLabel36
@@ -7299,7 +8412,7 @@ namespace MainUI
             uiSwitch30.Radius = 0;
             uiSwitch30.Size = new System.Drawing.Size(75, 29);
             uiSwitch30.TabIndex = 75;
-            uiSwitch30.Tag = "35";
+            uiSwitch30.Tag = "33";
             uiSwitch30.Click += DO_Click;
             // 
             // uiLabel33
@@ -7324,7 +8437,7 @@ namespace MainUI
             uiSwitch31.Radius = 0;
             uiSwitch31.Size = new System.Drawing.Size(75, 29);
             uiSwitch31.TabIndex = 73;
-            uiSwitch31.Tag = "34";
+            uiSwitch31.Tag = "32";
             uiSwitch31.Click += DO_Click;
             // 
             // uiLabel34
@@ -7349,7 +8462,7 @@ namespace MainUI
             uiSwitch28.Radius = 0;
             uiSwitch28.Size = new System.Drawing.Size(75, 29);
             uiSwitch28.TabIndex = 71;
-            uiSwitch28.Tag = "33";
+            uiSwitch28.Tag = "31";
             uiSwitch28.Click += DO_Click;
             // 
             // uiSwitch29
@@ -7362,7 +8475,7 @@ namespace MainUI
             uiSwitch29.Radius = 0;
             uiSwitch29.Size = new System.Drawing.Size(75, 29);
             uiSwitch29.TabIndex = 69;
-            uiSwitch29.Tag = "32";
+            uiSwitch29.Tag = "30";
             uiSwitch29.Click += DO_Click;
             // 
             // uiLabel31
@@ -7389,776 +8502,11 @@ namespace MainUI
             uiLabel32.Text = "控制开关1";
             uiLabel32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiGroupBox1
-            // 
-            uiGroupBox1.Controls.Add(uiSwitch24);
-            uiGroupBox1.Controls.Add(uiLabel27);
-            uiGroupBox1.Controls.Add(uiSwitch25);
-            uiGroupBox1.Controls.Add(uiLabel28);
-            uiGroupBox1.Controls.Add(uiSwitch26);
-            uiGroupBox1.Controls.Add(uiLabel29);
-            uiGroupBox1.Controls.Add(uiSwitch27);
-            uiGroupBox1.Controls.Add(uiLabel30);
-            uiGroupBox1.Controls.Add(uiSwitch20);
-            uiGroupBox1.Controls.Add(uiLabel23);
-            uiGroupBox1.Controls.Add(uiSwitch21);
-            uiGroupBox1.Controls.Add(uiLabel24);
-            uiGroupBox1.Controls.Add(uiSwitch22);
-            uiGroupBox1.Controls.Add(uiLabel25);
-            uiGroupBox1.Controls.Add(uiSwitch23);
-            uiGroupBox1.Controls.Add(uiLabel26);
-            uiGroupBox1.Controls.Add(uiSwitch16);
-            uiGroupBox1.Controls.Add(uiLabel19);
-            uiGroupBox1.Controls.Add(uiSwitch17);
-            uiGroupBox1.Controls.Add(uiLabel20);
-            uiGroupBox1.Controls.Add(uiSwitch18);
-            uiGroupBox1.Controls.Add(uiLabel21);
-            uiGroupBox1.Controls.Add(uiSwitch19);
-            uiGroupBox1.Controls.Add(uiLabel22);
-            uiGroupBox1.Controls.Add(uiSwitch12);
-            uiGroupBox1.Controls.Add(uiLabel15);
-            uiGroupBox1.Controls.Add(uiSwitch13);
-            uiGroupBox1.Controls.Add(uiLabel16);
-            uiGroupBox1.Controls.Add(uiSwitch14);
-            uiGroupBox1.Controls.Add(uiLabel17);
-            uiGroupBox1.Controls.Add(uiSwitch15);
-            uiGroupBox1.Controls.Add(uiLabel18);
-            uiGroupBox1.Controls.Add(uiSwitch8);
-            uiGroupBox1.Controls.Add(uiLabel11);
-            uiGroupBox1.Controls.Add(uiSwitch9);
-            uiGroupBox1.Controls.Add(uiLabel12);
-            uiGroupBox1.Controls.Add(uiSwitch10);
-            uiGroupBox1.Controls.Add(uiLabel13);
-            uiGroupBox1.Controls.Add(uiSwitch11);
-            uiGroupBox1.Controls.Add(uiLabel14);
-            uiGroupBox1.Controls.Add(uiSwitch6);
-            uiGroupBox1.Controls.Add(uiLabel9);
-            uiGroupBox1.Controls.Add(uiSwitch5);
-            uiGroupBox1.Controls.Add(uiLabel8);
-            uiGroupBox1.Controls.Add(uiSwitch7);
-            uiGroupBox1.Controls.Add(uiLabel10);
-            uiGroupBox1.Controls.Add(uiSwitch1);
-            uiGroupBox1.Controls.Add(uiLabel7);
-            uiGroupBox1.Font = new System.Drawing.Font("宋体", 12F);
-            uiGroupBox1.Location = new System.Drawing.Point(4, 63);
-            uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            uiGroupBox1.Name = "uiGroupBox1";
-            uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            uiGroupBox1.Size = new System.Drawing.Size(465, 386);
-            uiGroupBox1.TabIndex = 27;
-            uiGroupBox1.Text = "EIU 110V+控制";
-            uiGroupBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch24
-            // 
-            uiSwitch24.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch24.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch24.Location = new System.Drawing.Point(377, 331);
-            uiSwitch24.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch24.Name = "uiSwitch24";
-            uiSwitch24.Radius = 0;
-            uiSwitch24.Size = new System.Drawing.Size(75, 29);
-            uiSwitch24.TabIndex = 67;
-            uiSwitch24.Tag = "29";
-            uiSwitch24.Click += DO_Click;
-            // 
-            // uiLabel27
-            // 
-            uiLabel27.AutoSize = true;
-            uiLabel27.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel27.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel27.Location = new System.Drawing.Point(373, 362);
-            uiLabel27.Name = "uiLabel27";
-            uiLabel27.Size = new System.Drawing.Size(87, 16);
-            uiLabel27.TabIndex = 68;
-            uiLabel27.Text = "控制开关24";
-            uiLabel27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch25
-            // 
-            uiSwitch25.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch25.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch25.Location = new System.Drawing.Point(266, 331);
-            uiSwitch25.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch25.Name = "uiSwitch25";
-            uiSwitch25.Radius = 0;
-            uiSwitch25.Size = new System.Drawing.Size(75, 29);
-            uiSwitch25.TabIndex = 65;
-            uiSwitch25.Tag = "28";
-            uiSwitch25.Click += DO_Click;
-            // 
-            // uiLabel28
-            // 
-            uiLabel28.AutoSize = true;
-            uiLabel28.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel28.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel28.Location = new System.Drawing.Point(264, 362);
-            uiLabel28.Name = "uiLabel28";
-            uiLabel28.Size = new System.Drawing.Size(87, 16);
-            uiLabel28.TabIndex = 66;
-            uiLabel28.Text = "控制开关23";
-            uiLabel28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch26
-            // 
-            uiSwitch26.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch26.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch26.Location = new System.Drawing.Point(145, 331);
-            uiSwitch26.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch26.Name = "uiSwitch26";
-            uiSwitch26.Radius = 0;
-            uiSwitch26.Size = new System.Drawing.Size(75, 29);
-            uiSwitch26.TabIndex = 63;
-            uiSwitch26.Tag = "27";
-            uiSwitch26.Click += DO_Click;
-            // 
-            // uiLabel29
-            // 
-            uiLabel29.AutoSize = true;
-            uiLabel29.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel29.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel29.Location = new System.Drawing.Point(140, 362);
-            uiLabel29.Name = "uiLabel29";
-            uiLabel29.Size = new System.Drawing.Size(87, 16);
-            uiLabel29.TabIndex = 64;
-            uiLabel29.Text = "控制开关22";
-            uiLabel29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch27
-            // 
-            uiSwitch27.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch27.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch27.Location = new System.Drawing.Point(24, 331);
-            uiSwitch27.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch27.Name = "uiSwitch27";
-            uiSwitch27.Radius = 0;
-            uiSwitch27.Size = new System.Drawing.Size(75, 29);
-            uiSwitch27.TabIndex = 61;
-            uiSwitch27.Tag = "26";
-            uiSwitch27.Click += DO_Click;
-            // 
-            // uiLabel30
-            // 
-            uiLabel30.AutoSize = true;
-            uiLabel30.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel30.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel30.Location = new System.Drawing.Point(27, 362);
-            uiLabel30.Name = "uiLabel30";
-            uiLabel30.Size = new System.Drawing.Size(87, 16);
-            uiLabel30.TabIndex = 62;
-            uiLabel30.Text = "控制开关21";
-            uiLabel30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch20
-            // 
-            uiSwitch20.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch20.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch20.Location = new System.Drawing.Point(376, 274);
-            uiSwitch20.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch20.Name = "uiSwitch20";
-            uiSwitch20.Radius = 0;
-            uiSwitch20.Size = new System.Drawing.Size(75, 29);
-            uiSwitch20.TabIndex = 59;
-            uiSwitch20.Tag = "23";
-            uiSwitch20.Click += DO_Click;
-            // 
-            // uiLabel23
-            // 
-            uiLabel23.AutoSize = true;
-            uiLabel23.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel23.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel23.Location = new System.Drawing.Point(372, 305);
-            uiLabel23.Name = "uiLabel23";
-            uiLabel23.Size = new System.Drawing.Size(87, 16);
-            uiLabel23.TabIndex = 60;
-            uiLabel23.Text = "控制开关20";
-            uiLabel23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch21
-            // 
-            uiSwitch21.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch21.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch21.Location = new System.Drawing.Point(265, 274);
-            uiSwitch21.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch21.Name = "uiSwitch21";
-            uiSwitch21.Radius = 0;
-            uiSwitch21.Size = new System.Drawing.Size(75, 29);
-            uiSwitch21.TabIndex = 57;
-            uiSwitch21.Tag = "22";
-            uiSwitch21.Click += DO_Click;
-            // 
-            // uiLabel24
-            // 
-            uiLabel24.AutoSize = true;
-            uiLabel24.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel24.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel24.Location = new System.Drawing.Point(263, 305);
-            uiLabel24.Name = "uiLabel24";
-            uiLabel24.Size = new System.Drawing.Size(87, 16);
-            uiLabel24.TabIndex = 58;
-            uiLabel24.Text = "控制开关19";
-            uiLabel24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch22
-            // 
-            uiSwitch22.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch22.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch22.Location = new System.Drawing.Point(144, 274);
-            uiSwitch22.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch22.Name = "uiSwitch22";
-            uiSwitch22.Radius = 0;
-            uiSwitch22.Size = new System.Drawing.Size(75, 29);
-            uiSwitch22.TabIndex = 55;
-            uiSwitch22.Tag = "21";
-            uiSwitch22.Click += DO_Click;
-            // 
-            // uiLabel25
-            // 
-            uiLabel25.AutoSize = true;
-            uiLabel25.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel25.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel25.Location = new System.Drawing.Point(139, 305);
-            uiLabel25.Name = "uiLabel25";
-            uiLabel25.Size = new System.Drawing.Size(87, 16);
-            uiLabel25.TabIndex = 56;
-            uiLabel25.Text = "控制开关18";
-            uiLabel25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch23
-            // 
-            uiSwitch23.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch23.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch23.Location = new System.Drawing.Point(23, 274);
-            uiSwitch23.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch23.Name = "uiSwitch23";
-            uiSwitch23.Radius = 0;
-            uiSwitch23.Size = new System.Drawing.Size(75, 29);
-            uiSwitch23.TabIndex = 53;
-            uiSwitch23.Tag = "20";
-            uiSwitch23.Click += DO_Click;
-            // 
-            // uiLabel26
-            // 
-            uiLabel26.AutoSize = true;
-            uiLabel26.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel26.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel26.Location = new System.Drawing.Point(24, 305);
-            uiLabel26.Name = "uiLabel26";
-            uiLabel26.Size = new System.Drawing.Size(87, 16);
-            uiLabel26.TabIndex = 54;
-            uiLabel26.Text = "控制开关17";
-            uiLabel26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch16
-            // 
-            uiSwitch16.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch16.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch16.Location = new System.Drawing.Point(376, 213);
-            uiSwitch16.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch16.Name = "uiSwitch16";
-            uiSwitch16.Radius = 0;
-            uiSwitch16.Size = new System.Drawing.Size(75, 29);
-            uiSwitch16.TabIndex = 51;
-            uiSwitch16.Tag = "19";
-            uiSwitch16.Click += DO_Click;
-            // 
-            // uiLabel19
-            // 
-            uiLabel19.AutoSize = true;
-            uiLabel19.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel19.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel19.Location = new System.Drawing.Point(372, 244);
-            uiLabel19.Name = "uiLabel19";
-            uiLabel19.Size = new System.Drawing.Size(87, 16);
-            uiLabel19.TabIndex = 52;
-            uiLabel19.Text = "控制开关16";
-            uiLabel19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch17
-            // 
-            uiSwitch17.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch17.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch17.Location = new System.Drawing.Point(265, 213);
-            uiSwitch17.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch17.Name = "uiSwitch17";
-            uiSwitch17.Radius = 0;
-            uiSwitch17.Size = new System.Drawing.Size(75, 29);
-            uiSwitch17.TabIndex = 49;
-            uiSwitch17.Tag = "18";
-            uiSwitch17.Click += DO_Click;
-            // 
-            // uiLabel20
-            // 
-            uiLabel20.AutoSize = true;
-            uiLabel20.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel20.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel20.Location = new System.Drawing.Point(263, 244);
-            uiLabel20.Name = "uiLabel20";
-            uiLabel20.Size = new System.Drawing.Size(87, 16);
-            uiLabel20.TabIndex = 50;
-            uiLabel20.Text = "控制开关15";
-            uiLabel20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch18
-            // 
-            uiSwitch18.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch18.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch18.Location = new System.Drawing.Point(144, 213);
-            uiSwitch18.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch18.Name = "uiSwitch18";
-            uiSwitch18.Radius = 0;
-            uiSwitch18.Size = new System.Drawing.Size(75, 29);
-            uiSwitch18.TabIndex = 47;
-            uiSwitch18.Tag = "17";
-            uiSwitch18.Click += DO_Click;
-            // 
-            // uiLabel21
-            // 
-            uiLabel21.AutoSize = true;
-            uiLabel21.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel21.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel21.Location = new System.Drawing.Point(139, 244);
-            uiLabel21.Name = "uiLabel21";
-            uiLabel21.Size = new System.Drawing.Size(87, 16);
-            uiLabel21.TabIndex = 48;
-            uiLabel21.Text = "控制开关14";
-            uiLabel21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch19
-            // 
-            uiSwitch19.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch19.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch19.Location = new System.Drawing.Point(23, 213);
-            uiSwitch19.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch19.Name = "uiSwitch19";
-            uiSwitch19.Radius = 0;
-            uiSwitch19.Size = new System.Drawing.Size(75, 29);
-            uiSwitch19.TabIndex = 45;
-            uiSwitch19.Tag = "16";
-            uiSwitch19.Click += DO_Click;
-            // 
-            // uiLabel22
-            // 
-            uiLabel22.AutoSize = true;
-            uiLabel22.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel22.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel22.Location = new System.Drawing.Point(20, 244);
-            uiLabel22.Name = "uiLabel22";
-            uiLabel22.Size = new System.Drawing.Size(87, 16);
-            uiLabel22.TabIndex = 46;
-            uiLabel22.Text = "控制开关13";
-            uiLabel22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch12
-            // 
-            uiSwitch12.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch12.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch12.Location = new System.Drawing.Point(376, 152);
-            uiSwitch12.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch12.Name = "uiSwitch12";
-            uiSwitch12.Radius = 0;
-            uiSwitch12.Size = new System.Drawing.Size(75, 29);
-            uiSwitch12.TabIndex = 43;
-            uiSwitch12.Tag = "15";
-            uiSwitch12.Click += DO_Click;
-            // 
-            // uiLabel15
-            // 
-            uiLabel15.AutoSize = true;
-            uiLabel15.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel15.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel15.Location = new System.Drawing.Point(372, 183);
-            uiLabel15.Name = "uiLabel15";
-            uiLabel15.Size = new System.Drawing.Size(87, 16);
-            uiLabel15.TabIndex = 44;
-            uiLabel15.Text = "控制开关12";
-            uiLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch13
-            // 
-            uiSwitch13.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch13.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch13.Location = new System.Drawing.Point(265, 152);
-            uiSwitch13.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch13.Name = "uiSwitch13";
-            uiSwitch13.Radius = 0;
-            uiSwitch13.Size = new System.Drawing.Size(75, 29);
-            uiSwitch13.TabIndex = 41;
-            uiSwitch13.Tag = "14";
-            uiSwitch13.Click += DO_Click;
-            // 
-            // uiLabel16
-            // 
-            uiLabel16.AutoSize = true;
-            uiLabel16.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel16.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel16.Location = new System.Drawing.Point(265, 183);
-            uiLabel16.Name = "uiLabel16";
-            uiLabel16.Size = new System.Drawing.Size(87, 16);
-            uiLabel16.TabIndex = 42;
-            uiLabel16.Text = "控制开关11";
-            uiLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch14
-            // 
-            uiSwitch14.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch14.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch14.Location = new System.Drawing.Point(144, 152);
-            uiSwitch14.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch14.Name = "uiSwitch14";
-            uiSwitch14.Radius = 0;
-            uiSwitch14.Size = new System.Drawing.Size(75, 29);
-            uiSwitch14.TabIndex = 39;
-            uiSwitch14.Tag = "13";
-            uiSwitch14.Click += DO_Click;
-            // 
-            // uiLabel17
-            // 
-            uiLabel17.AutoSize = true;
-            uiLabel17.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel17.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel17.Location = new System.Drawing.Point(139, 183);
-            uiLabel17.Name = "uiLabel17";
-            uiLabel17.Size = new System.Drawing.Size(87, 16);
-            uiLabel17.TabIndex = 40;
-            uiLabel17.Text = "控制开关10";
-            uiLabel17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch15
-            // 
-            uiSwitch15.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch15.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch15.Location = new System.Drawing.Point(23, 152);
-            uiSwitch15.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch15.Name = "uiSwitch15";
-            uiSwitch15.Radius = 0;
-            uiSwitch15.Size = new System.Drawing.Size(75, 29);
-            uiSwitch15.TabIndex = 37;
-            uiSwitch15.Tag = "12";
-            uiSwitch15.Click += DO_Click;
-            // 
-            // uiLabel18
-            // 
-            uiLabel18.AutoSize = true;
-            uiLabel18.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel18.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel18.Location = new System.Drawing.Point(27, 183);
-            uiLabel18.Name = "uiLabel18";
-            uiLabel18.Size = new System.Drawing.Size(79, 16);
-            uiLabel18.TabIndex = 38;
-            uiLabel18.Text = "控制开关9";
-            uiLabel18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch8
-            // 
-            uiSwitch8.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch8.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch8.Location = new System.Drawing.Point(376, 92);
-            uiSwitch8.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch8.Name = "uiSwitch8";
-            uiSwitch8.Radius = 0;
-            uiSwitch8.Size = new System.Drawing.Size(75, 29);
-            uiSwitch8.TabIndex = 35;
-            uiSwitch8.Tag = "11";
-            uiSwitch8.Click += DO_Click;
-            // 
-            // uiLabel11
-            // 
-            uiLabel11.AutoSize = true;
-            uiLabel11.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel11.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel11.Location = new System.Drawing.Point(373, 123);
-            uiLabel11.Name = "uiLabel11";
-            uiLabel11.Size = new System.Drawing.Size(79, 16);
-            uiLabel11.TabIndex = 36;
-            uiLabel11.Text = "控制开关8";
-            uiLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch9
-            // 
-            uiSwitch9.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch9.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch9.Location = new System.Drawing.Point(265, 92);
-            uiSwitch9.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch9.Name = "uiSwitch9";
-            uiSwitch9.Radius = 0;
-            uiSwitch9.Size = new System.Drawing.Size(75, 29);
-            uiSwitch9.TabIndex = 33;
-            uiSwitch9.Tag = "10";
-            uiSwitch9.Click += DO_Click;
-            // 
-            // uiLabel12
-            // 
-            uiLabel12.AutoSize = true;
-            uiLabel12.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel12.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel12.Location = new System.Drawing.Point(264, 123);
-            uiLabel12.Name = "uiLabel12";
-            uiLabel12.Size = new System.Drawing.Size(79, 16);
-            uiLabel12.TabIndex = 34;
-            uiLabel12.Text = "控制开关7";
-            uiLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch10
-            // 
-            uiSwitch10.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch10.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch10.Location = new System.Drawing.Point(144, 92);
-            uiSwitch10.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch10.Name = "uiSwitch10";
-            uiSwitch10.Radius = 0;
-            uiSwitch10.Size = new System.Drawing.Size(75, 29);
-            uiSwitch10.TabIndex = 31;
-            uiSwitch10.Tag = "9";
-            uiSwitch10.Click += DO_Click;
-            // 
-            // uiLabel13
-            // 
-            uiLabel13.AutoSize = true;
-            uiLabel13.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel13.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel13.Location = new System.Drawing.Point(139, 123);
-            uiLabel13.Name = "uiLabel13";
-            uiLabel13.Size = new System.Drawing.Size(79, 16);
-            uiLabel13.TabIndex = 32;
-            uiLabel13.Tag = "";
-            uiLabel13.Text = "控制开关6";
-            uiLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch11
-            // 
-            uiSwitch11.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch11.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch11.Location = new System.Drawing.Point(23, 92);
-            uiSwitch11.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch11.Name = "uiSwitch11";
-            uiSwitch11.Radius = 0;
-            uiSwitch11.Size = new System.Drawing.Size(75, 29);
-            uiSwitch11.TabIndex = 29;
-            uiSwitch11.Tag = "8";
-            uiSwitch11.Click += DO_Click;
-            // 
-            // uiLabel14
-            // 
-            uiLabel14.AutoSize = true;
-            uiLabel14.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel14.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel14.Location = new System.Drawing.Point(25, 123);
-            uiLabel14.Name = "uiLabel14";
-            uiLabel14.Size = new System.Drawing.Size(79, 16);
-            uiLabel14.TabIndex = 30;
-            uiLabel14.Text = "控制开关5";
-            uiLabel14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch6
-            // 
-            uiSwitch6.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch6.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch6.Location = new System.Drawing.Point(376, 32);
-            uiSwitch6.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch6.Name = "uiSwitch6";
-            uiSwitch6.Radius = 0;
-            uiSwitch6.Size = new System.Drawing.Size(75, 29);
-            uiSwitch6.TabIndex = 27;
-            uiSwitch6.Tag = "7";
-            uiSwitch6.Click += DO_Click;
-            // 
-            // uiLabel9
-            // 
-            uiLabel9.AutoSize = true;
-            uiLabel9.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel9.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel9.Location = new System.Drawing.Point(373, 63);
-            uiLabel9.Name = "uiLabel9";
-            uiLabel9.Size = new System.Drawing.Size(79, 16);
-            uiLabel9.TabIndex = 28;
-            uiLabel9.Text = "控制开关4";
-            uiLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch5
-            // 
-            uiSwitch5.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch5.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch5.Location = new System.Drawing.Point(265, 32);
-            uiSwitch5.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch5.Name = "uiSwitch5";
-            uiSwitch5.Radius = 0;
-            uiSwitch5.Size = new System.Drawing.Size(75, 29);
-            uiSwitch5.TabIndex = 25;
-            uiSwitch5.Tag = "6";
-            uiSwitch5.Click += DO_Click;
-            // 
-            // uiLabel8
-            // 
-            uiLabel8.AutoSize = true;
-            uiLabel8.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel8.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel8.Location = new System.Drawing.Point(267, 63);
-            uiLabel8.Name = "uiLabel8";
-            uiLabel8.Size = new System.Drawing.Size(79, 16);
-            uiLabel8.TabIndex = 26;
-            uiLabel8.Text = "控制开关3";
-            uiLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch7
-            // 
-            uiSwitch7.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch7.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch7.Location = new System.Drawing.Point(144, 32);
-            uiSwitch7.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch7.Name = "uiSwitch7";
-            uiSwitch7.Radius = 0;
-            uiSwitch7.Size = new System.Drawing.Size(75, 29);
-            uiSwitch7.TabIndex = 23;
-            uiSwitch7.Tag = "5";
-            uiSwitch7.Click += DO_Click;
-            // 
-            // uiLabel10
-            // 
-            uiLabel10.AutoSize = true;
-            uiLabel10.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel10.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel10.Location = new System.Drawing.Point(140, 63);
-            uiLabel10.Name = "uiLabel10";
-            uiLabel10.Size = new System.Drawing.Size(79, 16);
-            uiLabel10.TabIndex = 24;
-            uiLabel10.Text = "控制开关2";
-            uiLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch1
-            // 
-            uiSwitch1.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch1.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch1.Location = new System.Drawing.Point(23, 32);
-            uiSwitch1.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch1.Name = "uiSwitch1";
-            uiSwitch1.Radius = 0;
-            uiSwitch1.Size = new System.Drawing.Size(75, 29);
-            uiSwitch1.TabIndex = 21;
-            uiSwitch1.Tag = "4";
-            uiSwitch1.Click += DO_Click;
-            // 
-            // uiLabel7
-            // 
-            uiLabel7.AutoSize = true;
-            uiLabel7.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel7.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel7.Location = new System.Drawing.Point(21, 63);
-            uiLabel7.Name = "uiLabel7";
-            uiLabel7.Size = new System.Drawing.Size(79, 16);
-            uiLabel7.TabIndex = 22;
-            uiLabel7.Text = "控制开关1";
-            uiLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch4
-            // 
-            uiSwitch4.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch4.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch4.Location = new System.Drawing.Point(377, 12);
-            uiSwitch4.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch4.Name = "uiSwitch4";
-            uiSwitch4.Radius = 0;
-            uiSwitch4.Size = new System.Drawing.Size(75, 29);
-            uiSwitch4.TabIndex = 19;
-            uiSwitch4.Tag = "3";
-            uiSwitch4.Text = "uiSwitch4";
-            uiSwitch4.Click += DO_Click;
-            // 
-            // uiLabel6
-            // 
-            uiLabel6.AutoSize = true;
-            uiLabel6.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel6.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel6.Location = new System.Drawing.Point(369, 43);
-            uiLabel6.Name = "uiLabel6";
-            uiLabel6.Size = new System.Drawing.Size(95, 16);
-            uiLabel6.TabIndex = 20;
-            uiLabel6.Text = "显示屏2控制";
-            uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch3
-            // 
-            uiSwitch3.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch3.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch3.Location = new System.Drawing.Point(265, 12);
-            uiSwitch3.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch3.Name = "uiSwitch3";
-            uiSwitch3.Radius = 0;
-            uiSwitch3.Size = new System.Drawing.Size(75, 29);
-            uiSwitch3.TabIndex = 17;
-            uiSwitch3.Tag = "2";
-            uiSwitch3.Text = "uiSwitch3";
-            uiSwitch3.Click += DO_Click;
-            // 
-            // uiLabel5
-            // 
-            uiLabel5.AutoSize = true;
-            uiLabel5.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel5.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new System.Drawing.Point(258, 43);
-            uiLabel5.Name = "uiLabel5";
-            uiLabel5.Size = new System.Drawing.Size(95, 16);
-            uiLabel5.TabIndex = 18;
-            uiLabel5.Text = "显示屏1控制";
-            uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch2
-            // 
-            uiSwitch2.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch2.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch2.Location = new System.Drawing.Point(144, 13);
-            uiSwitch2.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch2.Name = "uiSwitch2";
-            uiSwitch2.Radius = 0;
-            uiSwitch2.Size = new System.Drawing.Size(75, 29);
-            uiSwitch2.TabIndex = 15;
-            uiSwitch2.Tag = "1";
-            uiSwitch2.Text = "uiSwitch2";
-            uiSwitch2.Click += DO_Click;
-            // 
-            // uiLabel4
-            // 
-            uiLabel4.AutoSize = true;
-            uiLabel4.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new System.Drawing.Point(136, 44);
-            uiLabel4.Name = "uiLabel4";
-            uiLabel4.Size = new System.Drawing.Size(95, 16);
-            uiLabel4.TabIndex = 16;
-            uiLabel4.Text = "大小闸2控制";
-            uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiSwitch
-            // 
-            uiSwitch.Font = new System.Drawing.Font("宋体", 12F);
-            uiSwitch.InActiveColor = System.Drawing.Color.LightBlue;
-            uiSwitch.Location = new System.Drawing.Point(23, 12);
-            uiSwitch.MinimumSize = new System.Drawing.Size(1, 1);
-            uiSwitch.Name = "uiSwitch";
-            uiSwitch.Radius = 0;
-            uiSwitch.Size = new System.Drawing.Size(75, 29);
-            uiSwitch.TabIndex = 13;
-            uiSwitch.Tag = "0";
-            uiSwitch.Click += DO_Click;
-            // 
-            // uiLabel3
-            // 
-            uiLabel3.AutoSize = true;
-            uiLabel3.Font = new System.Drawing.Font("宋体", 12F);
-            uiLabel3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLabel3.Location = new System.Drawing.Point(13, 43);
-            uiLabel3.Name = "uiLabel3";
-            uiLabel3.Size = new System.Drawing.Size(95, 16);
-            uiLabel3.TabIndex = 14;
-            uiLabel3.Text = "大小闸1控制";
-            uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // uiPresentation
             // 
             uiPresentation.FillColor = System.Drawing.Color.White;
             uiPresentation.Font = new System.Drawing.Font("宋体", 11F);
-            uiPresentation.Location = new System.Drawing.Point(2, 575);
+            uiPresentation.Location = new System.Drawing.Point(2, 512);
             uiPresentation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiPresentation.MinimumSize = new System.Drawing.Size(1, 1);
             uiPresentation.Name = "uiPresentation";
@@ -8177,25 +8525,54 @@ namespace MainUI
             uiLine1.BackColor = System.Drawing.Color.Transparent;
             uiLine1.Font = new System.Drawing.Font("宋体", 12F);
             uiLine1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
-            uiLine1.Location = new System.Drawing.Point(2, 549);
+            uiLine1.Location = new System.Drawing.Point(2, 486);
             uiLine1.MinimumSize = new System.Drawing.Size(1, 1);
             uiLine1.Name = "uiLine1";
             uiLine1.Size = new System.Drawing.Size(208, 29);
             uiLine1.TabIndex = 616;
             uiLine1.Text = "系统信息";
             // 
+            // uiLine2
+            // 
+            uiLine2.BackColor = System.Drawing.Color.Transparent;
+            uiLine2.Font = new System.Drawing.Font("宋体", 12F);
+            uiLine2.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLine2.Location = new System.Drawing.Point(2, 780);
+            uiLine2.MinimumSize = new System.Drawing.Size(1, 1);
+            uiLine2.Name = "uiLine2";
+            uiLine2.Size = new System.Drawing.Size(208, 29);
+            uiLine2.TabIndex = 617;
+            uiLine2.Text = "一键排气";
+            // 
+            // BtnExhaust
+            // 
+            BtnExhaust.Cursor = System.Windows.Forms.Cursors.Hand;
+            BtnExhaust.Font = new System.Drawing.Font("微软雅黑", 11F);
+            BtnExhaust.Location = new System.Drawing.Point(6, 807);
+            BtnExhaust.MinimumSize = new System.Drawing.Size(1, 1);
+            BtnExhaust.Name = "BtnExhaust";
+            BtnExhaust.ShowFocusLine = true;
+            BtnExhaust.Size = new System.Drawing.Size(200, 35);
+            BtnExhaust.TabIndex = 618;
+            BtnExhaust.Text = "开始排气";
+            BtnExhaust.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            BtnExhaust.TipsText = "1";
+            BtnExhaust.Click += BtnExhaust_Click;
+            // 
             // ucHMI
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            Controls.Add(uiGroupBox2);
+            Controls.Add(BtnExhaust);
             Controls.Add(uiPresentation);
+            Controls.Add(uiLine2);
+            Controls.Add(uiCheckBoxGroup1);
+            Controls.Add(uiGroupBox2);
             Controls.Add(uiLine1);
             Controls.Add(uiPanel1);
             Controls.Add(grpAirPath);
             Controls.Add(uiGroupBox4);
             Controls.Add(btnStart);
-            Controls.Add(uiCheckBoxGroup1);
             Font = new System.Drawing.Font("宋体", 11F);
             Margin = new System.Windows.Forms.Padding(4);
             Name = "ucHMI";
@@ -8293,18 +8670,18 @@ namespace MainUI
             uiGroupBox5.ResumeLayout(false);
             uiGroupBox5.PerformLayout();
             tabDoOut.ResumeLayout(false);
-            tabDoOut.PerformLayout();
-            uiGroupBox3.ResumeLayout(false);
-            uiGroupBox3.PerformLayout();
             uiGroupBox1.ResumeLayout(false);
             uiGroupBox1.PerformLayout();
+            uiCheckBoxGroup2.ResumeLayout(false);
+            uiCheckBoxGroup2.PerformLayout();
+            tabPage1.ResumeLayout(false);
+            uiGroupBox3.ResumeLayout(false);
+            uiGroupBox3.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
         private Sunny.UI.UIButton btnProductSelection;
-        private Sunny.UI.UILabel uiLabel1;
-        private Sunny.UI.UITextBox txtType;
         private Sunny.UI.UITextBox txtModel;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UICheckBoxGroup uiCheckBoxGroup1;
@@ -8445,14 +8822,6 @@ namespace MainUI
         private UILedBulb uiLedBulb2;
         private System.Windows.Forms.Label label2;
         private UILedBulb uiLedBulb1;
-        private UISwitch uiSwitch4;
-        private UILabel uiLabel6;
-        private UISwitch uiSwitch3;
-        private UILabel uiLabel5;
-        private UISwitch uiSwitch2;
-        private UILabel uiLabel4;
-        private UISwitch uiSwitch;
-        private UILabel uiLabel3;
         private UIGroupBox uiGroupBox1;
         private UISwitch uiSwitch6;
         private UILabel uiLabel9;
@@ -8795,5 +9164,41 @@ namespace MainUI
         private UIPanel uiPanel142;
         private UIPanel uiPanel143;
         private UIPanel uiPanel144;
+        private UILine uiLine2;
+        private UIButton BtnExhaust;
+        private System.Windows.Forms.TabPage tabPage1;
+        private UICheckBoxGroup uiCheckBoxGroup2;
+        private UISwitch uiSwitch;
+        private UISwitch uiSwitch4;
+        private UILabel uiLabel3;
+        private UILabel uiLabel4;
+        private UILabel uiLabel6;
+        private UISwitch uiSwitch2;
+        private UILabel uiLabel5;
+        private UISwitch uiSwitch3;
+        private UISwitch uiSwitch66;
+        private UILabel uiLabel68;
+        private UILabel uiLabel69;
+        private UISwitch uiSwitch68;
+        private UILabel uiLabel71;
+        private UISwitch uiSwitch69;
+        private UISwitch uiSwitch62;
+        private UISwitch uiSwitch63;
+        private UILabel uiLabel64;
+        private UILabel uiLabel65;
+        private UILabel uiLabel66;
+        private UISwitch uiSwitch64;
+        private UILabel uiLabel67;
+        private UISwitch uiSwitch65;
+        private UISwitch uiSwitch58;
+        private UISwitch uiSwitch59;
+        private UILabel uiLabel1;
+        private UILabel uiLabel61;
+        private UILabel uiLabel62;
+        private UISwitch uiSwitch60;
+        private UILabel uiLabel63;
+        private UISwitch uiSwitch61;
+        private UISwitch uiSwitch70;
+        private UILabel uiLabel72;
     }
 }

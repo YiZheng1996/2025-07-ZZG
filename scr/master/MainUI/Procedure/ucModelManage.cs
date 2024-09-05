@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MainUI.BLL;
 using RW.UI.Manager;
 using System.Runtime.Versioning;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.Procedure
 {

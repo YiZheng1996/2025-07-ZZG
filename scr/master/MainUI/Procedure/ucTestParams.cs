@@ -12,6 +12,7 @@ using MainUI.Model;
 using MainUI.BLL;
 using MainUI.Config;
 using MainUI.Properties;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.Procedure
 {

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using MainUI.Modules.IOCard;
 using System.Linq;
 
-namespace MainUI
+namespace MainUI.CurrencyHelper
 {
     public class Common
     {

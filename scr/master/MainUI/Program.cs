@@ -7,6 +7,7 @@ using RW.UI;
 using RW.UI.Manager.User;
 using System.IO;
 using System.Runtime.Versioning;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {

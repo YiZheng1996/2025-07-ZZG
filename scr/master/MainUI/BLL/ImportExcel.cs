@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RW.Data;
 using RW.Components.Core.BLL;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.BLL
 {

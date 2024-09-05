@@ -12,6 +12,7 @@ using MainUI.MVB;
 using MainUI.Procedure.Curve;
 using MainUI.TRDP;
 using MainUI.CAN;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {
@@ -64,7 +65,7 @@ namespace MainUI
                 RW.Components.User.BLL.UserBLL userBll = new();
 
                 //int level = userBll.GetPermissionLevel(RW.UI.RWUser.User.Permission);
-                switch (RWUser.User.Permission)
+                switch (CurrencyHelper.RWUser.User.Permission)
                 {
                     case "管理员"://系统管理员
                         break;
@@ -114,7 +115,7 @@ namespace MainUI
             if (!obj)
             {
                 this.splitContainer1.Panel2.Enabled = false;
-                EventLogHelper.Log(EventLogType.Error, "急停被按下。" + RWUser.User.Username);
+                EventLogHelper.Log(EventLogType.Error, "急停被按下。" + CurrencyHelper.RWUser.User.Username);
                 this.picRunStatus.Image = Resources.scram;
                 //Common.DOgrp[1] = true;
             }
@@ -188,7 +189,7 @@ namespace MainUI
         {
             try
             {
-                tslblUser.Text = "当前登录用户：" + RWUser.User.Username;
+                tslblUser.Text = "当前登录用户：" + CurrencyHelper.RWUser.User.Username;
                 tslblPLC.Text = opcStatus.NoError ? " PLC连接正常 " : " PLC连接失败 ";
                 tslblPLC.BackColor = opcStatus.NoError ? Color.FromArgb(110, 190, 40) : Color.Salmon;
                 if (opcStatus.Simulated)

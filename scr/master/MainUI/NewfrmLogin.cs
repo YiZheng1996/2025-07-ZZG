@@ -6,6 +6,7 @@ using RW.UI.BLL;
 using RW.EventLog;
 using MainUI.Config;
 using MainUI.Procedure;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {

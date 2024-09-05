@@ -1,4 +1,5 @@
 ﻿using MainUI.Config;
+using MainUI.CurrencyHelper;
 using MainUI.Model.Workinterface;
 using MainUI.Workinterface;
 using Newtonsoft.Json;

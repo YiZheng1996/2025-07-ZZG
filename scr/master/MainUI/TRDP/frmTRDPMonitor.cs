@@ -1,5 +1,6 @@
 ﻿using MainUI.BLL;
 using MainUI.Config;
+using MainUI.CurrencyHelper;
 using MainUI.Model;
 using MainUI.TRDP.Model;
 using MainUI.UI.BLL;

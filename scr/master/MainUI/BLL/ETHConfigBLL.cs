@@ -1,4 +1,5 @@
-﻿using RW.Components.Core.BLL;
+﻿using MainUI.CurrencyHelper;
+using RW.Components.Core.BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;

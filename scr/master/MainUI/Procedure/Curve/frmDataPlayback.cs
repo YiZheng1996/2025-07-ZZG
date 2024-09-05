@@ -1,5 +1,6 @@
 ﻿using MainUI.BLL;
 using MainUI.Config;
+using MainUI.CurrencyHelper;
 using MainUI.Procedure.Curve.DataModel;
 using MainUI.Reflex;
 using Newtonsoft.Json;

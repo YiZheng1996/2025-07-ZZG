@@ -1,5 +1,6 @@
 ﻿using DevComponents.DotNetBar;
 using MainUI.Config;
+using MainUI.CurrencyHelper;
 using MainUI.Reflex;
 using Newtonsoft.Json.Linq;
 using NPOI.SS.Formula.Functions;

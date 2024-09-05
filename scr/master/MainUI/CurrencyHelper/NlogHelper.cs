@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using NLog.Targets;
 
-namespace MainUI
+namespace MainUI.CurrencyHelper
 {
     /// <summary>
     /// 日志类

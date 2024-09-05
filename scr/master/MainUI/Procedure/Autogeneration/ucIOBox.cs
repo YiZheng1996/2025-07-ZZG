@@ -11,6 +11,7 @@ using RW;
 using MainUI.BLL;
 using System.Diagnostics;
 using Sunny.UI;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.Procedure.Autogeneration
 {

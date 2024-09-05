@@ -1,4 +1,5 @@
-﻿using Sunny.UI.Win32;
+﻿using MainUI.CurrencyHelper;
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

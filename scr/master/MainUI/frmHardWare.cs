@@ -14,6 +14,7 @@ using RW.EventLog;
 using MainUI.Config;
 using System.Diagnostics;
 using MainUI.Procedure;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {

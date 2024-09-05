@@ -1,4 +1,5 @@
-﻿using MainUI.Procedure.ViewModel;
+﻿using MainUI.CurrencyHelper;
+using MainUI.Procedure.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

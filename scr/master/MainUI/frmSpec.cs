@@ -1,4 +1,5 @@
 ﻿using MainUI.BLL;
+using MainUI.CurrencyHelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

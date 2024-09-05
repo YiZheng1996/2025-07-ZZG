@@ -3,6 +3,7 @@ using System.Linq;
 using System.Data;
 using RW.Components.Core.BLL;
 using MainUI.Model;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.BLL
 {

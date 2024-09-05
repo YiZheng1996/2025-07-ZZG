@@ -1,4 +1,5 @@
-﻿using RW.Log;
+﻿using MainUI.CurrencyHelper;
+using RW.Log;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

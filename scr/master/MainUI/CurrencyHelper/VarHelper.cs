@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MainUI
+namespace MainUI.CurrencyHelper
 {
     static class VarHelper
     {

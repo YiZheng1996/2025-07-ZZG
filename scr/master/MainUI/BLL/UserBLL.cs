@@ -9,6 +9,7 @@ using System.Data;
 using RW.Data;
 using RW.UI.Model;
 using RW.Components.Core.BLL;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.BLL
 {

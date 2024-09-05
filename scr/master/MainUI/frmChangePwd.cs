@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using RW.Driver;
 using RW.UI.Manager.User;
 using RW.UI.BLL;
+using MainUI.CurrencyHelper;
 
 namespace MainUI
 {

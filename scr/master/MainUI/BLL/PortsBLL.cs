@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using MainUI.Model;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.BLL
 {

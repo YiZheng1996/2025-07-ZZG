@@ -5978,6 +5978,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO030",
+										"common.ALLTYPES_DESCRIPTION": "EIU 24V+控制1",
 										"servermain.TAG_ADDRESS": "DB5.DBX4.4",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -5986,6 +5987,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO031",
+										"common.ALLTYPES_DESCRIPTION": "EIU 24V+控制2",
 										"servermain.TAG_ADDRESS": "DB5.DBX4.5",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -5994,7 +5996,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO032",
-										"common.ALLTYPES_DESCRIPTION": "EIU 24V+控制1",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀1",
 										"servermain.TAG_ADDRESS": "DB5.DBX4.6",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6003,7 +6005,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO033",
-										"common.ALLTYPES_DESCRIPTION": "EIU 24V+控制2",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀2",
 										"servermain.TAG_ADDRESS": "DB5.DBX4.7",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6012,7 +6014,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO034",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀1",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀3",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.0",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6021,7 +6023,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO035",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀2",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀4",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.1",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6030,7 +6032,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO036",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀3",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀5",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.2",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6039,7 +6041,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO037",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀4",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀6",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.3",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6048,7 +6050,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO038",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀5",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀7",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.4",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6057,7 +6059,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO039",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀6",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀8",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.5",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6066,7 +6068,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO040",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀7",
+										"common.ALLTYPES_DESCRIPTION": "大小闸1SSI电源切换1",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.6",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6075,7 +6077,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO041",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀8",
+										"common.ALLTYPES_DESCRIPTION": "大小闸1SSI电源切换2",
 										"servermain.TAG_ADDRESS": "DB5.DBX5.7",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6228,7 +6230,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO058",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC110V电磁阀1",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀25",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.0",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6237,7 +6239,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO059",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC110V电磁阀2",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀26",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.1",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6246,7 +6248,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO060",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC110V电磁阀3",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀27",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.2",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6255,7 +6257,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO061",
-										"common.ALLTYPES_DESCRIPTION": "EPCU DC110V电磁阀4",
+										"common.ALLTYPES_DESCRIPTION": "EPCU DC24V电磁阀28",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.3",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6264,6 +6266,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO062",
+										"common.ALLTYPES_DESCRIPTION": "辅压机电源控制",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.4",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6272,6 +6275,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO063",
+										"common.ALLTYPES_DESCRIPTION": "制动柜电源控制",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.5",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6280,6 +6284,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO064",
+										"common.ALLTYPES_DESCRIPTION": "制动控制器电源1",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.6",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6288,6 +6293,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO065",
+										"common.ALLTYPES_DESCRIPTION": "制动控制器电源2",
 										"servermain.TAG_ADDRESS": "DB5.DBX8.7",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6296,6 +6302,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO066",
+										"common.ALLTYPES_DESCRIPTION": "制动显示屏电源控制",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.0",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6304,6 +6311,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO067",
+										"common.ALLTYPES_DESCRIPTION": "EIU电源控制",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.1",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6312,6 +6320,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO068",
+										"common.ALLTYPES_DESCRIPTION": "110V负极控制1",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.2",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6320,6 +6329,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO069",
+										"common.ALLTYPES_DESCRIPTION": "110V负极控制2",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.3",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6328,6 +6338,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO070",
+										"common.ALLTYPES_DESCRIPTION": "CAN1切换",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.4",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6336,6 +6347,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO071",
+										"common.ALLTYPES_DESCRIPTION": "CAN2切换",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.5",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6344,6 +6356,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO072",
+										"common.ALLTYPES_DESCRIPTION": "大小闸1SSI电源切换1",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.6",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6352,6 +6365,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO073",
+										"common.ALLTYPES_DESCRIPTION": "大小闸1SSI电源切换2",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.7",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,

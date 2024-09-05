@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
 using MainUI.Model.Workinterface;
+using MainUI.CurrencyHelper;
 
 namespace MainUI.Procedure.Test
 {

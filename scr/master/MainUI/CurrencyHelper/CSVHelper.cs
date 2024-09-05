@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace MainUI
+namespace MainUI.CurrencyHelper
 {
     public class CSVHelper
     {
@@ -24,7 +24,7 @@ namespace MainUI
             try
             {
                 //目录文件夹不存在，则创建文件夹
-                string root = System.IO.Path.GetDirectoryName(fileName);
+                string root = Path.GetDirectoryName(fileName);
                 if (!Directory.Exists(root))
                     Directory.CreateDirectory(root);
                 if (!File.Exists(fileName))
@@ -178,7 +178,7 @@ namespace MainUI
 
             return dt;
         }
- 
+
     }
 
 

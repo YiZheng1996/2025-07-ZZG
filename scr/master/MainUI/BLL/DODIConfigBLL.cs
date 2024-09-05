@@ -1,4 +1,5 @@
-﻿using MainUI.Procedure.ViewModel;
+﻿using MainUI.CurrencyHelper;
+using MainUI.Procedure.ViewModel;
 using RW.Components.Core.BLL;
 using System;
 using System.Collections.Generic;

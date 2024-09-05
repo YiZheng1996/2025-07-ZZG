@@ -2,6 +2,7 @@
 using MainUI.BLL;
 using MainUI.CAN;
 using MainUI.Config;
+using MainUI.CurrencyHelper;
 using MainUI.Model;
 using MainUI.Modules;
 using MainUI.Procedure;
@@ -9,7 +10,6 @@ using MainUI.Procedure.Autogeneration;
 using MainUI.Procedure.Curve;
 using MainUI.Procedure.SSI;
 using MainUI.Procedure.Test;
-using NLog.Targets;
 using Sunny.UI;
 using System;
 using System.Collections.Concurrent;
@@ -318,7 +318,7 @@ namespace MainUI
         {
             try
             {
-         
+
             }
             catch (Exception ex)
             {
@@ -341,7 +341,7 @@ namespace MainUI
         {
             try
             {
-            
+
             }
             catch (Exception ex)
             {
@@ -364,7 +364,6 @@ namespace MainUI
             if (string.IsNullOrEmpty(Common.mTestViewModel.ModelName))
                 return;
 
-            txtType.Text = Common.mTestViewModel.ModelType;
             txtModel.Text = Common.mTestViewModel.ModelName;
             InitParaConfig();
             Common.mResultAll = new ResultAll();
@@ -573,12 +572,6 @@ namespace MainUI
 
         private void btnCANPowerDown_Click(object sender, EventArgs e)
         {
-            NlogHelper.Default.Debug("打开CAN掉电试验界面");
-            NlogHelper.Default.Error("打开CAN掉电试验界面");
-            NlogHelper.Default.Trace("打开CAN掉电试验界面");
-            NlogHelper.Default.Info("打开CAN掉电试验界面");
-            NlogHelper.Default.Warn("打开CAN掉电试验界面");
-            NlogHelper.Default.Fatal("打开CAN掉电试验界面");
             frmPowerDown powerdown = new();
             powerdown.ShowDialog();
         }
@@ -620,6 +613,64 @@ namespace MainUI
         private void uiPresentation_TextChanged(object sender, EventArgs e)
         {
             uiPresentation.ScrollToCaret();
+        }
+
+        bool isExhausting = false;
+        private void BtnExhaust_Click(object sender, EventArgs e)
+        {
+            if (isExhausting)
+            {
+                UIMessageBox.Show("正在排气中···");
+                return;
+            }
+
+            Color startColor = Color.FromArgb(80, 160, 255);
+            Color endColor = Color.FromArgb(255, 128, 128);
+            BtnExhaust.FillColor = btnStart.RectColor = endColor;
+            BtnExhaust.Text = "排气中···";
+            uiPresentation.AppendText("一键排气启动:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
+            Task.Run(() =>
+            {
+                isExhausting = true;
+                DOgrp[74] = false;
+                DOgrp[80] = false;
+                DOgrp[83] = false;
+                DOgrp[91] = false;
+                DOgrp[87] = false;
+                DOgrp[86] = false;
+                DOgrp[80] = false;
+                DOgrp[75] = true;
+                DOgrp[77] = true;
+                DOgrp[84] = true;
+                DOgrp[76] = true;
+                DOgrp[78] = true;
+                DOgrp[79] = true;
+                DOgrp[90] = true;
+                DOgrp[82] = true;
+                DOgrp[91] = true;
+                DOgrp[85] = true;
+                DOgrp[92] = true;
+                DOgrp[82] = true;
+                DOgrp[81] = true;
+                DOgrp[93] = true;
+                DOgrp[94] = true;
+                DOgrp[95] = true;
+                DOgrp[96] = true;
+                DOgrp[97] = true;
+                DOgrp[98] = true;
+                DOgrp[99] = true;
+                DOgrp[100] = true;
+                Task.Delay(30000).Wait();
+                for (int i = 74; i <= 100; i++) DOgrp[i] = false;
+                isExhausting = false;
+                uiPresentation.Invoke(() =>
+                {
+                    BtnExhaust.Text = "开始排气";
+                    BtnExhaust.FillColor = btnStart.RectColor = startColor;
+                    uiPresentation.AppendText("一键排气完成:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
+                });
+            });
+
         }
 
 

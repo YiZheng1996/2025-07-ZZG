@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             uiPanel1 = new Sunny.UI.UIPanel();
+            btnSave = new Sunny.UI.UIButton();
             btnClose = new Sunny.UI.UIButton();
             dataGridView1 = new Sunny.UI.UIDataGridView();
             ColTimeNow = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,29 +45,56 @@
             // 
             // uiPanel1
             // 
+            uiPanel1.Controls.Add(btnSave);
             uiPanel1.Controls.Add(btnClose);
             uiPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            uiPanel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            uiPanel1.Location = new System.Drawing.Point(0, 541);
+            uiPanel1.Font = new System.Drawing.Font("宋体", 12F);
+            uiPanel1.Location = new System.Drawing.Point(0, 748);
             uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             uiPanel1.Name = "uiPanel1";
-            uiPanel1.Size = new System.Drawing.Size(1088, 54);
+            uiPanel1.Size = new System.Drawing.Size(1341, 54);
             uiPanel1.TabIndex = 1;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnSave
+            // 
+            btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSave.FillColor = System.Drawing.Color.FromArgb(110, 190, 40);
+            btnSave.FillColor2 = System.Drawing.Color.FromArgb(110, 190, 40);
+            btnSave.FillHoverColor = System.Drawing.Color.FromArgb(139, 203, 83);
+            btnSave.FillPressColor = System.Drawing.Color.FromArgb(88, 152, 32);
+            btnSave.FillSelectedColor = System.Drawing.Color.FromArgb(88, 152, 32);
+            btnSave.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnSave.LightColor = System.Drawing.Color.FromArgb(245, 251, 241);
+            btnSave.Location = new System.Drawing.Point(320, 7);
+            btnSave.MinimumSize = new System.Drawing.Size(1, 1);
+            btnSave.Name = "btnSave";
+            btnSave.RectColor = System.Drawing.Color.FromArgb(110, 190, 40);
+            btnSave.RectHoverColor = System.Drawing.Color.FromArgb(139, 203, 83);
+            btnSave.RectPressColor = System.Drawing.Color.FromArgb(88, 152, 32);
+            btnSave.RectSelectedColor = System.Drawing.Color.FromArgb(88, 152, 32);
+            btnSave.Size = new System.Drawing.Size(161, 35);
+            btnSave.Style = Sunny.UI.UIStyle.Custom;
+            btnSave.StyleCustomMode = true;
+            btnSave.TabIndex = 385;
+            btnSave.Text = "数据保存";
+            btnSave.TipsFont = new System.Drawing.Font("微软雅黑", 9F);
+            btnSave.Click += btnSave_Click;
+            // 
             // btnClose
             // 
             btnClose.FillColor = System.Drawing.Color.FromArgb(255, 128, 128);
-            btnClose.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnClose.Location = new System.Drawing.Point(486, 9);
+            btnClose.Font = new System.Drawing.Font("宋体", 12F);
+            btnClose.Location = new System.Drawing.Point(777, 7);
             btnClose.MinimumSize = new System.Drawing.Size(1, 1);
             btnClose.Name = "btnClose";
             btnClose.RectColor = System.Drawing.Color.FromArgb(255, 128, 128);
             btnClose.Size = new System.Drawing.Size(161, 35);
             btnClose.TabIndex = 0;
             btnClose.Text = "退  出";
+            btnClose.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnClose.Click += btnClose_Click;
             // 
             // dataGridView1
@@ -82,7 +110,7 @@
             dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -93,7 +121,7 @@
             dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { ColTimeNow, ColData });
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -101,7 +129,7 @@
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridView1.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.GridColor = System.Drawing.Color.Black;
             dataGridView1.Location = new System.Drawing.Point(0, 29);
             dataGridView1.Margin = new System.Windows.Forms.Padding(4);
@@ -109,7 +137,7 @@
             dataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
@@ -118,21 +146,21 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.RowTemplate.Height = 23;
             dataGridView1.SelectedIndex = -1;
             dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new System.Drawing.Size(1088, 512);
+            dataGridView1.Size = new System.Drawing.Size(1341, 719);
             dataGridView1.StripeEvenColor = System.Drawing.Color.Empty;
             dataGridView1.StripeOddColor = System.Drawing.SystemColors.GradientActiveCaption;
             dataGridView1.TabIndex = 2;
             // 
             // ColTimeNow
             // 
-            ColTimeNow.FillWeight = 270F;
+            ColTimeNow.FillWeight = 45.38325F;
             ColTimeNow.HeaderText = "时间";
             ColTimeNow.Name = "ColTimeNow";
             ColTimeNow.ReadOnly = true;
@@ -140,7 +168,7 @@
             // 
             // ColData
             // 
-            ColData.FillWeight = 745F;
+            ColData.FillWeight = 969.616943F;
             ColData.HeaderText = "数据";
             ColData.Name = "ColData";
             ColData.ReadOnly = true;
@@ -149,7 +177,7 @@
             // frmSSI
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            ClientSize = new System.Drawing.Size(1088, 595);
+            ClientSize = new System.Drawing.Size(1341, 802);
             ControlBox = false;
             Controls.Add(dataGridView1);
             Controls.Add(uiPanel1);
@@ -173,5 +201,6 @@
         private Sunny.UI.UIDataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTimeNow;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColData;
+        private Sunny.UI.UIButton btnSave;
     }
 }

@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // frmMianLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(542, 294);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "frmMianLogin";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            ClientSize = new System.Drawing.Size(1352, 818);
+            Margin = new System.Windows.Forms.Padding(2);
+            Name = "frmMianLogin";
+            ResumeLayout(false);
         }
 
         #endregion

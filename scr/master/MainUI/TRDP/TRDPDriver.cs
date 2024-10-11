@@ -292,12 +292,12 @@ namespace MainUI.TRDP
             //if (!b)
             //    throw new TimeoutException("配置主帧响应超时");
         }
-         
+
         /// <summary>
         /// 配置主帧
         /// </summary>
         /// <param name="mcu"></param>
-        public byte[] SetSMIting(TRDPMainSend mcu)
+        public byte[] SetSMIting(TRDPSMI mcu)
         {
             byte[] send = mcu.SMIToBytes();
             this.Write(send);
@@ -305,10 +305,7 @@ namespace MainUI.TRDP
             return send;
 
 
-            //bool b = dicWait[(TRDPCommandTypes)mcu.CommandType].WaitOne(ReadTimeout);
 
-            //if (!b)
-            //    throw new TimeoutException("配置主帧响应超时");
         }
 
         /// <summary>

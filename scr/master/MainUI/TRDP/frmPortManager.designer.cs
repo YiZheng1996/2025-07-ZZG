@@ -34,15 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             dataGridView1 = new Sunny.UI.UIDataGridView();
-            colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colPortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            coltrdpno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colETHPassage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colIsRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colDataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colVerNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             contextMenuStrip1 = new Sunny.UI.UIContextMenuStrip();
             设置为默认版本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             groupBox1 = new Sunny.UI.UIGroupBox();
@@ -73,6 +64,15 @@
             label2 = new Sunny.UI.UILabel();
             txtID = new Sunny.UI.UITextBox();
             label1 = new Sunny.UI.UILabel();
+            colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colPortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            coltrdpno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colETHPassage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colIsRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colDataSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colVerNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -90,7 +90,7 @@
             dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -102,7 +102,7 @@
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -110,7 +110,7 @@
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridView1.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.GridColor = System.Drawing.Color.FromArgb(80, 160, 255);
             dataGridView1.Location = new System.Drawing.Point(0, 29);
             dataGridView1.MultiSelect = false;
@@ -118,7 +118,7 @@
             dataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
@@ -126,7 +126,7 @@
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowHeadersVisible = false;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridView1.RowTemplate.Height = 23;
             dataGridView1.SelectedIndex = -1;
@@ -137,75 +137,10 @@
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
-            // colID
-            // 
-            colID.DataPropertyName = "ID";
-            colID.HeaderText = "ID";
-            colID.Name = "colID";
-            colID.ReadOnly = true;
-            // 
-            // colPortName
-            // 
-            colPortName.DataPropertyName = "PortName";
-            colPortName.HeaderText = "端口名称";
-            colPortName.Name = "colPortName";
-            colPortName.ReadOnly = true;
-            // 
-            // coltrdpno
-            // 
-            coltrdpno.DataPropertyName = "TRDPNo";
-            coltrdpno.HeaderText = "网关编号";
-            coltrdpno.Name = "coltrdpno";
-            coltrdpno.ReadOnly = true;
-            // 
-            // colETHPassage
-            // 
-            colETHPassage.DataPropertyName = "ETHPassage";
-            colETHPassage.HeaderText = "ETH通道";
-            colETHPassage.Name = "colETHPassage";
-            colETHPassage.ReadOnly = true;
-            // 
-            // colPort
-            // 
-            colPort.DataPropertyName = "Port";
-            colPort.HeaderText = "ComID";
-            colPort.Name = "colPort";
-            colPort.ReadOnly = true;
-            // 
-            // colRate
-            // 
-            colRate.DataPropertyName = "Rate";
-            colRate.FillWeight = 80F;
-            colRate.HeaderText = "端口周期";
-            colRate.Name = "colRate";
-            colRate.ReadOnly = true;
-            // 
-            // colIsRead
-            // 
-            colIsRead.DataPropertyName = "IsRead";
-            colIsRead.HeaderText = "源宿类型";
-            colIsRead.Name = "colIsRead";
-            colIsRead.ReadOnly = true;
-            // 
-            // colDataSize
-            // 
-            colDataSize.DataPropertyName = "DataSize";
-            colDataSize.HeaderText = "数据大小";
-            colDataSize.Name = "colDataSize";
-            colDataSize.ReadOnly = true;
-            // 
-            // colVerNo
-            // 
-            colVerNo.DataPropertyName = "VerNo";
-            colVerNo.FillWeight = 70F;
-            colVerNo.HeaderText = "协议版本";
-            colVerNo.Name = "colVerNo";
-            colVerNo.ReadOnly = true;
-            // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            contextMenuStrip1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            contextMenuStrip1.Font = new System.Drawing.Font("宋体", 12F);
             contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { 设置为默认版本ToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new System.Drawing.Size(187, 26);
@@ -248,7 +183,7 @@
             groupBox1.Controls.Add(txtID);
             groupBox1.Controls.Add(label1);
             groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            groupBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            groupBox1.Font = new System.Drawing.Font("宋体", 12F);
             groupBox1.Location = new System.Drawing.Point(0, 394);
             groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             groupBox1.MinimumSize = new System.Drawing.Size(1, 1);
@@ -262,14 +197,14 @@
             // 
             // button2
             // 
-            button2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            button2.Font = new System.Drawing.Font("宋体", 12F);
             button2.Location = new System.Drawing.Point(339, 106);
             button2.MinimumSize = new System.Drawing.Size(1, 1);
             button2.Name = "button2";
             button2.Size = new System.Drawing.Size(135, 27);
             button2.TabIndex = 40;
             button2.Text = "Excel导入";
-            button2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            button2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             button2.Click += button2_Click;
             // 
             // cbotrdpno
@@ -277,7 +212,7 @@
             cbotrdpno.DataSource = null;
             cbotrdpno.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             cbotrdpno.FillColor = System.Drawing.Color.White;
-            cbotrdpno.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            cbotrdpno.Font = new System.Drawing.Font("宋体", 12F);
             cbotrdpno.FormattingEnabled = true;
             cbotrdpno.ItemHoverColor = System.Drawing.Color.FromArgb(155, 200, 255);
             cbotrdpno.Items.AddRange(new object[] { "1", "2" });
@@ -296,7 +231,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label9.Font = new System.Drawing.Font("宋体", 12F);
             label9.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label9.Location = new System.Drawing.Point(500, 114);
             label9.Name = "label9";
@@ -307,13 +242,14 @@
             // 
             // button1
             // 
-            button1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            button1.Font = new System.Drawing.Font("宋体", 12F);
             button1.Location = new System.Drawing.Point(176, 106);
             button1.MinimumSize = new System.Drawing.Size(1, 1);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(138, 27);
             button1.TabIndex = 37;
             button1.Text = "以太网参数编辑";
+            button1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             button1.Click += button1_Click;
             // 
             // cboETHNo
@@ -321,7 +257,7 @@
             cboETHNo.DataSource = null;
             cboETHNo.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             cboETHNo.FillColor = System.Drawing.Color.White;
-            cboETHNo.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            cboETHNo.Font = new System.Drawing.Font("宋体", 12F);
             cboETHNo.FormattingEnabled = true;
             cboETHNo.ItemHoverColor = System.Drawing.Color.FromArgb(155, 200, 255);
             cboETHNo.Items.AddRange(new object[] { "1", "2" });
@@ -335,12 +271,13 @@
             cboETHNo.SymbolSize = 24;
             cboETHNo.TabIndex = 36;
             cboETHNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            cboETHNo.Visible = false;
             cboETHNo.Watermark = "";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label10.Font = new System.Drawing.Font("宋体", 12F);
             label10.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label10.Location = new System.Drawing.Point(741, 114);
             label10.Name = "label10";
@@ -348,16 +285,18 @@
             label10.TabIndex = 35;
             label10.Text = "ETH通道：";
             label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label10.Visible = false;
             // 
             // btnAddVerno
             // 
-            btnAddVerno.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnAddVerno.Font = new System.Drawing.Font("宋体", 12F);
             btnAddVerno.Location = new System.Drawing.Point(14, 106);
             btnAddVerno.MinimumSize = new System.Drawing.Size(1, 1);
             btnAddVerno.Name = "btnAddVerno";
             btnAddVerno.Size = new System.Drawing.Size(137, 27);
             btnAddVerno.TabIndex = 34;
             btnAddVerno.Text = "协议版本编辑";
+            btnAddVerno.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnAddVerno.Click += btnAddVerno_Click;
             // 
             // txtVerno
@@ -365,7 +304,7 @@
             txtVerno.DataSource = null;
             txtVerno.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             txtVerno.FillColor = System.Drawing.Color.White;
-            txtVerno.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtVerno.Font = new System.Drawing.Font("宋体", 12F);
             txtVerno.FormattingEnabled = true;
             txtVerno.ItemHoverColor = System.Drawing.Color.FromArgb(155, 200, 255);
             txtVerno.ItemSelectForeColor = System.Drawing.Color.FromArgb(235, 243, 255);
@@ -384,7 +323,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label8.Font = new System.Drawing.Font("宋体", 12F);
             label8.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label8.Location = new System.Drawing.Point(275, 41);
             label8.Name = "label8";
@@ -398,7 +337,7 @@
             cboModelName.DataSource = null;
             cboModelName.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             cboModelName.FillColor = System.Drawing.Color.White;
-            cboModelName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            cboModelName.Font = new System.Drawing.Font("宋体", 12F);
             cboModelName.FormattingEnabled = true;
             cboModelName.ItemHoverColor = System.Drawing.Color.FromArgb(155, 200, 255);
             cboModelName.ItemSelectForeColor = System.Drawing.Color.FromArgb(235, 243, 255);
@@ -417,7 +356,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.Font = new System.Drawing.Font("宋体", 12F);
             label5.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label5.Location = new System.Drawing.Point(6, 40);
             label5.Name = "label5";
@@ -428,40 +367,43 @@
             // 
             // btnDelPort
             // 
-            btnDelPort.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnDelPort.Font = new System.Drawing.Font("宋体", 12F);
             btnDelPort.Location = new System.Drawing.Point(949, 108);
             btnDelPort.MinimumSize = new System.Drawing.Size(1, 1);
             btnDelPort.Name = "btnDelPort";
             btnDelPort.Size = new System.Drawing.Size(80, 27);
             btnDelPort.TabIndex = 26;
             btnDelPort.Text = "删除";
+            btnDelPort.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnDelPort.Click += btnDelPort_Click;
             // 
             // btnAddPort
             // 
-            btnAddPort.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnAddPort.Font = new System.Drawing.Font("宋体", 12F);
             btnAddPort.Location = new System.Drawing.Point(949, 35);
             btnAddPort.MinimumSize = new System.Drawing.Size(1, 1);
             btnAddPort.Name = "btnAddPort";
             btnAddPort.Size = new System.Drawing.Size(80, 27);
             btnAddPort.TabIndex = 25;
             btnAddPort.Text = "增加";
+            btnAddPort.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnAddPort.Click += btnAddPort_Click;
             // 
             // btnModify
             // 
-            btnModify.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnModify.Font = new System.Drawing.Font("宋体", 12F);
             btnModify.Location = new System.Drawing.Point(949, 71);
             btnModify.MinimumSize = new System.Drawing.Size(1, 1);
             btnModify.Name = "btnModify";
             btnModify.Size = new System.Drawing.Size(80, 27);
             btnModify.TabIndex = 24;
             btnModify.Text = "修改";
+            btnModify.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             btnModify.Click += btnModify_Click;
             // 
             // nudDataSize
             // 
-            nudDataSize.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            nudDataSize.Font = new System.Drawing.Font("宋体", 12F);
             nudDataSize.Location = new System.Drawing.Point(354, 70);
             nudDataSize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             nudDataSize.MinimumSize = new System.Drawing.Size(100, 0);
@@ -474,7 +416,7 @@
             // 
             // nudRate
             // 
-            nudRate.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            nudRate.Font = new System.Drawing.Font("宋体", 12F);
             nudRate.Location = new System.Drawing.Point(583, 70);
             nudRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             nudRate.MinimumSize = new System.Drawing.Size(100, 0);
@@ -487,7 +429,7 @@
             // 
             // radHost
             // 
-            radHost.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            radHost.Font = new System.Drawing.Font("宋体", 12F);
             radHost.Location = new System.Drawing.Point(178, 72);
             radHost.MinimumSize = new System.Drawing.Size(1, 1);
             radHost.Name = "radHost";
@@ -497,7 +439,7 @@
             // 
             // radSource
             // 
-            radSource.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            radSource.Font = new System.Drawing.Font("宋体", 12F);
             radSource.Location = new System.Drawing.Point(90, 73);
             radSource.MinimumSize = new System.Drawing.Size(1, 1);
             radSource.Name = "radSource";
@@ -508,7 +450,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label7.Font = new System.Drawing.Font("宋体", 12F);
             label7.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label7.Location = new System.Drawing.Point(273, 75);
             label7.Name = "label7";
@@ -520,7 +462,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Font = new System.Drawing.Font("宋体", 12F);
             label4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label4.Location = new System.Drawing.Point(500, 75);
             label4.Name = "label4";
@@ -531,7 +473,7 @@
             // 
             // txtPort
             // 
-            txtPort.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtPort.Font = new System.Drawing.Font("宋体", 12F);
             txtPort.Location = new System.Drawing.Point(811, 72);
             txtPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtPort.MinimumSize = new System.Drawing.Size(1, 16);
@@ -546,7 +488,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label6.Font = new System.Drawing.Font("宋体", 12F);
             label6.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label6.Location = new System.Drawing.Point(6, 75);
             label6.Name = "label6";
@@ -558,7 +500,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.Font = new System.Drawing.Font("宋体", 12F);
             label3.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label3.Location = new System.Drawing.Point(757, 75);
             label3.Name = "label3";
@@ -569,7 +511,7 @@
             // 
             // txtPortName
             // 
-            txtPortName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtPortName.Font = new System.Drawing.Font("宋体", 12F);
             txtPortName.Location = new System.Drawing.Point(811, 36);
             txtPortName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtPortName.MinimumSize = new System.Drawing.Size(1, 16);
@@ -584,7 +526,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.Font = new System.Drawing.Font("宋体", 12F);
             label2.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label2.Location = new System.Drawing.Point(733, 41);
             label2.Name = "label2";
@@ -598,7 +540,7 @@
             txtID.Enabled = false;
             txtID.FillDisableColor = System.Drawing.Color.FromArgb(243, 249, 255);
             txtID.FillReadOnlyColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            txtID.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtID.Font = new System.Drawing.Font("宋体", 12F);
             txtID.Location = new System.Drawing.Point(583, 36);
             txtID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             txtID.MinimumSize = new System.Drawing.Size(1, 16);
@@ -616,7 +558,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.Font = new System.Drawing.Font("宋体", 12F);
             label1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             label1.Location = new System.Drawing.Point(548, 41);
             label1.Name = "label1";
@@ -624,6 +566,72 @@
             label1.TabIndex = 16;
             label1.Text = "ID：";
             label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // colID
+            // 
+            colID.DataPropertyName = "ID";
+            colID.HeaderText = "ID";
+            colID.Name = "colID";
+            colID.ReadOnly = true;
+            // 
+            // colPortName
+            // 
+            colPortName.DataPropertyName = "PortName";
+            colPortName.HeaderText = "端口名称";
+            colPortName.Name = "colPortName";
+            colPortName.ReadOnly = true;
+            // 
+            // coltrdpno
+            // 
+            coltrdpno.DataPropertyName = "TRDPNo";
+            coltrdpno.HeaderText = "网关编号";
+            coltrdpno.Name = "coltrdpno";
+            coltrdpno.ReadOnly = true;
+            // 
+            // colETHPassage
+            // 
+            colETHPassage.DataPropertyName = "ETHPassage";
+            colETHPassage.HeaderText = "ETH通道";
+            colETHPassage.Name = "colETHPassage";
+            colETHPassage.ReadOnly = true;
+            colETHPassage.Visible = false;
+            // 
+            // colPort
+            // 
+            colPort.DataPropertyName = "Port";
+            colPort.HeaderText = "ComID";
+            colPort.Name = "colPort";
+            colPort.ReadOnly = true;
+            // 
+            // colRate
+            // 
+            colRate.DataPropertyName = "Rate";
+            colRate.FillWeight = 80F;
+            colRate.HeaderText = "端口周期";
+            colRate.Name = "colRate";
+            colRate.ReadOnly = true;
+            // 
+            // colIsRead
+            // 
+            colIsRead.DataPropertyName = "IsRead";
+            colIsRead.HeaderText = "源宿类型";
+            colIsRead.Name = "colIsRead";
+            colIsRead.ReadOnly = true;
+            // 
+            // colDataSize
+            // 
+            colDataSize.DataPropertyName = "DataSize";
+            colDataSize.HeaderText = "数据大小";
+            colDataSize.Name = "colDataSize";
+            colDataSize.ReadOnly = true;
+            // 
+            // colVerNo
+            // 
+            colVerNo.DataPropertyName = "VerNo";
+            colVerNo.FillWeight = 70F;
+            colVerNo.HeaderText = "协议版本";
+            colVerNo.Name = "colVerNo";
+            colVerNo.ReadOnly = true;
             // 
             // frmPortManager
             // 

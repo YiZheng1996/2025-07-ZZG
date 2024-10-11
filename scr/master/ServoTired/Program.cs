@@ -33,11 +33,13 @@ namespace ServoTired
                     .Build();
                 if (!Helper.fsql.Ado.ExecuteConnectTest()) throw new Exception("Sqlite数据库连接失败");
                 Helper.Connect();
-                Application.Run(frmWeary);
+                //Application.Run(frmWeary);
+                Application.Run(new Test());
             }
             catch (Exception ex)
             {
-                MessageBox.Show("OPC初始化失败：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NlogHelper.Default.Fatal("系统发生错误：", ex);
+                MessageBox.Show("系统发生错误：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

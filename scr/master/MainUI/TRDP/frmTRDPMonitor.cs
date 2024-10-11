@@ -58,16 +58,18 @@ namespace MainUI.TRDP
             fullControls.Clear();
             GC.Collect();
             ETHPortsBLL bllPorts = new();
-            ports = bllPorts.GetPortsByType(ReadOnly, VarHelper.ModelName).ToList();
+            ports = [.. bllPorts.GetPortsByType(ReadOnly, VarHelper.ModelName)];
             ETHTagsBLL bllTags = new();
-            tags = bllTags.GetAllTags().OrderByDescending(x => x.COMMData.Bit).ToList();
-            List<int> lifes = new();
+            tags = [.. bllTags.GetAllTags().OrderByDescending(x => x.COMMData.Bit)];
+            List<int> lifes = [];
             ReceiveData.Clear();
             foreach (var item in ports)
             {
                 fullData[item.PortNum] = new byte[item.DataSize];
-                if (!item.IsRead) lifes.Add(item.DataSize);
-                else ReceiveData.Add(item.ETHPassage, int.Parse(item.Port));
+                if (!item.IsRead) 
+                    lifes.Add(item.DataSize);
+                else 
+                    ReceiveData.Add(item.ETHPassage, int.Parse(item.Port));
             }
             ReceiveData = ReceiveData.OrderBy(x => x).ToDictionary(k => k.Key, v => v.Value);
             foreach (var item in tags)
@@ -162,10 +164,10 @@ namespace MainUI.TRDP
             }
 
             string controlsKey = item.Port;
-            if (fullControls.ContainsKey(controlsKey))
+            if (fullControls.TryGetValue(controlsKey, out FlowLayoutPanel value))
             {
                 PanelContent.Controls.Clear();
-                PanelContent.Controls.Add(fullControls[controlsKey]);
+                PanelContent.Controls.Add(value);
             }
             else
             {
@@ -348,58 +350,38 @@ namespace MainUI.TRDP
                 DataTable dt = TRDPName.GetAllPorts(VarHelper.ModelName);
                 DataTable dataTable = dt;
                 trdpconfig = DataTableToList<TRDPConfig>(dataTable);
-
-                if (ps.ContainsKey("1"))
+                TRDP_CCU = null;
+                if (TRDP_CCU == null)
                 {
-                    TRDP_CCU = null;
-                    if (TRDP_CCU == null)
-                    {
-                        TRDP_CCU = new TRDPDriver();
-                        TRDP_CCU.Init(gtw.TRDPIP1, Convert.ToInt32(gtw.TRDPPort1), gtw.LocalIP1, Convert.ToInt32(gtw.LocalPort1));
-                    }
-                    var dataSize = ports.Where(x => x.TRDPNo == 1 && x.IsRead == false).First().DataSize;
-                    VarHelperETH.byteSend = new byte[dataSize];
-                    config_CCU = new TRDPMainSend(ps["1"]);
-
-                    //配置SMI 数据  该项目无需配置
-                    //TRDP_CCU.SetSMIting(config_CCU);
-                    //Thread.Sleep(50);
-
-                    //配置主帧数据发送
-                    TRDP_CCU.SetSetting(config_CCU);
-                    Thread.Sleep(50);
-                    //监听数据返回
-                    TRDP_CCU.Connect();
-                    TRDP_CCU.Recieved += new RecievedHandler(trdp_Recieved);
+                    TRDP_CCU = new TRDPDriver();
+                    TRDP_CCU.Init("192.168.1.1", 6666, "192.168.1.121", 7881);
                 }
-                if (ps.ContainsKey("2"))
-                {
-                    TRDP_CCU2 = null;
-                    if (TRDP_CCU2 == null)
-                    {
-                        TRDP_CCU2 = new TRDPDriver();
-                        TRDP_CCU2.Init(gtw.TRDPIP2, Convert.ToInt32(gtw.TRDPPort2), gtw.LocalIP2, Convert.ToInt32(gtw.LocalPort2));
-                    }
-                    config_CCU2 = new TRDPMainSend(ps["2"]);
-                    var dataSize = ports.Where(x => x.TRDPNo == 2 && x.IsRead == false).First().DataSize;
-                    VarHelperETH.byteSend2 = new byte[dataSize];
-                    //配置SMI 数据  该项目无需配置
-                    //TRDP_CCU.SetSMIting(config_CCU);
-                    //Thread.Sleep(50);
 
-                    //配置主帧数据发送
-                    TRDP_CCU2.SetSetting(config_CCU2);
-                    Thread.Sleep(50);
+                string Config0 = ps.FirstOrDefault().Value + 0;
+                string Config1 = ps.FirstOrDefault().Value + 1;
+                CCU_Send = new(Config0);
+                CCU_Send2 = new(Config1);
 
-                    //监听数据返回
-                    TRDP_CCU2.Connect();
-                    TRDP_CCU2.Recieved += new RecievedHandler(trdp_Recieved);
-                }
-                //数据发送线程 启动
-                //Timestart();
+                var dataSize = ports.Where(x => x.TRDPNo == 1 && x.IsRead == false).First().DataSize;
+                VarHelperETH.byteSend = new byte[dataSize];
+
+                config_CCU = new TRDPMainSend(Config0);
+                config_CCU2 = new TRDPMainSend(Config1);
+
+                //配置SMI 数据  该项目无需配置
+                //TRDP_CCU.SetSMIting(config_CCU);
+                //Thread.Sleep(50);
+
+                //配置主帧数据发送
+                TRDP_CCU.SetSetting(config_CCU);
+                Thread.Sleep(50);
+                //监听数据返回
+                TRDP_CCU.Connect();
+                TRDP_CCU.Recieved += new RecievedHandler(trdp_Recieved);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Debug.WriteLine("初始化失败：" + ex.Message);
             }
             #endregion
         }
@@ -627,7 +609,6 @@ namespace MainUI.TRDP
                         //ConvertBoolToByte(by, Offset, bitSrc, true);
                         //fullData[port][Offset] =  (byte) by[Offset] | (1 << bit));
                         ConvertBoolToByte(ref by, Offset, bitSrc, true);
-
                     }
                     else
                     {
@@ -636,7 +617,7 @@ namespace MainUI.TRDP
                     }
                     break;
                 case "Byte":
-                    bts = new byte[] { Convert.ToByte(value) };
+                    bts = [Convert.ToByte(value)];
                     Offset += bitSrc;
                     break;
                 case "Int16": bts = BitConverter.GetBytes(Convert.ToInt16(value)); break;

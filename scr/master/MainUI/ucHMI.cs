@@ -278,6 +278,7 @@ namespace MainUI
         private void LoaddicDO()
         {
             FindControlInTabPage(tabDoOut, dicDO);
+            FindControlInTabPage(tabDoOut2, dicDO);
             FindControlIn(grpAirPath, dicDCF);
         }
         //加载AI模块

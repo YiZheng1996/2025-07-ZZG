@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 
 namespace MainUI.Model
 {
     public class ETHSignal : BaseModel
     {
-        public ETHSignal(){}
+        public ETHSignal() { }
         public ETHSignal(DataRow row)
         {
             Init(row);

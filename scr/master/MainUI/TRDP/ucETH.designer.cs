@@ -55,7 +55,7 @@
             ColBigOrLimmit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             colIsLifeSignal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ColTrdpNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colETHPassage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ColETHPassage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             colVerno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             colDefaultVersion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             colIsRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +68,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.Font = new System.Drawing.Font("宋体", 11F);
             label1.ForeColor = System.Drawing.Color.Black;
             label1.Location = new System.Drawing.Point(12, 198);
             label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -80,7 +80,7 @@
             // txtPath
             // 
             txtPath.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            txtPath.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtPath.Font = new System.Drawing.Font("宋体", 11F);
             txtPath.Location = new System.Drawing.Point(106, 194);
             txtPath.Margin = new System.Windows.Forms.Padding(4);
             txtPath.Name = "txtPath";
@@ -91,7 +91,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.Font = new System.Drawing.Font("宋体", 10F);
             label2.ForeColor = System.Drawing.Color.Red;
             label2.Location = new System.Drawing.Point(312, 74);
             label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -117,7 +117,7 @@
             btnExcelImport.BackColor = System.Drawing.Color.CornflowerBlue;
             btnExcelImport.FlatAppearance.BorderSize = 0;
             btnExcelImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnExcelImport.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnExcelImport.Font = new System.Drawing.Font("宋体", 12F);
             btnExcelImport.ForeColor = System.Drawing.Color.White;
             btnExcelImport.Location = new System.Drawing.Point(106, 119);
             btnExcelImport.Margin = new System.Windows.Forms.Padding(4);
@@ -152,7 +152,7 @@
             btnExportEexcel.BackColor = System.Drawing.Color.CornflowerBlue;
             btnExportEexcel.FlatAppearance.BorderSize = 0;
             btnExportEexcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnExportEexcel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            btnExportEexcel.Font = new System.Drawing.Font("宋体", 12F);
             btnExportEexcel.ForeColor = System.Drawing.Color.White;
             btnExportEexcel.Location = new System.Drawing.Point(734, 119);
             btnExportEexcel.Margin = new System.Windows.Forms.Padding(4);
@@ -167,7 +167,7 @@
             // 
             cboModelName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cboModelName.Enabled = false;
-            cboModelName.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            cboModelName.Font = new System.Drawing.Font("宋体", 11F);
             cboModelName.FormattingEnabled = true;
             cboModelName.Location = new System.Drawing.Point(106, 67);
             cboModelName.Margin = new System.Windows.Forms.Padding(4);
@@ -179,7 +179,7 @@
             // label30
             // 
             label30.AutoSize = true;
-            label30.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label30.Font = new System.Drawing.Font("宋体", 10F);
             label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             label30.Location = new System.Drawing.Point(59, 74);
             label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -214,7 +214,7 @@
             dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 11F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -222,10 +222,10 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeight = 35;
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { colmodelName, colSignalName, colDataType, colUnit, colPortNo, colByteExcursion, colBitExcursion, colBitValue, ColBigOrLimmit, colIsLifeSignal, ColTrdpNo, colETHPassage, colVerno, colDefaultVersion, colIsRead, colRemark });
+            dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { colmodelName, colSignalName, colDataType, colUnit, colPortNo, colByteExcursion, colBitExcursion, colBitValue, ColBigOrLimmit, colIsLifeSignal, ColTrdpNo, ColETHPassage, colVerno, colDefaultVersion, colIsRead, colRemark });
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -233,14 +233,14 @@
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridView1.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.GridColor = System.Drawing.Color.Black;
             dataGridView1.Location = new System.Drawing.Point(4, 20);
             dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
@@ -249,10 +249,10 @@
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 12F);
             dataGridView1.RowTemplate.Height = 23;
             dataGridView1.SelectedIndex = -1;
             dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -336,11 +336,12 @@
             ColTrdpNo.HeaderText = "网关编号";
             ColTrdpNo.Name = "ColTrdpNo";
             // 
-            // colETHPassage
+            // ColETHPassage
             // 
-            colETHPassage.DataPropertyName = "ETHPassage";
-            colETHPassage.HeaderText = "ETH通道";
-            colETHPassage.Name = "colETHPassage";
+            ColETHPassage.DataPropertyName = "ETHPassage";
+            ColETHPassage.HeaderText = "ETH通道";
+            ColETHPassage.Name = "ColETHPassage";
+            ColETHPassage.Visible = false;
             // 
             // colVerno
             // 
@@ -394,6 +395,9 @@
         private System.Windows.Forms.GroupBox grpData;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button btnExportEexcel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colETHPassage;
+        public System.Windows.Forms.ComboBox cboModelName;
+        private Sunny.UI.UIDataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colmodelName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSignalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDataType;
@@ -405,12 +409,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColBigOrLimmit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIsLifeSignal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTrdpNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colETHPassage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColETHPassage;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVerno;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDefaultVersion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIsRead;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRemark;
-        public System.Windows.Forms.ComboBox cboModelName;
-        private Sunny.UI.UIDataGridView dataGridView1;
     }
 }

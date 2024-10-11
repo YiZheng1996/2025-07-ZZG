@@ -88,11 +88,11 @@ namespace MainUI.BLL
             dt.Columns[8].ColumnName = "PortPattern"; //大小端口
             dt.Columns[9].ColumnName = "Identity";  //生命信号
             dt.Columns[10].ColumnName = "TRDPNo";   //网关编号
-            dt.Columns[11].ColumnName = "ETHPassage"; //通道
-            dt.Columns[12].ColumnName = "VerNo";  //协议版本 V1.0.0
-            dt.Columns[13].ColumnName = "DefaultVersion"; //默认版本
-            dt.Columns[14].ColumnName = "IsRead"; //原溯
-            dt.Columns[15].ColumnName = "Description"; // 备注
+            //dt.Columns[11].ColumnName = "ETHPassage"; //通道
+            dt.Columns[11].ColumnName = "VerNo";  //协议版本 V1.0.0
+            dt.Columns[12].ColumnName = "DefaultVersion"; //默认版本
+            dt.Columns[13].ColumnName = "IsRead"; //原溯
+            dt.Columns[14].ColumnName = "Description"; // 备注
             return dt;
         }
 
@@ -109,7 +109,7 @@ namespace MainUI.BLL
             }
             for (int i = 0; i < signal.Count; i++)
             {
-                string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],ETHPassage,BitValue,DefaultVersion) values('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}','{8}','{9}',{11},'{12}','{13}',{14},{15},'{16}')", signal[i].DataLabel, signal[i].DataType, signal[i].Description, signal[i].Port, signal[i].Offset, signal[i].ETHBit, signal[i].Identity, signal[i].DataUnit, signal[i].PortPattern, name, this.TableName, signal[i].TRDPNo, signal[i].VerNo, signal[i].IsRead, signal[i].ETHPassage, signal[i].BitValue, signal[i].DefaultVersion);
+                string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],BitValue,DefaultVersion) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15})", signal[i].DataLabel, signal[i].DataType, signal[i].Description, signal[i].Port, signal[i].Offset, signal[i].ETHBit, signal[i].Identity, signal[i].DataUnit, signal[i].PortPattern, name, this.TableName, signal[i].TRDPNo, signal[i].VerNo, signal[i].IsRead, signal[i].BitValue, signal[i].DefaultVersion);
                 Database.ExecuteNonQuery(sql);
             }
         }

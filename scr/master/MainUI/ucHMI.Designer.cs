@@ -245,7 +245,7 @@ namespace MainUI
             btnDataAnalysis = new UIButton();
             btnCANPowerDown = new UIButton();
             uiPanel1 = new UIPanel();
-            uiTabControl1 = new UITabControl();
+            UITab = new UITabControl();
             tabAIinput = new System.Windows.Forms.TabPage();
             uiTitlePanel2 = new UITitlePanel();
             uiPanel34 = new UIPanel();
@@ -485,7 +485,7 @@ namespace MainUI
             uiSwitch2 = new UISwitch();
             uiLabel5 = new UILabel();
             uiSwitch3 = new UISwitch();
-            tabPage1 = new System.Windows.Forms.TabPage();
+            tabDoOut2 = new System.Windows.Forms.TabPage();
             uiGroupBox3 = new UIGroupBox();
             uiSwitch56 = new UISwitch();
             uiLabel59 = new UILabel();
@@ -588,7 +588,7 @@ namespace MainUI
             uiPanel106.SuspendLayout();
             uiGroupBox2.SuspendLayout();
             uiPanel1.SuspendLayout();
-            uiTabControl1.SuspendLayout();
+            UITab.SuspendLayout();
             tabAIinput.SuspendLayout();
             uiTitlePanel2.SuspendLayout();
             uiPanel34.SuspendLayout();
@@ -642,7 +642,7 @@ namespace MainUI
             tabDoOut.SuspendLayout();
             uiGroupBox1.SuspendLayout();
             uiCheckBoxGroup2.SuspendLayout();
-            tabPage1.SuspendLayout();
+            tabDoOut2.SuspendLayout();
             uiGroupBox3.SuspendLayout();
             SuspendLayout();
             // 
@@ -4331,7 +4331,7 @@ namespace MainUI
             // 
             // uiPanel1
             // 
-            uiPanel1.Controls.Add(uiTabControl1);
+            uiPanel1.Controls.Add(UITab);
             uiPanel1.Font = new System.Drawing.Font("宋体", 12F);
             uiPanel1.Location = new System.Drawing.Point(1320, 5);
             uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -4342,34 +4342,34 @@ namespace MainUI
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiTabControl1
+            // UITab
             // 
-            uiTabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            uiTabControl1.Controls.Add(tabAIinput);
-            uiTabControl1.Controls.Add(tabDIinput);
-            uiTabControl1.Controls.Add(tabDoOut);
-            uiTabControl1.Controls.Add(tabPage1);
-            uiTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            uiTabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            uiTabControl1.Font = new System.Drawing.Font("宋体", 12F);
-            uiTabControl1.HotTrack = true;
-            uiTabControl1.ItemSize = new System.Drawing.Size(150, 40);
-            uiTabControl1.Location = new System.Drawing.Point(0, 0);
-            uiTabControl1.MainPage = "";
-            uiTabControl1.MenuStyle = UIMenuStyle.Custom;
-            uiTabControl1.Multiline = true;
-            uiTabControl1.Name = "uiTabControl1";
-            uiTabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            uiTabControl1.SelectedIndex = 0;
-            uiTabControl1.Size = new System.Drawing.Size(486, 958);
-            uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            uiTabControl1.TabBackColor = System.Drawing.Color.FromArgb(243, 249, 255);
-            uiTabControl1.TabIndex = 1;
-            uiTabControl1.TabSelectedColor = System.Drawing.Color.FromArgb(39, 89, 176);
-            uiTabControl1.TabSelectedForeColor = System.Drawing.Color.Black;
-            uiTabControl1.TabSelectedHighColorSize = 8;
-            uiTabControl1.TabUnSelectedForeColor = System.Drawing.Color.Black;
-            uiTabControl1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            UITab.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            UITab.Controls.Add(tabAIinput);
+            UITab.Controls.Add(tabDIinput);
+            UITab.Controls.Add(tabDoOut);
+            UITab.Controls.Add(tabDoOut2);
+            UITab.Dock = System.Windows.Forms.DockStyle.Fill;
+            UITab.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            UITab.Font = new System.Drawing.Font("宋体", 12F);
+            UITab.HotTrack = true;
+            UITab.ItemSize = new System.Drawing.Size(150, 40);
+            UITab.Location = new System.Drawing.Point(0, 0);
+            UITab.MainPage = "";
+            UITab.MenuStyle = UIMenuStyle.Custom;
+            UITab.Multiline = true;
+            UITab.Name = "UITab";
+            UITab.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            UITab.SelectedIndex = 0;
+            UITab.Size = new System.Drawing.Size(486, 958);
+            UITab.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            UITab.TabBackColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            UITab.TabIndex = 1;
+            UITab.TabSelectedColor = System.Drawing.Color.FromArgb(39, 89, 176);
+            UITab.TabSelectedForeColor = System.Drawing.Color.Black;
+            UITab.TabSelectedHighColorSize = 8;
+            UITab.TabUnSelectedForeColor = System.Drawing.Color.Black;
+            UITab.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             // 
             // tabAIinput
             // 
@@ -7344,7 +7344,7 @@ namespace MainUI
             uiLabel71.Name = "uiLabel71";
             uiLabel71.Size = new System.Drawing.Size(159, 16);
             uiLabel71.TabIndex = 42;
-            uiLabel71.Text = "大小闸1SSI电源切换1";
+            uiLabel71.Text = "大小闸1SSI电源切换2";
             uiLabel71.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiSwitch69
@@ -7669,15 +7669,15 @@ namespace MainUI
             uiSwitch3.Text = "uiSwitch3";
             uiSwitch3.Click += DO_Click;
             // 
-            // tabPage1
+            // tabDoOut2
             // 
-            tabPage1.Controls.Add(uiGroupBox3);
-            tabPage1.Location = new System.Drawing.Point(0, 0);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Size = new System.Drawing.Size(200, 0);
-            tabPage1.TabIndex = 3;
-            tabPage1.Text = "DO输出信号2";
-            tabPage1.UseVisualStyleBackColor = true;
+            tabDoOut2.Controls.Add(uiGroupBox3);
+            tabDoOut2.Location = new System.Drawing.Point(0, 0);
+            tabDoOut2.Name = "tabDoOut2";
+            tabDoOut2.Size = new System.Drawing.Size(486, 878);
+            tabDoOut2.TabIndex = 3;
+            tabDoOut2.Text = "DO输出信号2";
+            tabDoOut2.UseVisualStyleBackColor = true;
             // 
             // uiGroupBox3
             // 
@@ -8616,7 +8616,7 @@ namespace MainUI
             uiPanel106.ResumeLayout(false);
             uiGroupBox2.ResumeLayout(false);
             uiPanel1.ResumeLayout(false);
-            uiTabControl1.ResumeLayout(false);
+            UITab.ResumeLayout(false);
             tabAIinput.ResumeLayout(false);
             uiTitlePanel2.ResumeLayout(false);
             uiPanel34.ResumeLayout(false);
@@ -8674,7 +8674,7 @@ namespace MainUI
             uiGroupBox1.PerformLayout();
             uiCheckBoxGroup2.ResumeLayout(false);
             uiCheckBoxGroup2.PerformLayout();
-            tabPage1.ResumeLayout(false);
+            tabDoOut2.ResumeLayout(false);
             uiGroupBox3.ResumeLayout(false);
             uiGroupBox3.PerformLayout();
             ResumeLayout(false);
@@ -8810,7 +8810,7 @@ namespace MainUI
         private UIButton btnResponseTest;
         private UIPipe uiPipe27;
         private UIPanel uiPanel1;
-        private UITabControl uiTabControl1;
+        private UITabControl UITab;
         private System.Windows.Forms.TabPage tabAIinput;
         private System.Windows.Forms.TabPage tabDIinput;
         private System.Windows.Forms.TabPage tabDoOut;
@@ -9166,7 +9166,7 @@ namespace MainUI
         private UIPanel uiPanel144;
         private UILine uiLine2;
         private UIButton BtnExhaust;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabDoOut2;
         private UICheckBoxGroup uiCheckBoxGroup2;
         private UISwitch uiSwitch;
         private UISwitch uiSwitch4;

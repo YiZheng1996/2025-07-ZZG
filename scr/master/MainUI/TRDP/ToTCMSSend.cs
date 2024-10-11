@@ -1,5 +1,6 @@
 ﻿using MainUI.TRDP.Model;
 using RW.Driver;
+using RW.Driver.NET;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,24 @@ namespace MainUI.TRDP
     /// </summary>
     public class ToTCMSSend : BaseSendModel
     {
+
         public ToTCMSSend()
         {
-            this.CommandType = TOTCMSCommandTypes.Eth1;
+            ETHConfig ethconfig = new ETHConfig();
+            if (ethconfig.ETH == 0)
+                CommandType = TOTCMSCommandTypes.Eth0;
+            else
+                CommandType = TOTCMSCommandTypes.Eth1;
+            this.ProtocolVersion = 0x0100;
+        }
+
+        public ToTCMSSend(string iniName)
+        {
+            ETHConfig ethconfig = new ETHConfig(iniName);
+            if (ethconfig.ETH == 0)
+                CommandType = TOTCMSCommandTypes.Eth0;
+            else
+                CommandType = TOTCMSCommandTypes.Eth1;
             this.ProtocolVersion = 0x0100;
         }
 
@@ -82,8 +98,8 @@ namespace MainUI.TRDP
             bts[19 + this.DatasetLength] = CRC[1];
 
             return bts;
-
         }
+
     }
 
     public enum TOTCMSCommandTypes

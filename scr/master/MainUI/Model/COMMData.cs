@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MainUI.Model
+﻿namespace MainUI.Model
 {
     public struct COMMData
     {
         public int Port { get; set; }
         public int Offset { get; set; }
         public int Bit { get; set; }
+        public string GroupETHBit { get; set; }
 
         public override string ToString()
         {
-            return string.Format("0x{0:X}.{1:000}.{2:00}", Port, Offset, Bit);
-            //return base.ToString();
+            return string.Format("0x{0:X}.{1:000}.{2:00}.{3}", Port, Offset, Bit, GroupETHBit);
         }
 
         //public override bool Equals(object obj)

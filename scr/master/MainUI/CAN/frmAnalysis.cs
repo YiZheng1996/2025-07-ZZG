@@ -1,16 +1,6 @@
-﻿using MainUI.CurrencyHelper;
-using MainUI.Procedure.ExcelImport;
-using Sunny.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MainUI.Procedure.ExcelImport;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MainUI.CAN
 {
@@ -63,8 +53,8 @@ namespace MainUI.CAN
                     continue;
                 string[] currentLines = currentLine.Split(':');
                 string[] previousLines = previousLine.Split(':');
-                TimeSpan span = new TimeSpan(0, currentLines[0].ToInt(), currentLines[1].ToInt(), currentLines[2].ToInt(), currentLines[3].ToInt());
-                TimeSpan span2 = new TimeSpan(0, previousLines[0].ToInt(), previousLines[1].ToInt(), previousLines[2].ToInt(), previousLines[3].ToInt());
+                TimeSpan span = new(0, currentLines[0].ToInt(), currentLines[1].ToInt(), currentLines[2].ToInt(), currentLines[3].ToInt());
+                TimeSpan span2 = new(0, previousLines[0].ToInt(), previousLines[1].ToInt(), previousLines[2].ToInt(), previousLines[3].ToInt());
                 TimeSpan spanResult = span - span2; // 当前行和上一行的差值
                 result = spanResult.TotalMilliseconds;
                 average += result;
@@ -85,10 +75,10 @@ namespace MainUI.CAN
         {
             try
             {
-                DataTable table = new DataTable();
+                DataTable table = new();
                 string filter = string.Format("ID = '{0}'", ID);
                 DataRow[] selectedRows = Exceltable.Select(filter);
-                List<DataRow> rows = selectedRows.ToList();
+                List<DataRow> rows = [.. selectedRows];
 
                 // 确保DataTable有与List中的DataRow相同的列结构
                 foreach (DataRow row in rows)

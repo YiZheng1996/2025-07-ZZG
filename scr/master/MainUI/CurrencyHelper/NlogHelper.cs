@@ -61,7 +61,7 @@ namespace MainUI.CurrencyHelper
             {
                 message = string.Format(msg, args);
             }
-            InsLog(LogLevel.Debug, message);
+            InsLog(NLog.LogLevel.Debug, message);
         }
 
         public void Info(string msg, params object[] args)
@@ -71,7 +71,7 @@ namespace MainUI.CurrencyHelper
             {
                 message = string.Format(msg, args);
             }
-            InsLog(LogLevel.Info, message);
+            InsLog(NLog.LogLevel.Info, message);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace MainUI.CurrencyHelper
             {
                 message = string.Format(msg, args);
             }
-            InsLog(LogLevel.Warn, message);
+            InsLog(NLog.LogLevel.Warn, message);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace MainUI.CurrencyHelper
             {
                 message = string.Format(msg, args);
             }
-            InsLog(LogLevel.Trace, message);
+            InsLog(NLog.LogLevel.Trace, message);
         }
 
         public void Fatal(string msg, params object[] args)
@@ -111,7 +111,7 @@ namespace MainUI.CurrencyHelper
             {
                 message = string.Format(msg, args);
             }
-            InsLog(LogLevel.Fatal, message);
+            InsLog(NLog.LogLevel.Fatal, message);
         }
         #endregion
 
@@ -128,7 +128,7 @@ namespace MainUI.CurrencyHelper
             {
                 message = string.Format(msg, args);
             }
-            InsLog(LogLevel.Error, message);
+            InsLog(NLog.LogLevel.Error, message);
         }
         /// <summary>
         /// 使用指定的参数在错误级别写入诊断消息。
@@ -137,7 +137,7 @@ namespace MainUI.CurrencyHelper
         /// <param name="args">异常信息</param>
         public void Error(string msg, Exception err)
         {
-            InsLog(LogLevel.Error, msg, err);
+            InsLog(NLog.LogLevel.Error, msg, err);
         }
         #endregion
 
@@ -145,7 +145,7 @@ namespace MainUI.CurrencyHelper
         /// <summary>
         /// 写入日志信息
         /// </summary>
-        private void InsLog(LogLevel level, string msg, Exception ex = null)
+        private void InsLog(NLog.LogLevel level, string msg, Exception ex = null)
         {
             var stackTrace = string.Empty;
             if (ex != null)

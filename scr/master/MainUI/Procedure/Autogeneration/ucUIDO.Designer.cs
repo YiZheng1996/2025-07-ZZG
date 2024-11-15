@@ -28,35 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uiButton = new Sunny.UI.UIButton();
-            this.SuspendLayout();
+            uiButton = new UIButton();
+            SuspendLayout();
             // 
             // uiButton
             // 
-            this.uiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.uiButton.Font = new System.Drawing.Font("宋体", 11F);
-            this.uiButton.Location = new System.Drawing.Point(3, 16);
-            this.uiButton.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton.Name = "uiButton";
-            this.uiButton.Radius = 35;
-            this.uiButton.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.uiButton.Size = new System.Drawing.Size(100, 35);
-            this.uiButton.TabIndex = 0;
-            this.uiButton.Text = "Value";
-            this.uiButton.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            uiButton.Cursor = Cursors.Hand;
+            uiButton.FillColor = Color.FromArgb(255, 192, 192);
+            uiButton.Font = new Font("宋体", 11F);
+            uiButton.Location = new Point(3, 16);
+            uiButton.MinimumSize = new Size(1, 1);
+            uiButton.Name = "uiButton";
+            uiButton.Radius = 35;
+            uiButton.RectColor = Color.FromArgb(255, 192, 192);
+            uiButton.Size = new Size(100, 35);
+            uiButton.TabIndex = 0;
+            uiButton.Text = "Value";
+            uiButton.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             // 
             // ucUIDO
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.Controls.Add(this.uiButton);
-            this.Font = new System.Drawing.Font("宋体", 11F);
-            this.Name = "ucUIDO";
-            this.Size = new System.Drawing.Size(113, 70);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSize = true;
+            BackColor = Color.FromArgb(243, 249, 255);
+            Controls.Add(uiButton);
+            Font = new Font("宋体", 11F);
+            Name = "ucUIDO";
+            Size = new Size(113, 70);
+            ResumeLayout(false);
         }
 
         #endregion

@@ -28,34 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new System.Windows.Forms.Button();
-            SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // button1
             // 
-            button1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            button1.BackColor = System.Drawing.SystemColors.Control;
-            button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            button1.Location = new System.Drawing.Point(0, 24);
-            button1.Margin = new System.Windows.Forms.Padding(0);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(167, 62);
-            button1.TabIndex = 1;
-            button1.Text = "MC1车司机激活/空压机/列出控制供电空开断开";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Location = new System.Drawing.Point(0, 17);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(143, 44);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "运行方向(1列车上行。0列车下行）";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ucBit
             // 
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            Controls.Add(button1);
-            Margin = new System.Windows.Forms.Padding(1);
-            Name = "ucBit";
-            Size = new System.Drawing.Size(167, 86);
-            Load += ucBit_Load;
-            Paint += ucBit_Paint;
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(1);
+            this.Name = "ucBit";
+            this.Size = new System.Drawing.Size(143, 61);
+            this.Load += new System.EventHandler(this.ucBit_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ucBit_Paint);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

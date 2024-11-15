@@ -12,9 +12,9 @@ namespace MainUI.Modules
 {
     public partial class AIGrp : BaseModule
     {
-        public const int AIcount = 38;
+        public const int AIcount = 54;
         public Hardware[] hardwares = new Hardware[AIcount];
-        private double[] _AiList = new double[AIcount];
+        private readonly double[] _AiList = new double[AIcount];
         public double[] AIList
         {
             get { return _AiList; }

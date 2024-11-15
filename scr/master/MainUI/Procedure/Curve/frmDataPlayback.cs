@@ -34,8 +34,7 @@ namespace MainUI.Procedure.Curve
         {
             InitializeComponent();
             InitChart();
-            uiTimeStart.Value = DateTime.Now.AddDays(-1).Date + new TimeSpan(0, 0, 0);
-            uiTimeEnd.Value = DateTime.Now.Date + new TimeSpan(23, 59, 59);
+            uiTimeStart.Value = DateTime.Now.Date + new TimeSpan(0, 0, 0);
             uiContextMenuStrip.ItemClicked += UiContextMenuStrip_ItemClicked;
             InitModel();
         }
@@ -137,7 +136,7 @@ namespace MainUI.Procedure.Curve
         /// </summary>
         public DateTime GetDateTime(string dateTime)
         {
-            string[] strArr = dateTime.Split(new char[] { '-', ' ', ':', ',', '.' });
+            string[] strArr = dateTime.Split(['-', ' ', ':', ',', '.']);
             DateTime dt = new(int.Parse(strArr[0]),
                 int.Parse(strArr[1]),
                 int.Parse(strArr[2]),
@@ -165,20 +164,39 @@ namespace MainUI.Procedure.Curve
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
         /// <returns></returns>
-        public DataTable GetDataTable(DateTime startTime, DateTime endTime)
+        //public DataTable GetDataTable(DateTime startTime)
+        //{
+        //    DataTable dt = new();
+        //    string path = folderPath + uiComBoxModel.Text + "\\" + startTime.ToString("yyyy-MM-dd");
+        //    FileInfo[] files = SearchFilesByDate(path);
+        //    foreach (FileInfo file in files)
+        //    {
+        //        DateTime startSpan = startTime.Date + new TimeSpan(0, 0, 0);
+        //        //var timeNow = DateTime.Parse(file.Name.Replace('_', '-').Replace(".csv", ""));
+        //        return CSVHelper.ReadAsDatatable(file.ToString());
+        //    }
+        //    return dt;
+        //}
+
+        /// <summary>
+        /// 获取CSV数据构建临时表单
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <returns></returns>
+        public Dictionary<string, DataTable> GetDataTable(DateTime startTime)
         {
-            DataTable dt = new();
-            FileInfo[] files = SearchFilesByDate(folderPath);
+            Dictionary<string, DataTable> dts = [];
+            string path = folderPath + uiComBoxModel.Text + "\\" + startTime.ToString("yyyy-MM-dd");
+            if (!Path.Exists(path)) return dts;
+
+            FileInfo[] files = SearchFilesByDate(path);
             foreach (FileInfo file in files)
             {
-                DateTime startSpan = startTime.Date + new TimeSpan(0, 0, 0);
-                DateTime endSpan = endTime.Date;
-                var timeNow = DateTime.Parse(file.Name.Replace('_', '-').Replace(".csv", ""));
-                bool isBetween = timeNow >= startSpan && timeNow <= endSpan;
-                if (isBetween)
-                    dt.Merge(CSVHelper.ReadAsDatatable(file.ToString()));
+                //var timeNow = DateTime.Parse(file.Name.Replace('_', '-').Replace(".csv", ""));
+                dts.Add(file.ToString(), CSVHelper.ReadAsDatatable(file.ToString()));
             }
-            return dt;
+            return dts;
         }
 
         /// <summary>
@@ -214,7 +232,6 @@ namespace MainUI.Procedure.Curve
             return JsonConvert.DeserializeObject<T>(JsonStr);
         }
 
-        int valueCon = 0;
         /// <summary>
         /// 加载处理后数据
         /// </summary>
@@ -222,32 +239,25 @@ namespace MainUI.Procedure.Curve
         {
             try
             {
-                valueCon = 0;
                 Debug.WriteLine("数据处理开始时间：" + DateTime.Now);
                 dataModels = new();
-                var timeEnd = uiTimeEnd.Value;
                 var timeStart = uiTimeStart.Value;
-                dataModels.DataModels = new List<DataLine_Model>();
-                var data = GetDataTable(timeStart, timeEnd);
-                uiProcessBar1.Visible = true;
+                dataModels.DataModels = [];
+                var datas = GetDataTable(timeStart);
+                if (datas.Count == 0) return;
+                frmCurveDatas frmCurveData = new(datas, uiComBoxModel.Text);
+                frmCurveData.ShowDialog();
+                if (frmCurveData.DialogResult != DialogResult.OK)
+                    return;
+                var data = datas[frmCurveData.Dickey];
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
-                    var valueNub = i % (data.Rows.Count / 100);
-                    if (valueNub == 0)
-                    {
-                        valueCon++;
-                        Invoke(new System.Windows.Forms.MethodInvoker(delegate { uiProcessBar1.Value = valueCon; }));
-                    }
-                    uiProcessBar1.Visible = false;
                     DataLine_Model model = new()
                     {
                         Time_Model = Deserialize<Time_Model>(data.Rows[i]["时间"].ToString()),
                         Test_Model = Deserialize<Test_Model>(data.Rows[i]["试验台传感器"].ToString())
                     };
-                    var timeNow = GetDateTime(model.Time_Model.TimeNow.ToString());
-                    bool isBetween = timeNow >= timeStart && timeNow <= timeEnd;
-                    if (isBetween)
-                        dataModels.DataModels.Add(model);
+                    dataModels.DataModels.Add(model);
                     //Debug.WriteLine("添加时间：" + model.Time_Model.TimeNow.ToString());
                     //else
                     //Debug.WriteLine("---------未添加时间：" + model.Time_Model.TimeNow.ToString());
@@ -274,12 +284,15 @@ namespace MainUI.Procedure.Curve
             var Token = CTS.Token;
             bool isTesting = Token.IsCancellationRequested;
             Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集
+            uiProcessBar1.Visible = true;
+
             Ctask = Task.Run(() =>
              {
                  try
                  {
                      for (int i = 0; i < dataModels.DataModels.Count & !isTesting; i++)
                      {
+                         uiProcessBar1.Value = Normalize(i, dataModels.DataModels.Count);
                          isTesting = Token.IsCancellationRequested;
                          for (int j = 0; j < dbValue.Length & !isTesting; j++)
                          {
@@ -305,6 +318,7 @@ namespace MainUI.Procedure.Curve
                          uiLineChart1.Refresh();
                          Task.Delay(uiUpDownRate.Value).Wait();
                      }
+                     uiProcessBar1.Visible = false;
                  }
                  catch (Exception ex)
                  {
@@ -317,10 +331,14 @@ namespace MainUI.Procedure.Curve
             else
                 MessageBox.Show(this, "曲线回放完成！", "系统提示");
             CTS.Cancel();
-
             //曲线刷新,不缩放曲线，X轴根据最大值移动
             //DateTime dts = dt.AddSeconds(Time__); 
             //option0.XAxis.SetRange(dts, dt.AddSeconds(5));
+        }
+
+        private int Normalize(double value, double total)
+        {
+            return Convert.ToInt32(((double)value / total * 100));
         }
 
         /// <summary>
@@ -620,9 +638,9 @@ namespace MainUI.Procedure.Curve
                 var check = sender as UICheckBox;
                 var key = valuename[check.Tag.ToInt()];
                 if (key != null)
-                    if (uiLineChart1.Option.Series.ContainsKey(key.NodeName))
+                    if (uiLineChart1.Option.Series.TryGetValue(key.NodeName, out UILineSeries value))
                     {
-                        uiLineChart1.Option.Series[key.NodeName].Visible = !check.Checked;
+                        value.Visible = !check.Checked;
                         uiLineChart1.Refresh();
                     }
             }

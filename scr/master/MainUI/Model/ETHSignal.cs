@@ -14,7 +14,8 @@ namespace MainUI.Model
         public string DataType { get; set; }
         public string Port { get; set; }
         public int Offset { get; set; }
-        public int ETHBit { get; set; }
+        public string ETHBit { get; set; }
+        public string GroupETHBit { get; set; }
         public bool Identity { get; set; }
         public string Description { get; set; }
         public bool PortPattern { get; set; }

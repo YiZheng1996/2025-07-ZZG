@@ -11,13 +11,13 @@ namespace MainUI.BLL
     {
         public ETHTagsBLL() : base(VarHelper.Database, VarHelper.ConnectionString, "ETHFullTags") { }
 
-        public List<FullTagsETH> GetAllTags()
+        public List<FullTagsETH> GetAllTags(string ModelName)
         {
             string where = "";
-            where = "POrt<>'0'" + "and DefaultVersion =" + true;
+            where = "POrt<>'0'" + " and TypeName = '" + ModelName + "'" + "and DefaultVersion =" + true;
             DataTable dt = GetList(where);
 
-            List<FullTagsETH> tags = new();
+            List<FullTagsETH> tags = [];
             foreach (DataRow row in dt.Rows)
             {
                 FullTagsETH tag = new(row);

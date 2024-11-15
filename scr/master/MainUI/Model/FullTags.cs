@@ -26,6 +26,10 @@ namespace MainUI.Model
         public bool PortPattern { get; set; }
 
         public bool IsSensorRange { get; set; }
+
+        public double WriteRate { get; set; }
+
+        public double ReadRate { get; set; }
         public void Init(DataRow row)
         {
             ID = Convert.ToInt32(row["ID"].ToString());
@@ -61,7 +65,7 @@ namespace MainUI.Model
 
         public override string ToString()
         {
-            return string.Join(",", new string[] { this.ID.ToString(), this.Identity.ToString(), this.COMMData.ToString(), this.DataLabel.ToString() });
+            return string.Join(",", [this.ID.ToString(), this.Identity.ToString(), this.COMMData.ToString(), this.DataLabel.ToString()]);
         }
     }
 }

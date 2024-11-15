@@ -36,7 +36,7 @@ namespace MainUI.UI.BLL
             else
                 where += "TypeName='" + TypeName + "' and [DefaultVersion] =" + true;
             DataTable dt = this.GetList(where);
-            List<Ports> ps = new List<Ports>();
+            List<Ports> ps = [];
             foreach (DataRow row in dt.Rows)
             {
                 ps.Add(new Ports(row));

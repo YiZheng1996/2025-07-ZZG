@@ -74,6 +74,8 @@ namespace MainUI.TRDP
         }
         [DefaultValue(0)]
         public int TRDPNo { get; set; }
+        [DefaultValue(0)]
+        public int ETHPassage { get; set; }
         private double bitValue;
         private Label label3;
         private UITextBox textBox1;

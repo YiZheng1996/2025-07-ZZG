@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Linq;
 
-
 namespace MainUI.MVB
 {
     /// <summary>
@@ -16,6 +15,7 @@ namespace MainUI.MVB
     /// </summary>
     public class ConvertClass
     {
+
         /// <summary>
         /// 将2维Word数组转换为2维Byte数组
         /// </summary>
@@ -71,11 +71,10 @@ namespace MainUI.MVB
                     ////将word类型转换为2个byte
                     //byte[] arrb = BitConverter.GetBytes(arrData[i, j]);
                     ////反转1维数组
-                   
+                    //Array.Reverse(arrb);
                     //outData[i, j * 2 + 0] = arrb[0];
                     //outData[i, j * 2 + 1] = arrb[1];
                     byte[] arrb = new byte[2] { arrbyte[i, j * 2 + 1], arrbyte[i, j * 2 + 0] };
-                    Array.Reverse(arrb);
                     outData[i, j] = (ushort)BitConverter.ToUInt16(arrb, 0);
                 }
             }
@@ -325,9 +324,10 @@ namespace MainUI.MVB
             return valueTxt + "；";
         }
 
-        //TODO:MVB绝对路径
+
         const string filepath = @"c:\mvbdll\";
         //const string filepath = @".\mvbdll\"; 
+
 
         /// <summary>
         /// MVB网卡地址
@@ -378,6 +378,8 @@ namespace MainUI.MVB
         /// 源宿端口配置文件名称
         /// </summary>
         public static string Configfilename_port = "MvbConfig_DK2.txt";
+
+
 
         #endregion
 
@@ -500,7 +502,6 @@ namespace MainUI.MVB
         {
             short[,] pDataSet = new short[PD_snk_port_address.Length, 16];
             int i = MvbDllCall.GetCollection(pDataSet);
-
             readbyte = ConvertClass.ConvertWordToByte(pDataSet);
             return i;
         }
@@ -791,13 +792,13 @@ namespace MainUI.MVB
             {
                 byte before = MvbDllCall.sendbyte[portIndex, offset];
                 if (Convert.ToBoolean(value))
-                    sendbyte[portIndex, offset] |= (byte)(1 << bit);
+                    MvbDllCall.sendbyte[portIndex, offset] |= (byte)(1 << bit);
                 else
-                    sendbyte[portIndex, offset] &= (byte)~(1 << bit);
+                    MvbDllCall.sendbyte[portIndex, offset] &= (byte)~(1 << bit);
             }
             else if (value is byte || value is sbyte)
             {
-                sendbyte[portIndex, offset] = Convert.ToByte(value);
+                MvbDllCall.sendbyte[portIndex, offset] = Convert.ToByte(value);
             }
             else
             {

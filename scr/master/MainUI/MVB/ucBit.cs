@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RW;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using RW;
-using MainUI.TRDP;
 
 namespace MainUI.MVB
 {
-    public partial class ucBit : UserControl, ISwitch
+    public partial class ucBit : UserControl
     {
         public ucBit()
         {
             InitializeComponent();
-            EnableTitle = true;
+            this.EnableTitle = true;
         }
 
         public string TitleText
@@ -31,11 +23,11 @@ namespace MainUI.MVB
         {
             get
             {
-                return button1.Text;
+                return this.button1.Text;
             }
             set
             {
-                button1.Text = value;
+                this.button1.Text = value;
             }
         }
 
@@ -69,13 +61,12 @@ namespace MainUI.MVB
 
         void SetText()
         {
-            TitleText = string.Format("{0}.{1}", Offset, Bit);
+            this.TitleText = string.Format("{0}.{1}", Offset, Bit);
         }
 
         [DefaultValue(null)]
         public DataRange Range { get; set; }
-        [DefaultValue(null)]
-        public bool DataRange { get; set; }
+
         [DefaultValue(false)]
         public bool ReadOnly { get; set; }
 
@@ -94,13 +85,13 @@ namespace MainUI.MVB
             }
         }
 
+
         public event SwitchHandler SwitchChanged;
-        //public event SwtichingHandler Switching;
 
         protected virtual void OnSwitchChanged(bool value)
         {
-            button1.BackColor = value ? Color.SpringGreen : SystemColors.Control;
-            SwitchChanged?.Invoke(this, value);
+            this.button1.BackColor = value ? Color.SpringGreen : SystemColors.Control;
+            if (SwitchChanged != null) SwitchChanged(this, value);
         }
 
         #endregion
@@ -108,7 +99,7 @@ namespace MainUI.MVB
         private void button1_Click(object sender, EventArgs e)
         {
             if (ReadOnly) return;
-                Switch = !Switch;
+            this.Switch = !this.Switch;
             OnClick(e);
         }
 
@@ -123,17 +114,22 @@ namespace MainUI.MVB
             get
             {
                 CreateParams cp = base.CreateParams;
+
                 cp.ExStyle |= 0x02000000;
+
                 return cp;
+
             }
         }
 
         private void ucBit_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            Font f = new("宋体", 9, FontStyle.Bold);
-            SizeF s = g.MeasureString(TitleText, f).ToSize();
-            g.DrawString(TitleText, f, new SolidBrush(Color.Black), (Width - s.Width) / 2, 2);
+            Font f = new Font("宋体", 9, FontStyle.Bold);
+
+            SizeF s = g.MeasureString(this.TitleText, f).ToSize();
+
+            g.DrawString(this.TitleText, f, new SolidBrush(Color.Black), (this.Width - s.Width) / 2, 2);
         }
 
         private void ucBit_Load(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace ServoTired.BLL
             .Set(a => a.Speed, servo.Speed)
             .Set(a => a.ResidenceTime, servo.ResidenceTime)
             .Set(a => a.StartPositionID, servo.StartPositionID)
-            .Where(a => a.StepNumber == servo.StepNumber)
+            .Where(a => a.StepNumber == servo.StepNumber && a.SGearType == servo.SGearType)
             .ExecuteAffrows() > 0;
 
         public bool ModifyOrAddTable(ServoTiredModel model)

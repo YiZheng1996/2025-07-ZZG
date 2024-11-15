@@ -1,13 +1,5 @@
-﻿using MainUI.Modules;
-using MainUI.Model;
-using MainUI.Workinterface;
-using MainUI.Model.Workinterface;
+﻿using MainUI.Modules.IOCard;
 using System.IO;
-using System;
-using Sunny.UI;
-using System.Windows.Forms;
-using MainUI.Modules.IOCard;
-using System.Linq;
 
 namespace MainUI.CurrencyHelper
 {

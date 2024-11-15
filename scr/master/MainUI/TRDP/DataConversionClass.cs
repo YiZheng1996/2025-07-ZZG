@@ -66,9 +66,9 @@ namespace MainUI.TRDP
                 stradd = stradd.PadLeft(8, '0');
                 iadd10 = Convert.ToInt32(stradd, 2);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("二制数据转换十进制数据出错");
+                MessageBox.Show("二制数据转换十进制数据出错:" + ex.Message);
             }
             return iadd10;
         }

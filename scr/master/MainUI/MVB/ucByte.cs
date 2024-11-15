@@ -1,10 +1,8 @@
-﻿using MainUI.TRDP;
-using RW;
+﻿using RW;
 using RW.Modules;
-using System;
+using RW.UI;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
+using System.Linq;
 
 namespace MainUI.MVB
 {
@@ -67,6 +65,21 @@ namespace MainUI.MVB
             set { bit = value; SetText(); }
         }
 
+
+        /// <summary>
+        /// 写值比率
+        /// </summary>
+        [DefaultValue(0)]
+        public double WriteRate { get; set; }
+
+
+        /// <summary>
+        /// 显示比率
+        /// </summary>
+        [DefaultValue(0)]
+        public double ReadRate { get; set; }
+
+
         /// <summary>
         /// 端口号，此处是10进制，注意16进制值的转换
         /// </summary>
@@ -86,21 +99,10 @@ namespace MainUI.MVB
             get { return variableType; }
             set { variableType = value; SetText(); }
         }
-        private double bitValue;
-
-        /// <summary>
-        /// 比例值   1bit=0.1T
-        /// </summary>
-        [DefaultValue(1)]
-        public double BitValue
-        {
-            get { return bitValue; }
-            set { bitValue = value; }
-        }
 
         void SetText()
         {
-            TitleText = string.Format("{0}.{2}[{1}]", this.Offset, VariableType.ToString(), bit);
+            this.TitleText = string.Format("{0}.{2}[{1}]", this.Offset, this.VariableType.ToString(), this.bit);
         }
 
         #region IValue<double> 成员
@@ -114,7 +116,7 @@ namespace MainUI.MVB
                 if (value == this.value) return;
                 this.value = value;
                 if (!this.textBox1.Focused)//如果有焦点，很可能在输入，以用户输入为准
-                    this.textBox1.Text = value.ToString();
+                    this.textBox1.Text = (value * ReadRate).ToString();
             }
         }
 
@@ -122,19 +124,15 @@ namespace MainUI.MVB
 
         [DefaultValue(null)]
         public DataRange Range { get; set; }
-        [DefaultValue(null)]
-        public bool DataRange { get; set; }
+
         [DefaultValue(" ")]
         public string Unit
         {
             get { return this.label3.Text; }
             set { this.label3.Text = value; }
         }
-        /// <summary>
-        /// 是否大小端
-        /// </summary>
-        [DefaultValue(null)]
-        public bool PortPattern { get; set; }
+
+        public bool Identity { get; set; }
 
         /// <summary>
         /// 是否换算传感器量程
@@ -144,7 +142,7 @@ namespace MainUI.MVB
         public event ValueHandler<double> Submits;
         protected virtual void OnSubmit(double value)
         {
-            Submits?.Invoke(this, value);
+            if (Submits != null) Submits(this, (value * WriteRate));
         }
 
         public void Submit()
@@ -207,11 +205,11 @@ namespace MainUI.MVB
             {
                 this.comboBox1.Visible = true;
                 this.textBox1.Visible = false;
-                //foreach (var item in Range.Items)
-                //{
-                //    this.comboBox1.Items.Add(new RW.Components.ListBox.ListBoxItem(item.Value, item.Key.ToString()));
-                //}
-                //this.comboBox1.SelectedIndex = 0;
+                foreach (var item in Range.Items)
+                {
+                    this.comboBox1.Items.Add(new ListBoxItem(item.Value, item.Key.ToString()));
+                }
+                this.comboBox1.SelectedIndex = 0;
                 //this.comboBox1.Items.Add(new ListBoxItem
             }
             else
@@ -227,8 +225,9 @@ namespace MainUI.MVB
         {
             object val = this.comboBox1.SelectedItem;
             if (val == null || val.ToString() == "无操作") return;
-            //RW.Components.ListBox.ListBoxItem item = val as RW.Components.ListBox.ListBoxItem;
-            //this.Value = Convert.ToInt32(item.SelectValue);
+            ListBoxItem item = val as ListBoxItem;
+            this.Value = Convert.ToInt32(item.SelectValue);
+
             OnSubmit(this.Value);
 
         }

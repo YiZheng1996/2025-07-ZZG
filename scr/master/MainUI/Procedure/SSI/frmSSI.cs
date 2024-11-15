@@ -11,8 +11,8 @@ namespace MainUI.Procedure.SSI
 {
     public partial class frmSSI : UIForm
     {
-        SerialPort port = new();
-        private SSIConfig sSIConfig = new();
+        private readonly SerialPort port = new();
+        private readonly SSIConfig sSIConfig = new();
         public frmSSI()
         {
             InitializeComponent();
@@ -20,10 +20,17 @@ namespace MainUI.Procedure.SSI
 
         public void COMInit()
         {
-            InitCOM();
-            if (!port.IsOpen)
-                port.Open();
-            port.DataReceived += SSIserialPort_DataReceived;
+            try
+            {
+                InitCOM();
+                if (!port.IsOpen)
+                    port.Open();
+                port.DataReceived += SSIserialPort_DataReceived;
+            }
+            catch (Exception ex)
+            {
+                MessageHelper.UIMessageYes(this, "初始化错误：" + ex.Message);
+            }
         }
 
         public void InitCOM()
@@ -73,7 +80,6 @@ namespace MainUI.Procedure.SSI
         private void SaveDataGridViewToCsv(DataGridView dataGridView, string filePath)
         {
             StringBuilder csvContent = new();
-
             // 添加列标题
             var columnHeaders = dataGridView.Columns.Cast<DataGridViewColumn>();
             csvContent.AppendLine(string.Join(",", columnHeaders.Select(column => $"\"{column.HeaderText}\"")));
@@ -95,7 +101,7 @@ namespace MainUI.Procedure.SSI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            SaveFileDialog saveFileDialog = new()
             {
                 Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*",
                 Title = "Save CSV File"
@@ -105,7 +111,7 @@ namespace MainUI.Procedure.SSI
             {
                 string filePath = saveFileDialog.FileName;
                 SaveDataGridViewToCsv(dataGridView1, filePath);
-                MessageBox.Show("文件保存成功!");
+                MessageHelper.UIMessageOK("文件保存成功!");
             }
         }
     }

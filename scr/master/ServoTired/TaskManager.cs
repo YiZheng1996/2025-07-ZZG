@@ -157,7 +157,7 @@ namespace ServoTired
         private void TaskLogicBig(CancellationToken cancellationToken)
         {
             Helper.servoGrp[14] = true; //伺服启停
-            BigTextChanged?.Invoke("正在初始化····\n", true);
+            BigTextChanged?.Invoke("正在初始化···\n", true);
             var listData = TiredBLL.GetServoTiredTable(0);
             BigTextChanged?.Invoke($"初始化完成···\n第{para.bigNowTest}次试验开始···\n");
             while (!cancellationToken.IsCancellationRequested && para.bigNowTest < para.TestNumber)
@@ -169,7 +169,7 @@ namespace ServoTired
                     var startInfo = pointBLL.GetPointInfo(listData[i].StartPositionID);
                     Instruct(startInfo.Instruct, 11, 9);
                     BigStepChanged?.Invoke(i, listData.Count);
-                    Delay(1, 100, cancellationToken, () => Helper.servoGrp[11].ToBool());
+                    Delay(30, 100, cancellationToken, () => Helper.servoGrp[11].ToBool());
                 }
                 if (!cancellationToken.IsCancellationRequested)   //异常或手动取消试验不记录次数
                 {
@@ -200,7 +200,8 @@ namespace ServoTired
                     var startInfo = pointBLL.GetPointInfo(listData[i].StartPositionID);
                     Instruct(startInfo.Instruct, 24, 22);
                     StepSamllChanged?.Invoke(i, listData.Count);
-                    Delay(1, 100, cancellationToken, () => Helper.servoGrp[29].ToBool());
+                    Debug.WriteLine("小闸位置到达信号：" + Helper.servoGrp[24].ToBool());
+                    Delay(30, 100, cancellationToken, () => Helper.servoGrp[24].ToBool());
                 }
                 if (!cancellationToken.IsCancellationRequested) //异常或手动取消试验不记录次数
                 {
@@ -223,6 +224,8 @@ namespace ServoTired
             Helper.servoGrp[Reset] = false;
             Task.Delay(1000).Wait();
             Helper.servoGrp[InstructPoint] = Instruct; //位置指令
+            Task.Delay(1000).Wait();
+
         }
 
         /// <summary>
@@ -234,19 +237,26 @@ namespace ServoTired
         /// <param name="conditions">条件可多个，为true退出</param>
         private static void Delay(int timeout, int breakTime, CancellationToken cancellationToken, params Func<bool>[]? conditions)
         {
-            conditions ??= [];
-            bool isTesting = true;
-            Stopwatch sw = Stopwatch.StartNew();
-            while (sw.Elapsed.TotalSeconds < timeout && isTesting && !cancellationToken.IsCancellationRequested)
+            try
             {
-                Task.Delay(breakTime).Wait();
-                foreach (var condition in conditions)
+                conditions ??= [];
+                bool isTesting = true;
+                Stopwatch sw = Stopwatch.StartNew();
+                while (sw.Elapsed.TotalSeconds < timeout && isTesting && !cancellationToken.IsCancellationRequested)
                 {
-                    if (condition()) { Debug.WriteLine("参数值：" + condition()); isTesting = false; return; }
+                    Task.Delay(breakTime).Wait();
+                    foreach (var condition in conditions)
+                    {
+                        if (condition()) { Debug.WriteLine("参数值：" + condition()); isTesting = false; return; }
+                    }
+                    cancellationToken.ThrowIfCancellationRequested();
                 }
-                cancellationToken.ThrowIfCancellationRequested();
+                sw.Reset();
             }
-            sw.Reset();
+            catch (Exception ex)
+            {
+                NlogHelper.Default.Error("延时存在问题：", ex);
+            }
         }
 
         private class TaskInfo

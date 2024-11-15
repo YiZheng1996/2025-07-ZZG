@@ -50,6 +50,15 @@ namespace MainUI.Model
         /// </summary>
         public bool IsRead { get; set; }
 
+        //public bool IsRead1
+        //{
+        //    get
+        //    {
+        //        return !IsRead.Contains("源");
+        //    }
+        //}
+
+
         /// <summary>
         /// 数据长度，一般MVB限值最大为32字节，网卡不限
         /// </summary>

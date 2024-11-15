@@ -193,7 +193,7 @@ namespace MainUI.CAN
                     FullTags tag = new();
                     int bitCount = items.Where(x => x.COMMData.Offset == i).Count();
                     List<int> bits = items.Where(x => x.COMMData.Offset == i).Select(x => x.COMMData.Bit).ToList();
-                    List<FullTags> isCt = new();
+                    List<FullTags> isCt = [];
                     for (int k = 0; k < bitCount; k++)
                     {
                         d.Port = portNum;

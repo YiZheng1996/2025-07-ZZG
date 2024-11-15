@@ -29,6 +29,7 @@ namespace MainUI.Procedure.Autogeneration
 
         public int PortIndex { get; set; }
 
+        public int Sort { get; set; }
         public string Plug { get; set; }
         public string Plugfoot { get; set; }
 

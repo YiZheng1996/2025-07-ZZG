@@ -1,13 +1,5 @@
-﻿using MainUI.BLL;
-using MainUI.CurrencyHelper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using System.Data;
 using System.Text;
-using System.Windows.Forms;
 
 namespace MainUI
 {
@@ -93,6 +85,7 @@ namespace MainUI
             Common.mTestViewModel.ModelType = uiDataGridView1.Rows[uiDataGridView1.CurrentRow.Index].Cells["TypeName"].Value.ToString();//得到当前选择的型号类别
             VarHelper.ModelName = Common.mTestViewModel.ModelName = uiDataGridView1.Rows[uiDataGridView1.CurrentRow.Index].Cells["colUsername"].Value.ToString();//得到当前选择的型号名称
             Common.mTestViewModel.Mark = uiDataGridView1.Rows[uiDataGridView1.CurrentRow.Index].Cells["colPassword"].Value.ToString();//得到当前选择的备注
+            DialogResult = DialogResult.OK;
             Close();
             Dispose();
         }
@@ -100,7 +93,6 @@ namespace MainUI
         public DataTable GetData(int TypeId, string ModelName)
         {
             ModelBLL modelBll = new();
-            DataTable dt = new();
             StringBuilder sb = new();
             if (TypeId >= 0)
             {
@@ -110,7 +102,7 @@ namespace MainUI
             {
                 sb.AppendFormat(" and Name like '%" + ModelName + "%'");
             }
-            dt = modelBll.GetAllKindByCon(sb.ToString());
+            DataTable dt = modelBll.GetAllKindByCon(sb.ToString());
             return dt;
         }
 

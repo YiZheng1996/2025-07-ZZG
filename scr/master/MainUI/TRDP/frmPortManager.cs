@@ -1,15 +1,6 @@
-﻿using MainUI.BLL;
-using MainUI.Model;
-using MainUI.UI.BLL;
-using Sunny.UI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MainUI.UI.BLL;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace MainUI.TRDP
 {
@@ -24,6 +15,7 @@ namespace MainUI.TRDP
         private void frmPortManager_Load(object sender, EventArgs e)
         {
             LoadTypeName();
+            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         void LoadTypeName()
@@ -40,6 +32,7 @@ namespace MainUI.TRDP
             {
                 cboModelName.SelectedIndex = 0;
             }
+
         }
 
         void LoadData()
@@ -49,6 +42,7 @@ namespace MainUI.TRDP
             //if (lst.Count()==0)
             //{ return; }
             dataGridView1.DataSource = lst;
+            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -80,15 +74,14 @@ namespace MainUI.TRDP
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-
             int id = Convert.ToInt32(txtID.Text);
             string portName = txtPortName.Text;
             string port = txtPort.Text;
-            int rate = (int)nudRate.Value;
-            int dataSize = (int)nudDataSize.Value;
+            int rate = nudRate.Value;
+            int dataSize = nudDataSize.Value;
             bool isRead = radHost.Checked;
 
-            Ports p = new Ports()
+            Ports p = new()
             {
                 ID = id,
                 PortName = portName,
@@ -102,7 +95,7 @@ namespace MainUI.TRDP
                 TRDPNo = Convert.ToInt32(cbotrdpno.Text)
             };
 
-            ETHPortsBLL bll = new ETHPortsBLL();
+            ETHPortsBLL bll = new();
             bll.Modify(p);
             LoadData();
             MessageBox.Show("修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -112,8 +105,8 @@ namespace MainUI.TRDP
         {
             string portName = txtPortName.Text;
             string port = txtPort.Text;
-            int rate = (int)nudRate.Value;
-            int dataSize = (int)nudDataSize.Value;
+            int rate = nudRate.Value;
+            int dataSize = nudDataSize.Value;
             bool isRead = radHost.Checked;
 
             Ports p = new()
@@ -141,7 +134,6 @@ namespace MainUI.TRDP
 
         private void btnDelPort_Click(object sender, EventArgs e)
         {
-
             int selcount = dataGridView1.SelectedRows.Count;
             if (selcount == 0)
             {
@@ -164,15 +156,13 @@ namespace MainUI.TRDP
                         tags.DelTags(cboModelName.Text, port, txtVerno.Text);
                         bll.DelPort(id, port, cboModelName.Text, txtVerno.Text, Convert.ToInt32(cboETHNo.Text));
                     }
-                    else
-                        return;
+                    else return;
                 }
-
                 LoadData();
                 MessageBox.Show("删除成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
- 
+
         private void cboModelName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -219,7 +209,7 @@ namespace MainUI.TRDP
             }
             return model.OrderBy(x => x.ID).ToList();
         }
-         
+
         private void 设置为默认版本ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ETHPortsBLL bll = new();

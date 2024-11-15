@@ -156,13 +156,14 @@ namespace MainUI.TRDP
 
         public static byte[] byteSend = new byte[64];//100
         public static byte[] byteSend2 = new byte[64];//100
+        public static byte[] byteSend3 = new byte[64];//100
+        public static byte[] byteSend4 = new byte[64];//100
         public static byte[] EBVbyteSend = new byte[20];//100
 
         /// <summary>
         /// BCU 发CCU数据
         /// </summary>
         public static byte[] BCU_CCU;
-
         public static byte[] BCU_CCU2;
         public static byte[] BCU_CCUEBV;
         /// <summary>

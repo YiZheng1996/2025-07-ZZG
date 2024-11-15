@@ -15,7 +15,7 @@
 				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_COM_ID": 1,
 				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_BAUD_RATE": 57600,
 				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_DATA_BITS": 8,
-				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_PARITY": 69,
+				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_PARITY": 78,
 				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_STOP_BITS": 1,
 				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_FLOW_CONTROL": 0,
 				"servermain.CHANNEL_SERIAL_COMMUNICATIONS_NETWORK_ADAPTER_STRING": "",
@@ -50,7 +50,7 @@
 						"servermain.DEVICE_ID_DECIMAL": 1,
 						"servermain.DEVICE_ID_OCTAL": 1,
 						"servermain.DEVICE_DATA_COLLECTION": true,
-						"servermain.DEVICE_SIMULATED": true,
+						"servermain.DEVICE_SIMULATED": false,
 						"servermain.DEVICE_SCAN_MODE": 4,
 						"servermain.DEVICE_SCAN_MODE_RATE_MS": 1000,
 						"servermain.DEVICE_SCAN_MODE_PROVIDE_INITIAL_UPDATES_FROM_CACHE": true,
@@ -4270,7 +4270,7 @@
 						"siemens_tcpip_ethernet.DEVICE_S7_COMMUNICATIONS_200_REMOTE_TSAP": 19799,
 						"siemens_tcpip_ethernet.DEVICE_S7_COMMUNICATIONS_300_400_1200_1500_LINK_TYPE": 3,
 						"siemens_tcpip_ethernet.DEVICE_S7_COMMUNICATIONS_CPU_RACK": 0,
-						"siemens_tcpip_ethernet.DEVICE_S7_COMMUNICATIONS_CPU_SLOT": 2,
+						"siemens_tcpip_ethernet.DEVICE_S7_COMMUNICATIONS_CPU_SLOT": 1,
 						"siemens_tcpip_ethernet.DEVICE_ADDRESSING_BYTE_ORDER": 0,
 						"siemens_tcpip_ethernet.DEVICE_TAG_IMPORT_TYPE": 1,
 						"siemens_tcpip_ethernet.DEVICE_TAG_IMPORT_CODE_PAGE": 4294967295,
@@ -4591,6 +4591,134 @@
 									{
 										"common.ALLTYPES_NAME": "Gain37",
 										"servermain.TAG_ADDRESS": "DB4.DBD148",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain38",
+										"servermain.TAG_ADDRESS": "DB4.DBD152",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain39",
+										"servermain.TAG_ADDRESS": "DB4.DBD156",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain40",
+										"servermain.TAG_ADDRESS": "DB4.DBD160",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain41",
+										"servermain.TAG_ADDRESS": "DB4.DBD164",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain42",
+										"servermain.TAG_ADDRESS": "DB4.DBD168",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain43",
+										"servermain.TAG_ADDRESS": "DB4.DBD172",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain44",
+										"servermain.TAG_ADDRESS": "DB4.DBD176",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain45",
+										"servermain.TAG_ADDRESS": "DB4.DBD180",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain46",
+										"servermain.TAG_ADDRESS": "DB4.DBD184",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain47",
+										"servermain.TAG_ADDRESS": "DB4.DBD188",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain48",
+										"servermain.TAG_ADDRESS": "DB4.DBD192",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain49",
+										"servermain.TAG_ADDRESS": "DB4.DBD196",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain50",
+										"servermain.TAG_ADDRESS": "DB4.DBD200",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain51",
+										"servermain.TAG_ADDRESS": "DB4.DBD204",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain52",
+										"servermain.TAG_ADDRESS": "DB4.DBD208",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Gain53",
+										"servermain.TAG_ADDRESS": "DB4.DBD212",
 										"servermain.TAG_DATA_TYPE": 8,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
@@ -4939,6 +5067,134 @@
 										"servermain.TAG_SCALING_TYPE": 0
 									},
 									{
+										"common.ALLTYPES_NAME": "MAI038",
+										"servermain.TAG_ADDRESS": "DB2.DBD152",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI039",
+										"servermain.TAG_ADDRESS": "DB2.DBD156",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI040",
+										"servermain.TAG_ADDRESS": "DB2.DBD160",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI041",
+										"servermain.TAG_ADDRESS": "DB2.DBD164",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI042",
+										"servermain.TAG_ADDRESS": "DB2.DBD168",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI043",
+										"servermain.TAG_ADDRESS": "DB2.DBD172",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI044",
+										"servermain.TAG_ADDRESS": "DB2.DBD176",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI045",
+										"servermain.TAG_ADDRESS": "DB2.DBD180",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI046",
+										"servermain.TAG_ADDRESS": "DB2.DBD184",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI047",
+										"servermain.TAG_ADDRESS": "DB2.DBD188",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI048",
+										"servermain.TAG_ADDRESS": "DB2.DBD192",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI049",
+										"servermain.TAG_ADDRESS": "DB2.DBD196",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI050",
+										"servermain.TAG_ADDRESS": "DB2.DBD200",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI051",
+										"servermain.TAG_ADDRESS": "DB2.DBD204",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI052",
+										"servermain.TAG_ADDRESS": "DB2.DBD208",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "MAI053",
+										"servermain.TAG_ADDRESS": "DB2.DBD212",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
 										"common.ALLTYPES_NAME": "Zero00",
 										"servermain.TAG_ADDRESS": "DB3.DBD0",
 										"servermain.TAG_DATA_TYPE": 8,
@@ -5237,6 +5493,134 @@
 									{
 										"common.ALLTYPES_NAME": "Zero37",
 										"servermain.TAG_ADDRESS": "DB3.DBD148",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero38",
+										"servermain.TAG_ADDRESS": "DB3.DBD152",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero39",
+										"servermain.TAG_ADDRESS": "DB3.DBD156",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero40",
+										"servermain.TAG_ADDRESS": "DB3.DBD160",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero41",
+										"servermain.TAG_ADDRESS": "DB3.DBD164",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero42",
+										"servermain.TAG_ADDRESS": "DB3.DBD168",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero43",
+										"servermain.TAG_ADDRESS": "DB3.DBD172",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero44",
+										"servermain.TAG_ADDRESS": "DB3.DBD176",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero45",
+										"servermain.TAG_ADDRESS": "DB3.DBD180",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero46",
+										"servermain.TAG_ADDRESS": "DB3.DBD184",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero47",
+										"servermain.TAG_ADDRESS": "DB3.DBD188",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero48",
+										"servermain.TAG_ADDRESS": "DB3.DBD192",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero49",
+										"servermain.TAG_ADDRESS": "DB3.DBD196",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero50",
+										"servermain.TAG_ADDRESS": "DB3.DBD200",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero51",
+										"servermain.TAG_ADDRESS": "DB3.DBD204",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero52",
+										"servermain.TAG_ADDRESS": "DB3.DBD208",
+										"servermain.TAG_DATA_TYPE": 8,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "Zero53",
+										"servermain.TAG_ADDRESS": "DB3.DBD212",
 										"servermain.TAG_DATA_TYPE": 8,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
@@ -6664,7 +7048,7 @@
 										"common.ALLTYPES_NAME": "P000",
 										"common.ALLTYPES_DESCRIPTION": "9；紧急制动的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD0",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6673,7 +7057,7 @@
 										"common.ALLTYPES_NAME": "P001",
 										"common.ALLTYPES_DESCRIPTION": "8；重连位的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD4",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6682,7 +7066,7 @@
 										"common.ALLTYPES_NAME": "P002",
 										"common.ALLTYPES_DESCRIPTION": "7；抑制位的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD8",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6691,34 +7075,34 @@
 										"common.ALLTYPES_NAME": "P003",
 										"common.ALLTYPES_DESCRIPTION": "6；全制动的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD12",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
 									},
 									{
 										"common.ALLTYPES_NAME": "P004",
-										"common.ALLTYPES_DESCRIPTION": "5；常用制动区的绝对值位置3",
+										"common.ALLTYPES_DESCRIPTION": "5；常用制动区的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD16",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
 									},
 									{
 										"common.ALLTYPES_NAME": "P005",
-										"common.ALLTYPES_DESCRIPTION": "4；常用制动区的绝对值位置2",
+										"common.ALLTYPES_DESCRIPTION": "4；备用",
 										"servermain.TAG_ADDRESS": "DB26.DBD48",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
 									},
 									{
 										"common.ALLTYPES_NAME": "P006",
-										"common.ALLTYPES_DESCRIPTION": "3；常用制动区的绝对值位置1",
+										"common.ALLTYPES_DESCRIPTION": "3；备用",
 										"servermain.TAG_ADDRESS": "DB26.DBD52",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6727,7 +7111,7 @@
 										"common.ALLTYPES_NAME": "P007",
 										"common.ALLTYPES_DESCRIPTION": "2；初制动的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD20",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6736,7 +7120,7 @@
 										"common.ALLTYPES_NAME": "P008",
 										"common.ALLTYPES_DESCRIPTION": "1；运转位的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD24",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6753,8 +7137,8 @@
 									{
 										"common.ALLTYPES_NAME": "P010",
 										"common.ALLTYPES_DESCRIPTION": "单位ms",
-										"servermain.TAG_ADDRESS": "DB17.DBW54",
-										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_ADDRESS": "DB17.DBD54",
+										"servermain.TAG_DATA_TYPE": 7,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6781,7 +7165,7 @@
 										"common.ALLTYPES_NAME": "P013",
 										"common.ALLTYPES_DESCRIPTION": "大闸当前位置",
 										"servermain.TAG_ADDRESS": "DB17.DBD22",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6844,7 +7228,7 @@
 										"common.ALLTYPES_NAME": "P020",
 										"common.ALLTYPES_DESCRIPTION": "1；小闸运转位的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD28",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6853,7 +7237,7 @@
 										"common.ALLTYPES_NAME": "P021",
 										"common.ALLTYPES_DESCRIPTION": "2；小闸全制动的绝对值位置",
 										"servermain.TAG_ADDRESS": "DB26.DBD32",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6861,7 +7245,7 @@
 									{
 										"common.ALLTYPES_NAME": "P022",
 										"common.ALLTYPES_DESCRIPTION": "1-2代表运转位-全制动",
-										"servermain.TAG_ADDRESS": "DB26.DBW52",
+										"servermain.TAG_ADDRESS": "DB27.DBW52",
 										"servermain.TAG_DATA_TYPE": 5,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
@@ -6870,8 +7254,8 @@
 									{
 										"common.ALLTYPES_NAME": "P023",
 										"common.ALLTYPES_DESCRIPTION": "单位ms",
-										"servermain.TAG_ADDRESS": "DB26.DBW54",
-										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_ADDRESS": "DB27.DBD54",
+										"servermain.TAG_DATA_TYPE": 7,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0
@@ -6898,7 +7282,7 @@
 										"common.ALLTYPES_NAME": "P026",
 										"common.ALLTYPES_DESCRIPTION": "小闸当前位置",
 										"servermain.TAG_ADDRESS": "DB27.DBD22",
-										"servermain.TAG_DATA_TYPE": 7,
+										"servermain.TAG_DATA_TYPE": 6,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0

@@ -1,23 +1,15 @@
-﻿using MainUI.CurrencyHelper;
-using Sunny.UI.Win32;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.IO;
 
 namespace MainUI.Procedure
 {
     internal static class DataGatherHelper
     {
+        public static string filePath { get; set; }
         //列名
-        public static List<string> strings = new() { "时间", "试验台传感器", "MVB数据", "CAN数据", "以太网数据", "预留1", "预留2", "预留3", "预留4" };
+        public static List<string> strings = ["时间", "试验台传感器", "MVB数据", "CAN数据", "以太网数据", "预留1", "预留2", "预留3", "预留4"];
         public static ConcurrentDictionary<string, ConcurrentDictionary<string, string>> keyValuePairs = new();
         public static CancellationTokenSource DataCts = new();
-        public static ManualResetEvent manual = new(true);
+
         /// <summary>
         /// 添加实时数据集合
         /// </summary>
@@ -33,10 +25,17 @@ namespace MainUI.Procedure
         /// </summary>
         public static Task DataGather()
         {
+            string DirectryPath = Application.StartupPath + "Autosave\\";
             ConcurrentDictionary<string, string> pairs = new();
-            string fileName = DateTime.Now.ToString("yyyy_MM_dd") + ".csv";
-            string filePath = Application.StartupPath + "Autosave\\" + fileName;
+            if (!Directory.Exists(DirectryPath + VarHelper.ModelName))
+                Directory.CreateDirectory(DirectryPath  + VarHelper.ModelName);
+            string DirectryDatePath = DirectryPath + VarHelper.ModelName + "\\" + DateTime.Now.ToString("yyyy-MM-dd");
+            if (!Directory.Exists(DirectryDatePath))
+                Directory.CreateDirectory(DirectryDatePath);
+            string fileName = DateTime.Now.ToString("HH：mm：ss") + ".csv";
+            filePath = DirectryDatePath + "\\" + fileName;
             CSVHelper.CreateFile(filePath);
+            DataCts = new CancellationTokenSource();
             CancellationToken Token = DataCts.Token;
             return Task.Factory.StartNew(() =>
                  {
@@ -45,9 +44,9 @@ namespace MainUI.Procedure
                          var timeStamp = DateTime.Now.ToString("yyyy:MM:dd HH:mm:ss fff");
                          pairs.AddOrUpdate("TimeNow", timeStamp, (key, value) => timeStamp);
                          AddData("ATime", pairs);
-                         var a = CSVHelper.Save(filePath, keyValuePairs);
+                         var keyValue = CSVHelper.Save(filePath, keyValuePairs);
                          Task.Delay(200).Wait();
-                         manual.WaitOne();
+                         //manual.WaitOne();
                      }
                  }, Token);
         }

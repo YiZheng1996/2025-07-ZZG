@@ -28,56 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnColse = new Sunny.UI.UIButton();
-            this.uiPanel1 = new Sunny.UI.UIPanel();
-            this.SuspendLayout();
+            btnColse = new UIButton();
+            uiPanel1 = new UIPanel();
+            SuspendLayout();
             // 
             // btnColse
             // 
-            this.btnColse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnColse.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnColse.Location = new System.Drawing.Point(550, 767);
-            this.btnColse.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnColse.Name = "btnColse";
-            this.btnColse.Size = new System.Drawing.Size(206, 40);
-            this.btnColse.TabIndex = 0;
-            this.btnColse.Text = "退 出";
-            this.btnColse.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnColse.Click += new System.EventHandler(this.btnColse_Click);
+            btnColse.Cursor = Cursors.Hand;
+            btnColse.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnColse.Location = new Point(585, 763);
+            btnColse.MinimumSize = new Size(1, 1);
+            btnColse.Name = "btnColse";
+            btnColse.Size = new Size(206, 40);
+            btnColse.TabIndex = 0;
+            btnColse.Text = "退 出";
+            btnColse.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnColse.Click += btnColse_Click;
             // 
             // uiPanel1
             // 
-            this.uiPanel1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel1.Location = new System.Drawing.Point(0, 37);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Radius = 0;
-            this.uiPanel1.Size = new System.Drawing.Size(1323, 720);
-            this.uiPanel1.TabIndex = 1;
-            this.uiPanel1.Text = null;
-            this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            uiPanel1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiPanel1.Location = new Point(0, 35);
+            uiPanel1.Margin = new Padding(4, 5, 4, 5);
+            uiPanel1.MinimumSize = new Size(1, 1);
+            uiPanel1.Name = "uiPanel1";
+            uiPanel1.Radius = 0;
+            uiPanel1.Size = new Size(1381, 720);
+            uiPanel1.TabIndex = 1;
+            uiPanel1.Text = null;
+            uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // frmIOBox
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1323, 820);
-            this.ControlBox = false;
-            this.Controls.Add(this.uiPanel1);
-            this.Controls.Add(this.btnColse);
-            this.Font = new System.Drawing.Font("宋体", 11F);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmIOBox";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Text = "I/O";
-            this.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(76)))));
-            this.TopMost = true;
-            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1323, 730);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = AutoScaleMode.None;
+            AutoSize = true;
+            ClientSize = new Size(1383, 820);
+            ControlBox = false;
+            Controls.Add(uiPanel1);
+            Controls.Add(btnColse);
+            Font = new Font("宋体", 11F);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "frmIOBox";
+            Padding = new Padding(0, 30, 0, 0);
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            Text = "I/O";
+            TitleHeight = 30;
+            ZoomScaleRect = new Rectangle(15, 15, 1323, 730);
+            ResumeLayout(false);
         }
 
         #endregion

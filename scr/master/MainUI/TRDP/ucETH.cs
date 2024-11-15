@@ -122,6 +122,7 @@ namespace MainUI.TRDP
                     try
                     {
                         DataTable ExcelTable = ExcelHelper.GetExcelDataTable(ExcelPath);
+                        var cont = ExcelTable.Rows.Count;
                         DataTable dt = imp.ModifyColumNmae(ExcelTable);
                         imp.InsertExcelData(ExcelTable, cboModelName.Text);
                         int cnt = ExcelTable.Rows.Count;

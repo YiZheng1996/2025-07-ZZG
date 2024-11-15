@@ -1,15 +1,4 @@
-﻿using MainUI.Config;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Timers;
-using MainUI.CurrencyHelper;
-namespace MainUI.Procedure.Test
+﻿namespace MainUI.Procedure.Test
 {
     /// <summary>
     /// 气密性试验
@@ -32,7 +21,7 @@ namespace MainUI.Procedure.Test
 
                 TestStatus(true);
                 TxtTips("气密性试验开始");
-              
+
 
                 TestStatus(false);
                 TxtTips("气密性试验结束");

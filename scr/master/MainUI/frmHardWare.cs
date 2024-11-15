@@ -1,20 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MainUI.Modules;
-using RW.Modules;
-using System.Threading;
-using RW.EventLog;
-using MainUI.Config;
-using System.Diagnostics;
-using MainUI.Procedure;
-using MainUI.CurrencyHelper;
+﻿using Sunny.UI;
 
 namespace MainUI
 {
@@ -38,6 +22,8 @@ namespace MainUI
             AIgrp.AIvalueGrpChanged += AIgrp_AIvalueGrpChanged;
             InitZeroGain();
             timer1.Enabled = true;
+            grpAI.AutoScroll = false;
+            panel1.AutoScroll = false;
         }
 
         private void AIgrp_AIvalueGrpChanged(object sender, int index, double value)
@@ -118,7 +104,7 @@ namespace MainUI
         {
             //AI
             dicAI.Clear();
-            foreach (Control item in grpAI.Controls)
+            foreach (Control item in panel3.Controls)
             {
                 if (item is UCCalibration)
                 {
@@ -171,9 +157,6 @@ namespace MainUI
                 Debug.WriteLine(err);
             }
         }
-
-
-
 
     }
 }

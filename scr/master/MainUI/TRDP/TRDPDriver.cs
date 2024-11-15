@@ -1,15 +1,8 @@
-﻿using RW.Core;
+﻿using MainUI.TRDP.Model;
+using RW.Core;
 using RW.Driver;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Sockets;
 using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using MainUI.TRDP.Model;
+using System.Net.Sockets;
 
 namespace MainUI.TRDP
 {
@@ -163,8 +156,7 @@ namespace MainUI.TRDP
         {
             sendip = new IPEndPoint(IPAddress.Parse(desIP), desport);//发送数据所用的端口，TRDP默认IP为192.168.1.1
             reviceip = new IPEndPoint(IPAddress.Parse(localIP), localPort);//表示本机的指定端口，用于监听
-
-
+            //udp?.Close();
             udp.Client.Bind(reviceip);
         }
         public void Connect()
@@ -257,7 +249,33 @@ namespace MainUI.TRDP
             }
         }
 
+        public void Write_old(byte[] data, string TRDPNO, string ETHPassage)
+        {
+            lock (locker)
+            {
+                string txt = BytesToHexString(data, " ");
+                Debug.WriteLine($"TRDP模块发送[网关{TRDPNO},通道{ETHPassage}]：" + txt);
+                int count = udp.Send(data, data.Length, sendip);
+            }
+        }
 
+        // 将字节数组转换成16进制数，并在中间插入指定的字符
+        public static string BytesToHexString(byte[] bytes, string insert)
+        {
+            string text = "";
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                text += $"{i}:{Convert.ToString(bytes[i], 16).PadLeft(2, '0')}";
+                text += insert;
+            }
+
+            if (text.Length > 0)
+            {
+                text = text[..^insert.Length];
+            }
+
+            return text.ToUpper();
+        }
 
 
         public bool IsInitialized
@@ -354,6 +372,14 @@ namespace MainUI.TRDP
             //bool b = dicWait[(TRDPCommandTypes)send.CommandType].WaitOne(ReadTimeout);
 
             //if (!b) throw new TimeoutException("未能从TCMS接收到数据");
+        }
+
+        public void SetToTCMS_old(ToTCMSSend send, string TRDPNO, string ETHPassage)
+        {
+            CacheSend = send;
+            this.Write_old(send.ToBytes(), TRDPNO, ETHPassage);
+            dicWait[(TRDPCommandTypes)send.CommandType].Reset();
+            OnError();
         }
 
         public void SetToTCMS_old(byte[] send)

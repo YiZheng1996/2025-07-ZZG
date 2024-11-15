@@ -28,66 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnSystem = new Sunny.UI.UIButton();
-            btnCommunicateMVB = new Sunny.UI.UIButton();
-            btnCommunicateTRDP = new Sunny.UI.UIButton();
-            btnCommunicateCAN = new Sunny.UI.UIButton();
+            btnSystem = new UIButton();
+            btnCommunicateMVB = new UIButton();
+            btnCommunicateTRDP = new UIButton();
+            btnCommunicateCAN = new UIButton();
             SuspendLayout();
             // 
             // btnSystem
             // 
-            btnSystem.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnSystem.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnSystem.Location = new System.Drawing.Point(108, 71);
-            btnSystem.MinimumSize = new System.Drawing.Size(1, 1);
+            btnSystem.Cursor = Cursors.Hand;
+            btnSystem.Font = new Font("宋体", 12F);
+            btnSystem.Location = new Point(108, 71);
+            btnSystem.MinimumSize = new Size(1, 1);
             btnSystem.Name = "btnSystem";
-            btnSystem.Size = new System.Drawing.Size(147, 38);
+            btnSystem.Size = new Size(147, 38);
             btnSystem.TabIndex = 0;
             btnSystem.Text = "系统参数设置";
+            btnSystem.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnSystem.Click += btnSystem_Click;
             // 
             // btnCommunicateMVB
             // 
-            btnCommunicateMVB.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnCommunicateMVB.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnCommunicateMVB.Location = new System.Drawing.Point(108, 135);
-            btnCommunicateMVB.MinimumSize = new System.Drawing.Size(1, 1);
+            btnCommunicateMVB.Cursor = Cursors.Hand;
+            btnCommunicateMVB.Font = new Font("宋体", 12F);
+            btnCommunicateMVB.Location = new Point(108, 207);
+            btnCommunicateMVB.MinimumSize = new Size(1, 1);
             btnCommunicateMVB.Name = "btnCommunicateMVB";
-            btnCommunicateMVB.Size = new System.Drawing.Size(147, 38);
+            btnCommunicateMVB.Size = new Size(147, 38);
             btnCommunicateMVB.TabIndex = 1;
             btnCommunicateMVB.Text = "MVB参数设置";
+            btnCommunicateMVB.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnCommunicateMVB.Click += btnCommunicateMVB_Click;
             // 
             // btnCommunicateTRDP
             // 
-            btnCommunicateTRDP.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnCommunicateTRDP.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnCommunicateTRDP.Location = new System.Drawing.Point(108, 206);
-            btnCommunicateTRDP.MinimumSize = new System.Drawing.Size(1, 1);
+            btnCommunicateTRDP.Cursor = Cursors.Hand;
+            btnCommunicateTRDP.Font = new Font("宋体", 12F);
+            btnCommunicateTRDP.Location = new Point(108, 139);
+            btnCommunicateTRDP.MinimumSize = new Size(1, 1);
             btnCommunicateTRDP.Name = "btnCommunicateTRDP";
-            btnCommunicateTRDP.Size = new System.Drawing.Size(147, 38);
+            btnCommunicateTRDP.Size = new Size(147, 38);
             btnCommunicateTRDP.TabIndex = 2;
             btnCommunicateTRDP.Text = "TRDP参数设置";
-            btnCommunicateTRDP.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCommunicateTRDP.Click += btnCommunicateTRDP_Click;
             // 
             // btnCommunicateCAN
             // 
-            btnCommunicateCAN.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnCommunicateCAN.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnCommunicateCAN.Location = new System.Drawing.Point(108, 277);
-            btnCommunicateCAN.MinimumSize = new System.Drawing.Size(1, 1);
+            btnCommunicateCAN.Cursor = Cursors.Hand;
+            btnCommunicateCAN.Font = new Font("宋体", 12F);
+            btnCommunicateCAN.Location = new Point(108, 275);
+            btnCommunicateCAN.MinimumSize = new Size(1, 1);
             btnCommunicateCAN.Name = "btnCommunicateCAN";
-            btnCommunicateCAN.Size = new System.Drawing.Size(147, 38);
+            btnCommunicateCAN.Size = new Size(147, 38);
             btnCommunicateCAN.TabIndex = 3;
             btnCommunicateCAN.Text = "CAN参数设置";
-            btnCommunicateCAN.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnCommunicateCAN.Click += btnCommunicateCAN_Click;
             // 
             // frmParameterSettings
             // 
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            ClientSize = new System.Drawing.Size(376, 351);
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(376, 351);
             Controls.Add(btnCommunicateCAN);
             Controls.Add(btnCommunicateTRDP);
             Controls.Add(btnCommunicateMVB);
@@ -99,10 +99,10 @@
             ShowIcon = false;
             ShowInTaskbar = false;
             ShowRect = false;
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "参数设置";
-            TextAlignment = System.Drawing.StringAlignment.Center;
-            ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 480);
+            TextAlignment = StringAlignment.Center;
+            ZoomScaleRect = new Rectangle(15, 15, 800, 480);
             ResumeLayout(false);
         }
 

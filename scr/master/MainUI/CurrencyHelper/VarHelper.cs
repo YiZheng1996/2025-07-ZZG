@@ -25,6 +25,7 @@ namespace MainUI.CurrencyHelper
         public static OleDB Database = new();
         public static string ConnectionString = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\DB.mdb;jet oledb:database password=ok";  //Acess数据库连接字符串
 
+        //public static string ConnectionString => Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
         public static string sQLiteConnectionString = @"Data Source=TestBed.db;";  //Sqlite数据库连接字符串
         public static SQLiteDB sQLiteDB = new();
 
@@ -172,6 +173,20 @@ namespace MainUI.CurrencyHelper
             return ret;
         }
 
+        public static string[] GetBit(string resul)
+        {
+            string[] strArray = resul.Split((string[])([","]), StringSplitOptions.RemoveEmptyEntries);
+            try
+            {
+                return strArray;
+            }
+            catch (Exception ex)
+            {
+                NlogHelper.Default.Error("截取错误：", ex);
+                MessageBox.Show("截取错误：" + ex);
+            }
+            return strArray;
+        }
     }
     public class ListPoint
     {

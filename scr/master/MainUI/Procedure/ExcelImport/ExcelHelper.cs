@@ -451,9 +451,9 @@ namespace MainUI.Procedure.ExcelImport
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
 
             //定位在第一个sheet

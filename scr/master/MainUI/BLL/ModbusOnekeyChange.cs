@@ -214,7 +214,7 @@ namespace MainUI.BLL
         /// </summary>
         public static void AllSuspendInMidair()
         {
-            bool[] value = new bool[] { true, false };
+            bool[] value = [false, false];
             foreach (var item in dicChangeDIDO)
             {
                 int cardNO = item.Key - 1;

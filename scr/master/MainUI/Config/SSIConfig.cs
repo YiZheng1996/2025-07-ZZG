@@ -19,7 +19,7 @@ namespace MainUI.Config
         /// 端口号
         /// </summary>
         [IniKeyName("端口号")]
-        public string COMPort => "COM01";
+        public string COMPort { get; set; }
 
         /// <summary>
         /// 波特率

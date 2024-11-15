@@ -1,10 +1,9 @@
 ﻿using AntdUI;
 using MainUI.Config;
+using OPCAutomation;
 using RW;
 using ServoTired.BLL;
 using Sunny.UI;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ServoTired
 {
@@ -19,6 +18,8 @@ namespace ServoTired
         {
             InitStep();
             Helper.Init();
+            Helper.servoGrp.Fresh();
+            Helper.opcDIGroup.Fresh();
             taskManager.BigTextChanged += TaskManager_BigTextChanged;
             taskManager.SmallTextChanged += TaskManager_SmallTextChanged;
             taskManager.BigStepChanged += TaskManager_BigStepChanged;
@@ -129,18 +130,28 @@ namespace ServoTired
         {
             switch (index)
             {
-                case 17:
+                case 13:
+                    LabBigPosition.Value = value.ToDouble();
+                    break;
+
+                case 14:
+                    btnServoEnableBig.Type = value.ToBool() ? TTypeMini.Success : TTypeMini.Default;
+                    break;
+                case 16:
                     if (value.ToBool())
                     {
                         btnBigGate.Invoke(() =>
                         {
-                            btnBigGate_Click(null, null);
+                            isOperationBigStarted = true;
+                            IsBigTestStart();
                         });
                     }
+                    swBigServoERR.Switch = value.ToBool();
                     break;
                 case 19:
                     if (value.ToString() != "28647")
-                        MessageHelper.MessageOK(this, $"大闸伺服故障，故障代码为：{value}");
+                        TaskManager_BigTextChanged($"大闸伺服故障，故障代码为：{value}\n");
+                    //MessageHelper.MessageOK(this, $"大闸伺服故障，故障代码为：{value}");
                     break;
                 default:
                     break;
@@ -164,18 +175,27 @@ namespace ServoTired
         {
             switch (index)
             {
+                case 26:
+                    LabSmallPosition.Value = value.ToDouble();
+                    break;
+                case 27:
+                    btnServoEnableSmall.Type = value.ToBool() ? TTypeMini.Success : TTypeMini.Default;
+                    break;
                 case 29:
                     if (value.ToBool())
                     {
                         btnBigGate.Invoke(() =>
                         {
-                            btnSmallGate_Click(null, null);
+                            isOperationSmallStarted = true;
+                            IsSmallTestStart();
                         });
                     }
+                    swSmallServoERR.Switch = value.ToBool();
                     break;
                 case 32:
                     if (value.ToString() != "28647")
-                        MessageHelper.MessageOK(this, $"小闸伺服故障，故障代码为：{value}");
+                        TaskManager_SmallTextChanged($"小闸伺服故障，故障代码为：{value}\n");
+                    //MessageHelper.MessageOK(this, $"小闸伺服故障，故障代码为：{value}");
                     break;
                 default:
                     break;
@@ -185,7 +205,12 @@ namespace ServoTired
 
         #region 大闸
         bool isOperationBigStarted = false;
-        private async void btnBigGate_Click(object sender, EventArgs e)
+        private void btnBigGate_Click(object sender, EventArgs e)
+        {
+            IsBigTestStart();
+        }
+
+        private async void IsBigTestStart()
         {
             if (!isOperationBigStarted)
             {
@@ -193,13 +218,14 @@ namespace ServoTired
                 taskManager.StartTask("大闸疲劳");
                 isOperationBigStarted = true;
                 btnBigGate.Text = "结 束 试 验";
-                labBigTitle.Text = $"大闸疲劳试验\n需要完成{para.TestNumber}次疲劳试验！";
+                //labBigTitle.Text = $"大闸疲劳试验\n需要完成{para.TestNumber}次疲劳试验！";
             }
             else
             {
                 await taskManager.StopTaskAsync("大闸疲劳");
                 isOperationBigStarted = false;
                 btnBigGate.Text = "开 始 试 验";
+                Helper.servoGrp[14] = false;
             }
         }
 
@@ -221,7 +247,12 @@ namespace ServoTired
 
         #region 小闸
         bool isOperationSmallStarted = false;
-        private async void btnSmallGate_Click(object sender, EventArgs e)
+        private void btnSmallGate_Click(object sender, EventArgs e)
+        {
+            IsSmallTestStart();
+        }
+
+        private async void IsSmallTestStart()
         {
             var startColor = Color.FromArgb(255, 128, 128);
             var stopColor = Color.FromArgb(110, 190, 40);
@@ -231,13 +262,14 @@ namespace ServoTired
                 taskManager.StartTask("小闸疲劳");
                 isOperationSmallStarted = true;
                 btnSmallGate.Text = "结 束 试 验";
-                labSmallTitle.Text = $"小闸疲劳试验\n需要完成{para.TestNumber}次疲劳试验！";
+                //labSmallTitle.Text = $"小闸疲劳试验\n需要完成{para.TestNumber}次疲劳试验！";
             }
             else
             {
                 await taskManager.StopTaskAsync("小闸疲劳");
                 isOperationSmallStarted = false;
                 btnSmallGate.Text = "开 始 试 验";
+                Helper.servoGrp[27] = false; //伺服启停
             }
         }
 
@@ -273,22 +305,20 @@ namespace ServoTired
             if (!Dialog("是否进行位置校准？")) return;
             PointBLL pointBLL = new();
             ServoTiredBLL TiredBLL = new();
-            var bigPosition = Helper.servoGrp[13]; //大闸实时位置
             var bigListData = TiredBLL.GetServoTiredTable(0);
             for (int i = 0; i < bigListData?.Count; i++)
             {
                 var startInfo = pointBLL.GetPointInfo(bigListData[i].StartPositionID);
                 if (Dialog($"大闸校准\n请将大闸档位手动推至[{startInfo.GearPposition}]后，点击[确认]按钮！"))
-                    Helper.servoGrp[startInfo.Point] = bigPosition;
+                    Helper.servoGrp[startInfo.Point] = Helper.servoGrp[13];
             }
 
-            var smallPosition = Helper.servoGrp[26]; //小闸实时位置
             var smallListData = TiredBLL.GetServoTiredTable(1);
             for (int i = 0; i < smallListData?.Count; i++)
             {
                 var startInfo = pointBLL.GetPointInfo(smallListData[i].StartPositionID);
                 if (Dialog($"小闸校准\n请将小闸档位手动推至[{startInfo.GearPposition}]后，点击[确认]按钮！"))
-                    Helper.servoGrp[startInfo.Point] = bigPosition;
+                    Helper.servoGrp[startInfo.Point] = Helper.servoGrp[26];
             }
         }
 
@@ -305,6 +335,40 @@ namespace ServoTired
             Dispose();
             isOperationBigStarted = false;
             isOperationSmallStarted = false;
+        }
+
+        private void btnServoEnableBig_Click(object sender, EventArgs e)
+        {
+            var ServoEnable = Helper.servoGrp[14].ToBool();
+            Helper.servoGrp[14] = !ServoEnable;
+        }
+
+        private async void btnBigFaultReset_Click(object sender, EventArgs e)
+        {
+            await DoSomethingAsync((AntdUI.Button)sender, 12);
+        }
+
+        private async Task DoSomethingAsync(AntdUI.Button btn, int point)
+        {
+            btn.Type = TTypeMini.Success;
+            //btn.Enabled = false;
+            Helper.servoGrp[point] = true;
+            await Task.Delay(1000);
+            Helper.servoGrp[point] = false;
+            btn.Type = TTypeMini.Default;
+            //btn.Enabled = true;
+        }
+
+        private void btnServoEnableSmall_Click(object sender, EventArgs e)
+        {
+            var ServoEnable = Helper.servoGrp[27].ToBool();
+            Helper.servoGrp[27] = !ServoEnable;
+        }
+
+        private async void btnSmallFaultReset_Click(object sender, EventArgs e)
+        {
+            await DoSomethingAsync((AntdUI.Button)sender, 25);
+
         }
     }
 }

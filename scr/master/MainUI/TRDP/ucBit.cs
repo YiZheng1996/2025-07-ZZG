@@ -1,16 +1,5 @@
 ﻿using RW;
-using RW.Modules;
-using RW.UI;
-using Sunny.UI;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MainUI.TRDP
 {
@@ -55,6 +44,8 @@ namespace MainUI.TRDP
         public int Port { get; set; }
         [DefaultValue(0)]
         public int TRDPNo { get; set; }
+        [DefaultValue(0)]
+        public int ETHPassage { get; set; }
         [DefaultValue(null)]
         public bool DataRange { get; set; }
         private int offset;
@@ -157,7 +148,7 @@ namespace MainUI.TRDP
             // 
             button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             button1.BackColor = SystemColors.Control;
-            button1.Font = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Font = new Font("宋体", 9F);
             button1.Location = new Point(0, 18);
             button1.Margin = new Padding(0);
             button1.MinimumSize = new Size(1, 1);
@@ -172,6 +163,7 @@ namespace MainUI.TRDP
             // 
             BackColor = Color.FromArgb(0, 190, 172);
             Controls.Add(button1);
+            ForeColor = Color.Black;
             Name = "ucBit";
             Size = new Size(115, 61);
             Load += ucBit_Load;

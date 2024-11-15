@@ -51,9 +51,7 @@
     <Compile Update="Procedure\Autogeneration\ucUIDI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Procedure\Autogeneration\ucIOBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="Procedure\Autogeneration\ucIOBox.cs" />
     <Compile Update="Procedure\Autogeneration\ucUIDO.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -78,9 +76,10 @@
     <Compile Update="Procedure\User\ucUserManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ucHMI.cs">
+    <Compile Update="TRDP\ucTwoBit.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ucHMI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\backimg.png" />
@@ -99,6 +98,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="antdui" Version="1.5.8" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.7">
       <TreatAsUsed>true</TreatAsUsed>

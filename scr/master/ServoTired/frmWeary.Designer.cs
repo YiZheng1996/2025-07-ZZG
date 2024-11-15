@@ -250,6 +250,5 @@
         private Sunny.UI.UIButton btnParaSet;
         private Sunny.UI.UIButton btnClose;
         private Sunny.UI.UIButton btnCalibration;
-        private AntdUI.Steps stepsBig;
     }
 }

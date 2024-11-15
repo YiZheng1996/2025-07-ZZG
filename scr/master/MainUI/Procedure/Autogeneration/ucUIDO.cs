@@ -1,9 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using Sunny.UI;
-using DevComponents.DotNetBar;
-using System;
 
 namespace MainUI.Procedure.Autogeneration
 {
@@ -36,6 +31,8 @@ namespace MainUI.Procedure.Autogeneration
         public int Index { get; set; }
         public string Plug { get; set; }
         public string Plugfoot { get; set; }
+
+        public int Sort { get; set; }
 
         public override string Text
         {

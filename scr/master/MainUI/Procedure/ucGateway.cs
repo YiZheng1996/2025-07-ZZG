@@ -1,24 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using RW.UI.Manager;
-using MainUI.Model;
-using MainUI.BLL;
-using MainUI.Config;
-using MainUI.Properties;
-using NPOI.SS.Formula.Functions;
-
-namespace MainUI.Procedure
+﻿namespace MainUI.Procedure
 {
     public partial class ucGateway : ucBaseManagerUI
     {
-        GatewayConfig gtw = null;
+        ZZCTRDPConfig gtw = null;
         public ucGateway()
         {
             InitializeComponent();
@@ -34,14 +18,14 @@ namespace MainUI.Procedure
         {
             try
             {
-                gtw = new GatewayConfig();
+                gtw = new ZZCTRDPConfig();
                 gtw.Load();
-                txtTRDPIP.Text = gtw.TRDPIP1;
-                txtTrdpPort.Text = gtw.TRDPPort1;
+                txtTRDPIP.Text = gtw.DesIP1;
+                txtTrdpPort.Text = gtw.Desport1;
                 txtLocalIP.Text = gtw.LocalIP1;
                 txtLocalPort.Text = gtw.LocalPort1;
-                txtTRDPIP2.Text = gtw.TRDPIP2;
-                txtTrdpPort2.Text = gtw.TRDPPort2;
+                txtTRDPIP2.Text = gtw.DesIP2;
+                txtTrdpPort2.Text = gtw.Desport2;
                 txtLocalIP2.Text = gtw.LocalIP2;
                 txtLocalPort2.Text = gtw.LocalPort2;
             }
@@ -58,12 +42,12 @@ namespace MainUI.Procedure
         {
             try
             {
-                gtw.TRDPIP1 = txtTRDPIP.Text;
-                gtw.TRDPPort1 = txtTrdpPort.Text;
+                gtw.DesIP1 = txtTRDPIP.Text;
+                gtw.Desport1 = txtTrdpPort.Text;
                 gtw.LocalIP1 = txtLocalIP.Text;
                 gtw.LocalPort1 = txtLocalPort.Text;
-                gtw.TRDPIP2 = txtTRDPIP2.Text;
-                gtw.TRDPPort2 = txtTrdpPort2.Text;
+                gtw.DesIP2 = txtTRDPIP2.Text;
+                gtw.Desport2 = txtTrdpPort2.Text;
                 gtw.LocalIP2 = txtLocalIP2.Text;
                 gtw.LocalPort2 = txtLocalPort2.Text;
                 gtw.Save();

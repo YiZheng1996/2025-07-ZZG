@@ -1,18 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using MainUI.Properties;
-using MainUI.Procedure;
-using MainUI.Modules;
-using RW.EventLog;
-using RW.Components.User;
-using System.Drawing;
-using MainUI.Procedure.User;
+﻿using MainUI.MVB;
 using MainUI.Procedure.ExcelImport;
-using MainUI.MVB;
-using MainUI.Procedure.Curve;
+using MainUI.Properties;
 using MainUI.TRDP;
-using MainUI.CAN;
-using MainUI.CurrencyHelper;
+using RW.EventLog;
 
 namespace MainUI
 {
@@ -210,22 +200,20 @@ namespace MainUI
         private void BtnTRDP_Click(object sender, EventArgs e)
         {
             if (VarHelper.ModelID == 0) { MessageHelper.UIMessageOK("型号未选择！"); return; }
-            frmTRDPMonitor tRDPMonitor = new();
-            tRDPMonitor.ShowDialog();
+            FormManager.ShowForm<frmTRDPMonitor>();
         }
 
         private void btnMVB_Click(object sender, EventArgs e)
         {
             if (VarHelper.ModelID == 0) { MessageHelper.UIMessageOK("型号未选择！"); return; }
-            frmTagsNew frmTagsNew = new();
-            frmTagsNew.ShowDialog();
+            FormManager.ShowForm<frmMVB_ZZC>();
         }
 
         private void btnCAN_Click(object sender, EventArgs e)
         {
             if (VarHelper.ModelID == 0) { MessageHelper.UIMessageOK("型号未选择！"); return; }
-            frmCANTags frmCAN = new();
-            frmCAN.ShowDialog();
+            FormManager.ShowForm<frmCANTags>();
         }
+
     }
 }

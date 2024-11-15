@@ -12,7 +12,7 @@ namespace ServoTired
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            FrmWeary frmWeary = new();
+            //FrmWeary frmWeary = new();
             #region µ¥ÀýÄ£Ê½
             string softname = Application.ProductName;
             var mutex = new Mutex(true, softname, out bool flag);

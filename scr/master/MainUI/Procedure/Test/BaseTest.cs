@@ -1,7 +1,4 @@
-﻿using MainUI.Config;
-using System.Threading;
-
-namespace MainUI.Procedure
+﻿namespace MainUI.Procedure
 {
     public class BaseTest
     {

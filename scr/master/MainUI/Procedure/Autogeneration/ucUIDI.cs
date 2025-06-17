@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using RW;
-using Sunny.UI;
+﻿using RW;
 
 namespace MainUI.Procedure.Autogeneration
 {
@@ -44,7 +34,7 @@ namespace MainUI.Procedure.Autogeneration
             get { return Size = new Size(); }
             set { Size = value; }
         }
-        
+
         public event SwitchHandler SwitchChanged;
         protected virtual void OnSwitchChanged(bool value)
         {
@@ -55,7 +45,7 @@ namespace MainUI.Procedure.Autogeneration
         {
             OnSwitchChanged(value);
         }
-        
+
         public void AddToolTop(UIToolTip tip, string Headtext, string text)
         {
             foreach (Control con in Controls)

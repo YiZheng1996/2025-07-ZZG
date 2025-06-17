@@ -38,7 +38,7 @@ namespace MainUI.BLL
         {
             string sql = string.Format("select name from Model where name='{0}'", modelName);
             DataTable dt = null;
-            dt = GetDataTable(sql);
+            dt = Connection.GetDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
                 return true;
             else
@@ -48,19 +48,19 @@ namespace MainUI.BLL
         public bool Add(string modelName, int typeid, string mark)
         {
             string sql = string.Format("insert into  [Model]([name],typeid,mark,CreateTime) values('{0}',{1},'{2}','{3}')", modelName, typeid, mark, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            return base.Database.ExecuteNonQuery(sql, null) >= 1;
+            return this.ExecuteNonQuery(sql, null) >= 1;
         }
 
         public bool Delete(string modelID)
         {
             string sql = string.Format("delete from [Model] where ID={0}", modelID);
-            return base.Database.ExecuteNonQuery(sql, null) >= 1;
+            return this.ExecuteNonQuery(sql, null) >= 1;
         }
 
         public bool Update(string modelID, string name, int typeid, string mark)
         {
             string sql = string.Format("update [Model] set [name]='{1}',typeid={2},mark='{3}',UpdateTime='{4}'  where ID={0}", modelID, name, typeid, mark, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            return base.Database.ExecuteNonQuery(sql, null) >= 1 ? true : false;
+            return this.ExecuteNonQuery(sql, null) >= 1 ? true : false;
         }
         public TestViewModel GetModel(System.Data.DataRow row)
         {

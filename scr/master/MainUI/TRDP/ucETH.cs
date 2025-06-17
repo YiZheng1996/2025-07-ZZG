@@ -133,7 +133,7 @@ namespace MainUI.TRDP
                     catch (Exception ex)
                     {
                         string err = ex.Message;
-                        LogHelper.Append(err);
+                        LogHelper.WriteLine(err);
                         lblImpTips.Text = "导入失败";
                         MessageBox.Show("导入数据错误：" + err);
                     }
@@ -162,7 +162,7 @@ namespace MainUI.TRDP
             catch (Exception ex)
             {
                 string err = "查询数据有误，具体原因：" + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
                 MessageBox.Show(err, "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -184,7 +184,7 @@ namespace MainUI.TRDP
             catch (Exception ex)
             {
                 string err = "导出到Excel错误，具体原因：" + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
                 MessageBox.Show(err, "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

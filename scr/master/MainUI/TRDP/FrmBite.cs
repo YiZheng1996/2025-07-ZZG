@@ -20,7 +20,7 @@
             try
             {
                 labDescription.Text = twobite.Description;
-                var getBit = VarHelper.GetBit(twobite.Bit);
+                var getBit = VarHelper.GetValue(twobite.Bit);
                 flowLayoutPanel1.SuspendLayout();
                 for (int i = 0; i < getBit.Length; i++)
                 {

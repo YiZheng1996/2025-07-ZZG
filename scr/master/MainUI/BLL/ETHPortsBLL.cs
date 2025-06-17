@@ -92,13 +92,13 @@ namespace MainUI.UI.BLL
                 "update ETHPorts set portName='{1}',port='{2}',rate={3},dataSize={4},isRead={5},SMIValue={6},PortPattern={7},VerNo='{8}',ETHPassage={9} ,TRDPNo={10} where id={0}",
                 port.ID, port.PortName, port.Port, port.Rate, port.DataSize, port.IsRead, port.SMIValue, port.PortPattern, port.VerNo, port.ETHPassage, port.TRDPNo);
 
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
         }
 
         public int AddPort(Ports port)
         {
             string sql = "select count(1) from ETHPorts where TypeName='" + port.TypeName + "'and PortName='" + port.PortName + "'and VerNo='" + port.VerNo + "'";
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             if (count > 0)
                 return count;
             else
@@ -106,14 +106,14 @@ namespace MainUI.UI.BLL
                 string sql1 = string.Format(
                          "insert into ETHPorts(portName,port,rate,dataSize,isRead,SMIValue,PortPattern,TypeName,VerNo) values('{0}','{1}',{2},{3},{4},{5},{6},'{7}','{8}')",
                           port.PortName, port.Port, port.Rate, port.DataSize, port.IsRead, 0, true, port.TypeName, port.VerNo);
-                Database.ExecuteNonQuery(sql1);
+                this.ExecuteNonQuery(sql1);
                 return 0;
             }
         }
         public int AddPort(Ports port, string version)
         {
             string sql = "select count(1) from ETHPorts where TypeName='" + port.TypeName + "'and PortName='" + port.PortName + "'and VerNo='" + version + " and ETHPassage =" + port.ETHPassage + "'and TRDPNo=" + port.TRDPNo;
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             if (count > 0)
                 return count;
             else
@@ -121,7 +121,7 @@ namespace MainUI.UI.BLL
                 string sql1 = string.Format(
                          "insert into ETHPorts(portName,port,rate,dataSize,isRead,SMIValue,PortPattern,TypeName,VerNo,ETHPassage,TRDPNo) values('{0}','{1}',{2},{3},{4},{5},{6},'{7}','{8}',{9},{10})",
                           port.PortName, port.Port, port.Rate, port.DataSize, port.IsRead, 0, port.PortPattern, port.TypeName, version, port.ETHPassage, port.TRDPNo);
-                Database.ExecuteNonQuery(sql1);
+                this.ExecuteNonQuery(sql1);
                 return 0;
             }
         }
@@ -129,13 +129,13 @@ namespace MainUI.UI.BLL
         {
 
             string sql = "select count(1) from ETHFullTags where Port='" + port + "'and TypeName='" + typename + "'and VerNo='" + verno + "' and ETHPassage=" + ETHPassage;
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             if (count > 0)
                 return count;
             else
             {
                 string sql1 = "delete from ETHPorts where id=" + id;
-                Database.ExecuteNonQuery(sql1);
+                this.ExecuteNonQuery(sql1);
                 return 0;
             }
         }
@@ -153,7 +153,7 @@ namespace MainUI.UI.BLL
             string sql1 = string.Format(
                          "insert into ETHPorts(portName,port,rate,dataSize,isRead,SMIValue,PortPattern,TypeName,VerNo,DefaultVersion,ETHPassage) values('{0}','{1}',{2},{3},{4},{5},{6},'{7}','{8}',{9},{10})",
                           port.PortName, port.Port, port.Rate, port.DataSize, port.IsRead, 0, port.PortPattern, port.TypeName, version, port.DefaultVersion, port.ETHPassage);
-            Database.ExecuteNonQuery(sql1);
+            this.ExecuteNonQuery(sql1);
             return 0;
         }
 
@@ -174,7 +174,7 @@ namespace MainUI.UI.BLL
             string sql1 = string.Format(
                          "insert into ETHPorts(portName,port,rate,dataSize,isRead,SMIValue,PortPattern,TypeName,VerNo,DefaultVersion,ETHPassage,TRDPNo) values('{0}','{1}',{2},{3},{4},{5},{6},'{7}','{8}',{9},{10},{11})",
                           port.PortName, ComID, port.Rate, port.DataSize, port.IsRead, 0, port.PortPattern, port.TypeName, version, DefaultVersion, ETHPassage, TRDPNo);
-            Database.ExecuteNonQuery(sql1);
+            this.ExecuteNonQuery(sql1);
             return 0;
         }
 
@@ -197,7 +197,7 @@ namespace MainUI.UI.BLL
                 "update ETHPorts set [DefaultVersion]={0} where  TypeName='{1}'and VerNo <>'{2}'",
                  false, port.TypeName, port.VerNo);
 
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
         }
         public void update(Ports port)
         {
@@ -205,7 +205,7 @@ namespace MainUI.UI.BLL
                 "update ETHPorts set [DefaultVersion]={1} where id={0}",
                 port.ID, true);
 
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
         }
     }
 }

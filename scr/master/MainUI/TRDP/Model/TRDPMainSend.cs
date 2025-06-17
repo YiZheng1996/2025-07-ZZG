@@ -226,26 +226,26 @@ namespace MainUI.TRDP.Model
             bts[3] = 83;
             bts[4] = 0x38;
 
-            var byteMac = RWConvert.ToMACBytes(Mac);
+            var byteMac = RW.RWConvert.ToMACBytes(Mac);
 
             Array.Copy(byteMac, 0, bts, 5, byteMac.Length);
 
-            byte[] ip = RWConvert.ToIPBytes(IP);
+            byte[] ip = RW.RWConvert.ToIPBytes(IP);
             Array.Copy(ip, 0, bts, 11, ip.Length);
 
-            byte[] gateway = RWConvert.ToIPBytes(GateWay);
+            byte[] gateway = RW.RWConvert.ToIPBytes(GateWay);
             Array.Copy(gateway, 0, bts, 15, gateway.Length);
-            byte[] subnet = RWConvert.ToIPBytes(SubnetMask);
+            byte[] subnet = RW.RWConvert.ToIPBytes(SubnetMask);
             Array.Copy(subnet, 0, bts, 19, subnet.Length);
-            byte[] dns = RWConvert.ToIPBytes(DNS);
+            byte[] dns = RW.RWConvert.ToIPBytes(DNS);
             Array.Copy(dns, 0, bts, 23, dns.Length);
             byte[] dnsport = BitConverter.GetBytes((short)DNSPort);
             bts[27] = dnsport[1];
             bts[28] = dnsport[0];
 
-            byte[] ttdbMultiIP = RWConvert.ToIPBytes(TTDBMulticastIP);
+            byte[] ttdbMultiIP = RW.RWConvert.ToIPBytes(TTDBMulticastIP);
             Array.Copy(ttdbMultiIP, 0, bts, 29, ttdbMultiIP.Length);
-            byte[] tcmsMultiIP = RWConvert.ToIPBytes(TCMSMulticastIP);
+            byte[] tcmsMultiIP = RW.RWConvert.ToIPBytes(TCMSMulticastIP);
             Array.Copy(tcmsMultiIP, 0, bts, 33, tcmsMultiIP.Length);
 
             byte[] ttdbPort = BitConverter.GetBytes((short)TTDBMulticastPort);
@@ -255,13 +255,13 @@ namespace MainUI.TRDP.Model
             bts[39] = tcmsMultiPort[1];
             bts[40] = tcmsMultiPort[0];
 
-            byte[] tcmsIP = RWConvert.ToIPBytes(TCMSIP);
+            byte[] tcmsIP = RW.RWConvert.ToIPBytes(TCMSIP);
             Array.Copy(tcmsIP, 0, bts, 41, tcmsIP.Length);
             byte[] tcmsPort = BitConverter.GetBytes((short)TCMSPort);
             bts[45] = tcmsPort[1];
             bts[46] = tcmsPort[0];
 
-            byte[] minorTCMSIP = RWConvert.ToIPBytes(this.MinorTCMSIP);
+            byte[] minorTCMSIP = RW.RWConvert.ToIPBytes(this.MinorTCMSIP);
             Array.Copy(minorTCMSIP, 0, bts, 47, minorTCMSIP.Length);
             byte[] minorTCMSPort = BitConverter.GetBytes((short)this.MinorTCMSPort);
             bts[51] = minorTCMSPort[1];
@@ -278,7 +278,7 @@ namespace MainUI.TRDP.Model
             Array.Copy(com4, 0, bts, 66, com4.Length);
 
             bts[70] = (byte)SinglecastCount;
-            byte[] singlecastIP1 = RWConvert.ToIPBytes(this.SinglecastIP1);
+            byte[] singlecastIP1 = RW.RWConvert.ToIPBytes(this.SinglecastIP1);
             Array.Copy(singlecastIP1, 0, bts, 71, singlecastIP1.Length);
             byte[] singlecastPort1 = BitConverter.GetBytes((short)this.SinglecastPort1);
             bts[75] = singlecastPort1[1];
@@ -287,7 +287,7 @@ namespace MainUI.TRDP.Model
             bts[77] = singlecastSouncePort1[1];
             bts[78] = singlecastSouncePort1[0];
 
-            byte[] singlecastIP2 = RWConvert.ToIPBytes(this.SinglecastIP2);
+            byte[] singlecastIP2 = RW.RWConvert.ToIPBytes(this.SinglecastIP2);
             Array.Copy(singlecastIP2, 0, bts, 79, singlecastIP2.Length);
             byte[] singlecastPort2 = BitConverter.GetBytes((short)this.SinglecastPort2);
             bts[83] = singlecastPort2[1];
@@ -298,7 +298,7 @@ namespace MainUI.TRDP.Model
 
             this.CRC = CRCHelper.CRC16(bts, 4, bts.Length - 2);
 
-            //var tempbytes = RWConvert.HexStringToBytes("FE 05 00 53 38 00 22 33 44 55 66 0A 80 01 1C 0A 80 01 01 FF FF FF 00 00 00 00 00 43 49 00 00 00 00 E0 01 01 09 43 49 50 44 0A 80 01 04 50 44 00 00 00 00 50 44 01 00 00 03 E8 00 00 03 E8 00 00 03 E8 00 00 03 E8 00 00 00 00 00 1F 4F 1F 4F 00 00 00 00 1F 4F 1F 4F 70 C2");
+            //var tempbytes = RW.RWConvert.HexStringToBytes("FE 05 00 53 38 00 22 33 44 55 66 0A 80 01 1C 0A 80 01 01 FF FF FF 00 00 00 00 00 43 49 00 00 00 00 E0 01 01 09 43 49 50 44 0A 80 01 04 50 44 00 00 00 00 50 44 01 00 00 03 E8 00 00 03 E8 00 00 03 E8 00 00 03 E8 00 00 00 00 00 1F 4F 1F 4F 00 00 00 00 1F 4F 1F 4F 70 C2");
 
             //var tempCRC = CRCHelper.CRC16(tempbytes, 4, tempbytes.Length - 2);
 

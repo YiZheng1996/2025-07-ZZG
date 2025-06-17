@@ -101,7 +101,7 @@ namespace MainUI.Modules
             {
                 int idx = i; // 循环中的i需要用临时变量存储。
                 string opcTag = "TestPara.P" + i.ToString().PadLeft(2, '0');
-                this.Register<object>(opcTag, delegate (object value)
+                this.AddListening<object>(opcTag, delegate (object value)
                 {
                     TestParaList[idx] = value;
                     if (TestParaGroupChanged != null)

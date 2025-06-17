@@ -53,7 +53,7 @@ namespace MainUI.Modules
                 int idx = i; // 循环中的i需要用临时变量存储。
                 string opcTag = "AI.MAI" + i.ToString().PadLeft(3, '0');
 
-                Register<double>(opcTag, delegate (double value)
+                AddListening<double>(opcTag, delegate (double value)
                 {
                     _AiList[idx] = value;
                     AIvalueListChanged?.Invoke(this, _AiList);

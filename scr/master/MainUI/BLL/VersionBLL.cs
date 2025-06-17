@@ -45,20 +45,20 @@ namespace MainUI.BLL
         {
             string sql = string.Format(
                "update ETHPorts set VerNo='{0}' where TypeName='{1}' and VerNo='{2}'", newVersion, typename, version);
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
             sql = string.Format(
      "update ETHFullTags set VerNo='{0}' where TypeName='{1}' and VerNo='{2}'", newVersion, typename, version);
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
             sql = string.Format(
                 "update Version set VersionName='{1}' where id={0}", id, newVersion);
 
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
         }
 
         public int Add(string typename, string version)
         {
             string sql = "select count(1) from Version where TypeName='" + typename + "' and VersionName='" + version + "'";
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             if (count > 0)
                 return count;
             else
@@ -66,24 +66,24 @@ namespace MainUI.BLL
                 string sql1 = string.Format(
                          "insert into Version(TypeName,VersionName) values('{0}','{1}')",
                           typename, version);
-                Database.ExecuteNonQuery(sql1);
+                this.ExecuteNonQuery(sql1);
                 return 0;
             }
         }
         public int GetDate(string typename, string version)
         {
             string sql = "select count(1) from ETHPorts where TypeName='" + typename + "' and VerNo='" + version + "'";
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             return count;
         }
         public int DelDate(int id, string typename, string version)
         {
             string sql1 = "delete from Version where id=" + id;
-            Database.ExecuteNonQuery(sql1);
+            this.ExecuteNonQuery(sql1);
             sql1 = "delete from ETHPorts  where TypeName='" + typename + "' and VerNo='" + version + "'";
-            Database.ExecuteNonQuery(sql1);
+            this.ExecuteNonQuery(sql1);
             sql1 = "delete from ETHFullTags  where TypeName='" + typename + "' and VerNo='" + version + "'";
-            Database.ExecuteNonQuery(sql1);
+            this.ExecuteNonQuery(sql1);
             return 0;
 
 

@@ -8,7 +8,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>x86</PlatformTarget>
     <RestorePackagesPath>..\packages</RestorePackagesPath>
+    <ApplicationIcon>Img\中车透明ico.ico</ApplicationIcon>
+    <AssemblyName>制动控制器手柄疲劳试验</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Img\中车透明ico.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AntdUI" Version="1.5.8" />

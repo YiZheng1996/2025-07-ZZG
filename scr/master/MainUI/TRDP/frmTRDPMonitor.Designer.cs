@@ -359,7 +359,7 @@
             Padding = new Padding(0, 29, 0, 0);
             ShowIcon = false;
             Style = UIStyle.Custom;
-            Text = "TRDP监控";
+            Text = "TRDP数据监控";
             TitleHeight = 29;
             ZoomScaleRect = new Rectangle(15, 15, 800, 450);
             Load += frmTRDPMonitor_Load;

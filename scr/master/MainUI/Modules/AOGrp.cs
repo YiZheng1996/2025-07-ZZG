@@ -50,7 +50,7 @@ namespace MainUI.Modules
             {
                 int idx = i; // 循环中的i需要用临时变量存储。
                 string opcTag = "AO.MAQ" + i.ToString().PadLeft(3, '0');
-                Register<double>(opcTag, delegate (double value)
+                AddListening<double>(opcTag, delegate (double value)
                 {
                     AOList[idx] = value;
                     AOvalueGrpChaned?.Invoke(this, idx, value);

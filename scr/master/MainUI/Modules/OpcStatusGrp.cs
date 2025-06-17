@@ -27,8 +27,8 @@ namespace MainUI.Modules
         public bool Simulated { get; set; }
         public override void Init()
         {
-            this.Register<bool>("_System._NoError", delegate (bool value) { NoError = value; });
-            this.Register<bool>("_System._Simulated", delegate (bool value) { Simulated = value; });
+            this.AddListening<bool>("_System._NoError", delegate (bool value) { NoError = value; });
+            this.AddListening<bool>("_System._Simulated", delegate (bool value) { Simulated = value; });
             base.Init();
         }
     }

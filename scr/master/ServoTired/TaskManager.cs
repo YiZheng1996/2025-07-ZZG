@@ -2,7 +2,6 @@
 using RW;
 using ServoTired.BLL;
 using Sunny.UI;
-using Sunny.UI.Win32;
 using System.Diagnostics;
 
 namespace ServoTired
@@ -157,9 +156,9 @@ namespace ServoTired
         private void TaskLogicBig(CancellationToken cancellationToken)
         {
             Helper.servoGrp[14] = true; //伺服启停
-            BigTextChanged?.Invoke("正在初始化···\n", true);
+            //BigTextChanged?.Invoke($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：正在初始化···\n");
             var listData = TiredBLL.GetServoTiredTable(0);
-            BigTextChanged?.Invoke($"初始化完成···\n第{para.bigNowTest}次试验开始···\n");
+            BigTextChanged?.Invoke($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：初始化完成···\n{DateTime.Now:yyyy-MM-dd HH:mm:ss}：第{para.bigNowTest}次试验开始···\n");
             while (!cancellationToken.IsCancellationRequested && para.bigNowTest < para.TestNumber)
             {
                 for (int i = 0; i < listData?.Count && !cancellationToken.IsCancellationRequested; i++) //疲劳试验一次流程
@@ -175,7 +174,7 @@ namespace ServoTired
                 {
                     para.bigNowTest += 1;
                     para.Save();
-                    BigTextChanged?.Invoke($"第{para.bigNowTest}次试验开始···\n");
+                    BigTextChanged?.Invoke($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：第{para.bigNowTest}次试验开始···\n");
                 }
             }
             Debug.WriteLine($"Task 大闸疲劳 已暂停或取消");
@@ -188,9 +187,9 @@ namespace ServoTired
         private void TaskLogicSmall(CancellationToken cancellationToken)
         {
             Helper.servoGrp[27] = true; //伺服启停
-            SmallTextChanged?.Invoke("正在初始化···\n", true);
+            //SmallTextChanged?.Invoke($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：正在初始化···\n");
             var listData = TiredBLL.GetServoTiredTable(1);
-            SmallTextChanged?.Invoke($"初始化完成···\n第{para.smallGigNowTest}次试验开始···\n");
+            SmallTextChanged?.Invoke($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：初始化完成···\n{DateTime.Now:yyyy-MM-dd HH:mm:ss}：第{para.smallGigNowTest}次试验开始···\n");
             while (!cancellationToken.IsCancellationRequested && para.smallGigNowTest < para.TestNumber)
             {
                 for (int i = 0; i < listData?.Count && !cancellationToken.IsCancellationRequested; i++) //疲劳试验一次流程
@@ -200,14 +199,14 @@ namespace ServoTired
                     var startInfo = pointBLL.GetPointInfo(listData[i].StartPositionID);
                     Instruct(startInfo.Instruct, 24, 22);
                     StepSamllChanged?.Invoke(i, listData.Count);
-                    Debug.WriteLine("小闸位置到达信号：" + Helper.servoGrp[24].ToBool());
+                    Debug.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：小闸位置到达信号：" + Helper.servoGrp[24].ToBool());
                     Delay(30, 100, cancellationToken, () => Helper.servoGrp[24].ToBool());
                 }
                 if (!cancellationToken.IsCancellationRequested) //异常或手动取消试验不记录次数
                 {
                     para.smallGigNowTest += 1;
                     para.Save();
-                    SmallTextChanged?.Invoke($"第{para.smallGigNowTest}次试验开始···\n");
+                    SmallTextChanged?.Invoke($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}：第{para.smallGigNowTest}次试验开始···\n");
                 }
             }
             Debug.WriteLine($"Task 小闸疲劳 已暂停或取消");
@@ -222,10 +221,9 @@ namespace ServoTired
         private void Instruct(int Instruct, int Reset, int InstructPoint)
         {
             Helper.servoGrp[Reset] = false;
-            Task.Delay(1000).Wait();
+            Task.Delay(500).Wait();
             Helper.servoGrp[InstructPoint] = Instruct; //位置指令
-            Task.Delay(1000).Wait();
-
+            Task.Delay(500).Wait();
         }
 
         /// <summary>

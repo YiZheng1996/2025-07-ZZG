@@ -54,6 +54,14 @@ namespace MainUI.MVB
             set { offset = value; SetText(); }
         }
 
+        private string groupoffset;
+        [DefaultValue(" ")]
+        public string GroupOffset
+        {
+            get { return groupoffset; }
+            set { groupoffset = value; }
+        }
+
         private int bit;
         /// <summary>
         /// 字偏移量
@@ -88,6 +96,12 @@ namespace MainUI.MVB
 
         [DefaultValue(false)]
         public bool ReadOnly { get; set; }
+
+        /// <summary>
+        /// true 取反 小端模式，false 取正 小端模式
+        /// </summary>
+        [DefaultValue(null)]
+        public bool PortPattern { get; set; }
 
         private VariableTypeEnums variableType;
         /// <summary>
@@ -142,7 +156,7 @@ namespace MainUI.MVB
         public event ValueHandler<double> Submits;
         protected virtual void OnSubmit(double value)
         {
-            if (Submits != null) Submits(this, (value * WriteRate));
+            Submits?.Invoke(this, (value / WriteRate));
         }
 
         public void Submit()
@@ -159,8 +173,7 @@ namespace MainUI.MVB
             string txt = this.textBox1.Text;
             if (string.IsNullOrEmpty(txt)) return false;
 
-            double value;
-            if (!double.TryParse(txt, out value))
+            if (!double.TryParse(txt, out double value))
             {
                 MessageBox.Show(this, "请输入正确的数值。", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -207,7 +220,7 @@ namespace MainUI.MVB
                 this.textBox1.Visible = false;
                 foreach (var item in Range.Items)
                 {
-                    this.comboBox1.Items.Add(new ListBoxItem(item.Value, item.Key.ToString()));
+                    this.comboBox1.Items.Add(new RW.Components.ListBox.ListBoxItem(item.Value, item.Key.ToString()));
                 }
                 this.comboBox1.SelectedIndex = 0;
                 //this.comboBox1.Items.Add(new ListBoxItem
@@ -225,7 +238,7 @@ namespace MainUI.MVB
         {
             object val = this.comboBox1.SelectedItem;
             if (val == null || val.ToString() == "无操作") return;
-            ListBoxItem item = val as ListBoxItem;
+            RW.Components.ListBox.ListBoxItem item = val as RW.Components.ListBox.ListBoxItem;
             this.Value = Convert.ToInt32(item.SelectValue);
 
             OnSubmit(this.Value);
@@ -253,18 +266,15 @@ namespace MainUI.MVB
             get
             {
                 CreateParams cp = base.CreateParams;
-
                 cp.ExStyle |= 0x02000000;
-
                 return cp;
-
             }
         }
 
         private void ucByte_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            Font f = new Font("宋体", 9, FontStyle.Bold);
+            Font f = new("宋体", 9, FontStyle.Bold);
             SizeF s = g.MeasureString(this.TitleText, f).ToSize();
             g.DrawString(this.TitleText, f, new SolidBrush(Color.Black), (this.Width - s.Width) / 2, 2);
         }

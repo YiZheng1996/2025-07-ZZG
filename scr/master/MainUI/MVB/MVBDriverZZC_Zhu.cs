@@ -41,7 +41,7 @@ namespace MainUI.MVB
         /// <param name="state"></param>
         private void Md_MVBStateChangeEvent(bool state)
         {
-            Thread th = new Thread(new ThreadStart(() =>
+            Thread th = new(new ThreadStart(() =>
             {
                 if (state)
                 {
@@ -60,19 +60,17 @@ namespace MainUI.MVB
                         //《ZZCZZ_2016_001MVB主站以太网通讯技术要求2020.3.21正式B.11(增加可调上传时间）.pdf》 第7页
                         //备注3：端口周期按照如下表示：0x01=16ms、0x02=32ms、0x03=64ms、0x04=128ms、 0x05 = 256ms、0x06 = 512ms、0x07 = 1024ms依次类推。（由于MVB网卡对车辆主站而言，是从设备，并且我司MVB网卡做到端口周期自动响应，因此此参数可能并无意义，先预留接口）
                         //itemArray[3] = 16;
-                        switch (item.Rate)
+                        itemArray[3] = item.Rate switch
                         {
-                            case 16: itemArray[3] = 0x01; break;
-                            case 32: itemArray[3] = 0x02; break;
-                            case 64: itemArray[3] = 0x03; break;
-                            case 128: itemArray[3] = 0x04; break;
-                            case 256: itemArray[3] = 0x05; break;
-                            case 512: itemArray[3] = 0x06; break;
-                            case 1024: itemArray[3] = 0x07; break;
-                            default:
-                                itemArray[3] = 0x02; //单车系统控制源端口周期是32ms，所以此处应该是0x02
-                                break;
-                        }
+                            16 => 0x01,
+                            32 => 0x02,
+                            64 => 0x03,
+                            128 => 0x04,
+                            256 => 0x05,
+                            512 => 0x06,
+                            1024 => 0x07,
+                            _ => 0x02,//单车系统控制源端口周期是32ms，所以此处应该是0x02
+                        };
                         itemArray.CopyTo(peizhiyuan, yuan * 4);
                         yuan++;
                         //待发送源端口数据
@@ -236,7 +234,7 @@ namespace MainUI.MVB
                         fullData[port][Offset] = (byte)(fullData[port][Offset] & ~(1 << bit));
                     break;
                 case "Byte":
-                    bts = new byte[] { Convert.ToByte(value) };
+                    bts = [Convert.ToByte(value)];
                     Offset += bitSrc;
                     break;
                 case "Int16": bts = BitConverter.GetBytes(Convert.ToInt16(value)); break;
@@ -389,7 +387,7 @@ namespace MainUI.MVB
             //if (_info.Address == null)
             //    return;
 
-            Thread.Sleep(5000);//上电后等硬件初始化，再下发配置指令
+            //Thread.Sleep(5000);//上电后等硬件初始化，再下发配置指令
             UDP.MVBValueRecive += UDP_MVBValueRecive;
 
             //容易报出错误“远程主机强迫关闭了一个现有的连接”
@@ -578,7 +576,6 @@ namespace MainUI.MVB
                 default:
                     break;
             }
-
         }
 
         private void SetValue(int port, int byteSet, int bitSet, object value)
@@ -653,7 +650,7 @@ namespace MainUI.MVB
         public void Wrtie()
         {
 
-            Thread th = new Thread(new ThreadStart(() =>
+            Thread th = new(new ThreadStart(() =>
             {
                 //  while (TZ)
                 while (FlagSend)
@@ -735,7 +732,7 @@ namespace MainUI.MVB
     }
     public class UDPConnet
     {
-        UdpClient client = new UdpClient();
+        UdpClient client = new();
         //实际硬件IP地址
         public IPEndPoint remotePoint3001 = new IPEndPoint(IPAddress.Parse("192.168.0.178"), 3001);
         public IPEndPoint remotePoint4001 = new IPEndPoint(IPAddress.Parse("192.168.0.178"), 4001);
@@ -746,8 +743,6 @@ namespace MainUI.MVB
         //public IPEndPoint remotePoint4001 = new IPEndPoint(IPAddress.Parse("192.168.0.201"), 4002);
 
 
-
-
         public delegate void MVBReciveClientMsg(byte[] value);
         public event MVBReciveClientMsg MVBValueRecive;
         public bool FlagReceive { get; set; } = true;
@@ -756,17 +751,40 @@ namespace MainUI.MVB
 
         public void UDPConnect()
         {
-            client = new UdpClient(4001);
+            try
+            {
+                if (client != null)
+                {
+                    try
+                    {
+                        client.Close();
+                        client.Dispose();
+                    }
+                    catch { }
+                }
 
-            Thread ReciveClientMsgThread = new Thread(ReciveClientMsg);
-            ReciveClientMsgThread.IsBackground = true;
-            ReciveClientMsgThread.Start();
+                client = new UdpClient();
+                client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                client.Client.Bind(new IPEndPoint(IPAddress.Any, 4001));
 
-            Thread YDpdThread = new Thread(YDpd);
-            YDpdThread.IsBackground = true;
-            YDpdThread.Start();
+                Thread ReciveClientMsgThread = new(ReciveClientMsg);
+                ReciveClientMsgThread.IsBackground = true;
+                ReciveClientMsgThread.Start();
 
+                Thread YDpdThread = new(YDpd)
+                {
+                    IsBackground = true
+                }; //重连机制
+                YDpdThread.Start();
+            }
+            catch (SocketException se)
+            {
+                NlogHelper.Default.Error("UDP连接失败：", se);
+                MessageBox.Show($"UDP连接失败：{se.Message}");
+                throw;
+            }
         }
+
         private void ReciveClientMsg()
         {
             try
@@ -774,7 +792,7 @@ namespace MainUI.MVB
                 // while (true)
                 while (FlagReceive)
                 {
-                    IPEndPoint clientEndPoint = new IPEndPoint(IPAddress.Any, 0);   //初始化ip终结点
+                    IPEndPoint clientEndPoint = new(IPAddress.Any, 0);   //初始化ip终结点
                     byte[] getData = client.Receive(ref clientEndPoint);//获取加入组播客户端的终结点
                     YDstate = true;
                     MVBValueRecive?.Invoke(getData);
@@ -819,14 +837,25 @@ namespace MainUI.MVB
             client.Send(Msg, Msg.Length, remotePoint3001);//将数据发送到远程端点
 
             //client.Send(Msg, Msg.Length, remotePoint4001);//本地模拟，暂时发送同一个端口，否则容易报出错误“远程主机强迫关闭了一个现有的连接”
-
-
-
         }
         public void Send(byte[] Msg)
         {
             client.Send(Msg, Msg.Length, remotePoint4001);//将数据发送到远程端点
         }
 
+        public void Close()
+        {
+            FlagReceive = false;
+            if (client != null)
+            {
+                try
+                {
+                    client.Close();
+                    client.Dispose();
+                    client = null;
+                }
+                catch { }
+            }
+        }
     }
 }

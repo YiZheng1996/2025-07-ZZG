@@ -1,22 +1,8 @@
-﻿using MainUI.Config;
-using RW;
-using Sunny.UI;
-using Sunny.UI.Win32;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MainUI.CurrencyHelper
+﻿namespace MainUI.CurrencyHelper
 {
-    internal class TaskManager
+    internal class TaskManager : BaseTest
     {
-        private readonly ParaConfig para = new("Para");
-
-        public delegate void BigTextHandler(string text, bool isBig = false);
-        public event BigTextHandler BigTextChanged;
-        public delegate void SmallTextHandler(string text, bool isBig = false);
-        public event SmallTextHandler SmallTextChanged;
-        private readonly System.Collections.Generic.Dictionary<string, TaskInfo> tasks = [];
+        private readonly Dictionary<string, TaskInfo> tasks = [];
 
         /// <summary>
         /// 启动
@@ -100,7 +86,7 @@ namespace MainUI.CurrencyHelper
                 finally
                 {
                     cancellationTokenSource?.Dispose(); // 释放 CancellationTokenSource 资源
-                    tasks.Remove(taskId); // 从任务列表中移除任务信息
+                    tasks.Remove(taskId);               // 从任务列表中移除任务信息
                     Debug.WriteLine($"Task {taskId} 停止并释放资源");
                 }
             }
@@ -134,11 +120,8 @@ namespace MainUI.CurrencyHelper
         {
             switch (taskId)
             {
-                case "1":
-                    TaskLogicBig(cancellationToken);
-                    break;
-                case "2":
-                    TaskLogicSmall(cancellationToken);
+                case "试验过程":
+                    TestTaskLogic(cancellationToken);
                     break;
                 default:
                     Debug.WriteLine($"Task {taskId} 没有定义的逻辑");
@@ -146,48 +129,23 @@ namespace MainUI.CurrencyHelper
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        private void TaskLogicBig(CancellationToken cancellationToken)
+
+        private async void TestTaskLogic(CancellationToken cancellationToken)
         {
-
-            Debug.WriteLine($"Task 1 已暂停或取消");
-        }
-
-        /// <summary>
-        /// 小闸
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        private void TaskLogicSmall(CancellationToken cancellationToken)
-        {
-
-            Debug.WriteLine($"Task 2 已暂停或取消");
-        }
-
-
-        /// <summary>
-        /// 超时操作
-        /// </summary>
-        /// <param name="timeout">超时时间</param>
-        /// <param name="breakTime">刷新频率</param>
-        /// <param name="cancellationToken">绑定的ToKen</param>
-        /// <param name="conditions">条件可多个，为true退出</param>
-        private static void Delay(int timeout, int breakTime, CancellationToken cancellationToken, params System.Func<bool>[] conditions)
-        {
-            conditions ??= [];
-            bool isTesting = true;
-            Stopwatch sw = Stopwatch.StartNew();
-            while (sw.Elapsed.TotalSeconds < timeout && isTesting && !cancellationToken.IsCancellationRequested)
+            try
             {
-                Task.Delay(breakTime).Wait();
-                foreach (var condition in conditions)
-                {
-                    if (condition()) { Debug.WriteLine("参数值：" + condition()); isTesting = false; return; }
-                }
+                DSLTest onLine = new(cancellationToken);
+                await onLine.Execute();
+                Debug.WriteLine($"Task2 已暂停或取消");
             }
-            sw.Reset();
+            catch (OperationCanceledException)
+            {
+                Debug.WriteLine("触发手动停止试验！");
+            }
+            catch (Exception ex)
+            {
+                NlogHelper.Default.Error("Task2错误：" + ex);
+            }
         }
 
         private class TaskInfo

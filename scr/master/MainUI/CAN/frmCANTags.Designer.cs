@@ -82,6 +82,7 @@
             btnGoto.Style = UIStyle.Custom;
             btnGoto.TabIndex = 8;
             btnGoto.Text = "检 索";
+            btnGoto.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnGoto.Click += btnGoto_Click;
             // 
             // txtKey
@@ -93,19 +94,16 @@
             txtKey.ButtonRectHoverColor = Color.FromArgb(51, 203, 189);
             txtKey.ButtonRectPressColor = Color.FromArgb(0, 152, 138);
             txtKey.ButtonStyleInherited = false;
-            txtKey.FillColor2 = Color.FromArgb(238, 251, 250);
             txtKey.Font = new Font("宋体", 12F);
             txtKey.Location = new Point(996, 13);
             txtKey.Margin = new Padding(4, 5, 4, 5);
             txtKey.MinimumSize = new Size(1, 16);
             txtKey.Name = "txtKey";
             txtKey.Padding = new Padding(5);
-            txtKey.RectColor = Color.FromArgb(0, 190, 172);
             txtKey.ScrollBarColor = Color.FromArgb(0, 190, 172);
             txtKey.ScrollBarStyleInherited = false;
             txtKey.ShowText = false;
             txtKey.Size = new Size(150, 29);
-            txtKey.Style = UIStyle.Custom;
             txtKey.TabIndex = 7;
             txtKey.TextAlignment = ContentAlignment.MiddleLeft;
             txtKey.Watermark = "";
@@ -192,11 +190,11 @@
             // PanelTree
             // 
             PanelTree.Font = new Font("宋体", 12F);
-            PanelTree.Location = new Point(4, 128);
+            PanelTree.Location = new Point(3, 124);
             PanelTree.Margin = new Padding(4, 5, 4, 5);
             PanelTree.MinimumSize = new Size(1, 1);
             PanelTree.Name = "PanelTree";
-            PanelTree.Size = new Size(276, 783);
+            PanelTree.Size = new Size(272, 788);
             PanelTree.Style = UIStyle.Custom;
             PanelTree.TabIndex = 1;
             PanelTree.Text = null;
@@ -223,8 +221,6 @@
             // switchLabel2
             // 
             switchLabel2.Font = new Font("宋体", 13F);
-            switchLabel2.InputDriverName = null;
-            switchLabel2.InputTagName = null;
             switchLabel2.Location = new Point(35, 14);
             switchLabel2.Margin = new Padding(0);
             switchLabel2.Name = "switchLabel2";
@@ -318,6 +314,7 @@
             btnSeach.Style = UIStyle.Custom;
             btnSeach.TabIndex = 9;
             btnSeach.Text = "检 索";
+            btnSeach.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnSeach.Click += btnSeach_Click;
             // 
             // imageList1

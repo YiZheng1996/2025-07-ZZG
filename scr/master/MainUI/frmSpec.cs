@@ -108,7 +108,6 @@ namespace MainUI
 
         private void btnGet_Click(object sender, EventArgs e)
         {
-
             try
             {
                 int typeid = -1;

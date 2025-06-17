@@ -72,10 +72,10 @@ namespace MainUI.Procedure.Curve
         double[] dbValue = new double[count];
 
         int index;
+        #region 曲线控件
         UILineOption option0 = new();
         public void InitCurve()
         {
-            #region 曲线控件
             uiLineChart1.Option.Clear();
             option0.ShowZeroLine = true;
             option0.ShowZeroValue = true;
@@ -95,8 +95,8 @@ namespace MainUI.Procedure.Curve
             option0.XAxisType = UIAxisType.DateTime;
             option0.XAxis.AxisLabel.DateTimeFormat = "HH:mm:ss";
             uiLineChart1.SetOption(option0);
-            #endregion
         }
+        #endregion
 
         DateTime dt = DateTime.Now;
         int Time__ = -20;
@@ -606,11 +606,10 @@ namespace MainUI.Procedure.Curve
 
         private void ImageBackground_Click(object sender, EventArgs e)
         {
-            bool isWhether = uiLineChart1.FillColor == Color.FromArgb(238, 251, 250);
-            if (isWhether)
+            if (uiLineChart1.FillColor == Color.FromArgb(243, 249, 255))
                 uiLineChart1.FillColor = Color.Gray;
             else
-                uiLineChart1.FillColor = Color.FromArgb(238, 251, 250);
+                uiLineChart1.FillColor = Color.FromArgb(243, 249, 255);
         }
 
         Task CurveTask;

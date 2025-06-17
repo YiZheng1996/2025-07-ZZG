@@ -60,5 +60,16 @@ namespace MainUI.Config
         [IniKeyName("小闸当前试验次数")]
         public int smallGigNowTest { get; set; }
 
+        /// <summary>
+        /// 大闸一次循环时间
+        /// </summary>
+        [IniKeyName("大闸一次循环时间")]
+        public int BigCycleTime { get; set; }
+
+        /// <summary>
+        /// 大闸一次循环时间
+        /// </summary>
+        [IniKeyName("小闸一次循环时间")]
+        public int SmallCycleTime { get; set; }
     }
 }

@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RW.Modules;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MainUI.CurrencyHelper;
-using RW.Modules;
 
 namespace MainUI.Modules
 {
@@ -43,6 +36,24 @@ namespace MainUI.Modules
                 this.Write("DO.MDO" + tag, value);
             }
         }
+
+        [DisplayName("R04")]
+        public bool R04
+        {
+            set
+            {
+                Write("DO.MDO4", value);
+            }
+        }
+
+        [DisplayName("控制")]
+        public void SetDO(int index, bool value)
+        {
+            string tag = index.ToString().PadLeft(3, '0');
+            Write("DO.MDO" + tag, value);
+        }
+
+
         public void Fresh()
         {
             for (int i = 0; i < _doList.Length; i++)
@@ -57,11 +68,10 @@ namespace MainUI.Modules
             {
                 int idx = i;
                 string tag = "DO.MDO" + i.ToString().PadLeft(3, '0');
-                this.Register<bool>(tag, delegate (bool DOvalue)
+                this.AddListening<bool>(tag, delegate (bool DOvalue)
                 {
                     _doList[idx] = DOvalue;
-                    if (DOgrpChanged != null)
-                        DOgrpChanged(this, idx, DOvalue);
+                    DOgrpChanged?.Invoke(this, idx, DOvalue);
                 });
             }
             base.Init();

@@ -35,7 +35,7 @@ namespace MainUI.TRDP
                 try
                 {
                     var bts = udp.Receive(ref reviceip);//直到有数据，按次接受
-                    string text = RWConvert.BytesToHexString(bts, " ");
+                    string text = RW.RWConvert.BytesToHexString(bts, " ");
                     Debug.WriteLine("接收到IP：" + reviceip.Address + " recived:" + text);
 
                     int offset = 0;
@@ -218,7 +218,7 @@ namespace MainUI.TRDP
         {
             lock (locker)
             {
-                string txt = RWConvert.BytesToHexString(data, " ");
+                string txt = RW.RWConvert.BytesToHexString(data, " ");
                 Debug.WriteLine("TRDP模块发送：" + txt);
                 // byte[] buffer = new byte[1];
                 int count = udp.Send(data, data.Length, sendip);
@@ -240,7 +240,7 @@ namespace MainUI.TRDP
         {
             lock (locker)
             {
-                string txt = RWConvert.BytesToHexString(data, " ");
+                string txt = RW.RWConvert.BytesToHexString(data, " ");
                 Debug.WriteLine("TRDP模块发送：" + txt);
                 // byte[] buffer = new byte[1];
                 int count = udp.Send(data, data.Length, sendip);

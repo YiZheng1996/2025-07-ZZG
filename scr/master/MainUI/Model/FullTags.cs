@@ -23,6 +23,7 @@ namespace MainUI.Model
         public bool Identity { get; set; }
 
         public string MVBPort { get; set; }
+        public string GroupOffset { get; set; }
         public bool PortPattern { get; set; }
 
         public bool IsSensorRange { get; set; }
@@ -40,9 +41,11 @@ namespace MainUI.Model
             Description = row["Description"].ToString();
             Identity = Convert.ToBoolean(row["Identity"]);
             MVBPort = row["MVBPort"].ToString();
+            GroupOffset = row["GroupOffset"].ToString();
             IsSensorRange = Convert.ToBoolean(row["IsSensorRange"]);
             PortPattern = Convert.ToBoolean(row["PortPattern"]);
             BitValue = Convert.ToDouble(row["BitValue"]);
+            WriteRate = Convert.ToDouble(row["BitValue"]);
             COMMData MVB = new()
             {
                 Bit = row["MVBBit"] == DBNull.Value ? 0 : Convert.ToInt32(row["MVBBit"]),

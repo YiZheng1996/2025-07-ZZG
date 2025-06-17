@@ -19,7 +19,7 @@ namespace ServoTired
             Driver = Helper.opcServo;
         }
 
-        private const int cnt = 33;
+        private const int cnt = 35;
         private readonly object[] TestConList = new object[cnt];
         /// <summary>
         /// 对象索引器，电磁阀数组

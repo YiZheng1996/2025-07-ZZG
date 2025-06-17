@@ -1,12 +1,9 @@
-﻿using NPOI.SS.Formula.Functions;
+﻿using MathNet.Numerics;
+using Org.BouncyCastle.Utilities;
+using RW;
 using RW.Log;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Sunny.UI;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MainUI.CAN
 {
@@ -64,7 +61,7 @@ namespace MainUI.CAN
         [DllImport("VCI_CAN.dll", EntryPoint = "VCI_Receive")]
         public static extern int VCI_Receive(uint DevType, uint DevIndex, uint CANIndex, [Out]/*声明参数为输出*/ PVCI_CAN_OBJ[] pReceive);
 
-        public int Open()
+        public static int Open()
         {
             if (VCI_OpenDevice(3, 0, 0) != 1)
                 return 0;
@@ -72,16 +69,17 @@ namespace MainUI.CAN
                 return 1;
         }
 
-        public int Init()
+        public int Init(string BaudRate)
         {
             PVCI_INIT_CONFIG[] config = new PVCI_INIT_CONFIG[1];
+            (byte Timing0, byte Timing1) = GetRate(BaudRate);
             config[0].AccCode = 0x80000008; //滤波位定义，
             config[0].AccMask = 0xFFFFFFFF; //过滤屏蔽码，使能滤波位，1 该位不滤波。0 该位滤波。
             config[0].Reserved = 204;
             config[0].Filter = 0;      // 单滤波，双滤波
             config[0].kCanBaud = 15;  // 波特率索引 15 1000kb
-            config[0].Timing0 = 0x00;  //参见波特率表格
-            config[0].Timing1 = 0x14; //参见波特率表格
+            config[0].Timing0 = Timing0;  //参见波特率表格
+            config[0].Timing1 = Timing1; //参见波特率表格
             config[0].CanRx_IER = 1;
             config[0].Mode = 0;//1~自发自收模式，0~正常工作模式
 
@@ -107,12 +105,12 @@ namespace MainUI.CAN
             catch (Exception ex)
             {
                 string err = "CanStation VCI_CloseDevice error : " + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
             }
             return count;
         }
 
-        static object locker = new object();
+        static object locker = new();
         public int Send(byte[] data, int canID)
         {
             int flag = 0;
@@ -121,7 +119,7 @@ namespace MainUI.CAN
                 PVCI_CAN_OBJ sendbuf = new()
                 {
                     ID = new byte[4],
-                    ExternFlag = 0,
+                    ExternFlag = 0, // 0：标准帧，1：扩展帧
                     RemoteFlag = 0,
                     DataLen = 8,
                     Data = data
@@ -143,15 +141,15 @@ namespace MainUI.CAN
                 if (flag != 1)
                 {
                     if (flag == -1)
-                        LogHelper.Append("VCI_Transmit fail,device not open");
+                        LogHelper.WriteLine("VCI_Transmit fail,device not open");
                     else if (flag == 0)
-                        LogHelper.Append("VCI_Transmit fail");
+                        LogHelper.WriteLine("VCI_Transmit fail");
                 }
             }
             catch (Exception ex)
             {
                 string err = "CanStation Send error : " + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
             }
             return flag;
         }
@@ -177,7 +175,7 @@ namespace MainUI.CAN
                     PVCI_CAN_OBJ[] recebuf = new PVCI_CAN_OBJ[200];
                     int NumValue = 0;
                     //NumValue ：本次接收的帧数量。 每次读取会清空缓冲区。长时间不读取缓冲区帧数据会累加。
-                    NumValue = VCI_Receive(3, 0, 0, recebuf);
+                    VarHelper.CANData = NumValue = VCI_Receive(3, 0, 0, recebuf);
                     int canID = 0; // 暂时模拟
                     //Debug.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + "--->   NumValue：" + NumValue.ToString() );
                     short canID16 = 0; // 暂时模拟
@@ -189,18 +187,25 @@ namespace MainUI.CAN
 
                         PVCI_CAN_OBJ temp = recebuf[i];
                         temp.ID = recebuf[i].ID;
-                        byte[] canIDbyte = new byte[2];
-                        //大端格式转换为小端格式
-                        canIDbyte[0] = recebuf[i].ID[1];
-                        canIDbyte[1] = recebuf[i].ID[0];
+                        byte[] canIDbyte =
+                        [
+                            //大端格式转换为小端格式
+                            recebuf[i].ID[1],
+                            recebuf[i].ID[0],
+                        ];
                         canID16 = BitConverter.ToInt16(canIDbyte, 0);
 
                         //标准帧ID 为11位， 右移5位。
                         canID16 = Convert.ToInt16(canID16 >> 5);
                         canID = canID16;
                         if (temp.Data != null)
+                        {
                             data = temp.Data;
-                        //Debug.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") +  "--->   i：" +  i.ToString () + ", canID : " + canID.ToString() + " , data : " + BitConverter.ToString(data, 0));
+                            string text = RWConvert.BytesToHexString(data, " ");
+                            if (canID == 0) continue;
+                            //Debug.WriteLine($"ID:{canID}  DATA:{text}");
+                        }
+                        Debug.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + "--->   i：" + i.ToString() + ", canID : " + canID.ToString() + " , data : " + BitConverter.ToString(data, 0));
                         if (CanReceiveData != null && isReceiveing)
                             CanReceiveData(canID, data);
                     }
@@ -211,8 +216,48 @@ namespace MainUI.CAN
             catch (Exception ex)
             {
                 string err = "CanStation Receive error : " + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
             }
+        }
+
+        private (byte Timing0, byte Timing1) GetRate(string BaudRate)
+        {
+            switch (BaudRate)
+            {
+                case "5":
+                    return (0xBF, 0xFF);
+                case "10":
+                    return (0x31, 0x1C);
+                case "20":
+                    return (0x18, 0x1C);
+                case "40":
+                    return (0x87, 0xFF);
+                case "50":
+                    return (0x09, 0x1C);
+                case "80":
+                    return (0x83, 0xFF);
+                case "100":
+                    return (0x04, 0x1C);
+                case "125":
+                    return (0x03, 0x1C);
+                case "200":
+                    return (0x81, 0xFA);
+                case "250":
+                    return (0x01, 0x1C);
+                case "400":
+                    return (0x80, 0xFA);
+                case "500":
+                    return (0x00, 0x1C);
+                case "666":
+                    return (0x80, 0xB6);
+                case "800":
+                    return (0x00, 0x16);
+                case "1000":
+                    return (0x00, 0x14);
+                default:
+                    break;
+            }
+            return (0, 0);
         }
     }
 }

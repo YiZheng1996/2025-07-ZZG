@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 
 namespace MainUI.Model
 {
@@ -20,7 +16,7 @@ namespace MainUI.Model
         public string DataType { get; set; }
         public string DataUnit { get; set; }
         public string MVBPort { get; set; }
-        public int  MVBOffset { get; set; }
+        public int MVBOffset { get; set; }
         public bool Identity { get; set; }
         public int MVBBit { get; set; }
         public string Description { get; set; }

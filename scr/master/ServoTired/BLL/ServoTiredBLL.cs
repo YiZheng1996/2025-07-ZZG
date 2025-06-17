@@ -35,6 +35,11 @@ namespace ServoTired.BLL
                 return InsertTable(model);
         }
 
-        public bool DelTable(int id) => Helper.fsql?.Delete<ServoTiredModel>().Where(a => a.StepNumber == id).ExecuteAffrows() > 0;
+        public bool DelTable(int id) => Helper.fsql?.Delete<ServoTiredModel>().Where(a => a.ID == id).ExecuteAffrows() > 0;
+
+        public bool UpdateResidenceTime(ServoTiredModel servo) => Helper.fsql?.Update<ServoTiredModel>()
+           .Set(a => a.ResidenceTime, servo.ResidenceTime)
+           .Where(a => a.SGearType == servo.SGearType)
+           .ExecuteAffrows() > 0;
     }
 }

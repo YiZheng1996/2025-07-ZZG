@@ -45,7 +45,7 @@ namespace MainUI.Procedure.Curve
                 //预定义要用到的方法
                 var type_constructor = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance).First(e => e.GetParameters().Length == 0);
                 //定义【参数列表】，注：动态方法是静态的
-                var dm = new DynamicMethod("", typeof(object), new Type[] { }, type, true);
+                var dm = new DynamicMethod("", typeof(object), [], type, true);
                 var il = dm.GetILGenerator();
                 //处理【计算栈】,可以模拟一个静态函数,然后使用IL DASM的汇编结果
                 il.Emit(OpCodes.Newobj, type_constructor);

@@ -1,17 +1,10 @@
-﻿using MainUI.BLL;
-using MainUI.CurrencyHelper;
-using MainUI.Model;
-using RW.Data;
-using Sunny.UI;
-using System;
-using System.Data;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace MainUI.CAN
 {
     public partial class frmCANPortManager : UIForm
     {
-        PortsBLL ports = new("CANPorts");
+        CANPortsBLL ports = new("CANPorts");
         public frmCANPortManager()
         {
             InitializeComponent();
@@ -47,14 +40,14 @@ namespace MainUI.CAN
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                Ports port = dataGridView1.SelectedRows[0].DataBoundItem as Ports;
+                CANPorts port = dataGridView1.SelectedRows[0].DataBoundItem as CANPorts;
                 txtID.Text = port.ID.ToString();
                 txtPortName.Text = port.PortName;
-                txtPort.Text = port.Port;
+                txtPort.Text = port.CANID;
                 nudRate.Value = port.Rate;
-                nudDataSize.Value = port.DataSize;
                 radSource.Checked = !port.IsRead;
                 radHost.Checked = port.IsRead;
+                cboBaudRate.Text = port.BaudRate;
             }
         }
 
@@ -64,17 +57,17 @@ namespace MainUI.CAN
             string portName = txtPortName.Text;
             string port = txtPort.Text;
             int rate = nudRate.Value;
-            int dataSize = nudDataSize.Value;
             bool isRead = radHost.Checked;
-            Ports p = new()
+            string baudRate = cboBaudRate.Text;
+            CANPorts p = new()
             {
                 ID = id,
                 PortName = portName,
-                Port = port,
+                CANID = port,
                 IsRead = isRead,
-                DataSize = dataSize,
                 Rate = rate,
-                ModelNameID = cboModelName.SelectedValue.ToInt()
+                ModelNameID = cboModelName.SelectedValue.ToInt(),
+                BaudRate = baudRate,
             };
             ports.Modify(p);
             LoadData();
@@ -86,22 +79,22 @@ namespace MainUI.CAN
             string portName = txtPortName.Text;
             string port = txtPort.Text;
             int rate = nudRate.Value;
-            int dataSize = nudDataSize.Value;
             bool isRead = radHost.Checked;
+            string baudRate = cboBaudRate.Text;
             int ModelID = cboModelName.SelectedValue.ToInt();
-            Ports p = new()
+            CANPorts p = new()
             {
                 PortName = portName,
-                Port = port,
+                CANID = port,
                 IsRead = isRead,
-                DataSize = dataSize,
                 Rate = rate,
-                ModelNameID = ModelID
+                ModelNameID = ModelID,
+                BaudRate = baudRate,
             };
 
             if (ports.AddPort(p) > 0)
             {
-                MessageBox.Show(string.Format("当前型号，[{0}]端口已存在,请修改端口地址后再重新添加！", p.Port), "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format("当前型号，[{0}]CANID已存在,请修改CANID后再重新添加！", p.CANID), "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             LoadData();
@@ -131,7 +124,7 @@ namespace MainUI.CAN
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            Procedure.frmExcelImport frmExcelImport = new(cboModelName.SelectedValue.ToInt(), false);
+            CAN.frmExcelImport frmExcelImport = new(cboModelName.SelectedValue.ToInt());
             frmExcelImport.ShowDialog();
         }
 

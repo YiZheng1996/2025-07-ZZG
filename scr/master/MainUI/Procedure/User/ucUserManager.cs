@@ -82,7 +82,7 @@ namespace MainUI.Procedure.User
             }
             DataGridViewRow rowUp = this.dataGridView1.Rows[row.Index - 1];
 
-            userBll.Move(rowUp.Cells["colID"].Value, rowUp.Cells["colSort"].Value, row.Cells["colID"].Value, row.Cells["colSort"].Value);
+            //userBll.Move(rowUp.Cells["colID"].Value, rowUp.Cells["colSort"].Value, row.Cells["colID"].Value, row.Cells["colSort"].Value);
 
             this.DataBind();
             this.dataGridView1.ClearSelection();
@@ -111,7 +111,7 @@ namespace MainUI.Procedure.User
             }
             DataGridViewRow rowDown = this.dataGridView1.Rows[row.Index + 1];
 
-            userBll.Move(row.Cells["colID"].Value, row.Cells["colSort"].Value, rowDown.Cells["colID"].Value, rowDown.Cells["colSort"].Value);
+            //userBll.Move(row.Cells["colID"].Value, row.Cells["colSort"].Value, rowDown.Cells["colID"].Value, rowDown.Cells["colSort"].Value);
             this.DataBind();
             this.dataGridView1.ClearSelection();
             this.dataGridView1.Rows[rowIndex + 1].Selected = true;

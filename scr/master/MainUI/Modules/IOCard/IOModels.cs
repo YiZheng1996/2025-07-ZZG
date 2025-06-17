@@ -84,7 +84,7 @@ namespace MainUI.Modules.IOCard
             for (int i = 0; i < 24; i++)
             {
                 int temp = i;
-                Register<bool>($"Card{Card_Index}.M" + (temp + 1).ToString().PadLeft(2, '0'), delegate (bool Dcf_value)
+                AddListening<bool>($"Card{Card_Index}.M" + (temp + 1).ToString().PadLeft(2, '0'), delegate (bool Dcf_value)
                 {
                     Array_CardModel[temp] = Dcf_value;
                     if (Dcf_event != null)

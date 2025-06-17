@@ -35,7 +35,7 @@
             // 
             // PowerDownText
             // 
-            PowerDownText.Font = new Font("宋体", 12F);
+            PowerDownText.Font = new Font("宋体", 16F);
             PowerDownText.Location = new Point(4, 35);
             PowerDownText.Margin = new Padding(4, 5, 4, 5);
             PowerDownText.MinimumSize = new Size(1, 1);
@@ -95,6 +95,7 @@
             TitleFont = new Font("宋体", 12F, FontStyle.Bold);
             TitleHeight = 29;
             ZoomScaleRect = new Rectangle(15, 15, 800, 480);
+            FormClosing += frmPowerDown_FormClosing;
             ResumeLayout(false);
         }
 

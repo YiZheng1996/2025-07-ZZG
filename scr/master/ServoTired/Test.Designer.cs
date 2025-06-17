@@ -29,95 +29,54 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Test));
-            windowBar = new AntdUI.WindowBar();
-            divider4 = new AntdUI.Divider();
             RichTextBig = new Sunny.UI.UIRichTextBox();
-            divider2 = new AntdUI.Divider();
-            labBigTitle = new Label();
-            btnBigGate = new AntdUI.Button();
-            panel2 = new Sunny.UI.UIPanel();
-            btnClose = new AntdUI.Button();
-            btnCalibration = new AntdUI.Button();
-            btnParaSet = new AntdUI.Button();
-            btnZeroClearingBig = new AntdUI.Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            panel1 = new Panel();
             swBigServoERR = new SwitchPictureBox();
             uiPanel1 = new Sunny.UI.UIPanel();
             LabBigPosition = new Sunny.UI.UIDigitalLabel();
-            ucBig = new Sunny.UI.UIPanel();
-            divider3 = new AntdUI.Divider();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            panel3 = new Panel();
             swSmallServoERR = new SwitchPictureBox();
             uiPanel2 = new Sunny.UI.UIPanel();
             LabSmallPosition = new Sunny.UI.UIDigitalLabel();
-            uiPanel3 = new Sunny.UI.UIPanel();
             RichTextSmall = new Sunny.UI.UIRichTextBox();
-            divider1 = new AntdUI.Divider();
-            labSmallTitle = new Label();
-            btnZeroClearingSamll = new AntdUI.Button();
-            btnSmallGate = new AntdUI.Button();
-            panel5 = new AntdUI.Panel();
             stepsBig = new AntdUI.Steps();
-            panel4 = new AntdUI.Panel();
             stepsSmall = new AntdUI.Steps();
-            btnServoEnableBig = new AntdUI.Button();
-            btnBigFaultReset = new AntdUI.Button();
-            btnSmallFaultReset = new AntdUI.Button();
-            btnServoEnableSmall = new AntdUI.Button();
-            windowBar.SuspendLayout();
-            panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
+            uiPanel4 = new Sunny.UI.UIPanel();
+            btnDCFBig = new Sunny.UI.UIButton();
+            label2 = new Label();
+            btnBigFaultReset = new Sunny.UI.UIButton();
+            btnServoEnableBig = new Sunny.UI.UIButton();
+            btnZeroClearingBig = new Sunny.UI.UIButton();
+            btnBigGate = new Sunny.UI.UIButton();
+            label1 = new Label();
+            uiPanel5 = new Sunny.UI.UIPanel();
+            uiPanel6 = new Sunny.UI.UIPanel();
+            uiPanel7 = new Sunny.UI.UIPanel();
+            btnDCFSmall = new Sunny.UI.UIButton();
+            label4 = new Label();
+            label3 = new Label();
+            btnSmallFaultReset = new Sunny.UI.UIButton();
+            btnServoEnableSmall = new Sunny.UI.UIButton();
+            btnZeroClearingSamll = new Sunny.UI.UIButton();
+            btnSmallGate = new Sunny.UI.UIButton();
+            btnClose = new Sunny.UI.UIButton();
+            btnParaSet = new Sunny.UI.UIButton();
+            btnCalibrationBig = new Sunny.UI.UIButton();
+            btnCalibrationSmall = new Sunny.UI.UIButton();
             ((System.ComponentModel.ISupportInitialize)swBigServoERR).BeginInit();
             uiPanel1.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
-            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)swSmallServoERR).BeginInit();
             uiPanel2.SuspendLayout();
-            panel5.SuspendLayout();
-            panel4.SuspendLayout();
+            uiPanel4.SuspendLayout();
+            uiPanel5.SuspendLayout();
+            uiPanel6.SuspendLayout();
+            uiPanel7.SuspendLayout();
             SuspendLayout();
-            // 
-            // windowBar
-            // 
-            windowBar.BackColor = Color.FromArgb(243, 249, 255);
-            windowBar.CancelButton = true;
-            windowBar.CloseSize = 58;
-            windowBar.Controls.Add(divider4);
-            windowBar.DividerMargin = 2;
-            windowBar.DividerShow = true;
-            windowBar.DividerThickness = 2F;
-            windowBar.Dock = DockStyle.Top;
-            windowBar.Font = new Font("Microsoft YaHei UI", 12F);
-            windowBar.Icon = (Image)resources.GetObject("windowBar.Icon");
-            windowBar.IsMax = false;
-            windowBar.Location = new Point(0, 0);
-            windowBar.MaximizeBox = false;
-            windowBar.Name = "windowBar";
-            windowBar.Size = new Size(1282, 35);
-            windowBar.SubText = "";
-            windowBar.TabIndex = 0;
-            windowBar.Text = "制动控制器手柄疲劳试验";
-            // 
-            // divider4
-            // 
-            divider4.Location = new Point(807, 35);
-            divider4.Name = "divider4";
-            divider4.Size = new Size(29, 585);
-            divider4.TabIndex = 4;
-            divider4.Text = "分割线";
-            divider4.Thickness = 2F;
-            divider4.Vertical = true;
             // 
             // RichTextBig
             // 
-            RichTextBig.Dock = DockStyle.Bottom;
             RichTextBig.FillColor = Color.White;
             RichTextBig.FillDisableColor = Color.FromArgb(243, 249, 255);
             RichTextBig.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            RichTextBig.Location = new Point(0, 105);
+            RichTextBig.Location = new Point(8, 132);
             RichTextBig.Margin = new Padding(4, 5, 4, 5);
             RichTextBig.MinimumSize = new Size(1, 1);
             RichTextBig.Name = "RichTextBig";
@@ -128,135 +87,17 @@
             RichTextBig.RectDisableColor = SystemColors.ActiveBorder;
             RichTextBig.ScrollBarStyleInherited = false;
             RichTextBig.ShowText = false;
-            RichTextBig.Size = new Size(449, 486);
+            RichTextBig.Size = new Size(449, 525);
             RichTextBig.TabIndex = 4;
             RichTextBig.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // divider2
-            // 
-            divider2.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold);
-            divider2.Location = new Point(0, 72);
-            divider2.Name = "divider2";
-            divider2.Size = new Size(449, 22);
-            divider2.TabIndex = 3;
-            divider2.Text = "自动试验信息提示";
-            divider2.Thickness = 2F;
-            // 
-            // labBigTitle
-            // 
-            labBigTitle.Dock = DockStyle.Top;
-            labBigTitle.Location = new Point(0, 0);
-            labBigTitle.Name = "labBigTitle";
-            labBigTitle.Size = new Size(449, 52);
-            labBigTitle.TabIndex = 1;
-            // 
-            // btnBigGate
-            // 
-            btnBigGate.BorderWidth = 2F;
-            btnBigGate.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnBigGate.Location = new Point(180, 642);
-            btnBigGate.Name = "btnBigGate";
-            btnBigGate.Size = new Size(108, 44);
-            btnBigGate.TabIndex = 14;
-            btnBigGate.Text = "开 始 试 验";
-            btnBigGate.Click += btnBigGate_Click;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = SystemColors.ActiveBorder;
-            panel2.Controls.Add(btnClose);
-            panel2.Controls.Add(btnCalibration);
-            panel2.Controls.Add(btnParaSet);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            panel2.Location = new Point(0, 682);
-            panel2.Margin = new Padding(4, 5, 4, 5);
-            panel2.MinimumSize = new Size(1, 1);
-            panel2.Name = "panel2";
-            panel2.RectColor = SystemColors.ActiveBorder;
-            panel2.RectDisableColor = SystemColors.ActiveBorder;
-            panel2.Size = new Size(1282, 67);
-            panel2.TabIndex = 10;
-            panel2.Text = null;
-            panel2.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // btnClose
-            // 
-            btnClose.BorderWidth = 2F;
-            btnClose.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnClose.Ghost = true;
-            btnClose.Location = new Point(859, 14);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(126, 44);
-            btnClose.TabIndex = 18;
-            btnClose.Text = "界 面 退 出 ";
-            btnClose.Click += btnClose_Click;
-            // 
-            // btnCalibration
-            // 
-            btnCalibration.BackColor = Color.White;
-            btnCalibration.BorderWidth = 2F;
-            btnCalibration.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnCalibration.Ghost = true;
-            btnCalibration.Location = new Point(290, 14);
-            btnCalibration.Name = "btnCalibration";
-            btnCalibration.Size = new Size(126, 44);
-            btnCalibration.TabIndex = 16;
-            btnCalibration.Text = "位 置 校 准";
-            btnCalibration.Click += btnCalibration_Click;
-            // 
-            // btnParaSet
-            // 
-            btnParaSet.BorderWidth = 2F;
-            btnParaSet.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnParaSet.Ghost = true;
-            btnParaSet.Location = new Point(571, 14);
-            btnParaSet.Name = "btnParaSet";
-            btnParaSet.Size = new Size(126, 44);
-            btnParaSet.TabIndex = 17;
-            btnParaSet.Text = "参 数 设 置";
-            btnParaSet.Click += btnParaSet_Click;
-            // 
-            // btnZeroClearingBig
-            // 
-            btnZeroClearingBig.BorderWidth = 2F;
-            btnZeroClearingBig.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnZeroClearingBig.Location = new Point(297, 642);
-            btnZeroClearingBig.Name = "btnZeroClearingBig";
-            btnZeroClearingBig.Size = new Size(108, 44);
-            btnZeroClearingBig.TabIndex = 15;
-            btnZeroClearingBig.Text = "次 数 清 零";
-            btnZeroClearingBig.Click += btnZeroClearingBig_Click;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(panel1);
-            flowLayoutPanel1.Location = new Point(177, 39);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(459, 599);
-            flowLayoutPanel1.TabIndex = 6;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(swBigServoERR);
-            panel1.Controls.Add(uiPanel1);
-            panel1.Controls.Add(ucBig);
-            panel1.Controls.Add(RichTextBig);
-            panel1.Controls.Add(divider2);
-            panel1.Controls.Add(labBigTitle);
-            panel1.Dock = DockStyle.Top;
-            panel1.Font = new Font("Microsoft YaHei UI", 12F);
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(449, 591);
-            panel1.TabIndex = 1;
-            // 
             // swBigServoERR
             // 
+            swBigServoERR.BackColor = Color.Transparent;
             swBigServoERR.CanClick = false;
             swBigServoERR.FalseImage = (Image)resources.GetObject("swBigServoERR.FalseImage");
             swBigServoERR.Image = (Image)resources.GetObject("swBigServoERR.Image");
-            swBigServoERR.Location = new Point(344, 3);
+            swBigServoERR.Location = new Point(384, 23);
             swBigServoERR.Name = "swBigServoERR";
             swBigServoERR.Size = new Size(42, 43);
             swBigServoERR.SizeMode = PictureBoxSizeMode.Zoom;
@@ -272,15 +113,14 @@
             // 
             uiPanel1.Controls.Add(LabBigPosition);
             uiPanel1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPanel1.Location = new Point(122, 7);
+            uiPanel1.Location = new Point(136, 22);
             uiPanel1.Margin = new Padding(4, 5, 4, 5);
             uiPanel1.MinimumSize = new Size(1, 1);
             uiPanel1.Name = "uiPanel1";
-            uiPanel1.Padding = new Padding(2);
-            uiPanel1.Radius = 0;
-            uiPanel1.RectColor = Color.Black;
+            uiPanel1.Padding = new Padding(3);
+            uiPanel1.RectDisableColor = Color.FromArgb(80, 160, 255);
             uiPanel1.RectSize = 2;
-            uiPanel1.Size = new Size(162, 45);
+            uiPanel1.Size = new Size(190, 45);
             uiPanel1.TabIndex = 493;
             uiPanel1.Text = null;
             uiPanel1.TextAlignment = ContentAlignment.MiddleCenter;
@@ -289,78 +129,26 @@
             // 
             LabBigPosition.BackColor = Color.FromArgb(243, 249, 255);
             LabBigPosition.DecimalPlaces = 0;
-            LabBigPosition.DigitalSize = 18;
+            LabBigPosition.DigitalSize = 21;
             LabBigPosition.Dock = DockStyle.Fill;
             LabBigPosition.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             LabBigPosition.ForeColor = Color.Black;
-            LabBigPosition.Location = new Point(2, 2);
+            LabBigPosition.Location = new Point(3, 3);
             LabBigPosition.MinimumSize = new Size(1, 1);
             LabBigPosition.Name = "LabBigPosition";
             LabBigPosition.RectSize = 2;
-            LabBigPosition.Size = new Size(158, 41);
+            LabBigPosition.Size = new Size(184, 39);
             LabBigPosition.TabIndex = 467;
             LabBigPosition.Tag = "0";
             LabBigPosition.TextAlign = HorizontalAlignment.Center;
             // 
-            // ucBig
-            // 
-            ucBig.FillDisableColor = Color.FromArgb(42, 47, 55);
-            ucBig.Font = new Font("思源黑体 CN Bold", 14F, FontStyle.Bold);
-            ucBig.ForeColor = Color.Black;
-            ucBig.Location = new Point(9, 20);
-            ucBig.Margin = new Padding(4, 5, 4, 5);
-            ucBig.MinimumSize = new Size(1, 1);
-            ucBig.Name = "ucBig";
-            ucBig.Radius = 0;
-            ucBig.RectColor = Color.FromArgb(243, 249, 255);
-            ucBig.RectDisableColor = Color.FromArgb(243, 249, 255);
-            ucBig.Size = new Size(126, 26);
-            ucBig.Style = Sunny.UI.UIStyle.Custom;
-            ucBig.TabIndex = 492;
-            ucBig.Tag = "3";
-            ucBig.Text = "当前位置：";
-            ucBig.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // divider3
-            // 
-            divider3.Font = new Font("Microsoft YaHei UI", 11F);
-            divider3.Location = new Point(637, 36);
-            divider3.Name = "divider3";
-            divider3.Size = new Size(37, 638);
-            divider3.TabIndex = 17;
-            divider3.Text = "分割线";
-            divider3.Thickness = 2F;
-            divider3.Vertical = true;
-            // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.Controls.Add(panel3);
-            flowLayoutPanel2.Location = new Point(677, 39);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(459, 599);
-            flowLayoutPanel2.TabIndex = 18;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(swSmallServoERR);
-            panel3.Controls.Add(uiPanel2);
-            panel3.Controls.Add(uiPanel3);
-            panel3.Controls.Add(RichTextSmall);
-            panel3.Controls.Add(divider1);
-            panel3.Controls.Add(labSmallTitle);
-            panel3.Dock = DockStyle.Top;
-            panel3.Font = new Font("Microsoft YaHei UI", 12F);
-            panel3.Location = new Point(3, 3);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(449, 591);
-            panel3.TabIndex = 1;
-            // 
             // swSmallServoERR
             // 
+            swSmallServoERR.BackColor = Color.Transparent;
             swSmallServoERR.CanClick = false;
             swSmallServoERR.FalseImage = (Image)resources.GetObject("swSmallServoERR.FalseImage");
             swSmallServoERR.Image = (Image)resources.GetObject("swSmallServoERR.Image");
-            swSmallServoERR.Location = new Point(365, 3);
+            swSmallServoERR.Location = new Point(380, 23);
             swSmallServoERR.Name = "swSmallServoERR";
             swSmallServoERR.Size = new Size(42, 43);
             swSmallServoERR.SizeMode = PictureBoxSizeMode.Zoom;
@@ -376,15 +164,14 @@
             // 
             uiPanel2.Controls.Add(LabSmallPosition);
             uiPanel2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiPanel2.Location = new Point(143, 7);
+            uiPanel2.Location = new Point(132, 22);
             uiPanel2.Margin = new Padding(4, 5, 4, 5);
             uiPanel2.MinimumSize = new Size(1, 1);
             uiPanel2.Name = "uiPanel2";
-            uiPanel2.Padding = new Padding(2);
-            uiPanel2.Radius = 0;
-            uiPanel2.RectColor = Color.Black;
+            uiPanel2.Padding = new Padding(3);
+            uiPanel2.RectDisableColor = Color.FromArgb(80, 160, 255);
             uiPanel2.RectSize = 2;
-            uiPanel2.Size = new Size(162, 45);
+            uiPanel2.Size = new Size(190, 45);
             uiPanel2.TabIndex = 496;
             uiPanel2.Text = null;
             uiPanel2.TextAlignment = ContentAlignment.MiddleCenter;
@@ -393,45 +180,25 @@
             // 
             LabSmallPosition.BackColor = Color.FromArgb(243, 249, 255);
             LabSmallPosition.DecimalPlaces = 0;
-            LabSmallPosition.DigitalSize = 18;
+            LabSmallPosition.DigitalSize = 21;
             LabSmallPosition.Dock = DockStyle.Fill;
             LabSmallPosition.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             LabSmallPosition.ForeColor = Color.Black;
-            LabSmallPosition.Location = new Point(2, 2);
+            LabSmallPosition.Location = new Point(3, 3);
             LabSmallPosition.MinimumSize = new Size(1, 1);
             LabSmallPosition.Name = "LabSmallPosition";
             LabSmallPosition.RectSize = 2;
-            LabSmallPosition.Size = new Size(158, 41);
+            LabSmallPosition.Size = new Size(184, 39);
             LabSmallPosition.TabIndex = 467;
             LabSmallPosition.Tag = "0";
             LabSmallPosition.TextAlign = HorizontalAlignment.Center;
             // 
-            // uiPanel3
-            // 
-            uiPanel3.FillDisableColor = Color.FromArgb(42, 47, 55);
-            uiPanel3.Font = new Font("思源黑体 CN Bold", 14F, FontStyle.Bold);
-            uiPanel3.ForeColor = Color.Black;
-            uiPanel3.Location = new Point(30, 20);
-            uiPanel3.Margin = new Padding(4, 5, 4, 5);
-            uiPanel3.MinimumSize = new Size(1, 1);
-            uiPanel3.Name = "uiPanel3";
-            uiPanel3.Radius = 0;
-            uiPanel3.RectColor = Color.FromArgb(243, 249, 255);
-            uiPanel3.RectDisableColor = Color.FromArgb(243, 249, 255);
-            uiPanel3.Size = new Size(126, 26);
-            uiPanel3.Style = Sunny.UI.UIStyle.Custom;
-            uiPanel3.TabIndex = 495;
-            uiPanel3.Tag = "3";
-            uiPanel3.Text = "当前位置：";
-            uiPanel3.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
             // RichTextSmall
             // 
-            RichTextSmall.Dock = DockStyle.Bottom;
             RichTextSmall.FillColor = Color.White;
             RichTextSmall.FillDisableColor = Color.FromArgb(243, 249, 255);
             RichTextSmall.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            RichTextSmall.Location = new Point(0, 105);
+            RichTextSmall.Location = new Point(8, 132);
             RichTextSmall.Margin = new Padding(4, 5, 4, 5);
             RichTextSmall.MinimumSize = new Size(1, 1);
             RichTextSmall.Name = "RichTextSmall";
@@ -443,227 +210,405 @@
             RichTextSmall.ScrollBarBackColor = Color.FromArgb(243, 249, 255);
             RichTextSmall.ScrollBarStyleInherited = false;
             RichTextSmall.ShowText = false;
-            RichTextSmall.Size = new Size(449, 486);
+            RichTextSmall.Size = new Size(449, 525);
             RichTextSmall.TabIndex = 4;
             RichTextSmall.TextAlignment = ContentAlignment.MiddleCenter;
             // 
-            // divider1
-            // 
-            divider1.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold);
-            divider1.Location = new Point(0, 72);
-            divider1.Name = "divider1";
-            divider1.Size = new Size(449, 22);
-            divider1.TabIndex = 3;
-            divider1.Text = "自动试验信息提示";
-            divider1.Thickness = 2F;
-            // 
-            // labSmallTitle
-            // 
-            labSmallTitle.Dock = DockStyle.Top;
-            labSmallTitle.Location = new Point(0, 0);
-            labSmallTitle.Name = "labSmallTitle";
-            labSmallTitle.Size = new Size(449, 52);
-            labSmallTitle.TabIndex = 1;
-            // 
-            // btnZeroClearingSamll
-            // 
-            btnZeroClearingSamll.BorderWidth = 2F;
-            btnZeroClearingSamll.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnZeroClearingSamll.Location = new Point(795, 642);
-            btnZeroClearingSamll.Name = "btnZeroClearingSamll";
-            btnZeroClearingSamll.Size = new Size(108, 44);
-            btnZeroClearingSamll.TabIndex = 20;
-            btnZeroClearingSamll.Text = "次 数 清 零";
-            btnZeroClearingSamll.Click += btnZeroClearingSamll_Click;
-            // 
-            // btnSmallGate
-            // 
-            btnSmallGate.BorderWidth = 2F;
-            btnSmallGate.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnSmallGate.Location = new Point(680, 642);
-            btnSmallGate.Name = "btnSmallGate";
-            btnSmallGate.Size = new Size(108, 44);
-            btnSmallGate.TabIndex = 19;
-            btnSmallGate.Text = "开 始 试 验";
-            btnSmallGate.Click += btnSmallGate_Click;
-            // 
-            // panel5
-            // 
-            panel5.BorderColor = SystemColors.ActiveBorder;
-            panel5.BorderWidth = 1F;
-            panel5.Controls.Add(stepsBig);
-            panel5.Dock = DockStyle.Left;
-            panel5.Location = new Point(0, 35);
-            panel5.Margin = new Padding(0);
-            panel5.Name = "panel5";
-            panel5.Padding = new Padding(3);
-            panel5.Size = new Size(174, 647);
-            panel5.TabIndex = 21;
-            panel5.Text = "panel5";
-            // 
             // stepsBig
             // 
+            stepsBig.BackColor = Color.FromArgb(235, 242, 250);
             stepsBig.Dock = DockStyle.Fill;
             stepsBig.Font = new Font("Microsoft YaHei UI", 12F);
-            stepsBig.ForeColor = Color.DeepPink;
-            stepsBig.Location = new Point(4, 4);
+            stepsBig.ForeColor = SystemColors.ControlText;
+            stepsBig.Location = new Point(3, 3);
             stepsBig.Name = "stepsBig";
-            stepsBig.Size = new Size(166, 639);
+            stepsBig.Size = new Size(160, 704);
             stepsBig.TabIndex = 1;
             stepsBig.Text = "steps1";
             stepsBig.Vertical = true;
             // 
-            // panel4
-            // 
-            panel4.BorderColor = SystemColors.ActiveBorder;
-            panel4.BorderWidth = 1F;
-            panel4.Controls.Add(stepsSmall);
-            panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(1136, 35);
-            panel4.Margin = new Padding(0);
-            panel4.Name = "panel4";
-            panel4.Padding = new Padding(2);
-            panel4.Size = new Size(146, 647);
-            panel4.TabIndex = 22;
-            panel4.Text = "panel4";
-            // 
             // stepsSmall
             // 
+            stepsSmall.BackColor = Color.FromArgb(235, 242, 250);
             stepsSmall.Dock = DockStyle.Fill;
             stepsSmall.Font = new Font("Microsoft YaHei UI", 12F);
-            stepsSmall.ForeColor = Color.DeepPink;
+            stepsSmall.ForeColor = SystemColors.ControlText;
             stepsSmall.Location = new Point(3, 3);
             stepsSmall.Name = "stepsSmall";
-            stepsSmall.Size = new Size(140, 641);
+            stepsSmall.Size = new Size(160, 704);
             stepsSmall.TabIndex = 2;
             stepsSmall.Text = "steps2";
             stepsSmall.Vertical = true;
             // 
-            // btnServoEnableBig
+            // uiPanel4
             // 
-            btnServoEnableBig.BorderWidth = 2F;
-            btnServoEnableBig.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnServoEnableBig.Location = new Point(414, 642);
-            btnServoEnableBig.Name = "btnServoEnableBig";
-            btnServoEnableBig.Size = new Size(108, 44);
-            btnServoEnableBig.TabIndex = 23;
-            btnServoEnableBig.Text = "伺 服 使 能";
-            btnServoEnableBig.Click += btnServoEnableBig_Click;
+            uiPanel4.Controls.Add(swBigServoERR);
+            uiPanel4.Controls.Add(btnDCFBig);
+            uiPanel4.Controls.Add(label2);
+            uiPanel4.Controls.Add(btnBigFaultReset);
+            uiPanel4.Controls.Add(btnServoEnableBig);
+            uiPanel4.Controls.Add(btnZeroClearingBig);
+            uiPanel4.Controls.Add(btnBigGate);
+            uiPanel4.Controls.Add(RichTextBig);
+            uiPanel4.Controls.Add(uiPanel1);
+            uiPanel4.Controls.Add(label1);
+            uiPanel4.FillColor = Color.FromArgb(235, 242, 250);
+            uiPanel4.FillColor2 = Color.FromArgb(235, 242, 250);
+            uiPanel4.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiPanel4.Location = new Point(193, 46);
+            uiPanel4.Margin = new Padding(4, 5, 4, 5);
+            uiPanel4.MinimumSize = new Size(1, 1);
+            uiPanel4.Name = "uiPanel4";
+            uiPanel4.RectColor = Color.FromArgb(235, 242, 250);
+            uiPanel4.RectDisableColor = Color.FromArgb(235, 242, 250);
+            uiPanel4.Size = new Size(464, 710);
+            uiPanel4.TabIndex = 494;
+            uiPanel4.Text = null;
+            uiPanel4.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnDCFBig
+            // 
+            btnDCFBig.Font = new Font("宋体", 12F);
+            btnDCFBig.Location = new Point(376, 670);
+            btnDCFBig.MinimumSize = new Size(1, 1);
+            btnDCFBig.Name = "btnDCFBig";
+            btnDCFBig.Size = new Size(81, 30);
+            btnDCFBig.TabIndex = 501;
+            btnDCFBig.Text = "手柄夹紧";
+            btnDCFBig.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnDCFBig.Click += btnDCFBig_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            label2.Location = new Point(131, 101);
+            label2.Name = "label2";
+            label2.Size = new Size(210, 24);
+            label2.TabIndex = 500;
+            label2.Text = "大闸自动试验信息提示";
             // 
             // btnBigFaultReset
             // 
-            btnBigFaultReset.BorderWidth = 2F;
-            btnBigFaultReset.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnBigFaultReset.Location = new Point(531, 642);
+            btnBigFaultReset.Font = new Font("宋体", 12F);
+            btnBigFaultReset.Location = new Point(284, 670);
+            btnBigFaultReset.MinimumSize = new Size(1, 1);
             btnBigFaultReset.Name = "btnBigFaultReset";
-            btnBigFaultReset.Size = new Size(108, 44);
-            btnBigFaultReset.TabIndex = 24;
-            btnBigFaultReset.Text = "故 障 复 位";
+            btnBigFaultReset.Size = new Size(81, 30);
+            btnBigFaultReset.TabIndex = 498;
+            btnBigFaultReset.Text = "故障复位";
+            btnBigFaultReset.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnBigFaultReset.Click += btnBigFaultReset_Click;
+            // 
+            // btnServoEnableBig
+            // 
+            btnServoEnableBig.Font = new Font("宋体", 12F);
+            btnServoEnableBig.Location = new Point(192, 670);
+            btnServoEnableBig.MinimumSize = new Size(1, 1);
+            btnServoEnableBig.Name = "btnServoEnableBig";
+            btnServoEnableBig.Size = new Size(81, 30);
+            btnServoEnableBig.TabIndex = 497;
+            btnServoEnableBig.Text = "伺服使能";
+            btnServoEnableBig.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnServoEnableBig.Click += btnServoEnableBig_Click;
+            // 
+            // btnZeroClearingBig
+            // 
+            btnZeroClearingBig.Font = new Font("宋体", 12F);
+            btnZeroClearingBig.Location = new Point(100, 670);
+            btnZeroClearingBig.MinimumSize = new Size(1, 1);
+            btnZeroClearingBig.Name = "btnZeroClearingBig";
+            btnZeroClearingBig.Size = new Size(81, 30);
+            btnZeroClearingBig.TabIndex = 496;
+            btnZeroClearingBig.Text = "次数清零";
+            btnZeroClearingBig.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnZeroClearingBig.Click += btnZeroClearingBig_Click;
+            // 
+            // btnBigGate
+            // 
+            btnBigGate.Font = new Font("宋体", 12F);
+            btnBigGate.Location = new Point(8, 670);
+            btnBigGate.MinimumSize = new Size(1, 1);
+            btnBigGate.Name = "btnBigGate";
+            btnBigGate.Size = new Size(81, 30);
+            btnBigGate.TabIndex = 495;
+            btnBigGate.Text = "开始试验";
+            btnBigGate.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnBigGate.Click += btnBigGate_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            label1.Location = new Point(27, 29);
+            label1.Name = "label1";
+            label1.Size = new Size(110, 24);
+            label1.TabIndex = 499;
+            label1.Text = "当前位置：";
+            // 
+            // uiPanel5
+            // 
+            uiPanel5.Controls.Add(stepsBig);
+            uiPanel5.FillColor = Color.FromArgb(235, 242, 250);
+            uiPanel5.FillColor2 = Color.FromArgb(235, 242, 250);
+            uiPanel5.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiPanel5.Location = new Point(13, 46);
+            uiPanel5.Margin = new Padding(4, 5, 4, 5);
+            uiPanel5.MinimumSize = new Size(1, 1);
+            uiPanel5.Name = "uiPanel5";
+            uiPanel5.Padding = new Padding(3);
+            uiPanel5.Radius = 10;
+            uiPanel5.RectColor = Color.FromArgb(235, 242, 250);
+            uiPanel5.RectDisableColor = Color.FromArgb(235, 242, 250);
+            uiPanel5.Size = new Size(166, 710);
+            uiPanel5.TabIndex = 495;
+            uiPanel5.Text = "uiPanel5";
+            uiPanel5.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel6
+            // 
+            uiPanel6.Controls.Add(stepsSmall);
+            uiPanel6.FillColor = Color.FromArgb(235, 242, 250);
+            uiPanel6.FillColor2 = Color.FromArgb(235, 242, 250);
+            uiPanel6.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiPanel6.Location = new Point(1140, 46);
+            uiPanel6.Margin = new Padding(4, 5, 4, 5);
+            uiPanel6.MinimumSize = new Size(1, 1);
+            uiPanel6.Name = "uiPanel6";
+            uiPanel6.Padding = new Padding(3);
+            uiPanel6.Radius = 10;
+            uiPanel6.RectColor = Color.FromArgb(235, 242, 250);
+            uiPanel6.RectDisableColor = Color.FromArgb(235, 242, 250);
+            uiPanel6.Size = new Size(166, 710);
+            uiPanel6.TabIndex = 496;
+            uiPanel6.Text = "uiPanel6";
+            uiPanel6.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel7
+            // 
+            uiPanel7.Controls.Add(swSmallServoERR);
+            uiPanel7.Controls.Add(btnDCFSmall);
+            uiPanel7.Controls.Add(label4);
+            uiPanel7.Controls.Add(label3);
+            uiPanel7.Controls.Add(RichTextSmall);
+            uiPanel7.Controls.Add(btnSmallFaultReset);
+            uiPanel7.Controls.Add(btnServoEnableSmall);
+            uiPanel7.Controls.Add(btnZeroClearingSamll);
+            uiPanel7.Controls.Add(uiPanel2);
+            uiPanel7.Controls.Add(btnSmallGate);
+            uiPanel7.FillColor = Color.FromArgb(235, 242, 250);
+            uiPanel7.FillColor2 = Color.FromArgb(235, 242, 250);
+            uiPanel7.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiPanel7.Location = new Point(668, 46);
+            uiPanel7.Margin = new Padding(4, 5, 4, 5);
+            uiPanel7.MinimumSize = new Size(1, 1);
+            uiPanel7.Name = "uiPanel7";
+            uiPanel7.RectColor = Color.FromArgb(235, 242, 250);
+            uiPanel7.RectDisableColor = Color.FromArgb(235, 242, 250);
+            uiPanel7.Size = new Size(464, 710);
+            uiPanel7.TabIndex = 497;
+            uiPanel7.Text = null;
+            uiPanel7.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnDCFSmall
+            // 
+            btnDCFSmall.Font = new Font("宋体", 12F);
+            btnDCFSmall.Location = new Point(376, 670);
+            btnDCFSmall.MinimumSize = new Size(1, 1);
+            btnDCFSmall.Name = "btnDCFSmall";
+            btnDCFSmall.Size = new Size(81, 30);
+            btnDCFSmall.TabIndex = 504;
+            btnDCFSmall.Text = "手柄夹紧";
+            btnDCFSmall.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnDCFSmall.Click += btnDCFSmall_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            label4.Location = new Point(22, 29);
+            label4.Name = "label4";
+            label4.Size = new Size(110, 24);
+            label4.TabIndex = 503;
+            label4.Text = "当前位置：";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            label3.Location = new Point(131, 99);
+            label3.Name = "label3";
+            label3.Size = new Size(210, 24);
+            label3.TabIndex = 501;
+            label3.Text = "小闸自动试验信息提示";
             // 
             // btnSmallFaultReset
             // 
-            btnSmallFaultReset.BorderWidth = 2F;
-            btnSmallFaultReset.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnSmallFaultReset.Location = new Point(1025, 642);
+            btnSmallFaultReset.Font = new Font("宋体", 12F);
+            btnSmallFaultReset.Location = new Point(284, 670);
+            btnSmallFaultReset.MinimumSize = new Size(1, 1);
             btnSmallFaultReset.Name = "btnSmallFaultReset";
-            btnSmallFaultReset.Size = new Size(108, 44);
-            btnSmallFaultReset.TabIndex = 26;
-            btnSmallFaultReset.Text = "故 障 复 位";
+            btnSmallFaultReset.Size = new Size(81, 30);
+            btnSmallFaultReset.TabIndex = 498;
+            btnSmallFaultReset.Text = "故障复位";
+            btnSmallFaultReset.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnSmallFaultReset.Click += btnSmallFaultReset_Click;
             // 
             // btnServoEnableSmall
             // 
-            btnServoEnableSmall.BorderWidth = 2F;
-            btnServoEnableSmall.Font = new Font("Microsoft YaHei UI", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            btnServoEnableSmall.Location = new Point(910, 642);
+            btnServoEnableSmall.Font = new Font("宋体", 12F);
+            btnServoEnableSmall.Location = new Point(192, 670);
+            btnServoEnableSmall.MinimumSize = new Size(1, 1);
             btnServoEnableSmall.Name = "btnServoEnableSmall";
-            btnServoEnableSmall.Size = new Size(108, 44);
-            btnServoEnableSmall.TabIndex = 25;
-            btnServoEnableSmall.Text = "伺 服 使 能";
+            btnServoEnableSmall.Size = new Size(81, 30);
+            btnServoEnableSmall.TabIndex = 497;
+            btnServoEnableSmall.Text = "伺服使能";
+            btnServoEnableSmall.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnServoEnableSmall.Click += btnServoEnableSmall_Click;
+            // 
+            // btnZeroClearingSamll
+            // 
+            btnZeroClearingSamll.Font = new Font("宋体", 12F);
+            btnZeroClearingSamll.Location = new Point(100, 670);
+            btnZeroClearingSamll.MinimumSize = new Size(1, 1);
+            btnZeroClearingSamll.Name = "btnZeroClearingSamll";
+            btnZeroClearingSamll.Size = new Size(81, 30);
+            btnZeroClearingSamll.TabIndex = 496;
+            btnZeroClearingSamll.Text = "次数清零";
+            btnZeroClearingSamll.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnZeroClearingSamll.Click += btnZeroClearingSamll_Click;
+            // 
+            // btnSmallGate
+            // 
+            btnSmallGate.Font = new Font("宋体", 12F);
+            btnSmallGate.Location = new Point(8, 670);
+            btnSmallGate.MinimumSize = new Size(1, 1);
+            btnSmallGate.Name = "btnSmallGate";
+            btnSmallGate.Size = new Size(81, 30);
+            btnSmallGate.TabIndex = 495;
+            btnSmallGate.Text = "开始试验";
+            btnSmallGate.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnSmallGate.Click += btnSmallGate_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.Font = new Font("宋体", 11F, FontStyle.Bold);
+            btnClose.Location = new Point(1176, 770);
+            btnClose.MinimumSize = new Size(1, 1);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(120, 35);
+            btnClose.TabIndex = 499;
+            btnClose.Text = "退  出";
+            btnClose.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnClose.Click += btnClose_Click;
+            // 
+            // btnParaSet
+            // 
+            btnParaSet.Font = new Font("宋体", 11F, FontStyle.Bold);
+            btnParaSet.Location = new Point(1024, 770);
+            btnParaSet.MinimumSize = new Size(1, 1);
+            btnParaSet.Name = "btnParaSet";
+            btnParaSet.Size = new Size(120, 35);
+            btnParaSet.TabIndex = 500;
+            btnParaSet.Text = "参数设置";
+            btnParaSet.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnParaSet.Click += btnParaSet_Click;
+            // 
+            // btnCalibrationBig
+            // 
+            btnCalibrationBig.Font = new Font("宋体", 11F, FontStyle.Bold);
+            btnCalibrationBig.Location = new Point(729, 770);
+            btnCalibrationBig.MinimumSize = new Size(1, 1);
+            btnCalibrationBig.Name = "btnCalibrationBig";
+            btnCalibrationBig.Size = new Size(120, 35);
+            btnCalibrationBig.TabIndex = 502;
+            btnCalibrationBig.Text = "大闸位置校准";
+            btnCalibrationBig.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnCalibrationBig.Click += btnCalibrationBig_Click;
+            // 
+            // btnCalibrationSmall
+            // 
+            btnCalibrationSmall.Font = new Font("宋体", 11F, FontStyle.Bold);
+            btnCalibrationSmall.Location = new Point(881, 770);
+            btnCalibrationSmall.MinimumSize = new Size(1, 1);
+            btnCalibrationSmall.Name = "btnCalibrationSmall";
+            btnCalibrationSmall.Size = new Size(120, 35);
+            btnCalibrationSmall.TabIndex = 501;
+            btnCalibrationSmall.Text = "小闸位置校准";
+            btnCalibrationSmall.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnCalibrationSmall.Click += btnCalibrationSmall_Click;
             // 
             // Test
             // 
-            BackColor = Color.FromArgb(243, 249, 255);
-            ClientSize = new Size(1282, 749);
+            ClientSize = new Size(1317, 817);
             ControlBox = false;
-            Controls.Add(btnSmallFaultReset);
-            Controls.Add(btnServoEnableSmall);
-            Controls.Add(btnBigFaultReset);
-            Controls.Add(btnServoEnableBig);
-            Controls.Add(panel4);
-            Controls.Add(btnBigGate);
-            Controls.Add(btnZeroClearingBig);
-            Controls.Add(panel5);
-            Controls.Add(btnZeroClearingSamll);
-            Controls.Add(btnSmallGate);
-            Controls.Add(flowLayoutPanel2);
-            Controls.Add(panel2);
-            Controls.Add(divider3);
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(windowBar);
-            Dark = true;
+            Controls.Add(btnCalibrationBig);
+            Controls.Add(btnCalibrationSmall);
+            Controls.Add(btnParaSet);
+            Controls.Add(btnClose);
+            Controls.Add(uiPanel7);
+            Controls.Add(uiPanel6);
+            Controls.Add(uiPanel5);
+            Controls.Add(uiPanel4);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Mode = AntdUI.TAMode.Dark;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Test";
             StartPosition = FormStartPosition.CenterParent;
+            Text = "制动控制器手柄疲劳试验";
+            TitleFont = new Font("宋体", 14F, FontStyle.Bold);
+            ZoomScaleRect = new Rectangle(15, 15, 1317, 750);
             Load += Test_Load;
-            windowBar.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)swBigServoERR).EndInit();
             uiPanel1.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)swSmallServoERR).EndInit();
             uiPanel2.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel4.ResumeLayout(false);
+            uiPanel4.ResumeLayout(false);
+            uiPanel4.PerformLayout();
+            uiPanel5.ResumeLayout(false);
+            uiPanel6.ResumeLayout(false);
+            uiPanel7.ResumeLayout(false);
+            uiPanel7.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private AntdUI.WindowBar windowBar;
-        private AntdUI.Divider divider2;
-        private Label labBigTitle;
-        private AntdUI.Divider divider4;
-        private Sunny.UI.UIPanel panel2;
         private Sunny.UI.UIRichTextBox RichTextBig;
-        private AntdUI.Button btnBigGate;
-        private AntdUI.Button btnZeroClearingBig;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel1;
-        private AntdUI.Divider divider3;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Panel panel3;
         private Sunny.UI.UIRichTextBox RichTextSmall;
-        private AntdUI.Divider divider1;
-        private Label labSmallTitle;
-        private AntdUI.Button btnZeroClearingSamll;
-        private AntdUI.Button btnSmallGate;
-        private AntdUI.Panel panel5;
         private AntdUI.Steps stepsBig;
-        private AntdUI.Panel panel4;
         private AntdUI.Steps stepsSmall;
-        private AntdUI.Button btnCalibration;
-        private AntdUI.Button btnParaSet;
-        private AntdUI.Button btnClose;
         private SwitchPictureBox swBigServoERR;
         private Sunny.UI.UIPanel uiPanel1;
         private Sunny.UI.UIDigitalLabel LabBigPosition;
-        private Sunny.UI.UIPanel ucBig;
-        private AntdUI.Button btnServoEnableBig;
-        private AntdUI.Button btnBigFaultReset;
         private SwitchPictureBox swSmallServoERR;
         private Sunny.UI.UIPanel uiPanel2;
         private Sunny.UI.UIDigitalLabel LabSmallPosition;
-        private Sunny.UI.UIPanel uiPanel3;
-        private AntdUI.Button btnSmallFaultReset;
-        private AntdUI.Button btnServoEnableSmall;
+      
+        private Sunny.UI.UIPanel uiPanel4;
+        private Sunny.UI.UIButton btnBigGate;
+        private Sunny.UI.UIPanel uiPanel5;
+        private Sunny.UI.UIButton btnBigFaultReset;
+        private Sunny.UI.UIButton btnServoEnableBig;
+        private Sunny.UI.UIButton btnZeroClearingBig;
+        private Label label2;
+        private Label label1;
+        private Sunny.UI.UIPanel uiPanel6;
+        private Sunny.UI.UIPanel uiPanel7;
+        private Sunny.UI.UIButton btnSmallFaultReset;
+        private Sunny.UI.UIButton btnZeroClearingSamll;
+        private Sunny.UI.UIButton btnSmallGate;
+        private Sunny.UI.UIButton btnServoEnableSmall;
+        private Label label3;
+        private Label label4;
+        private Sunny.UI.UIButton btnClose;
+        private Sunny.UI.UIButton btnParaSet;
+        private Sunny.UI.UIButton btnCalibrationBig;
+        private Sunny.UI.UIButton btnCalibrationSmall;
+        private Sunny.UI.UIButton btnDCFBig;
+        private Sunny.UI.UIButton btnDCFSmall;
     }
 }

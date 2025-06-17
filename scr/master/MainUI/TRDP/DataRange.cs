@@ -63,7 +63,7 @@ namespace MainUI.TRDP
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Append(ex.Message);
+                    LogHelper.WriteLine(ex.Message);
                 }
             }
 

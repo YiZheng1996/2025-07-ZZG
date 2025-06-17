@@ -20,6 +20,11 @@ namespace MainUI.Procedure
             keyValuePairs.AddOrUpdate(keyName, dic, (key, value) => dic);
         }
 
+        public static void ClearData()
+        {
+            keyValuePairs.Clear();
+        }
+
         /// <summary>
         /// 记录实时值
         /// </summary>

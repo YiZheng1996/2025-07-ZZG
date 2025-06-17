@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using RW.UI;
-using RW.UI.Manager.User;
-using System.IO;
-using System.Runtime.Versioning;
-using MainUI.CurrencyHelper;
-
-namespace MainUI
+﻿namespace MainUI
 {
     [SupportedOSPlatform("windows")]
     static class Program
@@ -44,11 +33,13 @@ namespace MainUI
                 {
                     VarHelper.Connect();
                     frmMainMenu main = new();
+                    //frmMVB_ZZC main = new();
                     Application.Run(main);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("OPC初始化失败：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    NlogHelper.Default.Fatal("程序发生致命错误：", ex);
+                    MessageBox.Show("程序发生致命错误：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

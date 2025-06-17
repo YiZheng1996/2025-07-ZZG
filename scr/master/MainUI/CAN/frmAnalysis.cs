@@ -71,7 +71,7 @@ namespace MainUI.CAN
         /// <param name="Exceltable"></param>
         /// <param name="ID"></param>
         /// <returns></returns>
-        private DataTable ScreenDataTable(DataTable Exceltable, int ID)
+        private DataTable ScreenDataTable(DataTable Exceltable, string ID)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace MainUI.CAN
             if (ExcelTable == null || ExcelTable.Rows.Count < 1)
                 return;
 
-            uiDataGridView.DataSource = ScreenDataTable(ExcelTable, uiIntegerUpDown.Value);
+            uiDataGridView.DataSource = ScreenDataTable(ExcelTable, txtCANID.Text.Trim());
             TranslateHead();
         }
 
@@ -219,10 +219,11 @@ namespace MainUI.CAN
 
         private void btnAllDisplay_Click(object sender, EventArgs e)
         {
+            if (ExcelTable is null) return;
             uiDataGridView.DataSource = ExcelTable;
             get_Average(ExcelTable);
             uiGroupBox.Text = HeadText(ExcelTable);
-            uiIntegerUpDown.Value = 0;
+            txtCANID.Text = string.Empty;
             TranslateHead();
         }
     }

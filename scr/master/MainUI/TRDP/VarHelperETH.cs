@@ -492,7 +492,7 @@ namespace MainUI.TRDP
             catch (Exception ex)
             {
                 //MessageBox.Show("十制数据转换二进制数据出错 \r\n" + ex.Message);
-                LogHelper.Append(ex.Message);
+                LogHelper.WriteLine(ex.Message);
             }
             return barray;
         }

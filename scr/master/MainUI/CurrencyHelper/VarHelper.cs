@@ -1,14 +1,15 @@
-﻿using RW.Data;
+﻿using MainUI.Procedure.Mask;
+using Microsoft.Data.Sqlite;
+using RW.Data;
 using RW.Driver;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace MainUI.CurrencyHelper
 {
     static class VarHelper
     {
+        //public static Dictionary<int, byte[]> CanFullData = [];
+        public static int CANData;
         public static int ModelID; //型号ID
         public static string ModelName; //型号名称
         public static string PortName = "接口地址读取";
@@ -27,7 +28,7 @@ namespace MainUI.CurrencyHelper
 
         //public static string ConnectionString => Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
         public static string sQLiteConnectionString = @"Data Source=TestBed.db;";  //Sqlite数据库连接字符串
-        public static SQLiteDB sQLiteDB = new();
+        public static SqliteConnection sQLiteDB = new();
 
         /// <summary>
         /// 生命信号字节
@@ -66,7 +67,6 @@ namespace MainUI.CurrencyHelper
             opcStatus.Connect();
             opcTestCon.Connect();
             opcIO.Connect();
-
         }
         /// <summary>
         /// OPC关闭
@@ -173,9 +173,9 @@ namespace MainUI.CurrencyHelper
             return ret;
         }
 
-        public static string[] GetBit(string resul)
+        public static string[] GetValue(string resul)
         {
-            string[] strArray = resul.Split((string[])([","]), StringSplitOptions.RemoveEmptyEntries);
+            string[] strArray = resul.Split(([",", "，"]), StringSplitOptions.RemoveEmptyEntries);
             try
             {
                 return strArray;
@@ -186,6 +186,16 @@ namespace MainUI.CurrencyHelper
                 MessageBox.Show("截取错误：" + ex);
             }
             return strArray;
+        }
+
+        /// <summary>
+        /// 遮罩层
+        /// </summary>
+        /// <param name="dialog">Form</param>
+        public static void ShowDialogWithOverlay(Form dialog1, Form dialog2)
+        {
+            LayerForm layerForm = new(dialog1, dialog2);
+            layerForm.ShowDialog();
         }
     }
     public class ListPoint

@@ -11,17 +11,18 @@ namespace MainUI.BLL
             : base(database, connectionString, tableName)
         { }
 
-        public override DataTable GetList()
+        public DataTable GetList()
         {
-            string sql = string.Format("select * from Record ");
-            return this.GetDataTable(sql);
+            return BaseBLLExtender.GetList(this);
+            //string sql = string.Format("select * from Record ");
+            //return this.GetDataTable(sql);
         }
-        
+
         public int SaveData(string kind, string model, string driver, string testid, string tester, string testtime, string reportPath)
         {
             string sql = string.Format("insert into Record (Kind,Model,Driver,TestID,Tester,TestTime,ReportPath) values ({0},'{1}','{2}','{3}','{4}','{5}','{6}')",
                 kind, model, driver, testid, tester, testtime, reportPath);
-            return base.Database.ExecuteNonQuery(sql, null);
+            return this.ExecuteNonQuery(sql, null);
         }
 
         public DataTable FindList(string lx, string xh, string bh, string czy, DateTime from, DateTime to)
@@ -49,7 +50,7 @@ namespace MainUI.BLL
         public int DelData(int id)
         {
             string sql = string.Format("delete from Record where id = {0}", id);
-            return base.Database.ExecuteNonQuery(sql,null);
+            return this.ExecuteNonQuery(sql, null);
         }
     }
 }

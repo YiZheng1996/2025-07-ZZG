@@ -60,6 +60,7 @@
             colDefaultVersion = new DataGridViewTextBoxColumn();
             colIsRead = new DataGridViewTextBoxColumn();
             colRemark = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
             grpData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -222,7 +223,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeight = 35;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colmodelName, colSignalName, colDataType, colUnit, colPortNo, colByteExcursion, colBitExcursion, colGroupETHBit, colBitValue, ColBigOrLimmit, colIsLifeSignal, ColTrdpNo, colVerno, colDefaultVersion, colIsRead, colRemark });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colmodelName, colSignalName, colDataType, colUnit, colPortNo, colByteExcursion, colBitExcursion, colGroupETHBit, colBitValue, ColBigOrLimmit, colIsLifeSignal, ColTrdpNo, colVerno, colDefaultVersion, colIsRead, colRemark, Column1 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("宋体", 12F);
@@ -366,6 +367,13 @@
             colRemark.HeaderText = "备注";
             colRemark.Name = "colRemark";
             // 
+            // Column1
+            // 
+            Column1.DataPropertyName = "ETHPassage";
+            Column1.HeaderText = "通道";
+            Column1.Name = "Column1";
+            Column1.Visible = false;
+            // 
             // ucETH
             // 
             AutoScaleMode = AutoScaleMode.Inherit;
@@ -413,5 +421,6 @@
         private DataGridViewTextBoxColumn colDefaultVersion;
         private DataGridViewTextBoxColumn colIsRead;
         private DataGridViewTextBoxColumn colRemark;
+        private DataGridViewTextBoxColumn Column1;
     }
 }

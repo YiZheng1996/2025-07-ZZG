@@ -28,6 +28,11 @@ namespace ServoTired
         {
             get { return _diList; }
         }
+        public bool this[int index]
+        {
+            get { return _diList[index]; }
+        }
+
         public void Fresh()
         {
             for (int i = 0; i < _diList.Length; i++)

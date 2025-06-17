@@ -18,8 +18,8 @@ namespace MainUI.Procedure
 {
     public partial class ucTestParams : ucBaseManagerUI
     {
-        ParaConfig paraconfig = new ParaConfig();
-        WorkOrderConfig workconfig = new WorkOrderConfig();
+        ParaConfig paraconfig = new();
+        WorkOrderConfig workconfig = new();
         public ucTestParams()
         {
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace MainUI.Procedure
                 paraconfig = new ParaConfig();
                 paraconfig.SetSectionName(txtModel.Text);
                 paraconfig.Load();
+                txtRpt.Text = paraconfig.RptFile;
                 txtbigTestNumber.Text = paraconfig.bigTestNumber.ToString();
                 txtsmallTestNumber.Text = paraconfig.smallTestNumber.ToString();
             }
@@ -63,7 +64,7 @@ namespace MainUI.Procedure
                 paraconfig.SetSectionName(txtModel.Text);
                 paraconfig.bigTestNumber = txtbigTestNumber.Text.ToInt();
                 paraconfig.smallTestNumber = txtsmallTestNumber.Text.ToInt();
-
+                paraconfig.RptFile = txtRpt.Text;
                 paraconfig.Save();
                 MessageBox.Show("保存成功。", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -84,15 +85,17 @@ namespace MainUI.Procedure
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.InitialDirectory = Application.StartupPath + "\\reports\\";
-            openFile.Filter = "Excel2003|*.xls|Excel2007+|*.xlsx";
+            OpenFileDialog openFile = new()
+            {
+                InitialDirectory = Application.StartupPath + "reports\\",
+                Filter = "Excel2003|*.xls|Excel2007+|*.xlsx"
+            };
             openFile.ShowDialog();
-            if (string.IsNullOrEmpty(openFile.FileName) == false)
+            if (!string.IsNullOrEmpty(openFile.FileName))
             {
                 string path = openFile.FileName;
                 string[] str = path.Split('\\');
-                //txtRpt.Text = str[str.Length - 1];
+                txtRpt.Text = str[^1];
             }
         }
 
@@ -106,6 +109,6 @@ namespace MainUI.Procedure
             LoadConfig();
         }
 
-
+       
     }
 }

@@ -1,16 +1,7 @@
 ﻿using RW;
 using RW.Modules;
 using RW.UI;
-using Sunny.UI;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace MainUI.TRDP
 {
@@ -91,6 +82,9 @@ namespace MainUI.TRDP
             get { return bitValue; }
             set { bitValue = value; }
         }
+        /// <summary>
+        /// true 取反 小端模式，false 取正 大端模式
+        /// </summary>
         [DefaultValue(null)]
         public bool PortPattern { get; set; }
         /// <summary>
@@ -215,7 +209,7 @@ namespace MainUI.TRDP
                 this.textBox1.Visible = false;
                 foreach (var item in Range.Items)
                 {
-                    this.comboBox1.Items.Add(new ListBoxItem(item.Value, item.Key.ToString()));
+                    this.comboBox1.Items.Add(new RW.Components.ListBox.ListBoxItem(item.Value, item.Key.ToString()));
                 }
                 this.comboBox1.SelectedIndex = 0;
                 //this.comboBox1.Items.Add(new ListBoxItem
@@ -233,7 +227,7 @@ namespace MainUI.TRDP
         {
             object val = this.comboBox1.SelectedItem;
             if (val == null || val.ToString() == "无操作") return;
-            ListBoxItem item = val as ListBoxItem;
+            RW.Components.ListBox.ListBoxItem item = val as RW.Components.ListBox.ListBoxItem;
             this.Value = Convert.ToInt32(item.SelectValue);
 
             OnSubmit(this.Value);

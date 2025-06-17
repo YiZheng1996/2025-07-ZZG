@@ -45,6 +45,7 @@
             panlCurveSelection = new UIPanel();
             ckHide20 = new UICheckBox();
             ckHide19 = new UICheckBox();
+            TvProject = new UITreeView();
             ckHide18 = new UICheckBox();
             ckHide17 = new UICheckBox();
             uiCheckAll = new UICheckBox();
@@ -133,7 +134,6 @@
             uiLabel7 = new UILabel();
             uibt_value14 = new UITextBox();
             uibt_value19 = new UITextBox();
-            TvProject = new UITreeView();
             uiProcessBar1 = new UIProcessBar();
             ImageBackground = new UIImageButton();
             uiPanel1.SuspendLayout();
@@ -195,6 +195,7 @@
             // uiLineChart1
             // 
             uiLineChart1.ChartStyleType = UIChartStyleType.Default;
+            uiLineChart1.FillColor = Color.FromArgb(243, 249, 255);
             uiLineChart1.Font = new Font("宋体", 12F);
             uiLineChart1.LegendFont = new Font("宋体", 9F);
             uiLineChart1.Location = new Point(3, 35);
@@ -483,6 +484,24 @@
             ckHide19.TabIndex = 1206;
             ckHide19.Tag = "19";
             ckHide19.CheckedChanged += ckHide0_CheckedChanged;
+            // 
+            // TvProject
+            // 
+            TvProject.FillColor = Color.White;
+            TvProject.Font = new Font("宋体", 12F);
+            TvProject.LineColor = Color.FromArgb(48, 48, 48);
+            TvProject.Location = new Point(0, 0);
+            TvProject.Margin = new Padding(4, 5, 4, 5);
+            TvProject.MinimumSize = new Size(1, 1);
+            TvProject.Name = "TvProject";
+            TvProject.ScrollBarStyleInherited = false;
+            TvProject.ShowText = false;
+            TvProject.Size = new Size(386, 824);
+            TvProject.Style = UIStyle.Custom;
+            TvProject.TabIndex = 1172;
+            TvProject.Text = "uiTreeView1";
+            TvProject.TextAlignment = ContentAlignment.MiddleCenter;
+            TvProject.NodeMouseDoubleClick += TvProject_NodeMouseDoubleClick;
             // 
             // ckHide18
             // 
@@ -1657,24 +1676,6 @@
             uibt_value19.Text = "0.00";
             uibt_value19.TextAlignment = ContentAlignment.MiddleCenter;
             uibt_value19.Watermark = "";
-            // 
-            // TvProject
-            // 
-            TvProject.FillColor = Color.White;
-            TvProject.Font = new Font("宋体", 12F);
-            TvProject.LineColor = Color.FromArgb(48, 48, 48);
-            TvProject.Location = new Point(0, 0);
-            TvProject.Margin = new Padding(4, 5, 4, 5);
-            TvProject.MinimumSize = new Size(1, 1);
-            TvProject.Name = "TvProject";
-            TvProject.ScrollBarStyleInherited = false;
-            TvProject.ShowText = false;
-            TvProject.Size = new Size(386, 824);
-            TvProject.Style = UIStyle.Custom;
-            TvProject.TabIndex = 1172;
-            TvProject.Text = "uiTreeView1";
-            TvProject.TextAlignment = ContentAlignment.MiddleCenter;
-            TvProject.NodeMouseDoubleClick += TvProject_NodeMouseDoubleClick;
             // 
             // uiProcessBar1
             // 

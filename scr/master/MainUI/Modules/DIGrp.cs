@@ -29,6 +29,12 @@ namespace MainUI.Modules
         {
             get { return _diList; }
         }
+
+        public bool[] this[int index]
+        {
+            get { return _diList; }
+        }
+
         public void Fresh()
         {
             for (int i = 0; i < _diList.Length; i++)
@@ -43,7 +49,7 @@ namespace MainUI.Modules
             {
                 int idx = i; // 循环中的i需要用临时变量存储。
                 string opcTag = "DI.MDI" + i.ToString().PadLeft(3, '0');
-                this.Register<bool>(opcTag, delegate (bool value)
+                this.AddListening<bool>(opcTag, delegate (bool value)
                 {
                     //数组赋值
                     _diList[idx] = value;

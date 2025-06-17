@@ -67,7 +67,7 @@ namespace MainUI.Modules
             {
                 int idx = i; // 循环中的i需要用临时变量存储。
                 string opcTag = "TestCon.P" + i.ToString().PadLeft(2, '0');
-                Register(opcTag, delegate (object value)
+                AddListening(opcTag, delegate (object value)
                 {
                     TestConList[idx] = value;
                     TestConGroupChanged?.Invoke(this, idx, value);

@@ -1,12 +1,7 @@
-﻿using MainUI.BLL;
-using MainUI.Model;
-using MainUI.Procedure.ExcelImport;
+﻿using MainUI.Procedure.ExcelImport;
 using RW.Log;
-using System;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Windows.Forms;
 
 
 namespace MainUI.Procedure
@@ -80,7 +75,7 @@ namespace MainUI.Procedure
                         DataTable ExcelTable = ExcelHelper.GetExcelDataTable(ExcelPath);
                         DataTable dt = imp.ModifyDataColumNmae(ExcelTable);
                         string tableName = isMVB ? tableName = "FullTags" : tableName = "CANFullTags";
-                        imp.InsertExcelDataNew(ExcelTable, modelID, tableName);
+                        imp.InsertExcelDataNew(ExcelTable, modelID, tableName, cboModelName.Text);
                         int cnt = ExcelTable.Rows.Count;
                         GetConfigInfo();
                         lblImpTips.Text = "导入成功";
@@ -89,7 +84,7 @@ namespace MainUI.Procedure
                     catch (Exception ex)
                     {
                         string err = ex.Message;
-                        LogHelper.Append(err);
+                        LogHelper.WriteLine(err);
                         lblImpTips.Text = "导入失败";
                         MessageBox.Show("导入数据错误：" + err);
                     }
@@ -113,14 +108,14 @@ namespace MainUI.Procedure
             {
                 if (modelID <= 0) { MessageBox.Show(this, "请先添加型号后进行参数配置！", "系统提示"); return; }
                 string tableName = isMVB ? tableName = "FullTags" : tableName = "CANFullTags";
-                TagsBLL tags = new(tableName);
+                MVBTagsBLL tags = new(tableName);
                 var dt = tags.GetAllTagsByPort(modelID);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
                 string err = "查询数据有误，具体原因：" + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
                 MessageBox.Show(err, "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -142,7 +137,7 @@ namespace MainUI.Procedure
             catch (Exception ex)
             {
                 string err = "导出到Excel错误，具体原因：" + ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
                 MessageBox.Show(err, "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

@@ -72,6 +72,7 @@ namespace MainUI.TRDP
             LoadPage(page.Offset, page.Length);
             Debug.WriteLine("add cost:" + watch.ElapsedMilliseconds);
         }
+
         TreeView tr;
         /// <summary>
         /// 加载树状图
@@ -345,7 +346,7 @@ namespace MainUI.TRDP
         // check状态
         private void bitStatus(string bitName, FrmBite bi, bool status)
         {
-            var Keys = VarHelper.GetBit(bitName);
+            var Keys = VarHelper.GetValue(bitName);
             for (int i = 0; i < Keys.Length; i++)
             {
                 var index = Keys[i];
@@ -372,7 +373,7 @@ namespace MainUI.TRDP
             FrmBite bi = new(bit);
             bitStatus(bit.Bit, bi, false);
             bi.ShowDialog();
-            var Keys = VarHelper.GetBit(bit.Bit);
+            var Keys = VarHelper.GetValue(bit.Bit);
             bitStatus(bit.Bit, bi, true);
             bite2.Add(bit);
             bit.Switch = bi.checkValue.Where(x => x).Any();
@@ -763,7 +764,7 @@ namespace MainUI.TRDP
             }
             catch (Exception ex)
             {
-                LogHelper.Append(ex.Message);
+                LogHelper.WriteLine(ex.Message);
                 MessageBox.Show("输入数值格式不正确！" + ex.Message);
             }
         }
@@ -983,6 +984,7 @@ namespace MainUI.TRDP
                         tempLifeTag.Add(mode);//有生命信号端口
                     }
                 }
+
                 if (tempLifeTag.Where(x => x.TRDPNo == 1).Any() && !IsStarat)
                 {
                     Thread t = new(new ThreadStart(delegate

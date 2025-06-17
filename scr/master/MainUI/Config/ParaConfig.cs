@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RW.Configuration;
-using System.Windows.Forms;
-using System.ComponentModel;
+﻿using RW.Configuration;
 
 namespace MainUI.Config
 {
@@ -45,6 +38,12 @@ namespace MainUI.Config
         /// </summary>
         [IniKeyName("小闸当前试验次数")]
         public int samllGigNowTest { get; set; }
+
+        /// <summary>
+        /// 报表名称
+        /// </summary>
+        [IniKeyName("报表名称")]
+        public string RptFile { get; set; }
 
     }
 }

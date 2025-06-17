@@ -1,40 +1,26 @@
-﻿using MainUI.BLL;
-using MainUI.Config;
-using MainUI.CurrencyHelper;
-using MainUI.Model;
-using MainUI.TRDP;
-using MainUI.TRDP.Model;
-using MainUI.UI.BLL;
+﻿using MainUI.TRDP;
 using RW.Log;
-using RW.UI.Controls;
-using Sunny.UI;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace MainUI.CAN
 {
     public partial class frmCANTags : UIForm
     {
-
-
         public frmCANTags()
         {
             InitializeComponent();
         }
 
+        int SizeDate = 8;
         CANDriver driver = new();
         PageModelNew page;
         bool loaded = false;
-        List<Ports> ports = [];  //端口集合
-        List<FullTags> tags = [];//所有设置数据集合
-        Dictionary<COMMData, FullTags> dicItems = []; //数据模型集合
+        List<CANPorts> ports = [];  //端口集合
+        List<CANFullTags> tags = [];//所有设置数据集合
+        Dictionary<COMMData, CANFullTags> dicItems = []; //数据模型集合
         Dictionary<string, FlowLayoutPanel> fullControls = [];  //所有的 ControlCollection
         public Dictionary<int, byte[]> fullData = [];//所有待发送的数据，通过端口号进行存储
         Dictionary<int, ucByte> fullIdentity = [];//存储了所有的标识列，用于刷新时，自增
@@ -48,6 +34,8 @@ namespace MainUI.CAN
             public int TotalSize { get; set; }
         }
 
+        SystemConfig sys = new();
+        System.Windows.Forms.Timer tmrRead = new();
         private void frmCANTags_Load(object sender, EventArgs e)
         {
             try
@@ -59,7 +47,132 @@ namespace MainUI.CAN
             {
                 MessageHelper.UIMessageOK("CAN通讯失败：" + ex.Message);
             }
+
+            tmrRead.Interval = sys.MvbDataReadInterval;
+            tmrRead.Tick += new EventHandler(tmrRead_Tick);
+            tmrRead.Start();
         }
+
+        void tmrRead_Tick(object sender, EventArgs e)
+        {
+            if (closed) tmrRead.Stop();
+            Stopwatch timeWatch = new();
+            timeWatch.Start();
+            Stopwatch watch = new();
+            watch.Start();
+            //Debug.WriteLine("start:" + watch.Elapsed.ToString());
+            if (PanelContent.Controls.Count == 0)
+                return;
+
+            foreach (var item in PanelContent.Controls[0].Controls)
+            {
+                if (item is ucBit)
+                {
+                    ucBit bit = item as ucBit;
+                    int offset = bit.Offset;
+                    int bits = bit.Bit;
+                    int Port = bit.Port;
+                    if (!bit.ReadOnly)
+                        continue;
+                    int bitValue = 1 << bits;
+                    bool b = (fullData[Port][offset] & bitValue) == bitValue;
+                    if (b == bit.Switch) continue;
+                    bit.Switch = b;
+                }
+                else if (item is ucByte)
+                {
+                    ucByte ub = item as ucByte;
+                    int offset = ub.Offset;
+                    int Port = ub.Port;
+                    string y = ub.Text;
+                    foreach (var tg in tempLifeTag)
+                    {
+                        if (offset == tg.COMMData.Offset)
+                        {
+                            ub.Value = fullData[Port][offset];
+                            continue;
+                        }
+                    }
+                    if (!ub.ReadOnly)
+                        continue;
+                    decimal value = 0M;
+                    int bits = ub.Bit;
+                    byte[] temp;
+                    switch (ub.VariableType)
+                    {
+                        case VariableTypeEnums.U3:
+                            value = fullData[Port][offset] >> bits & 7;
+                            break;
+                        case VariableTypeEnums.U5:
+                            value = fullData[Port][offset] >> bits & 0x1F;
+                            break;
+                        case VariableTypeEnums.U8:
+                            offset += ub.Bit;
+                            value = fullData[Port][offset] >> bits;
+                            break;
+                        case VariableTypeEnums.I8:
+                            value = fullData[Port][offset] >> bits;//TODO：请注意，此处负数的处理
+                            break;
+                        case VariableTypeEnums.U16:
+                            temp = new byte[2];
+                            Array.Copy(fullData[Port], offset, temp, bits, temp.Length);
+                            if (!ub.PortPattern)
+                                value = BitConverter.ToUInt16([.. temp], 0);
+                            else
+                                value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
+                            break;
+                        case VariableTypeEnums.I16:
+                            temp = new byte[2];
+                            Array.Copy(fullData[Port], offset, temp, bits, temp.Length);
+                            if (!ub.PortPattern)
+                                value = BitConverter.ToUInt16([.. temp], 0);
+                            else
+                                value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
+                            break;
+                        case VariableTypeEnums.U32:
+                            temp = new byte[4];
+                            Array.Copy(fullData[Port], offset, temp, bits, temp.Length);
+                            if (!ub.PortPattern)
+                                value = BitConverter.ToUInt32([.. temp], 0);
+                            else
+                                value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
+                            break;
+                        case VariableTypeEnums.I32:
+                            temp = new byte[4];
+                            Array.Copy(fullData[Port], offset, temp, bits, temp.Length);
+                            if (!ub.PortPattern)
+                                value = BitConverter.ToUInt32([.. temp], 0);
+                            else
+                                value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
+                            break;
+                        case VariableTypeEnums.U64:
+                            temp = new byte[8];
+                            Array.Copy(fullData[Port], offset, temp, bits, temp.Length);
+                            if (!ub.PortPattern)
+                                value = BitConverter.ToUInt64([.. temp], 0);
+                            else
+                                value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
+                            break;
+                        case VariableTypeEnums.I64:
+                            temp = new byte[8];
+                            Array.Copy(fullData[Port], offset, temp, bits, temp.Length);
+                            if (!ub.PortPattern)
+                                value = BitConverter.ToUInt64([.. temp], 0);
+                            else
+                                value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
+                            break;
+                        default:
+                            break;
+                    }
+                    if ((decimal)ub.Value != value)
+                        ub.Value = (double)value * ub.BitValue;
+                }
+            }
+            watch.Stop();
+            //this.switchLabel2.Switch = MvbDllCall.gf_result == MvbDllCall.GF_RESULT.GF_OK;
+            timeWatch.Stop();
+        }
+
         /// <summary>
         /// 加载端口页面数据
         /// 层级结构为：TagControl->TabPage->FlowLayoutPanel->ucBit/ucByte
@@ -71,16 +184,16 @@ namespace MainUI.CAN
         {
             fullControls.Clear();
             GC.Collect();
-            PortsBLL bllPorts = new("CANPorts");
-            ports = bllPorts.GetAllPorts(VarHelper.ModelID).ToList();
-            TagsBLL bllTags = new("CANFullTags");
+            CANPortsBLL bllPorts = new("CANPorts");
+            ports = [.. bllPorts.GetAllPorts(VarHelper.ModelID)];
+            CANTagsBLL bllTags = new("CANFullTags");
             tags = bllTags.GetAllTags(VarHelper.ModelID).OrderByDescending(x => x.COMMData.Bit).ToList();
-            List<int> lifes = new();
+            List<int> lifes = [];
             foreach (var item in ports)
             {
-                fullData[item.PortNum] = new byte[item.DataSize];
-                if (!item.IsRead)
-                    lifes.Add(item.DataSize);
+                fullData[item.PortNum] = new byte[SizeDate];
+                //if (!item.IsRead)
+                //    lifes.Add(item.DataSize);
             }
             foreach (var item in tags)
                 dicItems[item.COMMData] = item;
@@ -115,7 +228,7 @@ namespace MainUI.CAN
             {
                 TreeNode node = new();
                 node.ImageIndex = item.IsRead ? node.ImageIndex = 0 : node.ImageIndex = 1;
-                node.Text = item.PortName + "(" + item.Port + ")";
+                node.Text = item.PortName + "(" + item.CANID + ")";
                 if (!node.Text.Contains(SerchKey))
                     continue;
                 if (ReadOnly != null && ReadOnly != item.IsRead)
@@ -146,9 +259,9 @@ namespace MainUI.CAN
         void LoadPage(int offset, int length)
         {
             Color backColor = Color.FromName(ConfigManager.Layout.ItemColor);
-            Ports item = PanelContent.Tag as Ports;
-            labPresentPort.Text = string.Format("{0}({1})，端口周期：{2}ms", item.PortName, item.Port, item.Rate);
-            string port = item.Port;
+            CANPorts item = PanelContent.Tag as CANPorts;
+            labPresentPort.Text = string.Format("{0}({1})，端口周期：{2}ms", item.PortName, item.CANID, item.Rate);
+            string port = item.CANID;
             int portNum = item.PortNum;
 
             //先找到容器
@@ -172,11 +285,11 @@ namespace MainUI.CAN
                 flow = PanelContent.Controls[0] as FlowLayoutPanel;
             }
 
-            string controlsKey = item.Port;
-            if (fullControls.ContainsKey(controlsKey))
+            string controlsKey = item.CANID;
+            if (fullControls.TryGetValue(controlsKey, out FlowLayoutPanel value))
             {
                 PanelContent.Controls.Clear();
-                PanelContent.Controls.Add(fullControls[controlsKey]);
+                PanelContent.Controls.Add(value);
             }
             else
             {
@@ -190,10 +303,10 @@ namespace MainUI.CAN
                 for (int i = minOffset; i <= maxOffset; i++)
                 {
                     COMMData d = new();
-                    FullTags tag = new();
+                    CANFullTags tag = new();
                     int bitCount = items.Where(x => x.COMMData.Offset == i).Count();
                     List<int> bits = items.Where(x => x.COMMData.Offset == i).Select(x => x.COMMData.Bit).ToList();
-                    List<FullTags> isCt = [];
+                    List<CANFullTags> isCt = [];
                     for (int k = 0; k < bitCount; k++)
                     {
                         d.Port = portNum;
@@ -247,6 +360,7 @@ namespace MainUI.CAN
                                 Port = tag.COMMData.Port,
                                 ReadOnly = item.IsRead,
                                 Offset = tag.COMMData.Offset,
+                                BitValue = tag.BitValue,
                                 Bit = tag.COMMData.Bit,
                                 Unit = tag.DataUnit,
                                 IsSensorRange = tag.IsSensorRange,
@@ -318,39 +432,13 @@ namespace MainUI.CAN
         }
 
 
-        //转实体类
-        public static List<T> DataTableToList<T>(DataTable dt) where T : new()
-        {
-            Type type = typeof(T);
-            var properties = type.GetProperties().ToList();
-            List<T> list = new();
-            foreach (DataRow row in dt.Rows)
-            {
-                T obj = new();
-                foreach (var prop in properties)
-                {
-                    if (dt.Columns.Contains(prop.Name))
-                    {
-                        PropertyInfo propertyInfo = obj.GetType().GetProperty(prop.Name);
-                        if (propertyInfo != null && row[prop.Name].GetType() != typeof(DBNull))
-                            propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
-                    }
-                }
-                list.Add(obj);
-            }
-            return list;
-        }
-
-
-        byte[] data = new byte[8];
-        Dictionary<string, string> ps = new();
         public void CANPstart()
         {
             #region  初始化
             try
             {
-                int a = driver.Open();
-                int b = driver.Init();
+                int a = CANDriver.Open();
+                int b = driver.Init(ports[0].BaudRate);
                 int c = driver.Start();
                 if (a == 1 && b == 1 && c == 1)
                     switchLabel2.Switch = true;
@@ -434,7 +522,7 @@ namespace MainUI.CAN
             }
             catch (Exception ex)
             {
-                LogHelper.Append(ex.Message);
+                LogHelper.WriteLine(ex.Message);
                 MessageBox.Show("输入数值格式不正确！" + ex.Message);
             }
         }
@@ -512,7 +600,7 @@ namespace MainUI.CAN
         public static void ConvertBoolToByte(ref byte[] sendbyte, int byteIndex, int bitIndex, bool value)
         {
             byte bytevalue = sendbyte[byteIndex];
-            bool[] barr = DataConversionClass.conversion2((int)bytevalue);
+            bool[] barr = DataConversionClass.conversion2(bytevalue);
             barr[bitIndex] = value;
             bytevalue = (byte)DataConversionClass.conversion10(barr[0], barr[1], barr[2], barr[3], barr[4], barr[5], barr[6], barr[7]);
             sendbyte[byteIndex] = bytevalue;
@@ -539,19 +627,19 @@ namespace MainUI.CAN
             RegisterLife(pt);
         }
 
-        List<FullTags> tempLifeTag = new();
+        List<CANFullTags> tempLifeTag = new();
         bool closed = false;
-        void RegisterLife(IEnumerable<IGrouping<int, Ports>> group)
+        void RegisterLife(IEnumerable<IGrouping<int, CANPorts>> group)
         {
             tempLifeTag.Clear();
             foreach (var item in group)
             {
-                List<Ports> list = item.ToList();
+                List<CANPorts> list = [.. item];
                 int rata = item.Key;
-                List<FullTags> tempNOLifeTag = new();
+                List<CANFullTags> tempNOLifeTag = [];
                 foreach (var pt in list)
                 {
-                    FullTags mode = tags.Where(p => p.COMMData.Port == pt.PortNum && !pt.IsRead && p.Identity).FirstOrDefault();
+                    CANFullTags mode = tags.Where(p => p.COMMData.Port == pt.PortNum && !pt.IsRead && p.Identity).FirstOrDefault();
                     if (mode != null)
                         tempLifeTag.Add(mode);//有生命信号端口
                 }
@@ -572,8 +660,8 @@ namespace MainUI.CAN
                                     {
                                         byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
                                         fullData[tg.COMMData.Port][portIndex] = life;
+                                        driver.Send(fullData[tg.COMMData.Port], tg.COMMData.Port);
                                     }
-                                    driver.Send(fullData[tg.COMMData.Port], tg.COMMData.Port);
                                 }
                                 catch (Exception ex)
                                 {
@@ -589,6 +677,9 @@ namespace MainUI.CAN
                         }
                         finally
                         {
+                            value++;
+                            if (value > 255)
+                                value = 0;
                             Thread.Sleep(rata);
                         }
                     }
@@ -605,22 +696,18 @@ namespace MainUI.CAN
         object Comsum(string dataType, ref double value)
         {
             var types = (VariableTypeEnums)Enum.Parse(typeof(VariableTypeEnums), dataType);
-            object writeValue;
-            switch (types)
+            object writeValue = types switch
             {
-                case VariableTypeEnums.U8: writeValue = (byte)value; break;
-                case VariableTypeEnums.I8: writeValue = (byte)value; break;
-                case VariableTypeEnums.U16: writeValue = (ushort)value; break;
-                case VariableTypeEnums.I16: writeValue = (short)value; break;
-                case VariableTypeEnums.U32: writeValue = (uint)value; break;
-                case VariableTypeEnums.I32: writeValue = (int)value; break;
-                case VariableTypeEnums.U64: writeValue = (ulong)value; break;
-                case VariableTypeEnums.I64: writeValue = (long)value; break;
-                case VariableTypeEnums.Bit:
-                case VariableTypeEnums.None:
-                default:
-                    throw new NotImplementedException("系统不支持的数据类型。");
-            }
+                VariableTypeEnums.U8 => (byte)value,
+                VariableTypeEnums.I8 => (byte)value,
+                VariableTypeEnums.U16 => (ushort)value,
+                VariableTypeEnums.I16 => (short)value,
+                VariableTypeEnums.U32 => (uint)value,
+                VariableTypeEnums.I32 => (int)value,
+                VariableTypeEnums.U64 => (ulong)value,
+                VariableTypeEnums.I64 => (long)value,
+                _ => throw new NotImplementedException("系统不支持的数据类型。"),
+            };
             return writeValue;
         }
         private void Tr_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -646,7 +733,7 @@ namespace MainUI.CAN
                 return;
             bool exists = false;
 
-            Ports p = (PanelContent.Tag as Ports);
+            CANPorts p = (PanelContent.Tag as CANPorts);
             foreach (Control label in PanelContent.Controls[0].Controls)
             {
                 if (label is ucByte)
@@ -717,7 +804,7 @@ namespace MainUI.CAN
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Hide(); 
+            Hide();
         }
     }
 }

@@ -25,5 +25,6 @@ namespace MainUI.MVB
         U4 = 4,
         U2 = 2,
         U6 = 6,
+        U10 = 10,
     }
 }

@@ -89,7 +89,7 @@ namespace MainUI.Procedure.ExcelImport
             catch (Exception ex)
             {
                 string err = ex.Message;
-                LogHelper.Append(err);
+                LogHelper.WriteLine(err);
                 MessageBox.Show("导入数据错误：" + err);
                 return Condes;
             }
@@ -129,7 +129,7 @@ namespace MainUI.Procedure.ExcelImport
                     catch (Exception ex)
                     {
                         string err = ex.Message;
-                        LogHelper.Append(err);
+                        LogHelper.WriteLine(err);
                         lblImpTips.Text = "导入失败";
                         MessageBox.Show("导入数据错误：" + err);
                     }

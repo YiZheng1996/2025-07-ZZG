@@ -240,6 +240,7 @@ public partial class FrmWeary : UIForm
     {
         frmParaSet frmParaSet = new();
         frmParaSet.ShowDialog();
+        
     }
 
     private void btnCalibration_Click(object sender, EventArgs e)

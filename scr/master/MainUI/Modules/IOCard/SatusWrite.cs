@@ -83,7 +83,7 @@ namespace MainUI.Modules.IOCard
             {
                 int temp = 25 + i;
                 int Index = i;
-                Register($"Card{Card_Index}.S" + (temp).ToString().PadLeft(2, '0'), delegate (bool[] Dcf_value)
+                AddListening($"Card{Card_Index}.S" + (temp).ToString().PadLeft(2, '0'), delegate (bool[] Dcf_value)
                 {
                     //将两个点位作一个点位，返回bool(可为空)，数组长度24
                     if (Dcf_value[0] && Dcf_value[1])

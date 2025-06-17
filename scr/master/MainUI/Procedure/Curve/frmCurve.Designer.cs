@@ -130,7 +130,9 @@
             // 
             // uiLineChart1
             // 
+            uiLineChart1.BackColor = Color.FromArgb(80, 160, 255);
             uiLineChart1.ChartStyleType = UIChartStyleType.Default;
+            uiLineChart1.FillColor = Color.FromArgb(243, 249, 255);
             uiLineChart1.Font = new Font("宋体", 12F);
             uiLineChart1.LegendFont = new Font("宋体", 9F);
             uiLineChart1.Location = new Point(0, 35);

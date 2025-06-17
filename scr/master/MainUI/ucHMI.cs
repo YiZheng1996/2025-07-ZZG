@@ -1,6 +1,11 @@
-﻿using MainUI.Modules;
-using RW.Driver;
+﻿using MainUI.ViewModel;
+using RW;
+using RW.DSL;
+using RW.DSL.Modules;
+using RW.DSL.Procedures;
+using System.Data;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MainUI;
 [SupportedOSPlatform("windows")]
@@ -15,16 +20,16 @@ public partial class ucHMI : UserControl
     public TestCon testcon = null;
     public TestPara testpara = null;
     ParaConfig paraconfig = null;
+    Report.Report report = new();
     WorkOrderConfig Workconfig = null;
     Dictionary<int, UILedBulb> dicDI = [];
     Dictionary<int, UISwitch> dicDO = [];
     Dictionary<int, UIValve> dicDCF = [];
     Dictionary<int, UIDigitalLabel> dicAI = [];
     List<UICheckBox> listChk = [];
-    Dictionary<string, BaseTest> dicBase = [];
     BaseTest baseTest = new();
-    string rn = Environment.NewLine;
-    private delegate void Del();
+    frmMainMenu frm = new();
+    string path2 = Application.StartupPath + @"reports\report.xls";
     public ucHMI()
     {
         InitializeComponent();
@@ -166,12 +171,12 @@ public partial class ucHMI : UserControl
         ns %= 60;
         s = ns / 1;
         ns %= 1;
-        Invoke(new Del(delegate { lblTiming.Text = h.ToString().PadLeft(2, '0') + ":" + m.ToString().PadLeft(2, '0') + ":" + s.ToString().PadLeft(2, '0'); }));
+        Invoke(() => { lblTiming.Text = h.ToString().PadLeft(2, '0') + ":" + m.ToString().PadLeft(2, '0') + ":" + s.ToString().PadLeft(2, '0'); });
     }
     void BaseTest_WaitStepTick(int tick, string stepName)
     {
         TimeSpan ts = new(0, 0, 0, 0, tick);
-        Invoke(new Del(delegate { lblTiming.Text = stepName + "：" + ts.Minutes.ToString().PadLeft(2, '0') + ":" + ts.Seconds.ToString().PadLeft(2, '0'); }));
+        Invoke(() => { lblTiming.Text = stepName + "：" + ts.Minutes.ToString().PadLeft(2, '0') + ":" + ts.Seconds.ToString().PadLeft(2, '0'); });
     }
 
     /// <summary>
@@ -189,14 +194,6 @@ public partial class ucHMI : UserControl
 
     #region 初始化
     /// <summary>
-    /// 加载试验项点复选框
-    /// </summary>
-    private void LoadChk()
-    {
-        //listChk.Add(chkQiMiXing);
-    }
-
-    /// <summary>
     /// 加载DI模块
     /// </summary>
     private void LoaddicDI()
@@ -210,7 +207,7 @@ public partial class ucHMI : UserControl
     /// <typeparam name="T"></typeparam>
     /// <param name="tabPage"></param>
     /// <param name="controlDictionary"></param>
-    public void FindControlInTabPage<T>(TabPage tabPage, Dictionary<int, T> controlDictionary) where T : FormControl.Control
+    public void FindControlInTabPage<T>(Control tabPage, Dictionary<int, T> controlDictionary) where T : Control
     {
         foreach (FormControl.Control control in tabPage.Controls)
         {
@@ -220,6 +217,8 @@ public partial class ucHMI : UserControl
                 controlDictionary.Add(control.Tag.ToInt(), t);
             if (control is UIGroupBox box)
                 FindControlIn(box, controlDictionary);
+            if (control is UITitlePanel panel)
+                FindControlIn(panel, controlDictionary);
         }
     }
 
@@ -281,7 +280,7 @@ public partial class ucHMI : UserControl
             Workconfig = new WorkOrderConfig();
             Workconfig.SetSectionName(VarHelper.PortName);
             Workconfig.Load();
-            BaseTest.para = paraconfig;
+            BaseTest.paraconfig = paraconfig;
         }
         catch (Exception ex)
         {
@@ -327,16 +326,123 @@ public partial class ucHMI : UserControl
     }
     #endregion
 
+    #region DSL初始化  
+    private readonly Dictionary<string, DSLProcedure> DicProcedureModules = [];
+    readonly Dictionary<string, DSLModule> modules = DSLModuleHelper.GetModulesWithFile(Environment.CurrentDirectory + @"\Modules\MyModules.ini");
+    //Timer_ModelPiece doumelpiece = null;
+    //Timer_ModelPiece doumelpieceRoseBow = null;
+    //RWrpt rpt = null;
+    /// <summary>
+    /// 根据型号加载DSL自动试验rw1文件
+    /// </summary>
+    /// <param name="ModelName"></param>
+    public void ModelLoadDSL(string ModelID)
+    {
+        DicProcedureModules.Clear();
+        TestDSLNameBLL DSLNameBLL = new();
+        DataTable dt = DSLNameBLL.GetDSLName(ModelID);
+        //if (modules.Count < 1) MessageBox.Show(this, "DSL点位模块加载失败！");
+        Dictionary<string, object> modules2 = [];
+        //modules2["报表"] = rpt = new RWrpt(this, rwReport1);
+        //modules2["参数"] = paraconfig;
+        DSLModuleHelper.InitModules(modules);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            string ProcessKey = dt.Rows[i]["ProcessKey"].ToString();
+            string ProcessName = dt.Rows[i]["ProcessName"].ToString();
+            string Sort = dt.Rows[i]["Sort"].ToString();
+            string xuhao = Sort.PadLeft(2, '0');
+            string DSLName = xuhao + ProcessName + ".rw1";
+            string ModelName = VarHelper.ModelName;
+            string DSLNamePath = $"{Application.StartupPath}Procedure\\{ModelName}\\{DSLName}";
+            Creation(ModelName, DSLName);
+            if (File.Exists(DSLNamePath))
+            {
+                var proc = DSLFactory.CreateProcedure(DSLNamePath);
+                proc.AddModules(modules);
+                proc.AddModules(modules2);
+                DicProcedureModules.Add(ProcessKey, proc);
+                DicProcedureModules[ProcessKey].DomainEventInvoked += new DomainHandler<object>(Visitor_DomainEventInvoked);
+            }
+            else
+            {
+                MessageBox.Show($"试验项点：{ProcessName},找不到自动试验文件！");
+                return;
+            }
+        }
+    }
+
+    private void Visitor_DomainEventInvoked(object sender, string name, List<object> output)
+    {
+        Debug.WriteLine($"监听事件：{name}  值数量：{output.Count}");
+    }
+
+    /// <summary>
+    /// 根据数据库配置自动生成 项点rw1文件
+    /// </summary>
+    /// <param name="ModelName">型号</param>
+    /// <param name="DSLName">试验项点名称</param>
+    private void Creation(string ModelName, string DSLName)
+    {
+        try
+        {
+            string ModelNamePath = $"{Application.StartupPath}Procedure\\{ModelName}";
+            string DSLNamePath = $"{ModelNamePath}\\{DSLName}";
+            if (!Directory.Exists(ModelNamePath))
+                Directory.CreateDirectory(ModelNamePath);
+            if (!File.Exists(DSLNamePath))
+            {
+                File.Create(DSLNamePath).Dispose();
+                using (new StreamWriter(DSLNamePath, true, System.Text.Encoding.GetEncoding("UTF-8"))) { }
+            }
+        }
+        catch (Exception ex)
+        {
+            string err = ex.Message;
+            MessageBox.Show($"自动创建试验项点失败：{err}");
+        }
+    }
+    #endregion
+
     //产品选择
     private void BtnProductSelection_Click(object sender, EventArgs e)
     {
         frmSpec fs = new();
-        fs.ShowDialog();
+        VarHelper.ShowDialogWithOverlay(frm, fs);
         if (fs.DialogResult == DialogResult.OK)
         {
             SRefresh();
             isSwitch = true;  //TODO:暂时为true
             FormManager.FormsClosing();
+            LoadTestItems();
+            ModelLoadDSL(VarHelper.ModelID.ToString());
+            LoadRep(paraconfig.RptFile);
+        }
+    }
+
+    private void LoadRep(string Path)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(Path))
+            {
+                string filePath = Application.StartupPath + "reports\\" + Path;
+                report.Dock = DockStyle.Fill;
+                if (report.Filename != filePath)
+                {
+                    SystemHelper.KillProcess("EXCEL");
+                    Thread.Sleep(200);
+                    File.Copy(filePath, path2, true);
+                    report.Filename = path2;
+                    report.Init();  //办公室暂时注释
+                    if (!tabPageReport.Controls.Contains(report))
+                        tabPageReport.Controls.Add(report);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            NlogHelper.Default.Error("报表加载错误：", ex);
         }
     }
 
@@ -345,15 +451,9 @@ public partial class ucHMI : UserControl
     {
         if (string.IsNullOrEmpty(Common.mTestViewModel.ModelName))
             return;
-
-        dicBase.Clear();
         InitParaConfig();
         txtModel.Text = Common.mTestViewModel.ModelName;
         Common.mResultAll = new ResultAll();
-        dicBase.Add("NoiseTestKey", new NoiseTest());
-        dicBase.Add("LeakCheckKey", new LeakCheckTest());
-        dicBase.Add("AirTestKey", new AirTest());
-        dicBase.Add("AroundTestKey", new AroundTest());
     }
 
     //全选
@@ -371,16 +471,17 @@ public partial class ucHMI : UserControl
         try
         {
             if (VarHelper.ModelID is 0) { MessageHelper.UIMessageOK("型号未选择！"); return; }
-            Color startColor = Color.FromArgb(110, 190, 40);
+            Color startColor = Color.FromArgb(80, 160, 255);
             Color endColor = Color.FromArgb(255, 128, 128);
             if (!isOperationStarted)//开始
             {
                 Invoke(() =>
                 {
                     if (Auto?.Status == TaskStatus.Running) return;
+                    DataGatherHelper.ClearData();
                     Auto = DataGatherHelper.DataGather();
                     timer1.Start(); time = 0;
-                    uiPresentation.AppendText("开始时间:" + DateTime.Now.ToString("HH:mm:ss fff") + "\n");
+                    //uiPresentation.AppendText("开始时间:" + DateTime.Now.ToString("HH:mm:ss fff") + "\n");
                     btnStart.FillColor = btnStart.RectColor = endColor;
                     btnStart.Text = "停止记录数据";
                 });
@@ -391,7 +492,7 @@ public partial class ucHMI : UserControl
                 Invoke(() =>
                 {
                     timer1.Stop();
-                    uiPresentation.AppendText("停止时间:" + DateTime.Now.ToString("HH:mm:ss fff") + "\n");
+                    //uiPresentation.AppendText("停止时间:" + DateTime.Now.ToString("HH:mm:ss fff") + "\n");
                     btnStart.FillColor = btnStart.RectColor = startColor;
                     btnStart.Text = "开始记录数据";
                 });
@@ -454,43 +555,6 @@ public partial class ucHMI : UserControl
             DOgrp[i] = false;
         }
     }
-
-    /// <summary>
-    /// 试验线程
-    /// </summary>
-    public void TestStart()
-    {
-        try
-        {
-            string tip = "";
-            tip += "请先确保如下事项：                  " + rn;
-            tip += "1、请确认产品安装是否正确。           " + rn;
-            tip += "点击【是】开始试验，点击【否】返回。" + rn;
-            DialogResult dr = MessageBox.Show(this, tip, "系统提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (dr == DialogResult.No) return;
-            BeginTest();
-            foreach (var item in listChk)
-            {
-                if (item.Checked)
-                {
-                    item.BackColor = Color.Yellow;
-                    dicBase[item.Tag.ToString()].BeginTestItem();
-                    bool isOk = dicBase[item.Tag.ToString()].Execute();
-                    if (isOk)
-                        item.BackColor = Color.LightGreen;
-                    else
-                        item.BackColor = Color.Salmon;
-                    dicBase[item.Tag.ToString()].EndTestItem();
-                }
-            }
-            baseTest.TestStatus(false);
-            EndTest();
-        }
-        catch (ThreadInterruptedException)
-        {
-            Console.WriteLine("试验中断");
-        }
-    }
     #endregion
 
     private void BtnIOBox_Click(object sender, EventArgs e)
@@ -506,13 +570,13 @@ public partial class ucHMI : UserControl
     private void UibtnCurve_Click(object sender, EventArgs e)
     {
         frmCurve frmcurve = new();
-        frmcurve.ShowDialog();
+        VarHelper.ShowDialogWithOverlay(frm, frmcurve);
     }
 
     private void UibtnSSIDataMonitor_Click(object sender, EventArgs e)
     {
         frmSSI frmSSI = new();
-        frmSSI.ShowDialog();
+        VarHelper.ShowDialogWithOverlay(frm, frmSSI);
     }
 
     int time = 0;
@@ -525,7 +589,7 @@ public partial class ucHMI : UserControl
         //测试用
         foreach (var item in dicAI)
         {
-            dicAI[item.Key].Value = Random.NextDouble() * 1000;
+            //dicAI[item.Key].Value = Random.NextDouble() * 1000;
             dicTestAI?.AddOrUpdate(dicAI[item.Key].Text, dicAI[item.Key].Value.ToString("f1"), (key, oldValue) => dicAI[item.Key].Value.ToString("f1"));
             DataGatherHelper.AddData("BTestAI", dicTestAI);
         }
@@ -578,19 +642,20 @@ public partial class ucHMI : UserControl
     private void btnCANPowerDown_Click(object sender, EventArgs e)
     {
         frmPowerDown powerdown = new();
-        powerdown.ShowDialog();
+        VarHelper.ShowDialogWithOverlay(frm, powerdown);
     }
 
     private void btnDataAnalysis_Click(object sender, EventArgs e)
     {
         frmAnalysis analy = new();
-        analy.ShowDialog();
+        VarHelper.ShowDialogWithOverlay(frm, analy);
+
     }
 
     private void btnResponseTest_Click(object sender, EventArgs e)
     {
         frmOpenCircuit frmOpen = new();
-        frmOpen.ShowDialog();
+        VarHelper.ShowDialogWithOverlay(frm, frmOpen);
     }
 
     private void btnVoltageInput_Click(object sender, EventArgs e)
@@ -617,7 +682,7 @@ public partial class ucHMI : UserControl
 
     private void uiPresentation_TextChanged(object sender, EventArgs e)
     {
-        uiPresentation.ScrollToCaret();
+        //uiPresentation.ScrollToCaret();
     }
 
     bool isExhausting = false;
@@ -631,9 +696,9 @@ public partial class ucHMI : UserControl
 
         Color startColor = Color.FromArgb(80, 160, 255);
         Color endColor = Color.FromArgb(255, 128, 128);
-        BtnExhaust.FillColor = btnStart.RectColor = endColor;
+        BtnExhaust.FillColor = BtnExhaust.RectColor  = endColor;
         BtnExhaust.Text = "排气中···";
-        uiPresentation.AppendText("一键排气启动:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
+        //uiPresentation.AppendText("一键排气启动:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
         Task.Run(() =>
         {
             isExhausting = true;
@@ -665,18 +730,163 @@ public partial class ucHMI : UserControl
             DOgrp[98] = true;
             DOgrp[99] = true;
             DOgrp[100] = true;
-            Task.Delay(30000).Wait();
+            Task.Delay(10000).Wait();
             for (int i = 74; i <= 100; i++) DOgrp[i] = false;
             isExhausting = false;
-            uiPresentation.Invoke(() =>
-            {
-                BtnExhaust.Text = "开始排气";
-                BtnExhaust.FillColor = btnStart.RectColor = startColor;
-                uiPresentation.AppendText("一键排气完成:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
-            });
+            BtnExhaust.Text = "开始排气";
+            BtnExhaust.FillColor = BtnExhaust.RectColor = startColor;
+            //uiPresentation.AppendText("一键排气完成:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
         });
 
     }
 
+    private void LoadTestItems()
+    {
+        TestStepBLL bll = new();
+        List<TestStep> stepList = bll.GetStepByModelID(VarHelper.ModelName);
+        lvTestItem.Items.Clear();
+        if (stepList.Count < 1) return;
+        lvTestItem.Columns[0].Width = 400;
+        lvTestItem.Columns[1].Width = 1;
+        lvTestItem.Columns[2].Width = 1;
+        lvTestItem.Columns[3].Width = 1;
+        lvTestItem.Columns[4].Width = 1;
 
+        for (int i = 0; i < stepList.Count; i++)
+        {
+            TestStep step = stepList[i];
+            //界面的column 属性建立的3列。stepName，stepKey，stepSort
+            string disName = $"{step.Sort.ToString().PadLeft(2, '0')}.{step.ProcessName}";
+            ListViewItem item = new(disName);
+            item.SubItems.Add(step.ProcessKey);
+            item.SubItems.Add(step.Sort.ToString());
+            item.SubItems.Add(step.DSLName.ToString());
+            item.SubItems.Add(step.ReportRow.ToString());
+            item.ImageKey = step.ProcessKey;
+            lvTestItem.Items.Add(item);
+            lvTestItem.Items[i].Checked = true;
+        }
+        chkAllNone.Checked = true;
+    }
+
+    private List<TestItems> GetSelectTestItems()
+    {
+        List<TestItems> listSelectTestItems = [];
+        for (int i = 0; i < lvTestItem.Items.Count; i++)
+        {
+            TestItems tmptestItems = new()
+            {
+                Model = VarHelper.ModelName,
+                ProcessKey = lvTestItem.Items[i].ImageKey,
+                ProcessName = lvTestItem.Items[i].Text,
+                IsSelected = lvTestItem.Items[i].Checked,
+                DSLName = lvTestItem.Items[i].Text,
+                ReportRow = lvTestItem.Items[i].Text,
+                RowIndex = i
+            };
+            listSelectTestItems.Add(tmptestItems);
+        }
+        return listSelectTestItems;
+    }
+
+    private string curProcessKey;
+    private void ThreadStartTest()
+    {
+        List<TestItems> testItemsList = GetSelectTestItems();
+        for (int i = 0; i < testItemsList.Count; i++)
+            lvTestItem.Invoke(() => { lvTestItem.Items[i].BackColor = Color.White; });
+        for (int i = 0; i < testItemsList.Count && isOperationTestStarted; i++)
+        {
+            if (!testItemsList[i].IsSelected) continue;
+            curProcessKey = testItemsList[i].ProcessKey;
+            string curProcessName = testItemsList[i].ProcessName;
+            string curProcessDSLName = testItemsList[i].DSLName;
+            int rowIndex = testItemsList[i].RowIndex;
+
+            if (DicProcedureModules.TryGetValue(curProcessKey, out DSLProcedure DslPro))
+            {
+                lvTestItem.Invoke(() => { lvTestItem.Items[rowIndex].BackColor = Color.LightYellow; });
+                try
+                {
+                    DslPro.Execute();
+                }
+                catch (Exception ex)
+                {
+                    lvTestItem.Invoke(() => { lvTestItem.Items[rowIndex].BackColor = Color.Green; });
+                    MessageHelper.UIMessageOK(ex.Message);
+                }
+                lvTestItem.Invoke(() => { lvTestItem.Items[rowIndex].BackColor = Color.LightGreen; });
+            }
+            else
+            {
+                MessageHelper.UIMessageOK("未找到自动试验文件，例行试验开始失败！");
+                return;
+            }
+        }
+        TestBtnStatus(false);
+    }
+
+    bool isOperationTestStarted = false;
+    private void btnStartTest_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(VarHelper.ModelName)) { MessageHelper.UIMessageOK("型号未选择！"); return; }
+        if (lvTestItem.Items.Count < 1) { MessageHelper.UIMessageOK("无试验项点，请进入[参数设置]-->[试验项点管理]界面中设置自动试验项点！"); return; }
+        if (Common.AIgrp[18] < 750) { MessageHelper.UIMessageOK("总风压力不足750kPa，请检查风源是否开启！"); return; }
+        if (Common.AIgrp[19] < 750) { MessageHelper.UIMessageOK("总风管压力不足750kPa，请检查风源是否开启！"); return; }
+        try
+        {
+            if (!isOperationTestStarted)//开始
+            {
+                TestBtnStatus(true);
+                Task.Factory.StartNew(() => { ThreadStartTest(); });
+            }
+            else
+            {
+                if (DicProcedureModules.TryGetValue(key: curProcessKey, value: out DSLProcedure value))
+                {
+                    value.StopExecute();
+                }
+                TestBtnStatus(false);
+            }
+        }
+        catch (Exception ex)
+        {
+            NlogHelper.Default.Error("自动试验开启、停止错误：", ex);
+            MessageHelper.UIMessageOK("自动试验开启、停止错误：" + ex.Message);
+        }
+    }
+
+    private void TestBtnStatus(bool Status)
+    {
+        Color startColor = Color.FromArgb(80, 160, 255);
+        Color endColor = Color.FromArgb(255, 128, 128);
+        if (Status)
+        {
+            isOperationTestStarted = true;
+            btnStartTest.FillColor = btnStartTest.FillColor2 = endColor;
+            btnStartTest.RectColor = btnStartTest.RectDisableColor = endColor;
+            btnStartTest.Text = "停止自动试验";
+        }
+        else
+        {
+            isOperationTestStarted = false;
+            btnStartTest.FillColor = btnStartTest.FillColor2 = startColor;
+            btnStartTest.RectColor = btnStartTest.RectDisableColor = startColor;
+            btnStartTest.Text = "开始自动试验";
+        }
+    }
+
+    private void btnStopTest_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void chkAllNone_CheckedChanged(object sender, EventArgs e)
+    {
+        var isCheck = sender as UICheckBox;
+        for (int i = 0; i < lvTestItem.Items.Count; i++)
+        {
+            lvTestItem.Items[i].Checked = isCheck.Checked;
+        }
+    }
 }

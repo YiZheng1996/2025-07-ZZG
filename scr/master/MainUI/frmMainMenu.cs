@@ -1,7 +1,9 @@
-﻿using MainUI.MVB;
+﻿using AntdUI;
+using MainUI.MVB;
 using MainUI.Procedure.ExcelImport;
 using MainUI.Properties;
 using MainUI.TRDP;
+using MainUI.ViewModel;
 using RW.EventLog;
 
 namespace MainUI
@@ -131,7 +133,7 @@ namespace MainUI
         private void btnMainData_Click(object sender, EventArgs e)
         {
             frmParameterSettings frm = new();
-            frm.ShowDialog();
+            VarHelper.ShowDialogWithOverlay(this, frm);
             hmi.SRefresh();
         }
         /// <summary>
@@ -148,7 +150,7 @@ namespace MainUI
         private void btnChangePwd_Click(object sender, EventArgs e)
         {
             frmChangePwd changePwd = new();
-            changePwd.ShowDialog();
+            VarHelper.ShowDialogWithOverlay(this, changePwd);
         }
         /// <summary>
         /// 注销

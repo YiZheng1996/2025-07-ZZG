@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 using RW.Driver;
+using System.Collections;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace MainUI.MVB
     /// <summary>
     /// ZZC MVB自动生成界面
     /// </summary>
-    public partial class frmMVB_ZZC : Form//: RWFormBase
+    public partial class frmMVB_ZZC : UIForm
     {
         public frmMVB_ZZC()
         {
@@ -31,7 +33,7 @@ namespace MainUI.MVB
         bool loaded = false;
         bool init = false;
 
-        public void Init()
+        public void MVBInit()
         {
             page.Offset = 0;
             page.Length = 32;
@@ -64,15 +66,15 @@ namespace MainUI.MVB
                 RegisterLife(pt);
 
                 MVBDriverZZC_Zhu.MVB.ports = ports;
-
                 MVBDriverZZC_Zhu.MVB.fullData = fullData;
-
+                MVBDriverZZC_Zhu.MVB.SourceData = fullData;
                 MVBDriverZZC_Zhu.MVB.SendMVBchanged += MVB_SendMVBchanged;
             }
             catch (Exception ex)
             {
                 init = false;
-                MessageBox.Show("初始化错误：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NlogHelper.Default.Error("MVB初始化错误：", ex);
+                MessageBox.Show("MVB初始化错误：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             init = true;
         }
@@ -101,23 +103,15 @@ namespace MainUI.MVB
             //throw new NotImplementedException();
         }
 
-        System.Windows.Forms.Timer timeMVBstatus = new System.Windows.Forms.Timer();
-
+        System.Windows.Forms.Timer timeMVBstatus = new();
         private void Form1_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    this.Init();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("MVB通讯失败：" + ex.Message);
-            //}
-
-
+            //GetPortInfo();
+            MVBDriverZZC_Zhu.MVB.Connect();
+            MVBInit();
             tmrRead.Interval = sys.MvbDataReadInterval;
             tmrRead.Tick += new EventHandler(tmrRead_Tick);
-            tmrRead.Start();
+            tmrRead.Start(); //TODO:暂时注释
 
             timeMVBstatus.Interval = 1000;
             timeMVBstatus.Tick += TimeMVBstatus_Tick;
@@ -129,9 +123,8 @@ namespace MainUI.MVB
         {
             try
             {
-                swiLedMVBComm.Switch = MVBDriverZZC_Zhu.MVB.MVBConfigure;
+                //swiLedMVBComm.Switch = MVBDriverZZC_Zhu.MVB.MVBConfigure;
                 lblMVBCardStatusStr.Text = MVBDriverZZC_Zhu.MVB.MVBConfigure ? "通讯成功" : "通讯失败";
-
             }
             catch (Exception)
             {
@@ -169,28 +162,27 @@ namespace MainUI.MVB
             }
         }
 
+        byte[] data;
         void tmrRead_Tick(object sender, EventArgs e)
         {
             try
             {
                 if (closed) tmrRead.Stop();
 
-                GetMvbData();
+                //GetMvbData();
 
-                Stopwatch timeWatch = new Stopwatch();
+                Stopwatch timeWatch = new();
                 timeWatch.Start();
 
                 Ports p = PanelContent.Tag as Ports;
-                byte[] data;
 
                 data = fullData[p.PortNum];
 
-                Stopwatch watch = new Stopwatch();
+                Stopwatch watch = new();
                 watch.Start();
                 //Debug.WriteLine("start:" + watch.Elapsed.ToString());
                 if (PanelContent.Controls.Count == 0)
                     return;
-
 
                 foreach (var item in this.PanelContent.Controls[0].Controls)//变量到所有的控件
                 {
@@ -204,9 +196,7 @@ namespace MainUI.MVB
 
                         bool b = (data[offset] & bitValue) == bitValue;
                         if (b == bit.Switch) continue;
-
                         bit.Switch = b;
-
                     }
                     else if (item is ucByte)
                     {
@@ -240,38 +230,69 @@ namespace MainUI.MVB
                                 offset += ub.Bit;
                                 value = data[offset];
                                 break;
+                            case VariableTypeEnums.U10:
+                                offset += ub.Bit;
+                                int startByte = VarHelper.GetValue(ub.GroupOffset)[0].ToInt();//起始Byte位
+                                int startBit = VarHelper.GetValue(ub.GroupOffset)[1].ToInt(); //起始Bit位
+                                int bitCount = VarHelper.GetValue(ub.GroupOffset)[2].ToInt(); //Bit数量
+                                byte originalByte = data[startByte];  //初始字节值
+                                byte shiftedByte = (byte)(data[startByte] >> startBit);//右移，去掉前几个bit
+                                byte mask = (byte)((1 << bitCount) - 1);//获取对应长度的bit值
+                                byte result = (byte)(shiftedByte & mask);// 按位取反，获取最终值
+                                var H = result * 256;
+                                var L = data[offset];
+                                value = H + L;
+                                break;
                             case VariableTypeEnums.I8:
                                 value = (sbyte)data[offset];//TODO：请注意，此处负数的处理
                                 break;
                             case VariableTypeEnums.U16:
                                 temp = new byte[2];
                                 Array.Copy(data, offset, temp, bits, temp.Length);
-                                value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
+                                if (!ub.PortPattern)
+                                    value = BitConverter.ToUInt16([.. temp], 0);
+                                else
+                                    value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.I16:
                                 temp = new byte[2];
                                 Array.Copy(data, offset, temp, bits, temp.Length);
-                                value = BitConverter.ToInt16(temp.Reverse().ToArray(), 0);
+                                if (!ub.PortPattern)
+                                    value = BitConverter.ToUInt16([.. temp], 0);
+                                else
+                                    value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.U32:
                                 temp = new byte[4];
                                 Array.Copy(data, offset, temp, bits, temp.Length);
-                                value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
+                                if (!ub.PortPattern)
+                                    value = BitConverter.ToUInt32([.. temp], 0);
+                                else
+                                    value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.I32:
                                 temp = new byte[4];
                                 Array.Copy(data, offset, temp, bits, temp.Length);
-                                value = BitConverter.ToInt32(temp.Reverse().ToArray(), 0);
+                                if (!ub.PortPattern)
+                                    value = BitConverter.ToUInt32([.. temp], 0);
+                                else
+                                    value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.U64:
                                 temp = new byte[8];
                                 Array.Copy(data, offset, temp, bits, temp.Length);
-                                value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
+                                if (!ub.PortPattern)
+                                    value = BitConverter.ToUInt64([.. temp], 0);
+                                else
+                                    value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.I64:
                                 temp = new byte[8];
                                 Array.Copy(data, offset, temp, bits, temp.Length);
-                                value = BitConverter.ToInt64(temp.Reverse().ToArray(), 0);
+                                if (!ub.PortPattern)
+                                    value = BitConverter.ToUInt64([.. temp], 0);
+                                else
+                                    value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
                                 break;
                             default:
                                 break;
@@ -281,15 +302,9 @@ namespace MainUI.MVB
                             ub.Value = Math.Round(sys.SensorRange * (double)value, 1);
                         else if ((decimal)ub.Value != value && !ub.IsSensorRange)
                             ub.Value = (double)value;
-
-                        //ub.Value = 
                     }
-
                 }
-
                 watch.Stop();
-
-
                 timeWatch.Stop();
             }
             catch (Exception ex)
@@ -310,19 +325,16 @@ namespace MainUI.MVB
         }
 
 
-
-
         void RegisterLife(IEnumerable<IGrouping<int, Ports>> group)
         {
             foreach (var item in group)
             {
-                List<Ports> list = item.ToList();
+                List<Ports> list = [.. item];
                 int rata = item.Key;
-                List<FullTags> tempLifeTag = new List<FullTags>();
-                List<FullTags> tempNOLifeTag = new List<FullTags>();
+                List<FullTags> tempLifeTag = [];
+                List<FullTags> tempNOLifeTag = [];
                 foreach (var pt in list)
                 {
-
                     FullTags mode = tags.Where(p => p.COMMData.Port == pt.PortNum && !pt.IsRead && p.Identity).FirstOrDefault();
                     if (mode != null)
                     {
@@ -331,14 +343,15 @@ namespace MainUI.MVB
                     else
                     {
                         FullTags modeNOLife = tags.Where(p => p.COMMData.Port == pt.PortNum && !pt.IsRead && !p.Identity).FirstOrDefault();
-                        if (modeNOLife != null)
+                        if (modeNOLife
+                            != null)
                         {
                             tempNOLifeTag.Add(modeNOLife);
                         }
                     }
                 }
 
-                Thread t = new Thread(new ThreadStart(delegate
+                Thread t = new(new ThreadStart(delegate
                 {
                     double value = 0;
                     while (!this.IsDisposed && !closed)
@@ -351,13 +364,11 @@ namespace MainUI.MVB
                                 {
                                     Ports mode = ports.Where(p => p.PortNum == tg.COMMData.Port).FirstOrDefault();
                                     int sinkSize = mode.DataSize;
-                                    ushort life = (ushort)Convert.ToDouble(Comsum(tg.DataType, ref value));
-                                    // MvbDllCall.sendbyte[portIndex, tg.COMMData.Offset] = life;
-                                    MVBDriverZZC_Zhu.MVB.DataWrite(tg.COMMData.Port, tg.COMMData.Offset, tg.COMMData.Bit, tg.DataType, life);
+                                    byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
                                     byte sendValue = (byte)value;
-
                                     //这里刷到到界面上的控件，生命信号
                                     fullData[tg.COMMData.Port][tg.COMMData.Offset] = sendValue;
+                                    MVBDriverZZC_Zhu.MVB.DataWrite(tg.COMMData.Port, tg.COMMData.Offset, tg.COMMData.Bit, tg.DataType, life);
                                 }
                                 catch (Exception ex)
                                 {
@@ -365,34 +376,10 @@ namespace MainUI.MVB
                                     Debug.WriteLine(ex.ToString());
                                     Debug.WriteLine("======================");
                                 }
-
                             }
-
-                            //foreach (var NOtg in tempNOLifeTag)
-                            //{
-                            //    Ports mode = ports.Where(p => p.PortNum == NOtg.COMMData.Port).FirstOrDefault();
-                            //    if (mode == null) continue;
-                            //    int portIndex = MvbDllCall.GetPortIndex(NOtg.COMMData.Port);
-                            //    int sinkSize = mode.DataSize;
-                            //    if (mode.SMIValue > 0 && sinkSize > 5)
-                            //    {
-
-                            //        if (dic.ContainsKey(mode.PortNum))
-                            //        {
-                            //            dic[mode.PortNum]++;
-                            //        }
-                            //        else
-                            //        {
-                            //            dic.Add(mode.PortNum, Convert.ToByte(1)); ;
-                            //        }
-                            //        MvbDllCall.sendbyte[portIndex, sinkSize - 5] = dic[mode.PortNum];
-                            //    }
-                            //}
-
                         }
                         catch (Exception ex)
                         {
-
                             Debug.WriteLine("生命信号写入错误：" + ex.Message);
                         }
                         finally
@@ -402,8 +389,10 @@ namespace MainUI.MVB
                             System.Threading.Thread.Sleep(rata);
                         }
                     }
-                }));
-                t.IsBackground = true;
+                }))
+                {
+                    IsBackground = true
+                };
                 t.Start();
                 //System.Threading.ThreadPool.QueueUserWorkItem();
 
@@ -444,12 +433,10 @@ namespace MainUI.MVB
         /// <param name="bit">位偏移量</param>
         /// <param name="value">写入的值，</param>
         /// <param name="value">是否生命信号，</param>
-        void DataWrite(int port, int OffsetSrc, int bitSrc, object value, bool Sign = false)
+        void DataWrite(int port, int OffsetSrc, int bitSrc, object value)
         {
-
-            int Offset = OffsetSrc;// ConvertBit(OffsetSrc, bitSrc)[0];
+            int Offset = OffsetSrc;
             int bit = ConvertBit(OffsetSrc, bitSrc)[1];
-
             byte[] bts = null;
             switch (value.GetType().Name)
             {
@@ -460,7 +447,7 @@ namespace MainUI.MVB
                         fullData[port][Offset] = (byte)(fullData[port][Offset] & ~(1 << bit));
                     break;
                 case "Byte":
-                    bts = new byte[] { Convert.ToByte(value) };
+                    bts = [Convert.ToByte(value)];
                     Offset += bitSrc;
                     break;
                 case "Int16": bts = BitConverter.GetBytes(Convert.ToInt16(value)); break;
@@ -478,7 +465,7 @@ namespace MainUI.MVB
             string txt = "";
             if (bts != null)
             {
-                byte[] w = bts.Reverse().ToArray();
+                byte[] w = [.. bts.Reverse()];
                 for (int i = 0; i < w.Length; i++)
                 {
                     txt += Convert.ToString(w[i], 16).PadLeft(2, '0') + " ";
@@ -516,14 +503,6 @@ namespace MainUI.MVB
         /// 当前的端口号
         /// </summary>
         string currentPort = "";
-
-
-        /// <summary>
-        /// 启动定时器刷新，停止所有其他的定时器（写）
-        /// </summary>
-        /// <param name="port"></param>
-
-
         //存储了所有的timer控件
         System.Windows.Forms.Timer WriteTimer = new System.Windows.Forms.Timer();
         //存储了本类型的所有读事件
@@ -542,27 +521,6 @@ namespace MainUI.MVB
 
         Dictionary<COMMData, FullTags> dicItems = new Dictionary<COMMData, FullTags>();
 
-
-        public void GetPortInfo()
-        {
-            PortsBLL bllPorts = new();
-            ports = [.. bllPorts.GetPortsByType(ReadOnly)];
-            MVBFulltagsBLL bllTags = new();
-            tags = bllTags.GetAllTags().OrderBy(x => x.COMMData.Offset).OrderBy(x => x.COMMData.Bit).ToList();
-            List<int> lifes = [];
-            //先组合待发送的数据
-            foreach (var item in ports)
-            {
-                fullData[item.PortNum] = new byte[item.DataSize];
-                if (!item.IsRead) lifes.Add(item.PortNum);
-            }
-
-            foreach (var item in tags)
-            {
-                dicItems[item.COMMData] = item;
-            }
-        }
-
         /// <summary>
         /// 加载端口页面数据
         /// 层级结构为：TagControl->TabPage->FlowLayoutPanel->ucBit/ucByte
@@ -572,18 +530,17 @@ namespace MainUI.MVB
         /// <param name="readOnly">true为宿端口，false为源端口，null为通用</param>
         void LoadData(bool? readOnly)
         {
-
-            Stopwatch watchClear = new Stopwatch();
+            Stopwatch watchClear = new();
             watchClear.Start();
             fullControls.Clear();
             GC.Collect();
             watchClear.Stop();
             GC.Collect();
-            PortsBLL bllPorts = new();
-            ports = [.. bllPorts.GetPortsByType(ReadOnly)];
+            MVBPortsBLL bllPorts = new();
+            ports = [.. bllPorts.GetPortsByType(ReadOnly, VarHelper.ModelName)];
             MVBFulltagsBLL bllTags = new();
-            tags = bllTags.GetAllTags().OrderBy(x => x.COMMData.Offset).OrderBy(x => x.COMMData.Bit).ToList();
-            List<int> lifes = new List<int>();
+            tags = [.. bllTags.GetAllTags(VarHelper.ModelName).OrderBy(x => x.COMMData.Offset).OrderBy(x => x.COMMData.Bit)];
+            List<int> lifes = [];
 
             //先组合待发送的数据
             foreach (var item in ports)
@@ -592,7 +549,6 @@ namespace MainUI.MVB
                 if (!item.IsRead)
                     lifes.Add(item.PortNum);
             }
-
             foreach (var item in tags)
             {
                 dicItems[item.COMMData] = item;
@@ -604,14 +560,15 @@ namespace MainUI.MVB
             page.Offset = 0;
             page.Length = 64;
 
-            Panel ctrls = this.PanelContent;
+            UIPanel ctrls = PanelContent;
             ctrls.Controls.Clear();
             GC.Collect();
-            Stopwatch watch = new Stopwatch();
+            Stopwatch watch = new();
             watch.Start();
             LoadPage(page.Offset, page.Length);
             Debug.WriteLine("add cost:" + watch.ElapsedMilliseconds);
         }
+
         private TreeView tr;
         /// <summary>
         /// 加载左侧的树形结构
@@ -619,9 +576,8 @@ namespace MainUI.MVB
         void LoadLeftTree(string SerchKey)
         {
             tr = new TreeView();
-
-            this.PanelTree.Controls.Clear();
-            tr.ImageList = this.imageList1;
+            PanelTree.Controls.Clear();
+            tr.ImageList = imageList1;
             tr.NodeMouseClick += Tr_NodeMouseClick;
             tr.Dock = DockStyle.Fill;
             foreach (Ports item in ports.OrderBy(p => p.IsRead))
@@ -638,7 +594,7 @@ namespace MainUI.MVB
                 node.Text = item.PortName + "(" + item.Port + ")";
                 if (!node.Text.Contains(SerchKey))
                     continue;
-                if (ReadOnly != null ? ReadOnly != item.IsRead : false)
+                if (ReadOnly != null && ReadOnly != item.IsRead)
                     continue;
                 node.Tag = item;
                 tr.Nodes.Add(node);
@@ -667,8 +623,6 @@ namespace MainUI.MVB
             LoadTabs();
         }
 
-
-
         /// <summary>
         /// 加载右侧内容
         /// </summary>
@@ -688,13 +642,15 @@ namespace MainUI.MVB
             FlowLayoutPanel flow = null;
             if (PanelContent.Controls.Count == 0 || true)
             {
-                flow = new FlowLayoutPanel();
-                flow.Padding = new Padding(5);
-                flow.Size = PanelContent.Size;
-                flow.Dock = DockStyle.Fill;
-                flow.AutoScroll = true;
-                // if (ConfigManager.Layout.RightToLeft)
-                flow.FlowDirection = FlowDirection.RightToLeft;
+                flow = new FlowLayoutPanel
+                {
+                    Padding = new Padding(5),
+                    Size = PanelContent.Size,
+                    Dock = DockStyle.Fill,
+                    AutoScroll = true,
+                    // if (ConfigManager.Layout.RightToLeft)
+                    FlowDirection = FlowDirection.RightToLeft
+                };
                 //else
                 //    flow.FlowDirection = FlowDirection.LeftToRight;
                 //PanelContent.Controls.Add(flow);
@@ -705,10 +661,10 @@ namespace MainUI.MVB
             }
 
             string controlsKey = item.Port;
-            if (fullControls.ContainsKey(controlsKey))
+            if (fullControls.TryGetValue(controlsKey, out FlowLayoutPanel value))
             {
                 PanelContent.Controls.Clear();
-                PanelContent.Controls.Add(fullControls[controlsKey]);
+                PanelContent.Controls.Add(value);
             }
             else
             {
@@ -719,9 +675,9 @@ namespace MainUI.MVB
                 int minOffset = items.Count == 0 ? 0 : items.Min(x => x.COMMData.Offset);
                 int maxOffset = items.Count == 0 ? 0 : items.Max(x => x.COMMData.Offset);
 
-                Padding p = new Padding(1, ConfigManager.Layout.LineSpace, 1, ConfigManager.Layout.LineSpace);
+                Padding p = new(1, ConfigManager.Layout.LineSpace, 1, ConfigManager.Layout.LineSpace);
 
-                Stopwatch watch = new Stopwatch();
+                Stopwatch watch = new();
                 watch.Start();
 
                 for (int i = minOffset; i <= maxOffset; i++)
@@ -743,11 +699,13 @@ namespace MainUI.MVB
                         {
                             if (ConfigManager.Layout.NumHold) //模拟量占位
                             {
-                                UserControl ub = new UserControl();
-                                ub.BorderStyle = BorderStyle.FixedSingle;
-                                ub.BackColor = SystemColors.Control;
-                                ub.Size = new Size(238, 60);
-                                ub.Margin = p;
+                                UserControl ub = new()
+                                {
+                                    BorderStyle = BorderStyle.FixedSingle,
+                                    BackColor = SystemColors.Control,
+                                    Size = new Size(238, 60),
+                                    Margin = p
+                                };
                                 //自动截断
                                 if (lastType != 1 && lastType != 0 && ConfigManager.Layout.Cut)
                                     flow.SetFlowBreak(flow.Controls[flow.Controls.Count - 1], true);
@@ -770,22 +728,21 @@ namespace MainUI.MVB
                             if (j == 16) continue;
                         }
 
-
                         tag = dicItems[d];
                         if (tag.DataType != "B1")//非数字量，
                         {
                             if (tag.DataType == "I16") i++;
-
                             ucByte ub = new()
                             {
                                 Size = new Size(264, 60),
                                 Margin = p,
                                 Text = tag.DataLabel,
                                 Port = tag.COMMData.Port,
-                                ReadOnly = item.IsRead
+                                ReadOnly = item.IsRead,
+                                PortPattern = tag.PortPattern,
                             };
-                            if (ub.ReadOnly == false)
-                                ub.Cursor = Cursors.Hand;
+
+                            if (ub.ReadOnly == false) ub.Cursor = Cursors.Hand;
                             ub.Offset = tag.COMMData.Offset;
                             ub.Bit = tag.COMMData.Bit;
                             ub.Unit = tag.DataUnit;
@@ -795,9 +752,9 @@ namespace MainUI.MVB
                             ub.BackColor = backColor;
                             ub.Submits += new RW.Modules.ValueHandler<double>(ub_Submits);
                             ub.WriteRate = tag.WriteRate;
-                            ub.ReadRate = tag.ReadRate;
-
-                            ////自动截断
+                            ub.ReadRate = tag.BitValue;
+                            ub.GroupOffset = tag.GroupOffset;
+                            //自动截断
                             if (lastType != 1 && lastType != 0 && ConfigManager.Layout.Cut)
                                 flow.SetFlowBreak(flow.Controls[flow.Controls.Count - 1], true);
 
@@ -820,46 +777,40 @@ namespace MainUI.MVB
                                 s = new Size(130, 65);
                             Control c = null;
                             tag = dicItems[d];
-                            ucBit bit = new ucBit();
-                            bit.BackColor = backColor;
-                            bit.Size = s;
-                            bit.Margin = p;
-                            bit.Text = tag.DataLabel;
-                            bit.Port = tag.COMMData.Port;
-                            bit.Offset = tag.COMMData.Offset;
-                            bit.Bit = tag.COMMData.Bit;
-                            bit.ReadOnly = item.IsRead;
+                            ucBit bit = new()
+                            {
+                                BackColor = backColor,
+                                Size = s,
+                                Margin = p,
+                                Text = tag.DataLabel,
+                                Port = tag.COMMData.Port,
+                                Offset = tag.COMMData.Offset,
+                                Bit = tag.COMMData.Bit,
+                                ReadOnly = item.IsRead
+                            };
                             if (bit.ReadOnly == false)
                                 bit.Cursor = Cursors.Hand;
                             bit.Range = new DataRange(tag.DataRange);
                             bit.Click += new EventHandler(bit_Click);
                             c = bit;
-
                             if (lastType != 2 && lastType != 0 && ConfigManager.Layout.Cut)
                                 flow.SetFlowBreak(flow.Controls[flow.Controls.Count - 1], true);
-
                             lastType = 2;
                             flow.Controls.Add(c);
                         }
                     }
                 }
 
-
                 if (PanelContent.Controls.Count > 0)
                 {
                     Control c = PanelContent.Controls[0];
                     PanelContent.Controls.Remove(c);
-
                     PanelContent.Controls.Clear();
                     GC.Collect();
                 }
                 PanelContent.Controls.Add(flow);
-
                 fullControls[controlsKey] = flow;
-
-
                 Debug.WriteLine(string.Format("load port:{0} cost:{1}", port, watch.ElapsedMilliseconds));
-
                 watch.Stop();
             }
         }
@@ -877,50 +828,84 @@ namespace MainUI.MVB
             {
                 MessageBox.Show("数据写入失败：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         void ub_Submits(object sender, double value)
         {
             ucByte ub = sender as ucByte;
+
             //TODO:写数据
             Debug.WriteLine("byte write:" + ub.Text + "," + ub.Offset + ":" + ub.Value + " - " + ub.VariableType);
-
-            object writeValue;
-
-            switch (ub.VariableType)
+            object writeValue = ub.VariableType switch
             {
-                case VariableTypeEnums.U8: writeValue = (byte)value; break;
-                case VariableTypeEnums.I8: writeValue = (byte)value; break;
-                case VariableTypeEnums.U16: writeValue = (ushort)value; break;
-                case VariableTypeEnums.I16: writeValue = (short)value; break;
-                case VariableTypeEnums.U32: writeValue = (uint)value; break;
-                case VariableTypeEnums.I32: writeValue = (int)value; break;
-                case VariableTypeEnums.U64: writeValue = (ulong)value; break;
-                case VariableTypeEnums.I64: writeValue = (long)value; break;
-                case VariableTypeEnums.Bit:
-                case VariableTypeEnums.None:
-                default:
-                    throw new NotImplementedException("系统不支持的数据类型。");
+                VariableTypeEnums.U8 => (byte)value,
+                VariableTypeEnums.U10 => (ushort)value,
+                VariableTypeEnums.I8 => (byte)value,
+                VariableTypeEnums.U16 => (ushort)value,
+                VariableTypeEnums.I16 => (short)value,
+                VariableTypeEnums.U32 => (uint)value,
+                VariableTypeEnums.I32 => (int)value,
+                VariableTypeEnums.U64 => (ulong)value,
+                VariableTypeEnums.I64 => (long)value,
+                _ => throw new NotImplementedException("系统不支持的数据类型。"),
+            };
+
+            if (ub.VariableType == VariableTypeEnums.U10)
+            {
+                try
+                {
+                    string[] GroupOffset = VarHelper.GetValue(ub.GroupOffset);
+                    byte originalByte = fullData[ub.Port][GroupOffset[0].ToInt()];  // 初始字节值，这里以全0为例
+                    byte Lvalue = 0;
+                    byte Hvalue = 0;
+                    if (value > 255)
+                    {
+                        Hvalue = BitConverter.GetBytes(Convert.ToInt16(value))[1];
+                    }
+                    else
+                    {
+                        Hvalue = 0;
+                    }
+                    Lvalue = Convert.ToByte(value % 256);
+                    int startBitIndex = GroupOffset[1].ToInt();  // 要操作的起始bit位置（从0开始计数）
+                    int numBitsToModify = GroupOffset[2].ToInt();  // 连续要修改的bit个数
+                    // 将byte转换为BitArray
+                    BitArray bitArray = new(new byte[] { originalByte });
+                    // 设置新的bit值
+                    for (int i = 0; i < numBitsToModify; i++)
+                    {
+                        bitArray[startBitIndex + i] = Convert.ToBoolean((Hvalue >> i) & 1);
+                    }
+                    // 将BitArray再转换回byte
+                    byte[] resultBytes = new byte[1];
+                    bitArray.CopyTo(resultBytes, 0);
+                    byte resultByte = resultBytes[0];
+                    fullData[ub.Port][GroupOffset[0].ToInt()] = resultByte;
+                    fullData[ub.Port][ub.Offset] = Lvalue;
+                }
+                catch (Exception ex)
+                {
+                    NlogHelper.Default.Error("U10写值错误：", ex);
+                    MessageHelper.UIMessageOK("U10写值错误：" + ex.Message);
+                }
             }
-            DataWrite(ub.Port, ub.Offset, ub.Bit, writeValue);
+            else
+            {
+                DataWrite(ub.Port, ub.Offset, ub.Bit, writeValue);
+            }
         }
 
 
 
         PageModelNew page;
-
         private void frmTags_FormClosed(object sender, FormClosedEventArgs e)
         {
-
             closed = true;
             if (driver != null)
             {
                 driver.Close();
                 driver.Close();
             }
-
-
         }
 
         private void radNone_CheckedChanged(object sender, EventArgs e)
@@ -958,7 +943,6 @@ namespace MainUI.MVB
         {
             string key = txtKey.Text;
             SelectPanlControl(key);
-
         }
 
         void clearSelect()
@@ -1003,16 +987,11 @@ namespace MainUI.MVB
                     }
                 }
             }
-
             if (!exists)
                 MessageBox.Show("没有检索到任何值。", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         public object obj = new object();
-
-        private Dictionary<int, byte> dic = new Dictionary<int, byte>();
-
 
         struct PageModelNew
         {

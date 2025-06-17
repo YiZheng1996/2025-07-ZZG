@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading;
-using System.Runtime.InteropServices;
-using RW.Modules;
-using System.Diagnostics;
-using System.IO;
-using RW;
+﻿using RW;
 using RW.Configuration;
-using System.Runtime.Versioning;
+using RW.Modules;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace MainUI.Procedure
 {
@@ -24,7 +15,7 @@ namespace MainUI.Procedure
     [DefaultEvent("Submited")]
     [DebuggerDisplay("Index={Index},Text={Text},Value=[{Value},{ValueDecimalPlaces}],Gain=[{GainValue},{GainDecimalPlaces}],Zero=[{ZeroValue},{ZeroDecimalPlaces}]")]
     [SupportedOSPlatform("windows")]
-    public partial class UCCalibration : UserControl, IHardware, IIndexValue
+    public partial class UCCalibration : UserControl, IIndexValue
     {
         public UCCalibration()
         {

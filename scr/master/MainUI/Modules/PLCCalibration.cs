@@ -59,7 +59,7 @@ namespace MainUI.Modules
             {
                 int temp = i;
                 string opcTag = "AI.Zero" + i.ToString().PadLeft(2, '0');
-                this.Register<double>(opcTag, delegate (double value)
+                this.AddListening<double>(opcTag, delegate (double value)
                 {
                     _plczeroAI[temp] = value;
 
@@ -70,7 +70,7 @@ namespace MainUI.Modules
             {
                 int temp = i;
                 string opcTag = "AI.Gain" + i.ToString().PadLeft(2, '0');
-                this.Register<double>(opcTag, delegate (double value)
+                this.AddListening<double>(opcTag, delegate (double value)
                 {
                     _plcgainAI[temp] = value;
 
@@ -82,7 +82,7 @@ namespace MainUI.Modules
             {
                 int temp = i;
                 string opcTag = "AO.Zero" + i.ToString().PadLeft(2, '0');
-                this.Register<double>(opcTag, delegate (double value)
+                this.AddListening<double>(opcTag, delegate (double value)
                 {
                     _plczeroAO[temp] = value;
 
@@ -93,7 +93,7 @@ namespace MainUI.Modules
             {
                 int temp = i;
                 string opcTag = "AO.Gain" + i.ToString().PadLeft(2, '0');
-                this.Register<double>(opcTag, delegate (double value)
+                this.AddListening<double>(opcTag, delegate (double value)
                 {
                     _plcgainAO[temp] = value;
 

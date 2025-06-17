@@ -28,7 +28,6 @@
     <!--<ApplicationIcon>logo.ico</ApplicationIcon>-->
     <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="CAN\frmCANPortManager.cs">
@@ -36,6 +35,18 @@
     </Compile>
     <Compile Update="CAN\frmCANTags.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CAN\frmExcelImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CAN\ucBit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CAN\ucByte.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CAN\ucExcelImport.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Modules\IOCard\SatusWrite.cs" />
     <Compile Update="Modules\IOCard\IOModels.cs" />
@@ -83,7 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\backimg.png" />
-    <Content Include="logo.ico" />
+    <Content Include="img\logo.ico" />
+    <Content Include="img\中车透明ico.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -99,6 +111,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="antdui" Version="1.5.8" />
+    <PackageReference Include="Costura.Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets><!--runtime; build; native; contentfiles; analyzers; buildtransitive--></IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.7">
       <TreatAsUsed>true</TreatAsUsed>
@@ -112,6 +129,7 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
     <PackageReference Include="System.IO.Ports" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +145,9 @@
     <None Remove="BLL\c4gkthb1.of5~" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Antlr4.Runtime">
+      <HintPath>..\Lib\Antlr4.Runtime.4.6.6\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Antlr4.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2">
       <HintPath>..\Lib\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
@@ -145,8 +166,17 @@
     <Reference Include="office">
       <HintPath>..\Lib\office.dll</HintPath>
     </Reference>
-    <Reference Include="rw">
-      <HintPath>..\Lib\rw.dll</HintPath>
+    <Reference Include="Report">
+      <HintPath>..\Lib\rwReportDLL\Report.dll</HintPath>
+    </Reference>
+    <Reference Include="rw3">
+      <HintPath>..\Lib\rw3\3.1.5.2\lib\net45\rw3.dll</HintPath>
+    </Reference>
+    <Reference Include="rwdsl2">
+      <HintPath>..\Lib\RW.DSL2.2.2.11.24\lib\net45\rwdsl2.dll</HintPath>
+    </Reference>
+    <Reference Include="RWDSLDebugger">
+      <HintPath>..\Lib\RWDSLDebugger.1.1.2\lib\net452\RWDSLDebugger.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

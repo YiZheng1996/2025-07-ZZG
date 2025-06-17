@@ -102,7 +102,7 @@ namespace MainUI.BLL
         {
             Init();
             string sqlDel = $"delete from ETHFullTags where TypeName='{name}' and  VerNo='" + dt.Rows[0]["VerNo"] + "'";
-            int delcnt = Database.ExecuteNonQuery(sqlDel);
+            int delcnt = this.ExecuteNonQuery(sqlDel);
             List<ETHSignal> signal = [];
             foreach (DataRow row in dt.Rows)
             {
@@ -112,7 +112,7 @@ namespace MainUI.BLL
             for (int i = 0; i < signal.Count; i++)
             {
                 string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],BitValue,DefaultVersion,GroupETHBit) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},'{16}')", signal[i].DataLabel, signal[i].DataType, signal[i].Description, signal[i].Port, signal[i].Offset, signal[i].ETHBit, signal[i].Identity, signal[i].DataUnit, signal[i].PortPattern, name, this.TableName, signal[i].TRDPNo, signal[i].VerNo, signal[i].IsRead, signal[i].BitValue, signal[i].DefaultVersion, signal[i].GroupETHBit);
-                Database.ExecuteNonQuery(sql);
+                this.ExecuteNonQuery(sql);
                 Debug.WriteLine("I：" + i);
             }
         }
@@ -123,7 +123,7 @@ namespace MainUI.BLL
             Init();
 
             string sqlDel = $"delete from ETHFullTags where modelID={ModelID}";
-            int delcnt = Database.ExecuteNonQuery(sqlDel);
+            int delcnt = this.ExecuteNonQuery(sqlDel);
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -154,7 +154,7 @@ namespace MainUI.BLL
                 int CardFoot = row["板卡点位号"].ToString().ToInt();
 
                 string sql = $"insert into DIDOConfig(ModelID,Plug,PlugFoot,LineNO,LineDesc,LineType,InitValue,CardNo,CardFoot) values({modelID},'{plug}','{PlugFoot}','{LineNO}','{LineDesc}',{LineType},{InitValue},{CardNo},{CardFoot})";
-                Database.ExecuteNonQuery(sql);
+                this.ExecuteNonQuery(sql);
             }
 
 

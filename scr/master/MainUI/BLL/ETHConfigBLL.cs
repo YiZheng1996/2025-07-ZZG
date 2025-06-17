@@ -42,13 +42,13 @@ namespace MainUI.UI.BLL
             string sql = string.Format(
                 "update ETHConfig set ConfigFileName='{1}',TRDPNo='{2}' where id={0}", id, version, trdpno);
 
-            Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
         }
 
         public int Add(string typename, string version, string trdpno)
         {
             string sql = "select count(1) from ETHConfig where TypeName='" + typename + "' and ConfigFileName='" + version + "'";
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             if (count > 0)
                 return count;
             else
@@ -56,20 +56,20 @@ namespace MainUI.UI.BLL
                 string sql1 = string.Format(
                          "insert into ETHConfig(TypeName,ConfigFileName,TRDPNo) values('{0}','{1}','{2}')",
                           typename, version, trdpno);
-                Database.ExecuteNonQuery(sql1);
+                this.ExecuteNonQuery(sql1);
                 return 0;
             }
         }
         public int GetDate(string typename, string version)
         {
             string sql = "select count(1) from ETHPorts where TypeName='" + typename + "' and VerNo='" + version + "'";
-            int count = Convert.ToInt32(Database.ExecuteScalar(sql));
+            int count = Convert.ToInt32(this.ExecuteScalar(sql));
             return count;
         }
         public int DelDate(int id)
         {
             string sql1 = "delete from ETHConfig  where ID=" + id;
-            Database.ExecuteNonQuery(sql1);
+            this.ExecuteNonQuery(sql1);
             return 0;
 
 

@@ -12,7 +12,7 @@ namespace MainUI.MVB
 {
     public partial class frmPortManager : UIForm
     {
-        PortsBLL bll = new("Ports");
+        MVBPortsBLL bll = new("Ports");
         public frmPortManager()
         {
             InitializeComponent();
@@ -63,27 +63,34 @@ namespace MainUI.MVB
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(txtID.Text);
-            string portName = txtPortName.Text;
-            string port = txtPort.Text;
-            int rate = nudRate.Value;
-            int dataSize = nudDataSize.Value;
-            bool isRead = radHost.Checked;
-            int ModelID = cboModelName.SelectedValue.ToInt();
-            Ports p = new()
+            try
             {
-                ID = id,
-                PortName = portName,
-                Port = port,
-                IsRead = isRead,
-                DataSize = dataSize,
-                Rate = rate,
-                ModelNameID = ModelID,
-            };
+                int id = Convert.ToInt32(txtID.Text);
+                string portName = txtPortName.Text;
+                string port = txtPort.Text;
+                int rate = nudRate.Value;
+                int dataSize = nudDataSize.Value;
+                bool isRead = radHost.Checked;
+                int ModelID = cboModelName.SelectedValue.ToInt();
+                Ports p = new()
+                {
+                    ID = id,
+                    PortName = portName,
+                    Port = port,
+                    IsRead = isRead,
+                    DataSize = dataSize,
+                    Rate = rate,
+                    ModelNameID = ModelID,
+                };
 
-            bll.Modify(p);
-            LoadData();
-            MessageBox.Show("修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bll.Modify(p);
+                LoadData();
+                MessageBox.Show("修改成功！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "修改错误：" + ex.Message, "系统提示");
+            }
         }
 
         private void btnAddPort_Click(object sender, EventArgs e)
@@ -100,7 +107,8 @@ namespace MainUI.MVB
                 IsRead = isRead,
                 DataSize = dataSize,
                 Rate = rate,
-                ModelNameID = cboModelName.SelectedValue.ToInt()
+                ModelNameID = cboModelName.SelectedValue.ToInt(),
+                TypeName = cboModelName.Text
             };
             if (bll.AddPort(p) > 0)
             {
@@ -134,7 +142,7 @@ namespace MainUI.MVB
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            frmExcelImport frmExcelImport = new(cboModelName.SelectedValue.ToInt(), true);
+            Procedure.frmExcelImport frmExcelImport = new(cboModelName.SelectedValue.ToInt(), true);
             frmExcelImport.ShowDialog();
         }
 

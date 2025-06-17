@@ -390,6 +390,8 @@ namespace MainUI.Procedure.Curve
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            bool allNull = Array.TrueForAll(valuename, m => m is null);
+            if (allNull) { UIMessageBox.Show("请先设置曲线显示！", UILocalize.InfoTitle, Style); return; }
             if (Ctask?.Status == TaskStatus.Running) return;
             if (FormEx.ShowAskDialog(this, "请确认时间范围选择正确？"))
             {
@@ -678,11 +680,10 @@ namespace MainUI.Procedure.Curve
 
         private void ImageBackground_Click(object sender, EventArgs e)
         {
-            bool isWhether = uiLineChart1.FillColor == Color.FromArgb(238, 251, 250);
-            if (isWhether)
+            if (uiLineChart1.FillColor == Color.FromArgb(243, 249, 255))
                 uiLineChart1.FillColor = Color.Gray;
             else
-                uiLineChart1.FillColor = Color.FromArgb(238, 251, 250);
+                uiLineChart1.FillColor = Color.FromArgb(243, 249, 255);
         }
     }
 }

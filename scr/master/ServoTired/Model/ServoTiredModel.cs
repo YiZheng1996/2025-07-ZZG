@@ -15,7 +15,7 @@ namespace ServoTired.Model
         /// <summary>
         /// 停留时间
         /// </summary>
-        public int ResidenceTime { get; set; }
+        public double ResidenceTime { get; set; }
 
         /// <summary>
         /// 步骤号
@@ -47,7 +47,7 @@ namespace ServoTired.Model
     public class ServoTiredModelDto
     {
         public int ID { get; set; }
-        public int ResidenceTime { get; set; }
+        public double ResidenceTime { get; set; }
         public int StepNumber { get; set; }
         public int Speed { get; set; }
         public int StartPositionID { get; set; }

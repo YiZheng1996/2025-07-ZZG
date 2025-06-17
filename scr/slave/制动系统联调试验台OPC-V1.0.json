@@ -5814,7 +5814,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDI014",
-										"common.ALLTYPES_DESCRIPTION": "大小闸2 24V-检测",
+										"common.ALLTYPES_DESCRIPTION": "EIU 110V+检测16",
 										"servermain.TAG_ADDRESS": "DB1.DBX2.0",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -5958,7 +5958,6 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDI030",
-										"common.ALLTYPES_DESCRIPTION": "EIU 110V+检测16",
 										"servermain.TAG_ADDRESS": "DB1.DBX5.0",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6740,7 +6739,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO072",
-										"common.ALLTYPES_DESCRIPTION": "大小闸1SSI电源切换1",
+										"common.ALLTYPES_DESCRIPTION": "大小闸2SSI电源切换1",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.6",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -6749,7 +6748,7 @@
 									},
 									{
 										"common.ALLTYPES_NAME": "MDO073",
-										"common.ALLTYPES_DESCRIPTION": "大小闸1SSI电源切换2",
+										"common.ALLTYPES_DESCRIPTION": "大小闸2SSI电源切换2",
 										"servermain.TAG_ADDRESS": "DB5.DBX9.7",
 										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
@@ -7337,6 +7336,24 @@
 										"common.ALLTYPES_DESCRIPTION": "16#7002: 没错误，功能块正在执行，16#8401: 驱动错误，16#8402: 驱动禁止启动，16#8403: 运行中回零不能开始，16#8600: DPRD_DAT错误，16#8601: DPWR_DAT 错误，16#8202: 不正确的运行模式选择，16#8203: 不正确的设定值参数，16#8204: 选择了不正确的程序段号",
 										"servermain.TAG_ADDRESS": "DB27.DBW38",
 										"servermain.TAG_DATA_TYPE": 5,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P033",
+										"common.ALLTYPES_DESCRIPTION": "边柜电磁阀1",
+										"servermain.TAG_ADDRESS": "DB5.DBX13.3",
+										"servermain.TAG_DATA_TYPE": 1,
+										"servermain.TAG_READ_WRITE_ACCESS": 1,
+										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
+										"servermain.TAG_SCALING_TYPE": 0
+									},
+									{
+										"common.ALLTYPES_NAME": "P034",
+										"common.ALLTYPES_DESCRIPTION": "边柜电磁阀2",
+										"servermain.TAG_ADDRESS": "DB5.DBX13.4",
+										"servermain.TAG_DATA_TYPE": 1,
 										"servermain.TAG_READ_WRITE_ACCESS": 1,
 										"servermain.TAG_SCAN_RATE_MILLISECONDS": 100,
 										"servermain.TAG_SCALING_TYPE": 0

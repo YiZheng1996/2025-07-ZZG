@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RW.Security;
-
-using System.Data;
-//using RW.UI.BLL;
-using RW.Data;
-using RW.UI.Model;
+﻿using Microsoft.Data.Sqlite;
 using RW.Components.Core.BLL;
-using MainUI.CurrencyHelper;
+using System.Data;
 
 namespace MainUI.BLL
 {
     public class UserBLL : BaseBLL
     {
-        public UserBLL() : base(VarHelper.sQLiteDB, VarHelper.sQLiteConnectionString, "Users")
+        //public UserBLL() : base(VarHelper.sQLiteDB, VarHelper.sQLiteConnectionString, "Users")
+        //{
+        //    ConnectionString = VarHelper.sQLiteConnectionString;
+        //}
+
+        protected override void Init()
         {
-            ConnectionString = VarHelper.sQLiteConnectionString;
+            TableName = "Users";
+            Connection = new SqliteConnection();
+            ConnectionString = @"Data Source=TestBed.db;";
+            base.Init();
         }
 
         public DataSet GetSortedList()
         {
             string s = "select [ID],[Username],[Password],[Permission],[Sort],[JobNumber] from [Users] order by [Sort]";
-            DataSet ds = Database.GetDataSet(s);
+            DataSet ds = Connection.GetDataSet(s);
             return ds;
         }
 
@@ -41,7 +40,7 @@ namespace MainUI.BLL
         public int Save(Model.UserInfo User)
         {
             string sql = string.Format("select * from Users where Username='{0}'", User.Username);
-            DataSet ds = Database.GetDataSet(sql);
+            DataSet ds = this.GetDataSet(sql);
             if (ds.Tables[0].Rows.Count > 0 && Convert.ToInt32(ds.Tables[0].Rows[0]["ID"]) != User.ID)
             {
                 throw new Exception("用户名已存在，请重新输入！");
@@ -55,7 +54,7 @@ namespace MainUI.BLL
             {
                 //获取最大的Sort字段填充
                 string sql2 = "select max([Sort]) from Users";
-                ds = this.Database.GetDataSet(sql2);
+                ds = this.GetDataSet(sql2);
                 int paixu = 0;
                 if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
@@ -66,7 +65,7 @@ namespace MainUI.BLL
                 sql = string.Format("insert into Users([Username],[Password],[Permission],[Sort],[JobNumber]) values('{0}','{1}','{2}',{3},'{4}')",
                     User.Username, User.Password, User.Permission, paixu, User.JobNumber);
             }
-            int count = this.Database.ExecuteNonQuery(sql);
+            int count = this.ExecuteNonQuery(sql);
             return count;
             //return 0;
         }
@@ -74,13 +73,13 @@ namespace MainUI.BLL
         public int RemoveByUsername(string username)
         {
             string sql = string.Format("delete from Users where [Username]='{0}'", username);
-            return this.Database.ExecuteNonQuery(sql);
+            return this.ExecuteNonQuery(sql);
         }
 
         public int ChangePwd(string JobNumber, string password)
         {
             string sql = string.Format("Update [Users] set [password]='{1}' where [Username]='{0}'", JobNumber, password);
-            return this.Database.ExecuteNonQuery(sql);
+            return this.ExecuteNonQuery(sql);
         }
 
         public int GetPermissionLevel(string permission)

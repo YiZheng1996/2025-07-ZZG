@@ -96,7 +96,7 @@ namespace MainUI
             catch (Exception ex)
             {
                 string err = ex.Message;
-                LogHelper.Append("保存报表失败：" + err);
+                LogHelper.WriteLine("保存报表失败：" + err);
                 MessageBox.Show(err, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

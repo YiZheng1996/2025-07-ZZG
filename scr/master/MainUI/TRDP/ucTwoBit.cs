@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MainUI.TRDP
 {
-    public partial class ucTwoBit : UserControl, ISwitch
+    public partial class ucTwoBit : UserControl
     {
         public ucTwoBit()
         {

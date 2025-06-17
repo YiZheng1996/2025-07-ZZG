@@ -13,16 +13,16 @@ namespace MainUI.BLL
             base.Init();
         }
 
-        public List<FullTags> GetAllTags()
+        public List<FullTags> GetAllTags(string ModelName)
         {
             string where = "";
-            where = "MVBPOrt<>'0'";
+            where = "MVBPOrt<>'0'" + " and TypeName = '" + ModelName + "'";
             DataTable dt = this.GetList(where);
 
             List<FullTags> tags = new List<FullTags>();
             foreach (DataRow row in dt.Rows)
             {
-                FullTags tag = new FullTags(row);
+                FullTags tag = new(row);
                 tags.Add(tag);
             }
             //return tags;
@@ -64,7 +64,7 @@ namespace MainUI.BLL
         internal void DelTags(int id)
         {
             string sql = "delete from " + this.TableName + " where FullTags.id=" + id;
-            this.Database.ExecuteNonQuery(sql);
+            this.ExecuteNonQuery(sql);
         }
 
     }

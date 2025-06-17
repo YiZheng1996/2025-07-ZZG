@@ -85,7 +85,7 @@ namespace MainUI.Modules.IOCard
             for (int i = 0; i < 24; i++)
             {
                 int temp = i;
-                Register($"Card{Card_Index}.S" + (temp + 1).ToString().PadLeft(2, '0'), delegate (bool Dcf_value)
+                AddListening($"Card{Card_Index}.S" + (temp + 1).ToString().PadLeft(2, '0'), delegate (bool Dcf_value)
                 {
                     Array_CardStatus[temp] = Dcf_value;
                     Dcf_event?.Invoke(this, temp, Dcf_value);

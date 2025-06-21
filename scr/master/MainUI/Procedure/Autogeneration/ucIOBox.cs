@@ -12,15 +12,11 @@ namespace MainUI.Procedure.Autogeneration
 
         //DI容器
         List<ucUIDI> lstDI = [];
-        Dictionary<string, ucUIDI> DicDI = new Dictionary<string, ucUIDI>();
+        Dictionary<string, ucUIDI> DicDI = [];
 
         //DO容器
         List<ucUIDO> lstDO = [];
         Dictionary<string, ucUIDO> DicDO = [];
-
-        //使用板卡底层
-        Dictionary<int, IIndexSwitch[]> dicRwBtnPort = [];
-        Dictionary<int, IIndexSwitch[]> dicSwBoxPort = [];
 
         //加载所有控件
         T GetContainer<T>(string text) where T : Control, new()
@@ -81,8 +77,24 @@ namespace MainUI.Procedure.Autogeneration
                         if (DicDO.ContainsKey(LineNO))
                             MessageBox.Show(this, string.Format("当前线号【{0}】存在重复，请检查配置表线号是否重复！", LineNO));
                         DicDO.Add(LineNO, btn);
-                        btn.ButtonClicked += MyControl_ButtonClicked;
                         btn.AddToolTop(uiToolTip1, "线号：" + LineNO, $"航插号：{btn.Plug}，引脚号：{btn.Plugfoot}，输出板卡号：{btn.PortIndex}，板卡下标：{btn.Index}，线号说明：{LineDesc}");
+
+                        if (InitValue == "3" || InitValue == "2")
+                        {
+                            btn.FalseColor = Color.Red;
+                            btn.trueCOlor = Color.LimeGreen;
+                        }
+
+                        if (InitValue == "2")
+                        {
+                            bool?[] TwoValue = [false, false];
+                            Common.InitSatusWrite()[Portindex - 1].SetCardStatus(btn.Index, TwoValue);
+                            Debug.WriteLine($"负信号输出，线号：" + LineNO, $"航插号：{btn.Plug}，引脚号：{btn.Plugfoot}，输出板卡号：{btn.PortIndex}，板卡下标：{btn.Index}，线号说明：{LineDesc}");
+                            //OPC新输出模式
+                            continue;
+                        }
+
+                        btn.ButtonClicked += MyControl_ButtonClicked;
                     }
                 }
                 InitControls(uiPanelDO, lstDO);
@@ -166,7 +178,22 @@ namespace MainUI.Procedure.Autogeneration
                 int byteIndex = lstDO[i].Index / 8;
                 int bitIndex = lstDO[i].Index % 8;
                 int BtnTag = lstDO[i].Tag.ToInt();
-                lstDO[i].On = Common.InitStatusArray()[card - 1][foot];
+                if (BtnTag != 2 && BtnTag != 3)
+                {
+                    lstDO[i].On = Common.InitStatusArray()[card - 1][foot];
+                }
+                if (BtnTag == 3 || BtnTag == 2)
+                {
+                    bool? Outvalue = Common.InitSatusWrite()[card - 1][foot - 1]; //输出点状态
+                    if (Outvalue == null)
+                    {
+                        Invoke(() => { lstDO[i].On = true; });
+                    }
+                    else if (!(bool)Outvalue)
+                    {
+                        Invoke(() => { lstDO[i].On = false; });
+                    }
+                }
             }
 
         }

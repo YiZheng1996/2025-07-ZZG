@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Antlr4.Runtime.Sharpen;
+using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
+using NPOI.Util;
 using RW.Driver;
 using System.Collections;
 using System.Data;
@@ -66,8 +68,8 @@ namespace MainUI.MVB
                 RegisterLife(pt);
 
                 MVBDriverZZC_Zhu.MVB.ports = ports;
-                MVBDriverZZC_Zhu.MVB.fullData = fullData;
-                MVBDriverZZC_Zhu.MVB.SourceData = fullData;
+                //MVBDriverZZC_Zhu.MVB.MVBDriverZZC_Zhu.MVB.SourceData = MVBDriverZZC_Zhu.MVB.SourceData;
+                //MVBDriverZZC_Zhu.MVB.SourceData = MVBDriverZZC_Zhu.MVB.SourceData;
                 MVBDriverZZC_Zhu.MVB.SendMVBchanged += MVB_SendMVBchanged;
             }
             catch (Exception ex)
@@ -107,8 +109,8 @@ namespace MainUI.MVB
         private void Form1_Load(object sender, EventArgs e)
         {
             //GetPortInfo();
-            MVBDriverZZC_Zhu.MVB.Connect();
             MVBInit();
+            MVBDriverZZC_Zhu.MVB.Connect();
             tmrRead.Interval = sys.MvbDataReadInterval;
             tmrRead.Tick += new EventHandler(tmrRead_Tick);
             tmrRead.Start(); //TODO:暂时注释
@@ -134,7 +136,7 @@ namespace MainUI.MVB
 
         void mvb_PortValueChanged(int port, byte[] data)
         {
-            fullData[port] = data;
+            MVBDriverZZC_Zhu.MVB.SourceData[port] = data;
             //todo:可以使用数据改变的事件模式 增加
         }
 
@@ -143,7 +145,7 @@ namespace MainUI.MVB
             try
             {
                 Ports p = PanelContent.Tag as Ports;
-                int leg = fullData[p.PortNum].Length;
+                int leg = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum].Length;
                 byte[] data = new byte[leg];
                 int portIndex = MvbDllCall.GetPortIndex(p.PortNum);
                 int leg1 = MvbDllCall.GetPortSize(p.PortNum);
@@ -154,7 +156,7 @@ namespace MainUI.MVB
                     else
                         data[i] = MvbDllCall.sendbyte[portIndex, i];
                 }
-                fullData[p.PortNum] = data;
+                MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum] = data;
             }
             catch (Exception)
             {
@@ -162,7 +164,6 @@ namespace MainUI.MVB
             }
         }
 
-        byte[] data;
         void tmrRead_Tick(object sender, EventArgs e)
         {
             try
@@ -175,8 +176,6 @@ namespace MainUI.MVB
                 timeWatch.Start();
 
                 Ports p = PanelContent.Tag as Ports;
-
-                data = fullData[p.PortNum];
 
                 Stopwatch watch = new();
                 watch.Start();
@@ -194,7 +193,7 @@ namespace MainUI.MVB
 
                         int bitValue = 1 << bits;
 
-                        bool b = (data[offset] & bitValue) == bitValue;
+                        bool b = (MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset] & bitValue) == bitValue;
                         if (b == bit.Switch) continue;
                         bit.Switch = b;
                     }
@@ -212,84 +211,84 @@ namespace MainUI.MVB
                         switch (ub.VariableType)
                         {
                             case VariableTypeEnums.U3:
-                                value = data[offset] >> bits & 7;
+                                value = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset] >> bits & 7;
                                 break;
                             case VariableTypeEnums.U2:
-                                value = data[offset] >> bits & 3;
+                                value = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset] >> bits & 3;
                                 break;
                             case VariableTypeEnums.U4:
-                                value = data[offset] >> bits & 15;
+                                value = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset] >> bits & 15;
                                 break;
                             case VariableTypeEnums.U5:
-                                value = data[offset] >> bits & 0x1F;
+                                value = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset] >> bits & 0x1F;
                                 break;
                             case VariableTypeEnums.U6:
-                                value = data[offset] >> bits & 0x3F;
+                                value = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset] >> bits & 0x3F;
                                 break;
                             case VariableTypeEnums.U8:
                                 offset += ub.Bit;
-                                value = data[offset];
+                                value = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset];
                                 break;
                             case VariableTypeEnums.U10:
                                 offset += ub.Bit;
                                 int startByte = VarHelper.GetValue(ub.GroupOffset)[0].ToInt();//起始Byte位
                                 int startBit = VarHelper.GetValue(ub.GroupOffset)[1].ToInt(); //起始Bit位
                                 int bitCount = VarHelper.GetValue(ub.GroupOffset)[2].ToInt(); //Bit数量
-                                byte originalByte = data[startByte];  //初始字节值
-                                byte shiftedByte = (byte)(data[startByte] >> startBit);//右移，去掉前几个bit
+                                byte originalByte = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][startByte];  //初始字节值
+                                byte shiftedByte = (byte)(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][startByte] >> startBit);//右移，去掉前几个bit
                                 byte mask = (byte)((1 << bitCount) - 1);//获取对应长度的bit值
                                 byte result = (byte)(shiftedByte & mask);// 按位取反，获取最终值
                                 var H = result * 256;
-                                var L = data[offset];
+                                var L = MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset];
                                 value = H + L;
                                 break;
                             case VariableTypeEnums.I8:
-                                value = (sbyte)data[offset];//TODO：请注意，此处负数的处理
+                                value = (sbyte)MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum][offset];//TODO：请注意，此处负数的处理
                                 break;
                             case VariableTypeEnums.U16:
                                 temp = new byte[2];
-                                Array.Copy(data, offset, temp, bits, temp.Length);
-                                if (!ub.PortPattern)
+                                Array.Copy(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum], offset, temp, bits, temp.Length);
+                                if (ub.PortPattern)
                                     value = BitConverter.ToUInt16([.. temp], 0);
                                 else
                                     value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.I16:
                                 temp = new byte[2];
-                                Array.Copy(data, offset, temp, bits, temp.Length);
-                                if (!ub.PortPattern)
+                                Array.Copy(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum], offset, temp, bits, temp.Length);
+                                if (ub.PortPattern)
                                     value = BitConverter.ToUInt16([.. temp], 0);
                                 else
                                     value = BitConverter.ToUInt16(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.U32:
                                 temp = new byte[4];
-                                Array.Copy(data, offset, temp, bits, temp.Length);
-                                if (!ub.PortPattern)
+                                Array.Copy(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum], offset, temp, bits, temp.Length);
+                                if (ub.PortPattern)
                                     value = BitConverter.ToUInt32([.. temp], 0);
                                 else
                                     value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.I32:
                                 temp = new byte[4];
-                                Array.Copy(data, offset, temp, bits, temp.Length);
-                                if (!ub.PortPattern)
+                                Array.Copy(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum], offset, temp, bits, temp.Length);
+                                if (ub.PortPattern)
                                     value = BitConverter.ToUInt32([.. temp], 0);
                                 else
                                     value = BitConverter.ToUInt32(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.U64:
                                 temp = new byte[8];
-                                Array.Copy(data, offset, temp, bits, temp.Length);
-                                if (!ub.PortPattern)
+                                Array.Copy(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum], offset, temp, bits, temp.Length);
+                                if (ub.PortPattern)
                                     value = BitConverter.ToUInt64([.. temp], 0);
                                 else
                                     value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
                                 break;
                             case VariableTypeEnums.I64:
                                 temp = new byte[8];
-                                Array.Copy(data, offset, temp, bits, temp.Length);
-                                if (!ub.PortPattern)
+                                Array.Copy(MVBDriverZZC_Zhu.MVB.SourceData[p.PortNum], offset, temp, bits, temp.Length);
+                                if (ub.PortPattern)
                                     value = BitConverter.ToUInt64([.. temp], 0);
                                 else
                                     value = BitConverter.ToUInt64(temp.Reverse().ToArray(), 0);
@@ -367,8 +366,8 @@ namespace MainUI.MVB
                                     byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
                                     byte sendValue = (byte)value;
                                     //这里刷到到界面上的控件，生命信号
-                                    fullData[tg.COMMData.Port][tg.COMMData.Offset] = sendValue;
-                                    MVBDriverZZC_Zhu.MVB.DataWrite(tg.COMMData.Port, tg.COMMData.Offset, tg.COMMData.Bit, tg.DataType, life);
+                                    MVBDriverZZC_Zhu.MVB.SourceData[tg.COMMData.Port][tg.COMMData.Offset] = sendValue;
+                                    MVBDriverZZC_Zhu.MVB.WrtieValue(tg.COMMData.Port, tg.COMMData.Offset, tg.COMMData.Bit, tg.DataType, life);
                                 }
                                 catch (Exception ex)
                                 {
@@ -442,9 +441,9 @@ namespace MainUI.MVB
             {
                 case "Boolean":
                     if (value.Equals(true))
-                        fullData[port][Offset] = (byte)(fullData[port][Offset] | (1 << bit));
+                        MVBDriverZZC_Zhu.MVB.SourceData[port][Offset] = (byte)(MVBDriverZZC_Zhu.MVB.SourceData[port][Offset] | (1 << bit));
                     else
-                        fullData[port][Offset] = (byte)(fullData[port][Offset] & ~(1 << bit));
+                        MVBDriverZZC_Zhu.MVB.SourceData[port][Offset] = (byte)(MVBDriverZZC_Zhu.MVB.SourceData[port][Offset] & ~(1 << bit));
                     break;
                 case "Byte":
                     bts = [Convert.ToByte(value)];
@@ -462,38 +461,22 @@ namespace MainUI.MVB
                     break;
             }
 
-            string txt = "";
-            if (bts != null)
-            {
-                byte[] w = [.. bts.Reverse()];
-                for (int i = 0; i < w.Length; i++)
-                {
-                    txt += Convert.ToString(w[i], 16).PadLeft(2, '0') + " ";
-                }
-                Array.Copy(w, 0, fullData[port], Offset, w.Length);
-            }
-            else
-            {
-                Debug.WriteLine(string.Format("{4} write bit,port={0},offset={1},bit={2},value={3}", port, Offset, bit, value, DateTime.Now.ToString("HH:mm:ss.ffffff")));
-            }
-
-
             switch (value.GetType().Name)
             {
                 case "Boolean":
                     //MvbDllCall.SetValue(port, Offset, bit, Convert.ToBoolean(value)); break;
-                    MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "B1", value); break;
-                case "Byte": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "U8", value); break;
-                case "Int16": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "I16", value); break;
-                case "UInt16": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "U16", value); break;
-                case "Int32": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "I32", value); break;
-                case "UInt32": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "U32", value); break;
-                case "Int64": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "I64", value); break;
-                case "UInt64": MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "U64", value); break;
+                    MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "B1", value); break;
+                case "Byte": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "U8", value); break;
+                case "Int16": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "I16", value); break;
+                case "UInt16": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "U16", value); break;
+                case "Int32": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "I32", value); break;
+                case "UInt32": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "U32", value); break;
+                case "Int64": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "I64", value); break;
+                case "UInt64": MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "U64", value); break;
                 case "Single":
                 case "Double":
                     //MvbDllCall.SetValue(port, Offset, Convert.ToByte(value)); break;
-                    MVBDriverZZC_Zhu.MVB.DataWrite(port, Offset, bit, "U64", value); break;
+                    MVBDriverZZC_Zhu.MVB.WrtieValue(port, Offset, bit, "U64", value); break;
                 default:
                     break;
             }
@@ -508,7 +491,7 @@ namespace MainUI.MVB
         //存储了本类型的所有读事件
         //Dictionary<int, Timer> fullReadTimer = new Dictionary<int, Timer>();
         //存储了所有的待发送数据
-        public static Dictionary<int, byte[]> fullData = new Dictionary<int, byte[]>();//所有待发送的数据，通过端口号进行存储
+        //public static Dictionary<int, byte[]> MVBDriverZZC_Zhu.MVB.SourceData = new Dictionary<int, byte[]>();//所有待发送的数据，通过端口号进行存储
         //存储了所有的标识自增控件
         Dictionary<int, ucByte> fullIdentity = new Dictionary<int, ucByte>();//存储了所有的标识列，用于刷新时，自增
         //所有的 ControlCollection
@@ -545,7 +528,7 @@ namespace MainUI.MVB
             //先组合待发送的数据
             foreach (var item in ports)
             {
-                fullData[item.PortNum] = new byte[item.DataSize];
+                MVBDriverZZC_Zhu.MVB.SourceData[item.PortNum] = new byte[item.DataSize];
                 if (!item.IsRead)
                     lifes.Add(item.PortNum);
             }
@@ -558,7 +541,7 @@ namespace MainUI.MVB
         void LoadTabs()
         {
             page.Offset = 0;
-            page.Length = 64;
+            page.Length = 1300;
 
             UIPanel ctrls = PanelContent;
             ctrls.Controls.Clear();
@@ -822,7 +805,8 @@ namespace MainUI.MVB
             Debug.WriteLine("bit write:" + bit.Text + "," + bit.Offset + "." + bit.Bit + ":" + bit.Switch);
             try
             {
-                DataWrite(bit.Port, bit.Offset, bit.Bit, bit.Switch);
+                MVBDriverZZC_Zhu.MVB.WrtieValue(bit.Port, bit.Offset, bit.Bit, "B1", bit.Switch);
+                //DataWrite(bit.Port, bit.Offset, bit.Bit, bit.Switch);
             }
             catch (Exception ex)
             {
@@ -855,7 +839,7 @@ namespace MainUI.MVB
                 try
                 {
                     string[] GroupOffset = VarHelper.GetValue(ub.GroupOffset);
-                    byte originalByte = fullData[ub.Port][GroupOffset[0].ToInt()];  // 初始字节值，这里以全0为例
+                    byte originalByte = MVBDriverZZC_Zhu.MVB.SourceData[ub.Port][GroupOffset[0].ToInt()];  // 初始字节值，这里以全0为例
                     byte Lvalue = 0;
                     byte Hvalue = 0;
                     if (value > 255)
@@ -880,8 +864,8 @@ namespace MainUI.MVB
                     byte[] resultBytes = new byte[1];
                     bitArray.CopyTo(resultBytes, 0);
                     byte resultByte = resultBytes[0];
-                    fullData[ub.Port][GroupOffset[0].ToInt()] = resultByte;
-                    fullData[ub.Port][ub.Offset] = Lvalue;
+                    MVBDriverZZC_Zhu.MVB.SourceData[ub.Port][GroupOffset[0].ToInt()] = resultByte;
+                    MVBDriverZZC_Zhu.MVB.SourceData[ub.Port][ub.Offset] = Lvalue;
                 }
                 catch (Exception ex)
                 {
@@ -891,7 +875,8 @@ namespace MainUI.MVB
             }
             else
             {
-                DataWrite(ub.Port, ub.Offset, ub.Bit, writeValue);
+                //DataWrite(ub.Port, ub.Offset, ub.Bit, writeValue);
+                MVBDriverZZC_Zhu.MVB.WrtieValue(ub.Port, ub.Offset, ub.Bit, ub.VariableType.ToString(), writeValue, ub.PortPattern);
             }
         }
 
@@ -1016,7 +1001,7 @@ namespace MainUI.MVB
 
         public void SaveConfigData()
         {
-            string text = JsonConvert.SerializeObject(fullData);
+            string text = JsonConvert.SerializeObject(MVBDriverZZC_Zhu.MVB.SourceData);
             try
             {
                 File.WriteAllText(pathFilename, text, Encoding.UTF8);
@@ -1035,8 +1020,8 @@ namespace MainUI.MVB
                 if (File.Exists(pathFilename))
                 {
                     string pathes = File.ReadAllText(pathFilename, Encoding.UTF8);
-                    var data = JsonConvert.DeserializeObject(pathes, fullData.GetType());
-                    fullData = (Dictionary<int, byte[]>)data;
+                    var data = JsonConvert.DeserializeObject(pathes, MVBDriverZZC_Zhu.MVB.SourceData.GetType());
+                    MVBDriverZZC_Zhu.MVB.SourceData = (Dictionary<int, byte[]>)data;
                 }
                 else
                 {

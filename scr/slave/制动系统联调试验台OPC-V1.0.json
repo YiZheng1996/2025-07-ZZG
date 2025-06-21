@@ -50,7 +50,7 @@
 						"servermain.DEVICE_ID_DECIMAL": 1,
 						"servermain.DEVICE_ID_OCTAL": 1,
 						"servermain.DEVICE_DATA_COLLECTION": true,
-						"servermain.DEVICE_SIMULATED": false,
+						"servermain.DEVICE_SIMULATED": true,
 						"servermain.DEVICE_SCAN_MODE": 4,
 						"servermain.DEVICE_SCAN_MODE_RATE_MS": 1000,
 						"servermain.DEVICE_SCAN_MODE_PROVIDE_INITIAL_UPDATES_FROM_CACHE": true,

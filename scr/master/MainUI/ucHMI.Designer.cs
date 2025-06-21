@@ -45,6 +45,7 @@ namespace MainUI
             lblTiming = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             grpAirPath = new UIPanel();
+            uiPanel205 = new UIPanel();
             uiPanel204 = new UIPanel();
             uiPanel203 = new UIPanel();
             uiPanel202 = new UIPanel();
@@ -629,7 +630,6 @@ namespace MainUI
             tabs1 = new AntdUI.Tabs();
             tabPage1 = new AntdUI.TabPage();
             tabPageReport = new AntdUI.TabPage();
-            uiPanel205 = new UIPanel();
             uiCheckBoxGroup1.SuspendLayout();
             uiGroupBox4.SuspendLayout();
             grpAirPath.SuspendLayout();
@@ -1091,6 +1091,28 @@ namespace MainUI
             grpAirPath.TabIndex = 392;
             grpAirPath.Text = null;
             grpAirPath.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiPanel205
+            // 
+            uiPanel205.BackColor = Color.Transparent;
+            uiPanel205.FillColor = Color.FromArgb((int)(byte)85, (int)(byte)131, (int)(byte)211);
+            uiPanel205.FillColor2 = Color.FromArgb((int)(byte)10, (int)(byte)63, (int)(byte)153);
+            uiPanel205.FillColorGradient = true;
+            uiPanel205.FillDisableColor = Color.FromArgb((int)(byte)21, (int)(byte)73, (int)(byte)162);
+            uiPanel205.Font = new Font("微软雅黑", 12F);
+            uiPanel205.ForeColor = Color.White;
+            uiPanel205.ForeDisableColor = Color.White;
+            uiPanel205.Location = new Point(877, 876);
+            uiPanel205.Margin = new Padding(4, 5, 4, 5);
+            uiPanel205.MinimumSize = new Size(1, 1);
+            uiPanel205.Name = "uiPanel205";
+            uiPanel205.Radius = 41;
+            uiPanel205.RectColor = Color.FromArgb((int)(byte)21, (int)(byte)73, (int)(byte)162);
+            uiPanel205.RectDisableColor = Color.FromArgb((int)(byte)21, (int)(byte)73, (int)(byte)162);
+            uiPanel205.Size = new Size(108, 42);
+            uiPanel205.TabIndex = 645;
+            uiPanel205.Text = "总风缸 75L";
+            uiPanel205.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // uiPanel204
             // 
@@ -9906,28 +9928,6 @@ namespace MainUI
             tabPageReport.Size = new Size(1096, 925);
             tabPageReport.TabIndex = 0;
             tabPageReport.Text = "报表界面";
-            // 
-            // uiPanel205
-            // 
-            uiPanel205.BackColor = Color.Transparent;
-            uiPanel205.FillColor = Color.FromArgb((int)(byte)85, (int)(byte)131, (int)(byte)211);
-            uiPanel205.FillColor2 = Color.FromArgb((int)(byte)10, (int)(byte)63, (int)(byte)153);
-            uiPanel205.FillColorGradient = true;
-            uiPanel205.FillDisableColor = Color.FromArgb((int)(byte)21, (int)(byte)73, (int)(byte)162);
-            uiPanel205.Font = new Font("微软雅黑", 12F);
-            uiPanel205.ForeColor = Color.White;
-            uiPanel205.ForeDisableColor = Color.White;
-            uiPanel205.Location = new Point(877, 876);
-            uiPanel205.Margin = new Padding(4, 5, 4, 5);
-            uiPanel205.MinimumSize = new Size(1, 1);
-            uiPanel205.Name = "uiPanel205";
-            uiPanel205.Radius = 41;
-            uiPanel205.RectColor = Color.FromArgb((int)(byte)21, (int)(byte)73, (int)(byte)162);
-            uiPanel205.RectDisableColor = Color.FromArgb((int)(byte)21, (int)(byte)73, (int)(byte)162);
-            uiPanel205.Size = new Size(108, 42);
-            uiPanel205.TabIndex = 645;
-            uiPanel205.Text = "总风缸 75L";
-            uiPanel205.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // ucHMI
             // 

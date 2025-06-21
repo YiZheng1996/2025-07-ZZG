@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Sunny.UI;
+using System.ComponentModel;
 
 namespace MainUI.Procedure.Autogeneration
 {
@@ -40,21 +41,40 @@ namespace MainUI.Procedure.Autogeneration
             set { uiButton.Text = value; }
         }
 
+
+        public Color trueCOlor = Color.LimeGreen;
+        public Color FalseColor = Color.SkyBlue;
+        private void BtnColor(bool value)
+        {
+            if (value)
+            {
+                uiButton.FillColor = trueCOlor;
+                uiButton.RectColor = trueCOlor;
+                uiButton.FillDisableColor = trueCOlor;
+                uiButton.RectDisableColor = trueCOlor;
+                uiButton.FillHoverColor = trueCOlor;
+                uiButton.FillPressColor = trueCOlor;
+                uiButton.FillSelectedColor = trueCOlor;
+
+            }
+            else
+            {
+                uiButton.FillColor = FalseColor;
+                uiButton.RectColor = FalseColor;
+                uiButton.FillDisableColor = FalseColor;
+                uiButton.RectDisableColor = FalseColor;
+                uiButton.FillHoverColor = FalseColor;
+                uiButton.FillPressColor = FalseColor;
+                uiButton.FillSelectedColor = FalseColor;
+            }
+        }
+
         public bool On
         {
             //get { return _on; }
             set
             {
-                if (value)
-                {
-                    uiButton.FillColor = Color.FromArgb(110, 190, 40);
-                    uiButton.RectColor = Color.FromArgb(110, 190, 40);
-                }
-                else
-                {
-                    uiButton.FillColor = Color.FromArgb(230, 80, 80);
-                    uiButton.RectColor = Color.FromArgb(230, 80, 80);
-                }
+                BtnColor(value);
             }
         }
 

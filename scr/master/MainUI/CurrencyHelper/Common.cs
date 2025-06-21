@@ -109,6 +109,14 @@ namespace MainUI.CurrencyHelper
             return statusAry;
         }
 
+        /// <summary>
+        /// IO箱写值
+        /// 00 断开
+        /// 01 DC0V闭合
+        /// 10 DC110V闭合
+        /// 11 不控制，悬空
+        /// </summary>
+        /// <returns></returns>
         public static SatusWrite[] InitSatusWrite()
         {
             SatusWrite[] SatusWriteAry = [satuswrite01, satuswrite02, satuswrite03, satuswrite04, satuswrite05, satuswrite06, satuswrite07];

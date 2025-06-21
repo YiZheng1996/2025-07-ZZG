@@ -98,7 +98,7 @@ namespace MainUI.MVB
         public bool ReadOnly { get; set; }
 
         /// <summary>
-        /// true 取反 小端模式，false 取正 小端模式
+        /// true 取反 小端模式，false 取正 大端模式
         /// </summary>
         [DefaultValue(null)]
         public bool PortPattern { get; set; }

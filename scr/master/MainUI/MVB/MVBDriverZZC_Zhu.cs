@@ -14,7 +14,7 @@ namespace MainUI.MVB
 
         public List<Ports> ports = [];
         public List<FullTags> tags = [];
-        public Dictionary<int, byte[]> fullData = [];//所有的数据，通过端口号进行存储
+        //public Dictionary<int, byte[]> fullData = [];//所有的数据，通过端口号进行存储
         public Dictionary<COMMData, FullTags> dicItems = [];
 
         public delegate void MVBStateChange(bool state);
@@ -75,7 +75,7 @@ namespace MainUI.MVB
                         yuan++;
                         //待发送源端口数据
 
-                        SourceData[Convert.ToInt32(item.Port, 16)] = new byte[32];
+                        //SourceData[Convert.ToInt32(item.Port, 16)] = new byte[108];
                     }
                     int su = 0;
                     foreach (var item in ports.Where(x => x.IsRead == true))
@@ -127,7 +127,7 @@ namespace MainUI.MVB
 
         private void Md_MVBValueChangeEvent(int port, byte[] values)
         {
-            fullData[port] = values;
+            SourceData[port] = values;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace MainUI.MVB
         /// <returns></returns>
         public bool GetByBit(int port, int targetNum, int bitNum)
         {
-            byte value = fullData[port][targetNum];
+            byte value = SourceData[port][targetNum];
             int tmpInt = 1 << bitNum;
             return (value & tmpInt) / tmpInt != 0;
         }
@@ -152,9 +152,9 @@ namespace MainUI.MVB
         public decimal GetByte(int port, int targetNum, int bit, string DataType)
         {
             decimal value = 0;
-            if (!fullData.ContainsKey(port))
+            if (!SourceData.ContainsKey(port))
                 return 0;
-            GetVal(ref value, DataType, targetNum, bit, fullData[port], 0, port);
+            GetVal(ref value, DataType, targetNum, bit, SourceData[port], 0, port);
             return value;
         }
 
@@ -208,58 +208,6 @@ namespace MainUI.MVB
                 default:
                     break;
             }
-        }
-
-
-        /// <summary>
-        /// 数据写入通用方法，自动判断当前是
-        /// </summary>
-        /// <param name="commType">通讯类型，0为以太网，1为MVB</param>
-        /// <param name="port">通讯的端口号</param>
-        /// <param name="Offset">字节偏移量</param>
-        /// <param name="bit">位偏移量</param>
-        /// <param name="value">写入的值，</param>
-        public void DataWrite(int port, int OffsetSrc, int bitSrc, string type, object value)
-        {
-            int Offset = OffsetSrc;// ConvertBit(OffsetSrc, bitSrc)[0];
-            int bit = ConvertBit(OffsetSrc, bitSrc)[1];
-
-            byte[] bts = null;
-            switch (value.GetType().Name)
-            {
-                case "Boolean":
-                    if (value.Equals(true))
-                        fullData[port][Offset] = (byte)(fullData[port][Offset] | (1 << bit));
-                    else
-                        fullData[port][Offset] = (byte)(fullData[port][Offset] & ~(1 << bit));
-                    break;
-                case "Byte":
-                    bts = [Convert.ToByte(value)];
-                    Offset += bitSrc;
-                    break;
-                case "Int16": bts = BitConverter.GetBytes(Convert.ToInt16(value)); break;
-                case "UInt16": bts = BitConverter.GetBytes(Convert.ToUInt16(value)); break;
-                case "Int32": bts = BitConverter.GetBytes(Convert.ToInt32(value)); break;
-                case "UInt32": bts = BitConverter.GetBytes(Convert.ToUInt32(value)); break;
-                case "Int64": bts = BitConverter.GetBytes(Convert.ToInt64(value)); break;
-                case "UInt64": bts = BitConverter.GetBytes(Convert.ToUInt64(value)); break;
-                case "Single": bts = BitConverter.GetBytes(Convert.ToSingle(value)); break;
-                case "Double": bts = BitConverter.GetBytes(Convert.ToDouble(value)); break;
-                default:
-                    break;
-            }
-
-            string txt = "";
-            if (bts != null)
-            {
-                byte[] w = bts.Reverse().ToArray();
-                for (int i = 0; i < w.Length; i++)
-                {
-                    txt += Convert.ToString(w[i], 16).PadLeft(2, '0') + " ";
-                }
-                Array.Copy(w, 0, fullData[port], Offset, w.Length);
-            }
-            WrtieValue(port, OffsetSrc, bitSrc, type, value);
         }
 
         /// <summary>
@@ -427,7 +375,7 @@ namespace MainUI.MVB
                         break;
                     case OrderCode.数据返回命令:
                         int port = BitConverter.ToInt16(value.Skip(4).Take(2).Reverse().ToArray(), 0);
-                        fullData[port] = value.Skip(6).Take(32).ToArray();
+                        SourceData[port] = value.Skip(6).Take(32).ToArray();
                         break;
                     default:
                         break;
@@ -578,6 +526,57 @@ namespace MainUI.MVB
             }
         }
 
+        /// <summary>
+        /// 写入数据的方法
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="byteSet"></param>
+        /// <param name="bitSet"></param>
+        /// <param name="valuetype"></param>
+        /// <param name="value"></param>
+        public void WrtieValue(int port, int byteSet, int bitSet, string valuetype, object value, bool PortPattern = false)
+        {
+            switch (valuetype)
+            {
+                case "B1":
+                    SetValue(port, byteSet, bitSet, value, PortPattern);
+                    break;
+                case "U8":
+                    SetValue(port, byteSet, bitSet, Convert.ToByte(value), PortPattern);
+                    break;
+                case "I8":
+                    SetValue(port, byteSet, bitSet, Convert.ToSByte(value), PortPattern);
+                    break;
+                case "U16":
+                    SetValue(port, byteSet, bitSet, Convert.ToUInt16(value), PortPattern);
+                    break;
+                case "I16":
+                    SetValue(port, byteSet, bitSet, Convert.ToInt16(value), PortPattern);
+                    break;
+                case "U32":
+                    SetValue(port, byteSet, bitSet, Convert.ToUInt32(value), PortPattern);
+                    break;
+                case "I32":
+                    SetValue(port, byteSet, bitSet, Convert.ToInt32(value), PortPattern);
+                    break;
+                case "U64":
+                    SetValue(port, byteSet, bitSet, Convert.ToUInt64(value), PortPattern);
+                    break;
+                case "I64":
+                    SetValue(port, byteSet, bitSet, Convert.ToInt64(value), PortPattern);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 设置值到指定端口的字节数组中
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="byteSet"></param>
+        /// <param name="bitSet"></param>
+        /// <param name="value"></param>
         private void SetValue(int port, int byteSet, int bitSet, object value)
         {
             if (value is bool)
@@ -629,14 +628,72 @@ namespace MainUI.MVB
                     float val = (float)value;
                     bts = BitConverter.GetBytes(val).Reverse().ToArray();
                 }
-                else if (value is double)
+                else if (value is double val)
                 {
-                    double val = (double)value;
                     bts = BitConverter.GetBytes(val).Reverse().ToArray();
                 }
                 bts.CopyTo(SourceData[port], byteSet);
             }
+            Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port])}");
+            UDP.Send(SourceData[port]);
         }
+
+        #region 改造后SetValue方法
+        /// <summary>
+        /// 设置值到指定端口的字节数组中
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="byteSet"></param>
+        /// <param name="bitSet"></param>
+        /// <param name="value"></param>
+        /// <param name="PortPattern">是否大小端</param>
+        private void SetValue(int port, int byteSet, int bitSet, object value, bool PortPattern)
+        {
+            switch (value)
+            {
+                case bool b:
+                    SourceData[port][byteSet] = b
+                        ? (byte)(SourceData[port][byteSet] | (1 << bitSet))
+                        : (byte)(SourceData[port][byteSet] & ~(1 << bitSet));
+                    break;
+
+                case byte or sbyte:
+                    SourceData[port][byteSet] = Convert.ToByte(value);
+                    break;
+
+                default:
+                    byte[] bytes = GetBytes(value, PortPattern);
+                    if (bytes != null)
+                    {
+                        Array.Copy(bytes, 0, SourceData[port], byteSet, bytes.Length);
+                        Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port])}");
+                        UDP.Send(SourceData[port]);
+                    }
+                    break;
+            }
+        }
+
+        private static byte[] GetBytes(object value, bool portPattern)
+        {
+            return value switch
+            {
+                short val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                ushort val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                int val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                uint val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                long val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                ulong val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                float val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                double val => ProcessBytes(BitConverter.GetBytes(val), portPattern),
+                _ => null
+            };
+        }
+
+        private static byte[] ProcessBytes(byte[] bytes, bool portPattern) =>
+            portPattern ? bytes : bytes.Reverse().ToArray();
+
+        #endregion
+
 
         /// <summary>
         /// 返回0-255的值，数字变化代表在发送数据状态。
@@ -727,9 +784,8 @@ namespace MainUI.MVB
 
         }
 
-
-
     }
+
     public class UDPConnet
     {
         UdpClient client = new();
@@ -738,9 +794,9 @@ namespace MainUI.MVB
         public IPEndPoint remotePoint4001 = new IPEndPoint(IPAddress.Parse("192.168.0.178"), 4001);
 
         ////本地测试
-        //public IPEndPoint remotePoint3001 = new IPEndPoint(IPAddress.Parse("192.168.0.201"), 3001);
+        //public IPEndPoint remotePoint3001 = new IPEndPoint(IPAddress.Parse("192.168.0.211"), 3001);
         ////本地测试
-        //public IPEndPoint remotePoint4001 = new IPEndPoint(IPAddress.Parse("192.168.0.201"), 4002);
+        //public IPEndPoint remotePoint4001 = new IPEndPoint(IPAddress.Parse("192.168.0.211"), 4002);
 
 
         public delegate void MVBReciveClientMsg(byte[] value);
@@ -767,8 +823,10 @@ namespace MainUI.MVB
                 client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                 client.Client.Bind(new IPEndPoint(IPAddress.Any, 4001));
 
-                Thread ReciveClientMsgThread = new(ReciveClientMsg);
-                ReciveClientMsgThread.IsBackground = true;
+                Thread ReciveClientMsgThread = new(ReciveClientMsg)
+                {
+                    IsBackground = true
+                };
                 ReciveClientMsgThread.Start();
 
                 Thread YDpdThread = new(YDpd)
@@ -820,7 +878,7 @@ namespace MainUI.MVB
                 while (!YDstate)
                 {
                     Thread.Sleep(2000);
-                    SendConnect(new byte[10] { 0xfe, 0x0a, 0x0d, 0x01, 0x00, 1, 0, 0xfe, 0xfa, 0xff }); //请求连接配置
+                    SendConnect([0xfe, 0x0a, 0x0d, 0x01, 0x00, 1, 0, 0xfe, 0xfa, 0xff]); //请求连接配置
                 }
             }
             catch (Exception ex)

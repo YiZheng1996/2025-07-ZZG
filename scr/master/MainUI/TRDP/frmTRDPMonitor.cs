@@ -458,11 +458,11 @@ namespace MainUI.TRDP
             return list;
         }
 
-        TRDPDriver TRDP_CCU;
+        TRDPDriver TRDP_CCU; //网关或设备盒子
         TRDPDriver TRDP_CCU2;
         TRDPMainSend config_CCU;
         TRDPMainSend config_CCU2;
-        ToTCMSSend CCU_Send = new();
+        ToTCMSSend CCU_Send = new(); //盒子或通道
         ToTCMSSend CCU_Send2 = new();
         ToTCMSSend CCU_Send3 = new();
         ToTCMSSend CCU_Send4 = new();
@@ -491,11 +491,11 @@ namespace MainUI.TRDP
                 }
 
                 //TODO:由于没有交换机，暂时注释
-                //if (TRDP_CCU2 == null)
-                //{
-                //    TRDP_CCU2 = new TRDPDriver();
-                //    TRDP_CCU2.Init(trdpconfig.DesIP2, trdpconfig.Desport2.ToInt(), trdpconfig.LocalIP2, trdpconfig.LocalPort2.ToInt());
-                //}
+                if (TRDP_CCU2 == null)
+                {
+                    TRDP_CCU2 = new TRDPDriver();
+                    TRDP_CCU2.Init(trdpconfig.DesIP2, trdpconfig.Desport2.ToInt(), trdpconfig.LocalIP2, trdpconfig.LocalPort2.ToInt());
+                }
 
                 var dataSize = ports.First(x => x.TRDPNo == 1 && !x.IsRead).DataSize;
                 VarHelperETH.byteSend = new byte[dataSize];
@@ -516,7 +516,7 @@ namespace MainUI.TRDP
 
                 //配置主帧数据发送
                 TRDP_CCU.SetSetting(config_CCU);
-                TRDP_CCU.SetSetting(config_CCU2);
+                TRDP_CCU2.SetSetting(config_CCU2);
                 Thread.Sleep(50);
                 //监听数据返回
                 TRDP_CCU.Connect();
@@ -535,7 +535,8 @@ namespace MainUI.TRDP
         }
         private void trdp_Recieved(object sender, TRDPCommandTypes commandType, BaseRecieveModel recieved)
         {
-            if (commandType == TRDPCommandTypes.RecieveTCMS0 || commandType == TRDPCommandTypes.RecieveTCMS1)//只有从TCMS接收的数据才能
+            // 只有从TCMS接收的数据才能
+            if (commandType == TRDPCommandTypes.RecieveTCMS0 || commandType == TRDPCommandTypes.RecieveTCMS1)
             {
                 FromTCMSRecieve tcms = recieved as FromTCMSRecieve;
                 if (ReceiveData.ContainsKey(tcms.ComId))

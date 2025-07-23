@@ -29,7 +29,7 @@ namespace MainUI.TRDP.Model
             Mac = "00:00:00:00:00:00";
             IP = GateWay = SubnetMask = DNS = TTDBMulticastIP = TCMSMulticastIP = TCMSIP = MinorTCMSIP = SinglecastIP1 = SinglecastIP2 = "0.0.0.0";
             this.Load();
-            ETHConfig ethconfig = new ETHConfig();
+            ETHConfig ethconfig = new();
             if (ethconfig.ETH == 0)
                 CommandType = TRDPMainCommandTypes.Eth0;
             else

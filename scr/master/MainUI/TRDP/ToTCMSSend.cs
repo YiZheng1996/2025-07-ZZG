@@ -99,7 +99,6 @@ namespace MainUI.TRDP
 
             return bts;
         }
-
     }
 
     public enum TOTCMSCommandTypes

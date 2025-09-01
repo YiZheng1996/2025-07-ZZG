@@ -244,8 +244,6 @@ namespace MainUI.TRDP
                 Debug.WriteLine("TRDP模块发送：" + txt);
                 // byte[] buffer = new byte[1];
                 int count = udp.Send(data, data.Length, sendip);
-
-
             }
         }
 
@@ -254,7 +252,7 @@ namespace MainUI.TRDP
             lock (locker)
             {
                 string txt = BytesToHexString(data, " ");
-                Debug.WriteLine($"TRDP模块发送[网关{TRDPNO},通道{ETHPassage}]：" + txt);
+                Debug.WriteLine($"TRDP模块发送[网关{TRDPNO},通道{ETHPassage}]：" + data.ToHexString(" "));
                 int count = udp.Send(data, data.Length, sendip);
             }
         }

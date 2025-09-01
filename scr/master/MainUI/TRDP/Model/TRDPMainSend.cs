@@ -17,7 +17,7 @@ namespace MainUI.TRDP.Model
     public class TRDPMainSend : IniConfig
     {
         public TRDPMainSend()
-            : base(Application.StartupPath + "\\config\\trdp_eth0.ini")
+            : base(Application.StartupPath + "config\\trdp_eth0.ini")
         {
             DNSPort = 0x4349;
             TTDBMulticastPort = 0x4348;
@@ -60,7 +60,7 @@ namespace MainUI.TRDP.Model
             set
             {
                 _Name = value;
-                this.Filename = Application.StartupPath + "\\config\\" + iniName + ".ini";
+                this.Filename = Application.StartupPath + "config\\" + iniName + ".ini";
 
 
                 DNSPort = 0x4349;

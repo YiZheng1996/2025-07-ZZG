@@ -7,7 +7,7 @@ namespace MainUI.TRDP.Model
     {
 
         public ETHConfig()
-            : base(Application.StartupPath + "\\config\\trdp.ini")
+            : base(Application.StartupPath + "config\\trdp.ini")
         {
 
             this.Load();
@@ -37,7 +37,7 @@ namespace MainUI.TRDP.Model
             set
             {
                 _Name = value;
-                this.Filename = Application.StartupPath + "\\config\\" + iniName + ".ini";
+                this.Filename = Application.StartupPath + "config\\" + iniName + ".ini";
                 this.Load();
             }
         }

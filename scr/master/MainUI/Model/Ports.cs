@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Reflection;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace MainUI.Model
 {
@@ -80,6 +81,7 @@ namespace MainUI.Model
         /// <summary>
         /// 默认版本
         /// </summary>
+        [DefaultValue(true)]
         public bool DefaultVersion { get; set; }
         /// <summary>
         /// ETH通道

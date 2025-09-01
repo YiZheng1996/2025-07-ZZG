@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.ComponentModel;
+using System.Data;
 
 namespace MainUI.Model
 {
@@ -29,7 +30,10 @@ namespace MainUI.Model
 
         public bool IsRead { get; set; }
 
+        [DefaultValue(true)]
         public bool DefaultVersion { get; set; }
         public int ETHPassage { get; set; }
+
+        public bool IsCRC { get; set; } // 是否CRC校验
     }
 }

@@ -7,7 +7,7 @@ namespace MainUI.Config
     {
 
         public ZZCTRDPConfig()
-            : base(Application.StartupPath + "\\config\\trdp.ini")
+            : base(Application.StartupPath + "config\\trdp.ini")
         {
             Load();
         }
@@ -36,7 +36,7 @@ namespace MainUI.Config
             set
             {
                 _Name = value;
-                this.Filename = Application.StartupPath + "\\config\\" + iniName + ".ini";
+                this.Filename = Application.StartupPath + "config\\" + iniName + ".ini";
                 this.Load();
             }
         }

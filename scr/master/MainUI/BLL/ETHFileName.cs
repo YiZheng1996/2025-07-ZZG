@@ -1,5 +1,6 @@
 ﻿using MainUI.CurrencyHelper;
 using MainUI.Model;
+using NPOI.SS.Formula.Functions;
 using RW.Components.Core.BLL;
 using RW.Data;
 using System;
@@ -61,39 +62,24 @@ namespace MainUI.BLL
 
         public DataTable ModifyColumNmae(DataTable dt)
         {
-            //dt.Columns[0].ColumnName = "车型";
-            //dt.Columns[1].ColumnName = "信号名称";
-            //dt.Columns[2].ColumnName = "数据类型";
-            //dt.Columns[3].ColumnName = "单位";
-            //dt.Columns[4].ColumnName = "ComID";
-            //dt.Columns[5].ColumnName = "字节偏移";
-            //dt.Columns[6].ColumnName = "位移偏移";
-            //dt.Columns[7].ColumnName = "倍率值";
-            //dt.Columns[8].ColumnName = "大小端模式";
-            //dt.Columns[9].ColumnName = "是否生命信号";
-            //dt.Columns[10].ColumnName = "网关编号";
-            //dt.Columns[11].ColumnName = "ETH通道";
-            //dt.Columns[12].ColumnName = "协议版本";
-            //dt.Columns[13].ColumnName = "是否默认版本";
-            //dt.Columns[14].ColumnName = "原溯端口";
-            //dt.Columns[15].ColumnName = "备注";
-            dt.Columns[0].ColumnName = "TypeName";
-            dt.Columns[1].ColumnName = "DataLabel";
-            dt.Columns[2].ColumnName = "DataType";
-            dt.Columns[3].ColumnName = "DataUnit";
-            dt.Columns[4].ColumnName = "Port";
-            dt.Columns[5].ColumnName = "Offset";
-            dt.Columns[6].ColumnName = "ETHBit";
-            dt.Columns[7].ColumnName = "GroupETHBit";
-            dt.Columns[8].ColumnName = "BitValue";
+            dt.Columns[0].ColumnName = "TypeName"; //车型名称
+            dt.Columns[1].ColumnName = "DataLabel"; //信号名称
+            dt.Columns[2].ColumnName = "DataType";  //数据类型
+            dt.Columns[3].ColumnName = "DataUnit";  //单位
+            dt.Columns[4].ColumnName = "Port";      //端口号
+            dt.Columns[5].ColumnName = "Offset";    //字节偏移
+            dt.Columns[6].ColumnName = "ETHBit";    //位偏移
+            dt.Columns[7].ColumnName = "GroupETHBit"; //组ETH位偏移
+            dt.Columns[8].ColumnName = "BitValue";   //倍率值
             dt.Columns[9].ColumnName = "PortPattern"; //大小端口
             dt.Columns[10].ColumnName = "Identity";  //生命信号
             dt.Columns[11].ColumnName = "TRDPNo";   //网关编号
             //dt.Columns[11].ColumnName = "ETHPassage"; //通道
             dt.Columns[12].ColumnName = "VerNo";  //协议版本 V1.0.0
             dt.Columns[13].ColumnName = "DefaultVersion"; //默认版本
-            dt.Columns[14].ColumnName = "IsRead"; //原溯
-            dt.Columns[15].ColumnName = "Description"; // 备注
+            dt.Columns[14].ColumnName = "IsRead"; //原宿端口
+            dt.Columns[15].ColumnName = "IsCRC"; //是否CRC校验
+            dt.Columns[16].ColumnName = "Description"; // 备注
             return dt;
         }
 
@@ -111,7 +97,7 @@ namespace MainUI.BLL
             }
             for (int i = 0; i < signal.Count; i++)
             {
-                string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],BitValue,DefaultVersion,GroupETHBit) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},'{16}')", signal[i].DataLabel, signal[i].DataType, signal[i].Description, signal[i].Port, signal[i].Offset, signal[i].ETHBit, signal[i].Identity, signal[i].DataUnit, signal[i].PortPattern, name, this.TableName, signal[i].TRDPNo, signal[i].VerNo, signal[i].IsRead, signal[i].BitValue, signal[i].DefaultVersion, signal[i].GroupETHBit);
+                string sql = string.Format("insert into {10}(DataLabel,DataType,Description,Port,Offset,ETHBit,[Identity],DataUnit,[PortPattern],TypeName,TRDPNo,VerNo,[IsRead],BitValue,DefaultVersion,GroupETHBit,IsCRC) values('{0}','{1}','{2}','{3}',{4},{5},{6},'{7}',{8},'{9}',{11},'{12}',{13},{14},{15},'{16}',{17})", signal[i].DataLabel, signal[i].DataType, signal[i].Description, signal[i].Port, signal[i].Offset, signal[i].ETHBit, signal[i].Identity, signal[i].DataUnit, signal[i].PortPattern, name, this.TableName, signal[i].TRDPNo, signal[i].VerNo, signal[i].IsRead, signal[i].BitValue, signal[i].DefaultVersion, signal[i].GroupETHBit, signal[i].IsCRC);
                 this.ExecuteNonQuery(sql);
                 Debug.WriteLine("I：" + i);
             }

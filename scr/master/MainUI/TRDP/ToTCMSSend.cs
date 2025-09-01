@@ -14,7 +14,6 @@ namespace MainUI.TRDP
     /// </summary>
     public class ToTCMSSend : BaseSendModel
     {
-
         public ToTCMSSend()
         {
             ETHConfig ethconfig = new ETHConfig();

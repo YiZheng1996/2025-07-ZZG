@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using NPOI.SS.Formula.Functions;
+using System.Data;
 
 namespace MainUI.Model
 {
@@ -23,6 +24,8 @@ namespace MainUI.Model
         public bool IsSensorRange { get; set; }
         public bool IsRead { get; set; }
         public double BitValue { get; set; }
+
+        public bool IsCRC { get; set; } // 是否CRC校验
         public void Init(DataRow row)
         {
             ID = Convert.ToInt32(row["ID"].ToString());
@@ -38,6 +41,7 @@ namespace MainUI.Model
             VerNo = row["VerNo"].ToString();
             IsRead = Convert.ToBoolean(row["IsRead"]);
             BitValue = Convert.ToDouble(row["BitValue"]);
+            IsCRC= Convert.ToBoolean(row["IsCRC"]);
             COMMData ETH = new()
             {
                 GroupETHBit = string.IsNullOrEmpty(value: row["GroupETHBit"].ToString()) ? "0" : row["GroupETHBit"].ToString(),

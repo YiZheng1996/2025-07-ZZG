@@ -59,6 +59,7 @@
             colVerno = new DataGridViewTextBoxColumn();
             colDefaultVersion = new DataGridViewTextBoxColumn();
             colIsRead = new DataGridViewTextBoxColumn();
+            colIsCRC = new DataGridViewTextBoxColumn();
             colRemark = new DataGridViewTextBoxColumn();
             Column1 = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
@@ -223,7 +224,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeight = 35;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colmodelName, colSignalName, colDataType, colUnit, colPortNo, colByteExcursion, colBitExcursion, colGroupETHBit, colBitValue, ColBigOrLimmit, colIsLifeSignal, ColTrdpNo, colVerno, colDefaultVersion, colIsRead, colRemark, Column1 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colmodelName, colSignalName, colDataType, colUnit, colPortNo, colByteExcursion, colBitExcursion, colGroupETHBit, colBitValue, ColBigOrLimmit, colIsLifeSignal, ColTrdpNo, colVerno, colDefaultVersion, colIsRead, colIsCRC, colRemark, Column1 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("宋体", 12F);
@@ -316,6 +317,7 @@
             colGroupETHBit.DataPropertyName = "GroupETHBit";
             colGroupETHBit.HeaderText = "组合位偏移";
             colGroupETHBit.Name = "colGroupETHBit";
+            colGroupETHBit.Visible = false;
             // 
             // colBitValue
             // 
@@ -360,6 +362,12 @@
             colIsRead.DataPropertyName = "IsRead";
             colIsRead.HeaderText = "源宿类型";
             colIsRead.Name = "colIsRead";
+            // 
+            // colIsCRC
+            // 
+            colIsCRC.DataPropertyName = "IsCRC";
+            colIsCRC.HeaderText = "是否CRC校验";
+            colIsCRC.Name = "colIsCRC";
             // 
             // colRemark
             // 
@@ -420,6 +428,7 @@
         private DataGridViewTextBoxColumn colVerno;
         private DataGridViewTextBoxColumn colDefaultVersion;
         private DataGridViewTextBoxColumn colIsRead;
+        private DataGridViewTextBoxColumn colIsCRC;
         private DataGridViewTextBoxColumn colRemark;
         private DataGridViewTextBoxColumn Column1;
     }

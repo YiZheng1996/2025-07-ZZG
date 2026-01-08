@@ -459,69 +459,143 @@ namespace MainUI.TRDP
             return list;
         }
 
-        TRDPDriver TRDP_CCU; //网关(设备盒子)01
-        TRDPDriver TRDP_CCU2;//网关(设备盒子)02
-        TRDPMainSend config_CCU; //模拟CCU
-        TRDPMainSend config_CCU2;
-        TRDPMainSend config_CCU3;
-        TRDPMainSend config_CCU4;
-        ToTCMSSend CCU_Send = null; //通道
-        ToTCMSSend CCU_Send2 = null;
-        ToTCMSSend CCU_Send3 = null;
-        ToTCMSSend CCU_Send4 = null;
+        TRDPDriver TRDP_CCU;  //网关(设备盒子)01
+        TRDPDriver TRDP_CCU2; //网关(设备盒子)02
+        // ========== 【新增】网关3 和 网关4 驱动器 ==========
+        TRDPDriver TRDP_CCU3; //网关(设备盒子)03
+        TRDPDriver TRDP_CCU4; //网关(设备盒子)04
+
+        TRDPMainSend config_CCU;  //模拟CCU - 网关1通道1
+        TRDPMainSend config_CCU2; //网关1通道2
+        TRDPMainSend config_CCU3; //网关2通道1
+        TRDPMainSend config_CCU4; //网关2通道2
+        // ========== 【新增】网关3 和 网关4 配置 ==========
+        TRDPMainSend config_CCU5; //网关3通道1
+        TRDPMainSend config_CCU6; //网关3通道2
+        TRDPMainSend config_CCU7; //网关4通道1
+        TRDPMainSend config_CCU8; //网关4通道2
+
+        ToTCMSSend CCU_Send = null;  //通道1 - 网关1通道1
+        ToTCMSSend CCU_Send2 = null; //通道2 - 网关1通道2
+        ToTCMSSend CCU_Send3 = null; //通道3 - 网关2通道1
+        ToTCMSSend CCU_Send4 = null; //通道4 - 网关2通道2
+        // ========== 【新增】网关3 和 网关4 发送通道 ==========
+        ToTCMSSend CCU_Send5 = null; //通道5 - 网关3通道1
+        ToTCMSSend CCU_Send6 = null; //通道6 - 网关3通道2
+        ToTCMSSend CCU_Send7 = null; //通道7 - 网关4通道1
+        ToTCMSSend CCU_Send8 = null; //通道8 - 网关4通道2
+
         public void TRDPstart()
         {
-            #region  以太网初始化
+            #region 以太网初始化
             try
             {
                 ZZCTRDPConfig trdpconfig = new();
+
+                // ============ 网关1 初始化 ============
                 if (TRDP_CCU == null)
                 {
                     TRDP_CCU = new TRDPDriver();
                     TRDP_CCU.Init(trdpconfig.DesIP1, trdpconfig.Desport1.ToInt(), trdpconfig.LocalIP1, trdpconfig.LocalPort1.ToInt());
                 }
+
                 // 使用配置对象创建发送配置
                 string Config0 = $"{VarHelper.ModelName}_trdp_eth0";
                 string Config1 = $"{VarHelper.ModelName}_trdp_eth1";
                 string Config2 = $"{VarHelper.ModelName}_trdp_eth2";
                 string Config3 = $"{VarHelper.ModelName}_trdp_eth3";
+                // ========== 【新增】网关3和网关4的配置文件名 ==========
+                string Config4 = $"{VarHelper.ModelName}_trdp_eth4";
+                string Config5 = $"{VarHelper.ModelName}_trdp_eth5";
+                string Config6 = $"{VarHelper.ModelName}_trdp_eth6";
+                string Config7 = $"{VarHelper.ModelName}_trdp_eth7";
 
                 CCU_Send = new(Config0);
                 CCU_Send2 = new(Config1);
                 CCU_Send3 = new(Config2);
                 CCU_Send4 = new(Config3);
+                // ========== 【新增】网关3和网关4的发送通道初始化 ==========
+                CCU_Send5 = new(Config4);
+                CCU_Send6 = new(Config5);
+                CCU_Send7 = new(Config6);
+                CCU_Send8 = new(Config7);
 
                 config_CCU = new TRDPMainSend(Config0);
                 config_CCU2 = new TRDPMainSend(Config1);
                 config_CCU3 = new TRDPMainSend(Config2);
                 config_CCU4 = new TRDPMainSend(Config3);
-                //配置主帧数据发送
+                // ========== 【新增】网关3和网关4的配置对象初始化 ==========
+                config_CCU5 = new TRDPMainSend(Config4);
+                config_CCU6 = new TRDPMainSend(Config5);
+                config_CCU7 = new TRDPMainSend(Config6);
+                config_CCU8 = new TRDPMainSend(Config7);
+
+                // 配置主帧数据发送 - 网关1
                 TRDP_CCU.SetSetting(config_CCU);
                 Thread.Sleep(50);
                 TRDP_CCU.SetSetting(config_CCU2);
                 Thread.Sleep(50);
-                //监听数据返回
+                // 监听数据返回
                 TRDP_CCU.Connect();
-                TRDP_CCU.Recieved += new RecievedHandler(trdp_Recieved);
+                TRDP_CCU.Recieved += trdp_Recieved;
 
-                //TODO:由于没有交换机，暂时注释
+                // ============ 网关2 初始化 ============
                 if (TRDP_CCU2 == null)
                 {
                     TRDP_CCU2 = new TRDPDriver();
                     TRDP_CCU2.Init(trdpconfig.DesIP2, trdpconfig.Desport2.ToInt(), trdpconfig.LocalIP2, trdpconfig.LocalPort2.ToInt());
                 }
-                //配置主帧数据发送
+                // 配置主帧数据发送 - 网关2
                 TRDP_CCU2.SetSetting(config_CCU3);
                 Thread.Sleep(50);
                 TRDP_CCU2.SetSetting(config_CCU4);
                 Thread.Sleep(50);
-                //监听数据返回
+                // 监听数据返回
                 TRDP_CCU2.Connect();
-                TRDP_CCU2.Recieved += new RecievedHandler(trdp_Recieved);
+                TRDP_CCU2.Recieved += (trdp_Recieved);
 
+                // ========== 【新增】网关3 初始化 ==========
+                if (!string.IsNullOrEmpty(trdpconfig.DesIP3) && !string.IsNullOrEmpty(trdpconfig.LocalIP3))
+                {
+                    if (TRDP_CCU3 == null)
+                    {
+                        TRDP_CCU3 = new TRDPDriver();
+                        TRDP_CCU3.Init(trdpconfig.DesIP3, trdpconfig.Desport3.ToInt(), trdpconfig.LocalIP3, trdpconfig.LocalPort3.ToInt());
+                    }
+                    // 配置主帧数据发送 - 网关3
+                    TRDP_CCU3.SetSetting(config_CCU5);
+                    Thread.Sleep(50);
+                    TRDP_CCU3.SetSetting(config_CCU6);
+                    Thread.Sleep(50);
+                    // 监听数据返回
+                    TRDP_CCU3.Connect();
+                    TRDP_CCU3.Recieved += (trdp_Recieved);
+                }
+
+                // ========== 【新增】网关4 初始化 ==========
+                if (!string.IsNullOrEmpty(trdpconfig.DesIP4) && !string.IsNullOrEmpty(trdpconfig.LocalIP4))
+                {
+                    if (TRDP_CCU4 == null)
+                    {
+                        TRDP_CCU4 = new TRDPDriver();
+                        TRDP_CCU4.Init(trdpconfig.DesIP4, trdpconfig.Desport4.ToInt(), trdpconfig.LocalIP4, trdpconfig.LocalPort4.ToInt());
+                    }
+                    // 配置主帧数据发送 - 网关4
+                    TRDP_CCU4.SetSetting(config_CCU7);
+                    Thread.Sleep(50);
+                    TRDP_CCU4.SetSetting(config_CCU8);
+                    Thread.Sleep(50);
+                    // 监听数据返回
+                    TRDP_CCU4.Connect();
+                    TRDP_CCU4.Recieved += (trdp_Recieved);
+                }
+
+                // 初始化发送数据数组 - 网关1
                 var dataSize = ports.First(x => x.TRDPNo == 1 && !x.IsRead).DataSize;
                 VarHelperETH.byteSend = new byte[dataSize];
                 VarHelperETH.byteSend2 = new byte[dataSize];
+
+                // 初始化发送数据数组 - 网关2
                 var dataSizeTwo = ports?.FirstOrDefault(x => x.TRDPNo == 2 && !x.IsRead);
                 if (dataSizeTwo != null)
                 {
@@ -529,7 +603,23 @@ namespace MainUI.TRDP
                     VarHelperETH.byteSend4 = new byte[dataSizeTwo.DataSize];
                 }
 
-                //生命信号
+                // ========== 【新增】初始化发送数据数组 - 网关3 ==========
+                var dataSizeThree = ports?.FirstOrDefault(x => x.TRDPNo == 3 && !x.IsRead);
+                if (dataSizeThree != null)
+                {
+                    VarHelperETH.byteSend5 = new byte[dataSizeThree.DataSize];
+                    VarHelperETH.byteSend6 = new byte[dataSizeThree.DataSize];
+                }
+
+                // ========== 【新增】初始化发送数据数组 - 网关4 ==========
+                var dataSizeFour = ports?.FirstOrDefault(x => x.TRDPNo == 4 && !x.IsRead);
+                if (dataSizeFour != null)
+                {
+                    VarHelperETH.byteSend7 = new byte[dataSizeFour.DataSize];
+                    VarHelperETH.byteSend8 = new byte[dataSizeFour.DataSize];
+                }
+
+                // 生命信号
                 var pt = ports.GroupBy(p => p.Rate);
                 if (ports == null) return;
                 RegisterLife(pt);
@@ -542,6 +632,7 @@ namespace MainUI.TRDP
             }
             #endregion
         }
+
         private void trdp_Recieved(object sender, TRDPCommandTypes commandType, BaseRecieveModel recieved)
         {
             // 只有从TCMS接收的数据才能
@@ -620,6 +711,58 @@ namespace MainUI.TRDP
                         }
                         SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
                     }
+                    if (Byte.TRDPNo == 3)
+                    {
+                        if (Byte.ETHPassage == 1)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend5[Byte.Offset] = SwapByteBits(VarHelperETH.ConvertInt8ToByte(bitnum));
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend5[Byte.Offset] = VarHelperETH.ConvertInt8ToByte(bitnum);
+                            }
+                        }
+                        if (Byte.ETHPassage == 2)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend6[Byte.Offset] = SwapByteBits(VarHelperETH.ConvertInt8ToByte(bitnum));
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend6[Byte.Offset] = VarHelperETH.ConvertInt8ToByte(bitnum);
+                            }
+                        }
+                        SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
+                    }
+                    if (Byte.TRDPNo == 4)
+                    {
+                        if (Byte.ETHPassage == 1)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend7[Byte.Offset] = SwapByteBits(VarHelperETH.ConvertInt8ToByte(bitnum));
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend7[Byte.Offset] = VarHelperETH.ConvertInt8ToByte(bitnum);
+                            }
+                        }
+                        if (Byte.ETHPassage == 2)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend8[Byte.Offset] = SwapByteBits(VarHelperETH.ConvertInt8ToByte(bitnum));
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend8[Byte.Offset] = VarHelperETH.ConvertInt8ToByte(bitnum);
+                            }
+                        }
+                        SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
+                    }
                 }
 
                 if (Byte.VariableType.ToString() == "U16")
@@ -684,6 +827,69 @@ namespace MainUI.TRDP
                                 VarHelperETH.byteSend4[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
                             }
                         }
+
+                        SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
+                    }
+                    if (Byte.TRDPNo == 3)
+                    {
+                        if (Byte.ETHPassage == 1)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend5[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend5[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend5[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend5[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                            }
+                        }
+                        if (Byte.ETHPassage == 2)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend6[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend6[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend6[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend6[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                            }
+                        }
+
+                        SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
+                    }
+                    if (Byte.TRDPNo == 4)
+                    {
+                        if (Byte.ETHPassage == 1)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend7[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend7[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend7[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend7[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                            }
+                        }
+                        if (Byte.ETHPassage == 2)
+                        {
+                            if (Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend8[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend8[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend8[bl] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend8[bh] = VarHelperETH.ConvertInt16ToByte(bitnum, Byte.VariableType.ToString())[1];
+                            }
+                        }
+
                         SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
                     }
                 }
@@ -770,6 +976,82 @@ namespace MainUI.TRDP
                         }
                         SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
                     }
+                    if (Byte.TRDPNo == 3)
+                    {
+                        if (Byte.ETHPassage == 1)
+                        {
+                            if (!Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend5[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend5[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend5[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend5[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend5[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                                VarHelperETH.byteSend5[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend5[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend5[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                        }
+                        if (Byte.ETHPassage == 2)
+                        {
+                            if (!Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend6[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend6[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend6[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend6[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend6[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                                VarHelperETH.byteSend6[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend6[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend6[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                        }
+                        SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
+                    }
+                    if (Byte.TRDPNo == 4)
+                    {
+                        if (Byte.ETHPassage == 1)
+                        {
+                            if (!Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend7[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend7[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend7[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend7[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend7[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                                VarHelperETH.byteSend7[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend7[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend7[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                        }
+                        if (Byte.ETHPassage == 2)
+                        {
+                            if (!Byte.PortPattern)
+                            {
+                                VarHelperETH.byteSend8[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                                VarHelperETH.byteSend8[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend8[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend8[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                            }
+                            else
+                            {
+                                VarHelperETH.byteSend8[hh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[3];
+                                VarHelperETH.byteSend8[bh] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[2];
+                                VarHelperETH.byteSend8[ll] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[1];
+                                VarHelperETH.byteSend8[bl] = VarHelperETH.ConvertInt32ToByte(bitnum, Byte.VariableType.ToString())[0];
+                            }
+                        }
+                        SendValue(Byte.Port, Byte.TRDPNo.ToString(), Byte.ETHPassage.ToString());
+                    }
                 }
             }
             catch (Exception ex)
@@ -818,7 +1100,7 @@ namespace MainUI.TRDP
             {
                 switch (trdpno)
                 {
-                    case "1":
+                    case "1": // 网关1
                         if (passage == "1")
                         {
                             SetCRCAndSend(CCU_Send, VarHelperETH.byteSend, port);
@@ -830,7 +1112,7 @@ namespace MainUI.TRDP
                             TRDP_CCU.SetToTCMS_old(CCU_Send2, trdpno, passage);
                         }
                         break;
-                    case "2":
+                    case "2": // 网关2
                         if (passage == "1")
                         {
                             SetCRCAndSend(CCU_Send3, VarHelperETH.byteSend3, port);
@@ -840,6 +1122,32 @@ namespace MainUI.TRDP
                         {
                             SetCRCAndSend(CCU_Send4, VarHelperETH.byteSend4, port);
                             TRDP_CCU2?.SetToTCMS_old(CCU_Send4, trdpno, passage);
+                        }
+                        break;
+                    // ========== 【新增】网关3 数据发送 ==========
+                    case "3": // 网关3
+                        if (passage == "1")
+                        {
+                            SetCRCAndSend(CCU_Send5, VarHelperETH.byteSend5, port);
+                            TRDP_CCU3?.SetToTCMS_old(CCU_Send5, trdpno, passage);
+                        }
+                        else
+                        {
+                            SetCRCAndSend(CCU_Send6, VarHelperETH.byteSend6, port);
+                            TRDP_CCU3?.SetToTCMS_old(CCU_Send6, trdpno, passage);
+                        }
+                        break;
+                    // ========== 【新增】网关4 数据发送 ==========
+                    case "4": // 网关4
+                        if (passage == "1")
+                        {
+                            SetCRCAndSend(CCU_Send7, VarHelperETH.byteSend7, port);
+                            TRDP_CCU4?.SetToTCMS_old(CCU_Send7, trdpno, passage);
+                        }
+                        else
+                        {
+                            SetCRCAndSend(CCU_Send8, VarHelperETH.byteSend8, port);
+                            TRDP_CCU4?.SetToTCMS_old(CCU_Send8, trdpno, passage);
                         }
                         break;
                     default:
@@ -852,6 +1160,7 @@ namespace MainUI.TRDP
                 NlogHelper.Default.Error("SendValue错误：", ex);
             }
         }
+
         void bit_Click(object sender, EventArgs e)
         {
             ucBit bit = sender as ucBit;
@@ -859,26 +1168,61 @@ namespace MainUI.TRDP
             Debug.WriteLine("bit write:" + bit.Text + "," + bit.Offset + "." + bit.Bit + ":" + bit.Switch);
             try
             {
-                if (bit.TRDPNo == 1)
+                switch (bit.TRDPNo)
                 {
-                    if (bit.ETHPassage == 1)
+                    case 1:
                     {
-                        DataWrite(ref VarHelperETH.byteSend, bit.Offset, bit.Bit, bit.Switch);
+                        if (bit.ETHPassage == 1)
+                        {
+                            DataWrite(ref VarHelperETH.byteSend, bit.Offset, bit.Bit, bit.Switch);
+                        }
+                        else
+                        {
+                            DataWrite(ref VarHelperETH.byteSend2, bit.Offset, bit.Bit, bit.Switch);
+                        }
+
+                        break;
                     }
-                    else
+                    case 2:
                     {
-                        DataWrite(ref VarHelperETH.byteSend2, bit.Offset, bit.Bit, bit.Switch);
+                        if (bit.ETHPassage == 1)
+                        {
+                            DataWrite(ref VarHelperETH.byteSend3, bit.Offset, bit.Bit, bit.Switch);
+                        }
+                        else
+                        {
+                            DataWrite(ref VarHelperETH.byteSend4, bit.Offset, bit.Bit, bit.Switch);
+                        }
+
+                        break;
                     }
-                }
-                else
-                {
-                    if (bit.ETHPassage == 1)
+                    // ========== 【新增】网关3 位数据写入 ==========
+                    case 3:
                     {
-                        DataWrite(ref VarHelperETH.byteSend3, bit.Offset, bit.Bit, bit.Switch);
+                        if (bit.ETHPassage == 1)
+                        {
+                            DataWrite(ref VarHelperETH.byteSend5, bit.Offset, bit.Bit, bit.Switch);
+                        }
+                        else
+                        {
+                            DataWrite(ref VarHelperETH.byteSend6, bit.Offset, bit.Bit, bit.Switch);
+                        }
+
+                        break;
                     }
-                    else
+                    // ========== 【新增】网关4 位数据写入 ==========
+                    case 4:
                     {
-                        DataWrite(ref VarHelperETH.byteSend4, bit.Offset, bit.Bit, bit.Switch);
+                        if (bit.ETHPassage == 1)
+                        {
+                            DataWrite(ref VarHelperETH.byteSend7, bit.Offset, bit.Bit, bit.Switch);
+                        }
+                        else
+                        {
+                            DataWrite(ref VarHelperETH.byteSend8, bit.Offset, bit.Bit, bit.Switch);
+                        }
+
+                        break;
                     }
                 }
             }
@@ -887,6 +1231,7 @@ namespace MainUI.TRDP
                 MessageBox.Show("数据写入失败：" + ex.Message, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         /// <summary>
         /// 数据写入通用方法，自动判断当前是
         /// </summary>
@@ -1130,7 +1475,7 @@ namespace MainUI.TRDP
         /// 功能：根据TRDP网关编号和以太网通道编号，返回对应的字节数组和检查框状态
         /// 替代：原来在两个线程中的重复if-else判断逻辑
         /// </summary>
-        /// <param name="trdpNo">TRDP网关编号（1或2）</param>
+        /// <param name="trdpNo">TRDP网关编号（1、2、3或4）</param>
         /// <param name="ethPassage">以太网通道编号（1或2）</param>
         /// <returns>元组：(目标字节数组, 是否禁用生命信号)</returns>
         private (byte[] array, bool disabled) GetLifeSignalTarget(int trdpNo, int ethPassage)
@@ -1148,6 +1493,18 @@ namespace MainUI.TRDP
 
                 // 网关2 通道2：使用byteSend4数组，检查ckbCCU_life4复选框
                 (2, 2) => (VarHelperETH.byteSend4, ckbCCU_life4.Checked),
+
+                // ========== 【新增】网关3 通道1：使用byteSend5数组，检查ckbCCU_life5复选框 ==========
+                (3, 1) => (VarHelperETH.byteSend5, ckbCCU_life5.Checked),
+
+                // ========== 【新增】网关3 通道2：使用byteSend6数组，检查ckbCCU_life6复选框 ==========
+                (3, 2) => (VarHelperETH.byteSend6, ckbCCU_life6.Checked),
+
+                // ========== 【新增】网关4 通道1：使用byteSend7数组，检查ckbCCU_life7复选框 ==========
+                (4, 1) => (VarHelperETH.byteSend7, ckbCCU_life7.Checked),
+
+                // ========== 【新增】网关4 通道2：使用byteSend8数组，检查ckbCCU_life8复选框 ==========
+                (4, 2) => (VarHelperETH.byteSend8, ckbCCU_life8.Checked),
 
                 // 无效配置：返回空数组和禁用状态
                 _ => (null, true)
@@ -1351,6 +1708,36 @@ namespace MainUI.TRDP
                                     // 原代码：ub.Value = VarHelperETH.byteSend4[offset];
                                     // 新代码：根据数据类型正确读取
                                     ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend4, tg.DataType, offset);
+                                }
+                                continue;
+                            }
+                        }
+                        if (ub.TRDPNo == 3)
+                        {
+                            if (offset == tg.COMMData.Offset)
+                            {
+                                if (!ckbCCU_life5.Checked && ub.ETHPassage == 1)
+                                {
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend5, tg.DataType, offset);
+                                }
+                                else if (!ckbCCU_life6.Checked && ub.ETHPassage == 2)
+                                {
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend6, tg.DataType, offset);
+                                }
+                                continue;
+                            }
+                        }
+                        if (ub.TRDPNo == 4)
+                        {
+                            if (offset == tg.COMMData.Offset)
+                            {
+                                if (!ckbCCU_life7.Checked && ub.ETHPassage == 1)
+                                {
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend7, tg.DataType, offset);
+                                }
+                                else if (!ckbCCU_life8.Checked && ub.ETHPassage == 2)
+                                {
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend8, tg.DataType, offset);
                                 }
                                 continue;
                             }

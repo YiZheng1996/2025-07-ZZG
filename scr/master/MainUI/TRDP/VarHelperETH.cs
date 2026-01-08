@@ -160,6 +160,12 @@ namespace MainUI.TRDP
         public static byte[] byteSend4 = new byte[64];//100
         public static byte[] EBVbyteSend = new byte[20];//100
 
+        // ========== 【新增】网关3 和 网关4 的数据发送数组 ==========
+        public static byte[] byteSend5 = new byte[64];  // 网关3 通道1
+        public static byte[] byteSend6 = new byte[64];  // 网关3 通道2
+        public static byte[] byteSend7 = new byte[64];  // 网关4 通道1
+        public static byte[] byteSend8 = new byte[64];  // 网关4 通道2
+
         /// <summary>
         /// BCU 发CCU数据
         /// </summary>

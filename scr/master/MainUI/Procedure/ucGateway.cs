@@ -28,6 +28,17 @@
                 txtTrdpPort2.Text = gtw.Desport2;
                 txtLocalIP2.Text = gtw.LocalIP2;
                 txtLocalPort2.Text = gtw.LocalPort2;
+                // ========== 【新增】网关3配置 ==========
+                txtTRDPIP3.Text = gtw.DesIP3;
+                txtTrdpPort3.Text = gtw.Desport3;
+                txtLocalIP3.Text = gtw.LocalIP3;
+                txtLocalPort3.Text = gtw.LocalPort3;
+
+                // ========== 【新增】网关4配置 ==========
+                txtTRDPIP4.Text = gtw.DesIP4;
+                txtTrdpPort4.Text = gtw.Desport4;
+                txtLocalIP4.Text = gtw.LocalIP4;
+                txtLocalPort4.Text = gtw.LocalPort4;
             }
             catch (Exception ex)
             {
@@ -50,6 +61,17 @@
                 gtw.Desport2 = txtTrdpPort2.Text;
                 gtw.LocalIP2 = txtLocalIP2.Text;
                 gtw.LocalPort2 = txtLocalPort2.Text;
+                // ========== 【新增】网关3配置 ==========
+                gtw.DesIP3 = txtTRDPIP3.Text;
+                gtw.Desport3 = txtTrdpPort3.Text;
+                gtw.LocalIP3 = txtLocalIP3.Text;
+                gtw.LocalPort3 = txtLocalPort3.Text;
+
+                // ========== 【新增】网关4配置 ==========
+                gtw.DesIP4 = txtTRDPIP4.Text;
+                gtw.Desport4 = txtTrdpPort4.Text;
+                gtw.LocalIP4 = txtLocalIP4.Text;
+                gtw.LocalPort4 = txtLocalPort4.Text;
                 gtw.Save();
                 MessageBox.Show("保存成功。", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

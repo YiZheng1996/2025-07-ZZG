@@ -52,6 +52,10 @@
             btnSeach = new UIButton();
             imageList1 = new ImageList(components);
             toolTip1 = new ToolTip(components);
+            ckbCCU_life8 = new UICheckBox();
+            ckbCCU_life7 = new UICheckBox();
+            ckbCCU_life6 = new UICheckBox();
+            ckbCCU_life5 = new UICheckBox();
             panel1.SuspendLayout();
             uiPanel2.SuspendLayout();
             SuspendLayout();
@@ -196,7 +200,7 @@
             PanelTree.Margin = new Padding(4, 5, 4, 5);
             PanelTree.MinimumSize = new Size(1, 1);
             PanelTree.Name = "PanelTree";
-            PanelTree.Size = new Size(276, 783);
+            PanelTree.Size = new Size(276, 789);
             PanelTree.Style = UIStyle.Custom;
             PanelTree.TabIndex = 1;
             PanelTree.Text = null;
@@ -204,6 +208,10 @@
             // 
             // uiPanel2
             // 
+            uiPanel2.Controls.Add(ckbCCU_life8);
+            uiPanel2.Controls.Add(ckbCCU_life7);
+            uiPanel2.Controls.Add(ckbCCU_life6);
+            uiPanel2.Controls.Add(ckbCCU_life5);
             uiPanel2.Controls.Add(ckbCCU_life4);
             uiPanel2.Controls.Add(ckbCCU_life3);
             uiPanel2.Controls.Add(ckbCCU_life2);
@@ -211,11 +219,11 @@
             uiPanel2.Controls.Add(btnClose);
             uiPanel2.Dock = DockStyle.Bottom;
             uiPanel2.Font = new Font("宋体", 12F);
-            uiPanel2.Location = new Point(0, 912);
+            uiPanel2.Location = new Point(0, 917);
             uiPanel2.Margin = new Padding(4, 5, 4, 5);
             uiPanel2.MinimumSize = new Size(1, 1);
             uiPanel2.Name = "uiPanel2";
-            uiPanel2.Size = new Size(1262, 48);
+            uiPanel2.Size = new Size(1262, 66);
             uiPanel2.Style = UIStyle.Custom;
             uiPanel2.TabIndex = 2;
             uiPanel2.Text = null;
@@ -225,7 +233,7 @@
             // 
             ckbCCU_life4.Font = new Font("宋体", 12F);
             ckbCCU_life4.ForeColor = Color.FromArgb(48, 48, 48);
-            ckbCCU_life4.Location = new Point(813, 12);
+            ckbCCU_life4.Location = new Point(813, 4);
             ckbCCU_life4.MinimumSize = new Size(1, 1);
             ckbCCU_life4.Name = "ckbCCU_life4";
             ckbCCU_life4.Size = new Size(192, 29);
@@ -237,7 +245,7 @@
             // 
             ckbCCU_life3.Font = new Font("宋体", 12F);
             ckbCCU_life3.ForeColor = Color.FromArgb(48, 48, 48);
-            ckbCCU_life3.Location = new Point(617, 12);
+            ckbCCU_life3.Location = new Point(617, 4);
             ckbCCU_life3.MinimumSize = new Size(1, 1);
             ckbCCU_life3.Name = "ckbCCU_life3";
             ckbCCU_life3.Size = new Size(192, 29);
@@ -249,7 +257,7 @@
             // 
             ckbCCU_life2.Font = new Font("宋体", 12F);
             ckbCCU_life2.ForeColor = Color.FromArgb(48, 48, 48);
-            ckbCCU_life2.Location = new Point(342, 12);
+            ckbCCU_life2.Location = new Point(342, 4);
             ckbCCU_life2.MinimumSize = new Size(1, 1);
             ckbCCU_life2.Name = "ckbCCU_life2";
             ckbCCU_life2.Size = new Size(192, 29);
@@ -261,7 +269,7 @@
             // 
             ckbCCU_life.Font = new Font("宋体", 12F);
             ckbCCU_life.ForeColor = Color.FromArgb(48, 48, 48);
-            ckbCCU_life.Location = new Point(144, 12);
+            ckbCCU_life.Location = new Point(144, 4);
             ckbCCU_life.MinimumSize = new Size(1, 1);
             ckbCCU_life.Name = "ckbCCU_life";
             ckbCCU_life.Size = new Size(192, 29);
@@ -273,11 +281,11 @@
             // 
             btnClose.FillColor = Color.LightCoral;
             btnClose.Font = new Font("宋体", 12F);
-            btnClose.Location = new Point(1074, 8);
+            btnClose.Location = new Point(1078, 17);
             btnClose.MinimumSize = new Size(1, 1);
             btnClose.Name = "btnClose";
             btnClose.RectColor = Color.LightCoral;
-            btnClose.Size = new Size(129, 33);
+            btnClose.Size = new Size(129, 35);
             btnClose.TabIndex = 9;
             btnClose.Text = "退 出";
             btnClose.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
@@ -291,7 +299,7 @@
             PanelContent.Margin = new Padding(4, 5, 4, 5);
             PanelContent.MinimumSize = new Size(1, 1);
             PanelContent.Name = "PanelContent";
-            PanelContent.Size = new Size(979, 829);
+            PanelContent.Size = new Size(979, 834);
             PanelContent.Style = UIStyle.Custom;
             PanelContent.TabIndex = 3;
             PanelContent.Text = null;
@@ -342,10 +350,58 @@
             imageList1.Images.SetKeyName(0, "Map_Marker_Ball_Azure_16px_1061214_easyicon.net.png");
             imageList1.Images.SetKeyName(1, "Map_Marker_Ball_Chartreuse_16px_1061215_easyicon.net.png");
             // 
+            // ckbCCU_life8
+            // 
+            ckbCCU_life8.Font = new Font("宋体", 12F);
+            ckbCCU_life8.ForeColor = Color.FromArgb(48, 48, 48);
+            ckbCCU_life8.Location = new Point(813, 32);
+            ckbCCU_life8.MinimumSize = new Size(1, 1);
+            ckbCCU_life8.Name = "ckbCCU_life8";
+            ckbCCU_life8.Size = new Size(192, 29);
+            ckbCCU_life8.Style = UIStyle.Custom;
+            ckbCCU_life8.TabIndex = 16;
+            ckbCCU_life8.Text = "网关4,通道2生命信号";
+            // 
+            // ckbCCU_life7
+            // 
+            ckbCCU_life7.Font = new Font("宋体", 12F);
+            ckbCCU_life7.ForeColor = Color.FromArgb(48, 48, 48);
+            ckbCCU_life7.Location = new Point(617, 32);
+            ckbCCU_life7.MinimumSize = new Size(1, 1);
+            ckbCCU_life7.Name = "ckbCCU_life7";
+            ckbCCU_life7.Size = new Size(192, 29);
+            ckbCCU_life7.Style = UIStyle.Custom;
+            ckbCCU_life7.TabIndex = 15;
+            ckbCCU_life7.Text = "网关4,通道1生命信号";
+            // 
+            // ckbCCU_life6
+            // 
+            ckbCCU_life6.Font = new Font("宋体", 12F);
+            ckbCCU_life6.ForeColor = Color.FromArgb(48, 48, 48);
+            ckbCCU_life6.Location = new Point(342, 32);
+            ckbCCU_life6.MinimumSize = new Size(1, 1);
+            ckbCCU_life6.Name = "ckbCCU_life6";
+            ckbCCU_life6.Size = new Size(192, 29);
+            ckbCCU_life6.Style = UIStyle.Custom;
+            ckbCCU_life6.TabIndex = 14;
+            ckbCCU_life6.Text = "网关3,通道2生命信号";
+            // 
+            // ckbCCU_life5
+            // 
+            ckbCCU_life5.Font = new Font("宋体", 12F);
+            ckbCCU_life5.ForeColor = Color.FromArgb(48, 48, 48);
+            ckbCCU_life5.Location = new Point(144, 32);
+            ckbCCU_life5.MinimumSize = new Size(1, 1);
+            ckbCCU_life5.Name = "ckbCCU_life5";
+            ckbCCU_life5.Size = new Size(192, 29);
+            ckbCCU_life5.Style = UIStyle.Custom;
+            ckbCCU_life5.TabIndex = 13;
+            ckbCCU_life5.Text = "网关3,通道1生命信号";
+            // 
             // frmTRDPMonitor
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(1262, 960);
+            ClientSize = new Size(1262, 983);
             ControlBox = false;
             Controls.Add(PanelContent);
             Controls.Add(btnSeach);
@@ -393,5 +449,9 @@
         private ToolTip toolTip1;
         private UICheckBox ckbCCU_life4;
         private UICheckBox ckbCCU_life3;
+        private UICheckBox ckbCCU_life8;
+        private UICheckBox ckbCCU_life7;
+        private UICheckBox ckbCCU_life6;
+        private UICheckBox ckbCCU_life5;
     }
 }

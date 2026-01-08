@@ -34,6 +34,15 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             dataGridView1 = new UIDataGridView();
+            colID = new DataGridViewTextBoxColumn();
+            colPortName = new DataGridViewTextBoxColumn();
+            colPort = new DataGridViewTextBoxColumn();
+            coltrdpno = new DataGridViewTextBoxColumn();
+            colETHPassage = new DataGridViewTextBoxColumn();
+            colRate = new DataGridViewTextBoxColumn();
+            colIsRead = new DataGridViewTextBoxColumn();
+            colDataSize = new DataGridViewTextBoxColumn();
+            colVerNo = new DataGridViewTextBoxColumn();
             contextMenuStrip1 = new UIContextMenuStrip();
             设置为默认版本ToolStripMenuItem = new ToolStripMenuItem();
             groupBox1 = new UIGroupBox();
@@ -63,15 +72,6 @@
             txtPortName = new UITextBox();
             label2 = new UILabel();
             txtID = new UITextBox();
-            colID = new DataGridViewTextBoxColumn();
-            colPortName = new DataGridViewTextBoxColumn();
-            colPort = new DataGridViewTextBoxColumn();
-            coltrdpno = new DataGridViewTextBoxColumn();
-            colETHPassage = new DataGridViewTextBoxColumn();
-            colRate = new DataGridViewTextBoxColumn();
-            colIsRead = new DataGridViewTextBoxColumn();
-            colDataSize = new DataGridViewTextBoxColumn();
-            colVerNo = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -134,6 +134,87 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            // 
+            // colID
+            // 
+            colID.DataPropertyName = "ID";
+            colID.FillWeight = 30F;
+            colID.HeaderText = "ID";
+            colID.Name = "colID";
+            colID.ReadOnly = true;
+            colID.Width = 106;
+            // 
+            // colPortName
+            // 
+            colPortName.DataPropertyName = "PortName";
+            colPortName.FillWeight = 101.827408F;
+            colPortName.HeaderText = "端口名称";
+            colPortName.Name = "colPortName";
+            colPortName.ReadOnly = true;
+            colPortName.Width = 124;
+            // 
+            // colPort
+            // 
+            colPort.DataPropertyName = "Port";
+            colPort.FillWeight = 101.827408F;
+            colPort.HeaderText = "ComID";
+            colPort.Name = "colPort";
+            colPort.ReadOnly = true;
+            colPort.Width = 125;
+            // 
+            // coltrdpno
+            // 
+            coltrdpno.DataPropertyName = "TRDPNo";
+            coltrdpno.FillWeight = 101.827408F;
+            coltrdpno.HeaderText = "网关编号";
+            coltrdpno.Name = "coltrdpno";
+            coltrdpno.ReadOnly = true;
+            coltrdpno.Width = 125;
+            // 
+            // colETHPassage
+            // 
+            colETHPassage.DataPropertyName = "ETHPassage";
+            colETHPassage.FillWeight = 101.827408F;
+            colETHPassage.HeaderText = "ETH通道";
+            colETHPassage.Name = "colETHPassage";
+            colETHPassage.ReadOnly = true;
+            colETHPassage.Width = 125;
+            // 
+            // colRate
+            // 
+            colRate.DataPropertyName = "Rate";
+            colRate.FillWeight = 81.46193F;
+            colRate.HeaderText = "端口周期";
+            colRate.Name = "colRate";
+            colRate.ReadOnly = true;
+            colRate.Width = 99;
+            // 
+            // colIsRead
+            // 
+            colIsRead.DataPropertyName = "IsRead";
+            colIsRead.FillWeight = 101.827408F;
+            colIsRead.HeaderText = "源宿类型";
+            colIsRead.Name = "colIsRead";
+            colIsRead.ReadOnly = true;
+            colIsRead.Width = 125;
+            // 
+            // colDataSize
+            // 
+            colDataSize.DataPropertyName = "DataSize";
+            colDataSize.FillWeight = 101.827408F;
+            colDataSize.HeaderText = "数据大小";
+            colDataSize.Name = "colDataSize";
+            colDataSize.ReadOnly = true;
+            colDataSize.Width = 125;
+            // 
+            // colVerNo
+            // 
+            colVerNo.DataPropertyName = "VerNo";
+            colVerNo.FillWeight = 71.27919F;
+            colVerNo.HeaderText = "协议版本";
+            colVerNo.Name = "colVerNo";
+            colVerNo.ReadOnly = true;
+            colVerNo.Width = 87;
             // 
             // contextMenuStrip1
             // 
@@ -212,7 +293,7 @@
             cbotrdpno.Font = new Font("宋体", 12F);
             cbotrdpno.FormattingEnabled = true;
             cbotrdpno.ItemHoverColor = Color.FromArgb(155, 200, 255);
-            cbotrdpno.Items.AddRange(new object[] { "1", "2" });
+            cbotrdpno.Items.AddRange(new object[] { "1", "2", "3", "4" });
             cbotrdpno.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
             cbotrdpno.Location = new Point(583, 120);
             cbotrdpno.Margin = new Padding(4, 5, 4, 5);
@@ -550,87 +631,6 @@
             txtID.TextAlignment = ContentAlignment.MiddleLeft;
             txtID.Visible = false;
             txtID.Watermark = "";
-            // 
-            // colID
-            // 
-            colID.DataPropertyName = "ID";
-            colID.FillWeight = 30F;
-            colID.HeaderText = "ID";
-            colID.Name = "colID";
-            colID.ReadOnly = true;
-            colID.Width = 106;
-            // 
-            // colPortName
-            // 
-            colPortName.DataPropertyName = "PortName";
-            colPortName.FillWeight = 101.827408F;
-            colPortName.HeaderText = "端口名称";
-            colPortName.Name = "colPortName";
-            colPortName.ReadOnly = true;
-            colPortName.Width = 124;
-            // 
-            // colPort
-            // 
-            colPort.DataPropertyName = "Port";
-            colPort.FillWeight = 101.827408F;
-            colPort.HeaderText = "ComID";
-            colPort.Name = "colPort";
-            colPort.ReadOnly = true;
-            colPort.Width = 125;
-            // 
-            // coltrdpno
-            // 
-            coltrdpno.DataPropertyName = "TRDPNo";
-            coltrdpno.FillWeight = 101.827408F;
-            coltrdpno.HeaderText = "网关编号";
-            coltrdpno.Name = "coltrdpno";
-            coltrdpno.ReadOnly = true;
-            coltrdpno.Width = 125;
-            // 
-            // colETHPassage
-            // 
-            colETHPassage.DataPropertyName = "ETHPassage";
-            colETHPassage.FillWeight = 101.827408F;
-            colETHPassage.HeaderText = "ETH通道";
-            colETHPassage.Name = "colETHPassage";
-            colETHPassage.ReadOnly = true;
-            colETHPassage.Width = 125;
-            // 
-            // colRate
-            // 
-            colRate.DataPropertyName = "Rate";
-            colRate.FillWeight = 81.46193F;
-            colRate.HeaderText = "端口周期";
-            colRate.Name = "colRate";
-            colRate.ReadOnly = true;
-            colRate.Width = 99;
-            // 
-            // colIsRead
-            // 
-            colIsRead.DataPropertyName = "IsRead";
-            colIsRead.FillWeight = 101.827408F;
-            colIsRead.HeaderText = "源宿类型";
-            colIsRead.Name = "colIsRead";
-            colIsRead.ReadOnly = true;
-            colIsRead.Width = 125;
-            // 
-            // colDataSize
-            // 
-            colDataSize.DataPropertyName = "DataSize";
-            colDataSize.FillWeight = 101.827408F;
-            colDataSize.HeaderText = "数据大小";
-            colDataSize.Name = "colDataSize";
-            colDataSize.ReadOnly = true;
-            colDataSize.Width = 125;
-            // 
-            // colVerNo
-            // 
-            colVerNo.DataPropertyName = "VerNo";
-            colVerNo.FillWeight = 71.27919F;
-            colVerNo.HeaderText = "协议版本";
-            colVerNo.Name = "colVerNo";
-            colVerNo.ReadOnly = true;
-            colVerNo.Width = 87;
             // 
             // frmPortManager
             // 

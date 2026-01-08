@@ -790,66 +790,6 @@ namespace MainUI.TRDP
             return (byte)(((b >> 4) & 0x0F) | ((b << 4) & 0xF0));
         }
 
-        //void SendValue(int port, string trdpno, string passage)
-        //{
-        //    try
-        //    {
-        //        switch (trdpno)
-        //        {
-        //            case "1":
-        //                if (passage == "1")
-        //                {
-        //                    CCU_Send.SequenceCounter++;
-        //                    CCU_Send.DatasetData = VarHelperETH.byteSend;// TRDP_NJCJ.CCU_ALL;
-        //                    CCU_Send.DatasetLength = VarHelperETH.byteSend.Length;// TRDP_NJCJ.CCU_ALL.Length;
-        //                    CCU_Send.DataLength = CCU_Send.DatasetLength + 20;//
-        //                    CCU_Send.ComId = port;
-        //                    TRDP_CCU.SetToTCMS_old(CCU_Send, trdpno, passage);
-        //                }
-        //                else
-        //                {
-        //                    CCU_Send2.SequenceCounter++;
-        //                    CCU_Send2.DatasetData = VarHelperETH.byteSend2;// TRDP_NJCJ.CCU_ALL;
-        //                    CCU_Send2.DatasetLength = VarHelperETH.byteSend2.Length;// TRDP_NJCJ.CCU_ALL.Length;
-        //                    CCU_Send2.DataLength = CCU_Send2.DatasetLength + 20;//
-        //                    CCU_Send2.ComId = port;
-        //                    TRDP_CCU.SetToTCMS_old(CCU_Send2, trdpno, passage);
-        //                }
-        //                break;
-        //            //TODO:暂时注释
-        //            //case "2":
-        //            //    if (passage == "1")
-        //            //    {
-        //            //        CCU_Send3.SequenceCounter++;
-        //            //        CCU_Send3.DatasetData = VarHelperETH.byteSend3;// TRDP_NJCJ.CCU_ALL;
-        //            //        CCU_Send3.DatasetLength = VarHelperETH.byteSend3.Length;// TRDP_NJCJ.CCU_ALL.Length;
-        //            //        CCU_Send3.DataLength = CCU_Send3.DatasetLength + 20;//
-        //            //        CCU_Send3.ComId = port;
-        //            //        TRDP_CCU2.SetToTCMS_old(CCU_Send3, trdpno, passage);
-        //            //    }
-        //            //    else
-        //            //    {
-        //            //        CCU_Send4.SequenceCounter++;
-        //            //        CCU_Send4.DatasetData = VarHelperETH.byteSend4;// TRDP_NJCJ.CCU_ALL;
-        //            //        CCU_Send4.DatasetLength = VarHelperETH.byteSend4.Length;// TRDP_NJCJ.CCU_ALL.Length;
-        //            //        CCU_Send4.DataLength = CCU_Send4.DatasetLength + 20;//
-        //            //        CCU_Send4.ComId = port;
-        //            //        TRDP_CCU2.SetToTCMS_old(CCU_Send4, trdpno, passage);
-        //            //    }
-        //            //    break;
-        //            default:
-        //                break;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //        NlogHelper.Default.Error("SendValue错误：", ex);
-        //    }
-        //}
-
-
-        // 计算并设置CRC值
         void SetCRCAndSend(ToTCMSSend send, byte[] data, int port)
         {
             // 获取当前端口的CRC配置
@@ -1038,164 +978,279 @@ namespace MainUI.TRDP
             LoadLeftTree("");
         }
 
+        #region 生命信号相关
         readonly List<FullTagsETH> tempLifeTag = [];
         readonly List<FullTagsETH> tempCRCTag = [];
         readonly bool closed = false;
         bool IsStarat = false;
+        /// <summary>
+        /// 注册生命信号处理线程
+        /// 功能：为不同速率的端口组创建生命信号处理线程
+        /// 修改：将原来的两个独立线程合并为一个统一处理线程，支持多种数据类型
+        /// </summary>
+        /// <param name="group">按速率分组的端口集合</param>
         void RegisterLife(IEnumerable<IGrouping<int, Ports>> group)
         {
+            // 清空临时标签集合，为本次注册做准备
             tempLifeTag.Clear();
             tempCRCTag.Clear();
+
+            // 遍历每个速率组
             foreach (var item in group)
             {
                 List<Ports> list = [.. item];
-                int rata = item.Key;
-                List<FullTagsETH> tempNOLifeTag = [];
+                int rata = item.Key; // 获取当前组的刷新速率（毫秒）
+
+                // 遍历当前速率组中的每个端口
                 foreach (var pt in list)
                 {
-                    // 获取需要CRC校验的端口
+                    // 查找需要CRC校验的端口标签
+                    // 条件：端口号匹配 && 启用CRC校验
                     FullTagsETH CRC = tags.FirstOrDefault(p => p.COMMData.Port == pt.ETHPortNum && p.IsCRC);
                     if (CRC != null)
                     {
-                        tempCRCTag.Add(CRC);
+                        tempCRCTag.Add(CRC); // 添加到CRC处理列表
                     }
 
-                    // 获取生命信号
+                    // 查找生命信号标签
+                    // 条件：端口号匹配 && 非只读端口 && 是自增标识（生命信号）
                     FullTagsETH mode = tags.FirstOrDefault(p => p.COMMData.Port == pt.ETHPortNum && !pt.IsRead && p.Identity);
                     if (mode != null)
                     {
-                        mode.TRDPNo = pt.TRDPNo;
-                        mode.ETHPassage = pt.ETHPassage;
-                        tempLifeTag.Add(mode);
+                        // 设置TRDP网关编号和以太网通道编号
+                        mode.TRDPNo = pt.TRDPNo;       // 网关编号：1或2
+                        mode.ETHPassage = pt.ETHPassage; // 以太网通道：1或2
+                        tempLifeTag.Add(mode); // 添加到生命信号处理列表
                     }
                 }
 
-                // 网关1生命信号端口
-                if (tempLifeTag.Where(x => x.TRDPNo == 1).Any() && !IsStarat)
+                // 如果找到生命信号标签且尚未启动处理线程，则创建统一的生命信号处理线程
+                // 注意：原来的逻辑是分别为网关1和网关2创建独立线程，现在合并为一个线程处理所有生命信号
+                if (tempLifeTag.Count != 0 && !IsStarat)
                 {
-                    Thread t = new(new ThreadStart(delegate
-                    {
-                        double value = 0;
-                        while (!IsDisposed && !closed)
-                        {
-                            try
-                            {
-                                foreach (var tg in tempLifeTag)
-                                {
-                                    int portIndex = tg.COMMData.Offset;
-                                    byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
-                                    if (tg.TRDPNo == 1 && tg.ETHPassage == 1)
-                                    {
-                                        if (!ckbCCU_life.Checked)
-                                        {
-                                            VarHelperETH.byteSend[portIndex] = life;
-                                            SendValue(Convert.ToInt32(tg.Port), tg.TRDPNo.ToString(),
-                                                tg.ETHPassage.ToString());
-                                        }
-                                    }
-                                    else if (tg.TRDPNo == 1 && tg.ETHPassage == 2)
-                                    {
-                                        if (!ckbCCU_life2.Checked)
-                                        {
-                                            //byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
-                                            VarHelperETH.byteSend2[portIndex] = life;
-                                            SendValue(Convert.ToInt32(tg.Port), tg.TRDPNo.ToString(),
-                                                tg.ETHPassage.ToString());
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Debug.WriteLine("生命信号写入错误：" + ex.Message);
-                                NlogHelper.Default.Error("生命信号写入错误：", ex);
-                            }
-                            finally
-                            {
-                                value++;
-                                Thread.Sleep(rata);
-                            }
-                        }
-                    }))
-                    {
-                        IsBackground = true
-                    };
-                    t.Start();
-                    IsStarat = true;
+                    CreateLifeSignalThread(rata); // 创建生命信号处理线程
+                    IsStarat = true; // 标记已启动，避免重复创建
                 }
+            }
+        }
 
-                // 网关2生命信号端口
-                if (tempLifeTag.Where(x => x.TRDPNo == 2).Any())
+        /// <summary>
+        /// 创建生命信号处理线程
+        /// 功能：创建后台线程，定时更新所有网关的生命信号
+        /// 替代：原来的两个独立线程（网关1线程 + 网关2线程）
+        /// </summary>
+        /// <param name="rata">生命信号更新间隔（毫秒）</param>
+        private void CreateLifeSignalThread(int rata)
+        {
+            // 创建后台线程
+            Thread lifeThread = new(new ThreadStart(() =>
+            {
+                double value = 0; // 生命信号计数器，每次循环自增
+
+                // 线程主循环：直到窗体销毁或手动关闭
+                while (!IsDisposed && !closed)
                 {
-                    Thread t2 = new(new ThreadStart(delegate
+                    try
                     {
-                        double value = 0;
-                        while (!IsDisposed && !closed)
+                        // 遍历所有生命信号标签，逐个处理
+                        // 这里替代了原来的两个独立foreach循环
+                        foreach (var tg in tempLifeTag)
                         {
-                            try
-                            {
-                                foreach (var tg in tempLifeTag)
-                                {
-                                    int portIndex = tg.COMMData.Offset;
-                                    byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
-                                    if (tg.TRDPNo == 2 && tg.ETHPassage == 1)
-                                    {
-                                        if (!ckbCCU_life3.Checked)
-                                        {
-                                            VarHelperETH.byteSend3[portIndex] = life;
-                                            SendValue(Convert.ToInt32(tg.Port), tg.TRDPNo.ToString(),
-                                               tg.ETHPassage.ToString());
-                                        }
-                                    }
-                                    else if (tg.TRDPNo == 2 && tg.ETHPassage == 2)
-                                    {
-                                        if (!ckbCCU_life4.Checked)
-                                        {
-                                            VarHelperETH.byteSend4[portIndex] = life;
-                                            SendValue(Convert.ToInt32(tg.Port), tg.TRDPNo.ToString(),
-                                                tg.ETHPassage.ToString());
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Debug.WriteLine("生命信号写入错误：" + ex.Message);
-                            }
-                            finally
-                            {
-                                value++;
-                                Thread.Sleep(rata);
-                            }
+                            // 统一处理生命信号：支持U8/U16/U32等多种数据类型
+                            ProcessLifeSignal(tg, value, tg.COMMData.Offset);
                         }
-                    }))
+                    }
+                    catch (Exception ex)
                     {
-                        IsBackground = true
-                    };
-                    t2.Start();
+                        // 异常处理：记录错误日志，但不中断线程运行
+                        Debug.WriteLine("生命信号写入错误：" + ex.Message);
+                        NlogHelper.Default.Error("生命信号写入错误：", ex);
+                    }
+                    finally
+                    {
+                        // 无论是否发生异常，都要执行的清理工作
+                        value++;           // 生命信号值自增
+                        Thread.Sleep(rata); // 按指定间隔休眠
+                    }
                 }
+            }))
+            {
+                IsBackground = true // 设置为后台线程，主线程结束时自动结束
+            };
+
+            lifeThread.Start(); // 启动线程
+        }
+
+        /// <summary>
+        /// 处理单个生命信号
+        /// 功能：将生命信号值写入对应的字节数组，并发送数据
+        /// 替代：原来在两个线程中的重复处理逻辑
+        /// </summary>
+        /// <param name="tg">生命信号标签配置</param>
+        /// <param name="value">当前生命信号值</param>
+        /// <param name="portIndex">在字节数组中的偏移位置</param>
+        private void ProcessLifeSignal(FullTagsETH tg, double value, int portIndex)
+        {
+            try
+            {
+                // 根据数据类型转换生命信号值
+                // 支持：U8(byte), U16(ushort), U32(uint), I8(sbyte), I16(short), I32(int)
+                // 这里解决了原来固定转换为byte导致U16/U32值被截断的问题
+                object lifeObj = Comsum(tg.DataType, ref value);
+
+                // 根据TRDP网关编号和以太网通道获取目标字节数组和禁用状态
+                // 映射关系：
+                // - TRDPNo=1, ETHPassage=1 → byteSend + ckbCCU_life
+                // - TRDPNo=1, ETHPassage=2 → byteSend2 + ckbCCU_life2  
+                // - TRDPNo=2, ETHPassage=1 → byteSend3 + ckbCCU_life3
+                // - TRDPNo=2, ETHPassage=2 → byteSend4 + ckbCCU_life4
+                var (targetArray, isDisabled) = GetLifeSignalTarget(tg.TRDPNo, tg.ETHPassage);
+
+                // 检查目标数组是否有效且生命信号未被手动禁用
+                if (targetArray != null && !isDisabled)
+                {
+                    // 将生命信号值写入目标字节数组
+                    // 根据数据类型确定写入字节数：U8写1字节，U16写2字节，U32写4字节
+                    WriteLifeSignalValue(targetArray, lifeObj, tg.DataType, portIndex);
+
+                    // 发送数据到TRDP网关
+                    // 参数：端口号，TRDP网关编号，以太网通道编号
+                    SendValue(Convert.ToInt32(tg.Port), tg.TRDPNo.ToString(), tg.ETHPassage.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                // 记录详细的错误信息，便于调试
+                Debug.WriteLine($"处理生命信号错误 - TRDPNo:{tg.TRDPNo}, ETHPassage:{tg.ETHPassage}, 数据类型:{tg.DataType}, 错误:{ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 获取生命信号目标数组和禁用状态
+        /// 功能：根据TRDP网关编号和以太网通道编号，返回对应的字节数组和检查框状态
+        /// 替代：原来在两个线程中的重复if-else判断逻辑
+        /// </summary>
+        /// <param name="trdpNo">TRDP网关编号（1或2）</param>
+        /// <param name="ethPassage">以太网通道编号（1或2）</param>
+        /// <returns>元组：(目标字节数组, 是否禁用生命信号)</returns>
+        private (byte[] array, bool disabled) GetLifeSignalTarget(int trdpNo, int ethPassage)
+        {
+            return (trdpNo, ethPassage) switch
+            {
+                // 网关1 通道1：使用byteSend数组，检查ckbCCU_life复选框
+                (1, 1) => (VarHelperETH.byteSend, ckbCCU_life.Checked),
+
+                // 网关1 通道2：使用byteSend2数组，检查ckbCCU_life2复选框  
+                (1, 2) => (VarHelperETH.byteSend2, ckbCCU_life2.Checked),
+
+                // 网关2 通道1：使用byteSend3数组，检查ckbCCU_life3复选框
+                (2, 1) => (VarHelperETH.byteSend3, ckbCCU_life3.Checked),
+
+                // 网关2 通道2：使用byteSend4数组，检查ckbCCU_life4复选框
+                (2, 2) => (VarHelperETH.byteSend4, ckbCCU_life4.Checked),
+
+                // 无效配置：返回空数组和禁用状态
+                _ => (null, true)
+            };
+        }
+
+        /// <summary>
+        /// 将生命信号值写入字节数组
+        /// 功能：根据数据类型，将生命信号值正确写入目标字节数组
+        /// 新增：支持U16和U32数据类型，解决原来值被截断的问题
+        /// </summary>
+        /// <param name="targetArray">目标字节数组</param>
+        /// <param name="value">生命信号值对象</param>
+        /// <param name="dataType">数据类型字符串</param>
+        /// <param name="portIndex">写入位置的起始索引</param>
+        private void WriteLifeSignalValue(byte[] targetArray, object value, string dataType, int portIndex)
+        {
+            // 将字符串数据类型转换为枚举
+            var dataTypeEnum = (VariableTypeEnums)Enum.Parse(typeof(VariableTypeEnums), dataType);
+
+            // 边界检查：确保写入位置不会超出数组范围
+            if (portIndex < 0 || portIndex >= targetArray.Length)
+            {
+                Debug.WriteLine($"生命信号端口索引越界: {portIndex}, 数组长度: {targetArray.Length}");
+                return;
+            }
+
+            // 根据数据类型执行不同的写入逻辑
+            switch (dataTypeEnum)
+            {
+                // 8位数据类型：直接写入1个字节
+                case VariableTypeEnums.U8:  // 无符号8位整数 (0-255)
+                case VariableTypeEnums.I8:  // 有符号8位整数 (-128到127)
+                    targetArray[portIndex] = (byte)value;
+                    break;
+
+                // 16位数据类型：写入2个字节（小端序）
+                case VariableTypeEnums.U16: // 无符号16位整数 (0-65535)
+                case VariableTypeEnums.I16: // 有符号16位整数 (-32768到32767)
+                                            // 检查是否有足够空间写入2个字节
+                    if (portIndex + 1 < targetArray.Length)
+                    {
+                        // 将16位值转换为字节数组（小端序）
+                        byte[] bytes16 = BitConverter.GetBytes((ushort)value);
+                        targetArray[portIndex] = bytes16[0];     // 低位字节
+                        targetArray[portIndex + 1] = bytes16[1]; // 高位字节
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"U16生命信号写入越界: 索引{portIndex}, 需要2字节, 数组长度{targetArray.Length}");
+                    }
+                    break;
+
+                // 32位数据类型：写入4个字节（小端序）
+                case VariableTypeEnums.U32: // 无符号32位整数 (0-4294967295)
+                case VariableTypeEnums.I32: // 有符号32位整数 (-2147483648到2147483647)
+                                            // 检查是否有足够空间写入4个字节
+                    if (portIndex + 3 < targetArray.Length)
+                    {
+                        // 将32位值转换为字节数组（小端序）
+                        byte[] bytes32 = BitConverter.GetBytes((uint)value);
+                        // 批量复制4个字节
+                        Array.Copy(bytes32, 0, targetArray, portIndex, 4);
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"U32生命信号写入越界: 索引{portIndex}, 需要4字节, 数组长度{targetArray.Length}");
+                    }
+                    break;
+
+                // 不支持的数据类型
+                default:
+                    Debug.WriteLine($"不支持的生命信号数据类型: {dataType}");
+                    break;
             }
         }
         /// <summary>
         /// 累加
         /// </summary>
-        object Comsum(string dataType, ref double value)
+        private static object Comsum(string dataType, ref double value)
         {
             var types = (VariableTypeEnums)Enum.Parse(typeof(VariableTypeEnums), dataType);
-            object writeValue = types switch
+            object writeValue;
+            switch (types)
             {
-                VariableTypeEnums.U8 => (byte)value,
-                VariableTypeEnums.I8 => (byte)value,
-                VariableTypeEnums.U16 => (ushort)value,
-                VariableTypeEnums.I16 => (short)value,
-                VariableTypeEnums.U32 => (uint)value,
-                VariableTypeEnums.I32 => (int)value,
-                VariableTypeEnums.U64 => (ulong)value,
-                VariableTypeEnums.I64 => (long)value,
-                _ => throw new NotImplementedException("系统不支持的数据类型。"),
-            };
+                case VariableTypeEnums.U8: writeValue = (byte)value; break;
+                case VariableTypeEnums.I8: writeValue = (byte)value; break;
+                case VariableTypeEnums.U16: writeValue = (ushort)value; break;
+                case VariableTypeEnums.I16: writeValue = (short)value; break;
+                case VariableTypeEnums.U32: writeValue = (uint)value; break;
+                case VariableTypeEnums.I32: writeValue = (int)value; break;
+                case VariableTypeEnums.U64: writeValue = (ulong)value; break;
+                case VariableTypeEnums.I64: writeValue = (long)value; break;
+                case VariableTypeEnums.Bit:
+                case VariableTypeEnums.None:
+                default:
+                    throw new NotImplementedException("系统不支持的数据类型。");
+            }
             return writeValue;
         }
+        #endregion
+
+
         private void Tr_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             TreeNode node = e.Node;
@@ -1268,11 +1323,15 @@ namespace MainUI.TRDP
                             {
                                 if (!ckbCCU_life.Checked && ub.ETHPassage == 1)
                                 {
-                                    ub.Value = VarHelperETH.byteSend[offset];
+                                    // 原代码：ub.Value = VarHelperETH.byteSend[offset];
+                                    // 新代码：根据数据类型正确读取
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend, tg.DataType, offset);
                                 }
                                 else if (!ckbCCU_life2.Checked && ub.ETHPassage == 2)
                                 {
-                                    ub.Value = VarHelperETH.byteSend2[offset];
+                                    // 原代码：ub.Value = VarHelperETH.byteSend2[offset];  
+                                    // 新代码：根据数据类型正确读取
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend2, tg.DataType, offset);
                                 }
                                 continue;
                             }
@@ -1283,11 +1342,15 @@ namespace MainUI.TRDP
                             {
                                 if (!ckbCCU_life3.Checked && ub.ETHPassage == 1)
                                 {
-                                    ub.Value = VarHelperETH.byteSend3[offset];
+                                    // 原代码：ub.Value = VarHelperETH.byteSend3[offset];
+                                    // 新代码：根据数据类型正确读取
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend3, tg.DataType, offset);
                                 }
                                 else if (!ckbCCU_life4.Checked && ub.ETHPassage == 2)
                                 {
-                                    ub.Value = VarHelperETH.byteSend4[offset];
+                                    // 原代码：ub.Value = VarHelperETH.byteSend4[offset];
+                                    // 新代码：根据数据类型正确读取
+                                    ub.Value = ReadLifeSignalValueFromArray(VarHelperETH.byteSend4, tg.DataType, offset);
                                 }
                                 continue;
                             }
@@ -1371,6 +1434,72 @@ namespace MainUI.TRDP
             watch.Stop();
             //this.switchLabel2.Switch = MvbDllCall.gf_result == MvbDllCall.GF_RESULT.GF_OK;
             timeWatch.Stop();
+        }
+
+        /// <summary>
+        /// 从字节数组中读取生命信号值
+        /// 功能：仅用于生命信号控件的值读取，根据数据类型返回正确的数值
+        /// </summary>
+        /// <param name="sourceArray">源字节数组</param>
+        /// <param name="dataType">数据类型字符串</param>
+        /// <param name="offset">偏移位置</param>
+        /// <returns>生命信号值</returns>
+        private double ReadLifeSignalValueFromArray(byte[] sourceArray, string dataType, int offset)
+        {
+            if (sourceArray == null || offset < 0 || offset >= sourceArray.Length)
+                return 0;
+
+            try
+            {
+                var dataTypeEnum = (VariableTypeEnums)Enum.Parse(typeof(VariableTypeEnums), dataType);
+
+                switch (dataTypeEnum)
+                {
+                    case VariableTypeEnums.U8:
+                    case VariableTypeEnums.I8:
+                        // 读取1个字节（保持原有行为）
+                        return sourceArray[offset];
+
+                    case VariableTypeEnums.U16:
+                        // 读取2个字节
+                        if (offset + 1 < sourceArray.Length)
+                        {
+                            return BitConverter.ToUInt16(sourceArray, offset);
+                        }
+                        return sourceArray[offset]; // 边界保护
+
+                    case VariableTypeEnums.I16:
+                        if (offset + 1 < sourceArray.Length)
+                        {
+                            return BitConverter.ToInt16(sourceArray, offset);
+                        }
+                        return sourceArray[offset];
+
+                    case VariableTypeEnums.U32:
+                        // 读取4个字节
+                        if (offset + 3 < sourceArray.Length)
+                        {
+                            return BitConverter.ToUInt32(sourceArray, offset);
+                        }
+                        return sourceArray[offset];
+
+                    case VariableTypeEnums.I32:
+                        if (offset + 3 < sourceArray.Length)
+                        {
+                            return BitConverter.ToInt32(sourceArray, offset);
+                        }
+                        return sourceArray[offset];
+
+                    default:
+                        // 不支持的类型，使用原有行为
+                        return sourceArray[offset];
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"读取生命信号值错误: 数据类型={dataType}, 偏移={offset}, 错误={ex.Message}");
+                return sourceArray[offset]; // 出错时回退到原有行为
+            }
         }
 
         List<Control> selected = [];

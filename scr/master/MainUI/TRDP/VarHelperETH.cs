@@ -166,86 +166,86 @@ namespace MainUI.TRDP
         public static byte[] BCU_CCU;
         public static byte[] BCU_CCU2;
         public static byte[] BCU_CCUEBV;
-        /// <summary>
-        /// 四方赋值方法
-        /// </summary>
-        /// <param name="lifesignal"></param>
-        /// <returns></returns>
-        public static byte[] GetLifeBytes(int lifesignal)
-        {
+        ///// <summary>
+        ///// 四方赋值方法
+        ///// </summary>
+        ///// <param name="lifesignal"></param>
+        ///// <returns></returns>
+        //public static byte[] GetLifeBytes(int lifesignal)
+        //{
 
-            byte[] bytelife = IntToBytes(lifesignal.ToString());
-            //byteSend[0] = bytelife[2];
-            //byteSend[1] = bytelife[3];
-            byteSend[17] = bytelife[3];
-            byteSend[20] = 0xAA;
-            byteSend[33] = bytelife[3];
+        //    byte[] bytelife = IntToBytes(lifesignal.ToString());
+        //    //byteSend[0] = bytelife[2];
+        //    //byteSend[1] = bytelife[3];
+        //    byteSend[17] = bytelife[3];
+        //    byteSend[20] = 0xAA;
+        //    byteSend[33] = bytelife[3];
 
-            byteSend[64] = 0xA5;
-            byteSend[65] = 0x5A;
+        //    byteSend[64] = 0xA5;
+        //    byteSend[65] = 0x5A;
 
-            byteSend[66] = bytelife[3];
-            //byteSend[66] = 0xaa;
-            byteSend[98] = bytelife[3];
-            byteSend[130] = bytelife[3];
-            byteSend[96] = 0x00;
-            byteSend[97] = 0x3A;
+        //    byteSend[66] = bytelife[3];
+        //    //byteSend[66] = 0xaa;
+        //    byteSend[98] = bytelife[3];
+        //    byteSend[130] = bytelife[3];
+        //    byteSend[96] = 0x00;
+        //    byteSend[97] = 0x3A;
 
-            //获取校验码 0-221
-            byte[] tmpByte = new byte[32];
+        //    //获取校验码 0-221
+        //    byte[] tmpByte = new byte[32];
 
-            byte[] tmpByte2 = new byte[32];
+        //    byte[] tmpByte2 = new byte[32];
 
-            Array.Copy(byteSend, 64, tmpByte, 0, tmpByte.Length);
-            // int crc = VarHelper.crc_cal_by_bit(tmpByte, tmpByte.Length);
-            Array.Copy(byteSend, 96, tmpByte2, 0, tmpByte2.Length);
+        //    Array.Copy(byteSend, 64, tmpByte, 0, tmpByte.Length);
+        //    // int crc = VarHelper.crc_cal_by_bit(tmpByte, tmpByte.Length);
+        //    Array.Copy(byteSend, 96, tmpByte2, 0, tmpByte2.Length);
 
-            int crc = VarHelperETH.Cal_crc16(tmpByte, tmpByte.Length);
-            byte[] crcByte = IntToBytes(crc.ToString());
+        //    int crc = VarHelperETH.Cal_crc16(tmpByte, tmpByte.Length);
+        //    byte[] crcByte = IntToBytes(crc.ToString());
 
-            // 校验码 需要确认是否为此种计算方式  ？？？？
-            byteSend[222] = crcByte[2];
-            byteSend[223] = crcByte[3];
-
-
-            // TRDP crc16校验
-            int ing = GetCrc16(tmpByte);
-            string str = (ing.ToString("X")).PadLeft(4, '0');
-
-            ConvertInt16ToByte(ing, out byteSend[94], out byteSend[95]);//1bd7
-            //byte[] by = GetModbusCrc16(tmpByte);
-            //byteSend[94] = by[0];
-            //byteSend[95] = by[1];
-            ing = GetCrc16(tmpByte2);
-            str = (ing.ToString("X")).PadLeft(4, '0');
-
-            ConvertInt16ToByte(ing, out byteSend[126], out byteSend[127]);
+        //    // 校验码 需要确认是否为此种计算方式  ？？？？
+        //    byteSend[222] = crcByte[2];
+        //    byteSend[223] = crcByte[3];
 
 
-            return byteSend;
-        }
+        //    // TRDP crc16校验
+        //    int ing = GetCrc16(tmpByte);
+        //    string str = (ing.ToString("X")).PadLeft(4, '0');
+
+        //    ConvertInt16ToByte(ing, out byteSend[94], out byteSend[95]);//1bd7
+        //    //byte[] by = GetModbusCrc16(tmpByte);
+        //    //byteSend[94] = by[0];
+        //    //byteSend[95] = by[1];
+        //    ing = GetCrc16(tmpByte2);
+        //    str = (ing.ToString("X")).PadLeft(4, '0');
+
+        //    ConvertInt16ToByte(ing, out byteSend[126], out byteSend[127]);
+
+
+        //    return byteSend;
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="lifesignal">生命信号值</param>
         /// <returns></returns>
-        public static byte[] GetLifeBytes_ZNCG(int lifesignal)
-        {
-            byte[] bytelife = IntToBytes(lifesignal.ToString());
-            byteSend[VarHelper.lifeport] = bytelife[3];
-            return byteSend;
-        }
-        public static byte[] GetLifeBytes_ZNCG2(int lifesignal)
-        {
+        //public static byte[] GetLifeBytes_ZNCG(int lifesignal)
+        //{
+        //    byte[] bytelife = IntToBytes(lifesignal.ToString());
+        //    byteSend[VarHelper.lifeport] = bytelife[3];
+        //    return byteSend;
+        //}
+        //public static byte[] GetLifeBytes_ZNCG2(int lifesignal)
+        //{
 
-            byte[] bytelife = IntToBytes(lifesignal.ToString());
+        //    byte[] bytelife = IntToBytes(lifesignal.ToString());
 
-            //byteSend[0] = bytelife[2];
-            byteSend2[VarHelper.lifeport] = bytelife[3];
+        //    //byteSend[0] = bytelife[2];
+        //    byteSend2[VarHelper.lifeport] = bytelife[3];
 
-            return byteSend2;
-        }
+        //    return byteSend2;
+        //}
         public static byte[] GetLifeBytes_EBV(int lifesignal)
         {
 

@@ -15,6 +15,10 @@ namespace ServoTired
 
         private void Test_Load(object sender, EventArgs e)
         {
+            // 设置最大文本长度，防止内存溢出
+            RichTextBig.MaxLength = 32767;
+            RichTextSmall.MaxLength = 32767;
+
             InitStep();
             Helper.Init();
             Helper.servoGrp.Fresh();
@@ -27,7 +31,6 @@ namespace ServoTired
             Helper.servoGrp.TestConGroupChanged += ServoGrp_TestConGroupChanged;
         }
 
-        int Smallvalue = 0;
         private void TaskManager_StepSamllChanged(int step, int count) =>
             stepsSmall.Invoke(() =>
                             {
@@ -90,28 +93,57 @@ namespace ServoTired
         }
 
         /// <summary>
-        /// 消息通知
+        /// 小闸消息通知
         /// </summary>
         /// <param name="text">消息</param>
         /// <param name="isBig">true:清空文本</param>
-        private void TaskManager_SmallTextChanged(string text, bool isBig = false) => RichTextSmall.Invoke(() =>
-        {
-            if (isBig) RichTextSmall.Clear();
-            RichTextSmall.AppendText(text);
-            RichTextSmall.ScrollToCaret();
-        });
+        private void TaskManager_SmallTextChanged(string text, bool isBig = false) =>
+            SafeAppendText(RichTextSmall, text, isBig);
 
         /// <summary>
-        /// 消息通知
+        /// 大闸消息通知
         /// </summary>
         /// <param name="text">消息</param>
         /// <param name="isBig">true:清空文本</param>
-        private void TaskManager_BigTextChanged(string text, bool isBig = false) => Invoke(() =>
+        private void TaskManager_BigTextChanged(string text, bool isBig = false) =>
+           SafeAppendText(RichTextBig, text, isBig);
+
+        /// <summary>
+        /// 使用线程安全的文本更新方式
+        /// </summary>
+        /// <param name="richTextBox">文本控件</param>
+        /// <param name="text">内容</param>
+        /// <param name="clearFirst">是否情况</param>
+        private void SafeAppendText(UIRichTextBox richTextBox, string text, bool clearFirst = false)
         {
-            if (isBig) RichTextBig.Clear();
-            RichTextBig.AppendText(text);
-            RichTextBig.ScrollToCaret();
-        });
+            if (InvokeRequired)
+            {
+                Invoke(new Action<UIRichTextBox, string, bool>(SafeAppendText), richTextBox, text, clearFirst);
+                return;
+            }
+
+            try
+            {
+                if (richTextBox?.IsDisposed == false)
+                {
+                    if (clearFirst) richTextBox.Clear();
+
+                    // 限制文本长度，防止内存溢出
+                    if (richTextBox.TextLength > 32000)
+                    {
+                        richTextBox.Clear();
+                        richTextBox.AppendText("--- 历史日志已清除 ---\n");
+                    }
+
+                    richTextBox.AppendText(text ?? string.Empty);
+                    richTextBox.ScrollToCaret();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"文本更新错误: {ex.Message}");
+            }
+        }
 
         private void ServoGrp_TestConGroupChanged(object sender, int index, object value)
         {
@@ -323,7 +355,7 @@ namespace ServoTired
 
         private void btnParaSet_Click(object sender, EventArgs e)
         {
-            if (taskManager.IsTaskRunning("大闸疲劳")|| taskManager.IsTaskRunning("小闸疲劳"))
+            if (taskManager.IsTaskRunning("大闸疲劳") || taskManager.IsTaskRunning("小闸疲劳"))
             {
                 MessageHelper.MessageOK(this, "手柄疲劳试验正在试验，无法进行校准！");
                 return;
@@ -409,16 +441,23 @@ namespace ServoTired
                 MessageHelper.MessageOK(this, "小闸手柄疲劳试验正在试验，无法进行校准！");
                 return;
             }
-
-            if (!Dialog("是否进行位置校准？")) return;
-            PointBLL pointBLL = new();
-            ServoTiredBLL TiredBLL = new();
-            var smallListData = TiredBLL.GetServoTiredTable(1);
-            for (int i = 0; i < smallListData?.Count; i++)
+            try
             {
-                var startInfo = pointBLL.GetPointInfo(smallListData[i].StartPositionID);
-                if (Dialog($"小闸校准\n请将小闸档位手动推至[{startInfo.GearPposition}]后，点击[确认]按钮！"))
-                    Helper.servoGrp[startInfo.Point] = Helper.servoGrp[26];
+                if (!Dialog("是否进行位置校准？")) return;
+                PointBLL pointBLL = new();
+                ServoTiredBLL TiredBLL = new();
+                var smallListData = TiredBLL.GetServoTiredTable(1);
+                for (int i = 0; i < smallListData?.Count; i++)
+                {
+                    var startInfo = pointBLL.GetPointInfo(smallListData[i].StartPositionID);
+                    if (Dialog($"小闸校准\n请将小闸档位手动推至[{startInfo.GearPposition}]后，点击[确认]按钮！"))
+                        Helper.servoGrp[startInfo.Point] = Helper.servoGrp[26];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageHelper.MessageOK(this, $"小闸校准过程出错: {ex.Message}");
+                NlogHelper.Default.Error($"小闸校准错误: {ex}", ex);
             }
         }
 
@@ -429,20 +468,27 @@ namespace ServoTired
                 MessageHelper.MessageOK(this, "大闸手柄疲劳试验正在试验，无法进行校准！");
                 return;
             }
-
-            if (!Dialog("是否进行位置校准？")) return;
-            PointBLL pointBLL = new();
-            ServoTiredBLL TiredBLL = new();
-            var bigListData = TiredBLL.GetServoTiredTable(0);
-            for (int i = 0; i < bigListData?.Count; i++)
+            try
             {
-                int step = i;
-                if (step <= bigListData?.Count)
+                if (!Dialog("是否进行位置校准？")) return;
+                PointBLL pointBLL = new();
+                ServoTiredBLL TiredBLL = new();
+                var bigListData = TiredBLL.GetServoTiredTable(0);
+                for (int i = 0; i < bigListData?.Count; i++)
                 {
-                    var startInfo = pointBLL.GetPointInfo(bigListData[i].StartPositionID);
-                    if (Dialog($"大闸校准\n请将大闸档位手动推至[{startInfo.GearPposition}]后，点击[确认]按钮！"))
-                        Helper.servoGrp[startInfo.Point] = Helper.servoGrp[13];
+                    int step = i;
+                    if (step <= bigListData?.Count)
+                    {
+                        var startInfo = pointBLL.GetPointInfo(bigListData[i].StartPositionID);
+                        if (Dialog($"大闸校准\n请将大闸档位手动推至[{startInfo.GearPposition}]后，点击[确认]按钮！"))
+                            Helper.servoGrp[startInfo.Point] = Helper.servoGrp[13];
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageHelper.MessageOK(this, $"大闸校准过程出错: {ex.Message}");
+                NlogHelper.Default.Error($"大闸校准错误: {ex}", ex);
             }
         }
 

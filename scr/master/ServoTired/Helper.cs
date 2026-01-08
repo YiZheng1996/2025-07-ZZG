@@ -62,6 +62,10 @@ namespace ServoTired
         public static string ServoErr(string? errValue)
         {
             string TimeNow = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            // 添加null检查
+            if (string.IsNullOrEmpty(errValue))
+                return $"{TimeNow}:伺服故障，故障代码为空。\n";
+
             switch (errValue)
             {
                 case "33793":

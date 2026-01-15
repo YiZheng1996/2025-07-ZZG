@@ -1,4 +1,5 @@
-﻿using MainUI.ViewModel;
+﻿using MainUI.Procedure.ExcelImport;
+using MainUI.ViewModel;
 using RW;
 using RW.DSL;
 using RW.DSL.Modules;
@@ -447,7 +448,7 @@ public partial class ucHMI : UserControl
         }
     }
 
-    //刷新型号
+    // 刷新型号
     public void SRefresh()
     {
         if (string.IsNullOrEmpty(Common.mTestViewModel.ModelName))
@@ -457,7 +458,7 @@ public partial class ucHMI : UserControl
         Common.mResultAll = new ResultAll();
     }
 
-    //全选
+    // 全选
     private void ChkAll_CheckedChanged(object sender, EventArgs e)
     {
         //foreach (UICheckBox item in listChk)
@@ -602,35 +603,102 @@ public partial class ucHMI : UserControl
 
     //TODO:暂时为true
     private bool isSwitch = true; //检测是否一键切换标志位
+    // 当前选择的配方ID（0表示使用默认配方）
+    private int currentSchemeId = 0;
     private void UibtnOnekeyChange_Click(object sender, EventArgs e)
     {
+
+        //try
+        //{
+        //    if (VarHelper.ModelID == 0 || txtModel.Text == null) { MessageHelper.UIMessageOK("没有选择型号，不能一键切换。"); return; }
+
+        //    if (!MessageHelper.UIMessageYes(null, "请确认型号[" + txtModel.Text + "]是否选择正确？"))
+        //        return;
+        //    frmRocess Fun = new();
+        //    new Thread(new ThreadStart(() => { Invoke(new MethodInvoker(delegate { Fun.ShowDialog(); BringToFront(); })); })).Start();
+        //    ThreadPool.QueueUserWorkItem(delegate
+        //    {
+        //        //切换前关闭制动柜电源
+        //        DOgrp[63] = false;
+        //        ModbusOnekeyChange.ChangeDODI(VarHelper.ModelID);
+        //        ModbusOnekeyChange.AllSuspendInMidair();
+
+        //        //TODO:======================暂时注释 20200724
+        //        //if (MessageBox.Show("确定要设定初始值吗", "设定初始值提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+        //        //    return;
+        //        //ModbusOnekeyChange.OutputInitvalue(vmodel.ModelID);
+        //        //======================暂时注释
+
+        //        btnStart.Enabled = true;
+        //        FormManager.openForms.Remove(typeof(frmIOBox));
+        //        Invoke(new MethodInvoker(delegate { MessageHelper.UIMessageOK("切换输入输出，设定初始值完成。"); }));
+        //        Fun.Close();
+        //        Fun.Dispose();
+        //        isSwitch = true;
+        //    });
+        //}
+        //catch (Exception ex)
+        //{
+        //    string err = "一键切换失败，请检查设备是否正确连接。具体原因：" + ex.Message;
+        //    MessageHelper.UIMessageOK("一键切换提示" + err);
+        //}
+
         try
         {
-            if (VarHelper.ModelID == 0 || txtModel.Text == null) { MessageHelper.UIMessageOK("没有选择型号，不能一键切换。"); return; }
+            // ========== 弹出配方选择窗口，替代原来的型号确认 ==========
+            using (var schemeSelect = new frmSchemeSelect())
+            {
+                if (schemeSelect.ShowDialog() != DialogResult.OK)
+                    return;
 
-            if (!MessageHelper.UIMessageYes(null, "请确认型号[" + txtModel.Text + "]是否选择正确？"))
-                return;
+                var schemeName = schemeSelect.SelectedSchemeName;
+
+                if (!MessageHelper.UIMessageYes(null, $"请确认配方【{schemeName}】是否选择正确？"))
+                    return;
+            }
+
+            // 显示进度窗口
             frmRocess Fun = new();
-            new Thread(new ThreadStart(() => { Invoke(new MethodInvoker(delegate { Fun.ShowDialog(); BringToFront(); })); })).Start();
+            new Thread(() =>
+            {
+                Invoke(new MethodInvoker(delegate { Fun.ShowDialog(); BringToFront(); }));
+            }).Start();
+
             ThreadPool.QueueUserWorkItem(delegate
             {
-                //切换前关闭制动柜电源
-                DOgrp[63] = false;
-                ModbusOnekeyChange.ChangeDODI(VarHelper.ModelID);
-                ModbusOnekeyChange.AllSuspendInMidair();
+                try
+                {
+                    // 切换前关闭制动柜电源
+                    DOgrp[63] = false;
 
-                //TODO:======================暂时注释 20200724
-                //if (MessageBox.Show("确定要设定初始值吗", "设定初始值提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                //    return;
-                //ModbusOnekeyChange.OutputInitvalue(vmodel.ModelID);
-                //======================暂时注释
+                    // ========== 【修改】使用新的基于配方的切换方法 ==========
+                    ModbusOnekeyChange.ChangeDODIByScheme(VarHelper.SelectedSchemeId);
+                    ModbusOnekeyChange.AllSuspendInMidair();
 
-                btnStart.Enabled = true;
-                FormManager.openForms.Remove(typeof(frmIOBox));
-                Invoke(new MethodInvoker(delegate { MessageHelper.UIMessageOK("切换输入输出，设定初始值完成。"); }));
-                Fun.Close();
-                Fun.Dispose();
-                isSwitch = true;
+                    // TODO: 如果需要输出初始值，取消下面的注释
+                    // ModbusOnekeyChange.OutputInitvalueByScheme(VarHelper.SelectedSchemeId);
+
+                    btnStart.Enabled = true;
+                    FormManager.openForms.Remove(typeof(frmIOBox));
+
+                    Invoke(new MethodInvoker(delegate
+                    {
+                        MessageHelper.UIMessageOK("切换输入输出，设定初始值完成。");
+                    }));
+                }
+                catch (Exception ex)
+                {
+                    Invoke(new MethodInvoker(delegate
+                    {
+                        MessageHelper.UIMessageOK("一键切换失败：" + ex.Message);
+                    }));
+                }
+                finally
+                {
+                    Fun.Close();
+                    Fun.Dispose();
+                    isSwitch = true;
+                }
             });
         }
         catch (Exception ex)
@@ -697,7 +765,7 @@ public partial class ucHMI : UserControl
 
         Color startColor = Color.FromArgb(80, 160, 255);
         Color endColor = Color.FromArgb(255, 128, 128);
-        BtnExhaust.FillColor = BtnExhaust.RectColor  = endColor;
+        BtnExhaust.FillColor = BtnExhaust.RectColor = endColor;
         BtnExhaust.Text = "排气中···";
         //uiPresentation.AppendText("一键排气启动:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
         Task.Run(() =>
@@ -888,6 +956,16 @@ public partial class ucHMI : UserControl
         for (int i = 0; i < lvTestItem.Items.Count; i++)
         {
             lvTestItem.Items[i].Checked = isCheck.Checked;
+        }
+    }
+
+    private void btnRecipeSelection_Click(object sender, EventArgs e)
+    {
+        frmSchemeSelect fs = new();
+        VarHelper.ShowDialogWithOverlay(frm, fs);
+        if (fs.DialogResult == DialogResult.OK)
+        {
+            txtRecipe.Text = fs.SelectedSchemeName;
         }
     }
 }

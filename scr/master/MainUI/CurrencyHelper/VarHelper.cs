@@ -11,6 +11,7 @@ namespace MainUI.CurrencyHelper
         //public static Dictionary<int, byte[]> CanFullData = [];
         public static int CANData;
         public static int ModelID; //型号ID
+        public static int SelectedSchemeId; //IO配方ID
         public static string ModelName; //型号名称
         public static string PortName = "接口地址读取";
         public static string SoftName = "制动系统联调试验台";

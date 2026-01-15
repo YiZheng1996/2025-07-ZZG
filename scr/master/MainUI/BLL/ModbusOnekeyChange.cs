@@ -227,8 +227,6 @@ namespace MainUI.BLL
             }
         }
 
-
-
         private static void ModbusSendDIDOChange(bool[] TwoValue)
         {
             foreach (var item in dicChangeDIDO)
@@ -261,7 +259,6 @@ namespace MainUI.BLL
                 }
             }
         }
-
 
         /// <summary>
         /// 新协议发送初始值
@@ -367,6 +364,95 @@ namespace MainUI.BLL
         }
 
 
+        #region ========== 【新增】基于配方的一键切换方法 ==========
 
+        /// <summary>
+        /// 基于配方ID进行一键切换（新增方法）
+        /// </summary>
+        /// <param name="schemeId">配方ID，传0则使用默认配方</param>
+        public static void ChangeDODIByScheme(int schemeId = 0)
+        {
+            try
+            {
+                InitChangeBuffer(); // 清空缓冲区数据
+
+                DODIConfigBLL bll = new DODIConfigBLL();
+
+                // 如果未指定配方ID，使用默认配方
+                if (schemeId == 0)
+                {
+                    var defaultScheme = bll.GetDefaultScheme();
+                    if (defaultScheme == null)
+                    {
+                        throw new Exception("未找到默认配方，请先在【配方管理】中设置默认配方。");
+                    }
+                    schemeId = Convert.ToInt32(defaultScheme["ID"]);
+                }
+
+                // 获取配方的配置信息
+                var lst = bll.GetConfigBySchemeID(schemeId);
+
+                if (lst.Count < 1)
+                {
+                    throw new Exception("该配方没有配置信息。请先在【配方管理】中导入配置数据。");
+                }
+
+                // 第一步：全部切换为DI模式
+                SetChangeDIDOSendByte(lst, false);
+                ModbusSendDIDOChange();
+
+                // 第二步：按配置切换输入输出类型
+                SetChangeDIDOSendByte(lst);
+                ModbusSendDIDOChange();
+            }
+            catch (Exception ex)
+            {
+                string err = "ChangeDODIByScheme error: " + ex.Message;
+                MessageBox.Show(err, "一键切换错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// 基于配方ID输出初始值（新增方法）
+        /// </summary>
+        /// <param name="schemeId">配方ID，传0则使用默认配方</param>
+        public static void OutputInitvalueByScheme(int schemeId = 0)
+        {
+            try
+            {
+                InitOutBuffer(); // 清空缓冲区数据
+
+                DODIConfigBLL bll = new DODIConfigBLL();
+
+                // 如果未指定配方ID，使用默认配方
+                if (schemeId == 0)
+                {
+                    var defaultScheme = bll.GetDefaultScheme();
+                    if (defaultScheme == null)
+                    {
+                        throw new Exception("未找到默认配方。");
+                    }
+                    schemeId = Convert.ToInt32(defaultScheme["ID"]);
+                }
+
+                // 获取配方的配置信息
+                List<DODIConfigView> lst = bll.GetConfigBySchemeID(schemeId);
+
+                if (lst.Count < 1)
+                {
+                    throw new Exception("该配方没有配置信息。");
+                }
+
+                SetInitvalueSendByte(lst);
+                ModbusSendInitvalue();
+            }
+            catch (Exception ex)
+            {
+                string err = "OutputInitvalueByScheme error: " + ex.Message;
+                MessageBox.Show(err, "输出初始值错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
     }
 }

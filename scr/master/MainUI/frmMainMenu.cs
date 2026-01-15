@@ -5,6 +5,7 @@ using MainUI.Properties;
 using MainUI.TRDP;
 using MainUI.ViewModel;
 using RW.EventLog;
+using System.Windows.Forms;
 
 namespace MainUI
 {
@@ -195,8 +196,9 @@ namespace MainUI
 
         private void btnDataImport_Click(object sender, EventArgs e)
         {
-            frmImpExcel excel = new();
-            excel.ShowDialog();
+            //frmImpExcel excel = new();
+            frmSchemeManage excel = new();
+            VarHelper.ShowDialogWithOverlay(this, excel);
         }
 
         private void BtnTRDP_Click(object sender, EventArgs e)

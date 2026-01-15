@@ -32,7 +32,7 @@ namespace MainUI
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucHMI));
-            AntdUI.Tabs.StyleCard2 styleCard21 = new AntdUI.Tabs.StyleCard2();
+            AntdUI.Tabs.StyleCard2 styleCard22 = new AntdUI.Tabs.StyleCard2();
             btnProductSelection = new UIButton();
             txtModel = new UITextBox();
             uiLabel2 = new UILabel();
@@ -49,11 +49,13 @@ namespace MainUI
             uiPanel204 = new UIPanel();
             uiPanel203 = new UIPanel();
             uiPanel202 = new UIPanel();
+            chkAllNone = new UICheckBox();
             uiPanel201 = new UIPanel();
             uiPanel200 = new UIPanel();
             uiPanel199 = new UIPanel();
             uiPanel198 = new UIPanel();
             uiPanel197 = new UIPanel();
+            uiLine1 = new UILine();
             uiPanel196 = new UIPanel();
             uiPanel195 = new UIPanel();
             uiPanel194 = new UIPanel();
@@ -616,7 +618,6 @@ namespace MainUI
             uiSwitch41 = new UISwitch();
             uiSwitch45 = new UISwitch();
             uiSwitch49 = new UISwitch();
-            uiLine1 = new UILine();
             uiLine2 = new UILine();
             BtnExhaust = new UIButton();
             lvTestItem = new ListView();
@@ -626,10 +627,13 @@ namespace MainUI
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
             btnStartTest = new UIButton();
-            chkAllNone = new UICheckBox();
             tabs1 = new AntdUI.Tabs();
             tabPage1 = new AntdUI.TabPage();
             tabPageReport = new AntdUI.TabPage();
+            uiGroupBox1 = new UIGroupBox();
+            btnRecipeSelection = new UIButton();
+            txtRecipe = new UITextBox();
+            uiLabel74 = new UILabel();
             uiCheckBoxGroup1.SuspendLayout();
             uiGroupBox4.SuspendLayout();
             grpAirPath.SuspendLayout();
@@ -759,13 +763,14 @@ namespace MainUI
             uiTitlePanel8.SuspendLayout();
             tabs1.SuspendLayout();
             tabPage1.SuspendLayout();
+            uiGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnProductSelection
             // 
             btnProductSelection.Cursor = Cursors.Hand;
             btnProductSelection.Font = new Font("微软雅黑", 11F);
-            btnProductSelection.Location = new Point(23, 27);
+            btnProductSelection.Location = new Point(20, 28);
             btnProductSelection.MinimumSize = new Size(1, 1);
             btnProductSelection.Name = "btnProductSelection";
             btnProductSelection.ShowFocusLine = true;
@@ -814,8 +819,6 @@ namespace MainUI
             // 
             // uiCheckBoxGroup1
             // 
-            uiCheckBoxGroup1.Controls.Add(uibtnOnekeyChange);
-            uiCheckBoxGroup1.Controls.Add(btnIOBox);
             uiCheckBoxGroup1.Controls.Add(btnProductSelection);
             uiCheckBoxGroup1.Controls.Add(txtModel);
             uiCheckBoxGroup1.Controls.Add(uiLabel2);
@@ -827,7 +830,7 @@ namespace MainUI
             uiCheckBoxGroup1.Name = "uiCheckBoxGroup1";
             uiCheckBoxGroup1.Padding = new Padding(0, 32, 0, 0);
             uiCheckBoxGroup1.SelectedIndexes = (System.Collections.Generic.List<int>)resources.GetObject("uiCheckBoxGroup1.SelectedIndexes");
-            uiCheckBoxGroup1.Size = new Size(207, 198);
+            uiCheckBoxGroup1.Size = new Size(207, 126);
             uiCheckBoxGroup1.TabIndex = 380;
             uiCheckBoxGroup1.Text = "信息录入";
             uiCheckBoxGroup1.TextAlignment = ContentAlignment.MiddleCenter;
@@ -837,7 +840,7 @@ namespace MainUI
             // 
             uibtnOnekeyChange.Cursor = Cursors.Hand;
             uibtnOnekeyChange.Font = new Font("微软雅黑", 11F);
-            uibtnOnekeyChange.Location = new Point(20, 121);
+            uibtnOnekeyChange.Location = new Point(19, 116);
             uibtnOnekeyChange.MinimumSize = new Size(1, 1);
             uibtnOnekeyChange.Name = "uibtnOnekeyChange";
             uibtnOnekeyChange.ShowFocusLine = true;
@@ -852,7 +855,7 @@ namespace MainUI
             // 
             btnIOBox.Cursor = Cursors.Hand;
             btnIOBox.Font = new Font("微软雅黑", 11F);
-            btnIOBox.Location = new Point(20, 157);
+            btnIOBox.Location = new Point(19, 150);
             btnIOBox.MinimumSize = new Size(1, 1);
             btnIOBox.Name = "btnIOBox";
             btnIOBox.ShowFocusLine = true;
@@ -904,12 +907,12 @@ namespace MainUI
             // 
             uiGroupBox4.Controls.Add(lblTiming);
             uiGroupBox4.Font = new Font("微软雅黑", 11F);
-            uiGroupBox4.Location = new Point(3, 738);
+            uiGroupBox4.Location = new Point(3, 752);
             uiGroupBox4.Margin = new Padding(4, 5, 4, 5);
             uiGroupBox4.MinimumSize = new Size(1, 1);
             uiGroupBox4.Name = "uiGroupBox4";
             uiGroupBox4.Padding = new Padding(0, 32, 0, 0);
-            uiGroupBox4.Size = new Size(207, 81);
+            uiGroupBox4.Size = new Size(207, 67);
             uiGroupBox4.TabIndex = 390;
             uiGroupBox4.Text = "数据记录计时";
             uiGroupBox4.TextAlignment = ContentAlignment.MiddleCenter;
@@ -936,11 +939,13 @@ namespace MainUI
             grpAirPath.Controls.Add(uiPanel204);
             grpAirPath.Controls.Add(uiPanel203);
             grpAirPath.Controls.Add(uiPanel202);
+            grpAirPath.Controls.Add(chkAllNone);
             grpAirPath.Controls.Add(uiPanel201);
             grpAirPath.Controls.Add(uiPanel200);
             grpAirPath.Controls.Add(uiPanel199);
             grpAirPath.Controls.Add(uiPanel198);
             grpAirPath.Controls.Add(uiPanel197);
+            grpAirPath.Controls.Add(uiLine1);
             grpAirPath.Controls.Add(uiPanel196);
             grpAirPath.Controls.Add(uiPanel195);
             grpAirPath.Controls.Add(uiPanel194);
@@ -1180,6 +1185,19 @@ namespace MainUI
             uiPanel202.Text = "闸1 12L";
             uiPanel202.TextAlignment = ContentAlignment.MiddleCenter;
             // 
+            // chkAllNone
+            // 
+            chkAllNone.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte)134);
+            chkAllNone.ForeColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
+            chkAllNone.Location = new Point(745, 203);
+            chkAllNone.MinimumSize = new Size(1, 1);
+            chkAllNone.Name = "chkAllNone";
+            chkAllNone.Size = new Size(125, 29);
+            chkAllNone.TabIndex = 635;
+            chkAllNone.Text = "全选/取消";
+            chkAllNone.Visible = false;
+            chkAllNone.CheckedChanged += (this.chkAllNone_CheckedChanged);
+            // 
             // uiPanel201
             // 
             uiPanel201.BackColor = Color.Transparent;
@@ -1289,6 +1307,19 @@ namespace MainUI
             uiPanel197.TabIndex = 639;
             uiPanel197.Text = "闸2 12L";
             uiPanel197.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // uiLine1
+            // 
+            uiLine1.BackColor = Color.Transparent;
+            uiLine1.Font = new Font("宋体", 12F);
+            uiLine1.ForeColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
+            uiLine1.Location = new Point(743, 180);
+            uiLine1.MinimumSize = new Size(1, 1);
+            uiLine1.Name = "uiLine1";
+            uiLine1.Size = new Size(208, 29);
+            uiLine1.TabIndex = 616;
+            uiLine1.Text = "例行试验项点";
+            uiLine1.Visible = false;
             // 
             // uiPanel196
             // 
@@ -4657,7 +4688,7 @@ namespace MainUI
             uiGroupBox2.Controls.Add(btnDataAnalysis);
             uiGroupBox2.Controls.Add(btnCANPowerDown);
             uiGroupBox2.Font = new Font("微软雅黑", 11F);
-            uiGroupBox2.Location = new Point(2, 199);
+            uiGroupBox2.Location = new Point(4, 318);
             uiGroupBox2.Margin = new Padding(4, 5, 4, 5);
             uiGroupBox2.MinimumSize = new Size(1, 1);
             uiGroupBox2.Name = "uiGroupBox2";
@@ -9796,18 +9827,6 @@ namespace MainUI
             uiSwitch49.Tag = "54";
             uiSwitch49.Click += (this.DO_Click);
             // 
-            // uiLine1
-            // 
-            uiLine1.BackColor = Color.Transparent;
-            uiLine1.Font = new Font("宋体", 12F);
-            uiLine1.ForeColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
-            uiLine1.Location = new Point(2, 420);
-            uiLine1.MinimumSize = new Size(1, 1);
-            uiLine1.Name = "uiLine1";
-            uiLine1.Size = new Size(208, 29);
-            uiLine1.TabIndex = 616;
-            uiLine1.Text = "例行试验项点";
-            // 
             // uiLine2
             // 
             uiLine2.BackColor = Color.Transparent;
@@ -9842,9 +9861,9 @@ namespace MainUI
             lvTestItem.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             lvTestItem.FullRowSelect = true;
             lvTestItem.GridLines = true;
-            lvTestItem.Location = new Point(3, 469);
+            lvTestItem.Location = new Point(3, 546);
             lvTestItem.Name = "lvTestItem";
-            lvTestItem.Size = new Size(206, 272);
+            lvTestItem.Size = new Size(206, 206);
             lvTestItem.TabIndex = 635;
             lvTestItem.UseCompatibleStateImageBehavior = false;
             lvTestItem.View = View.Details;
@@ -9885,18 +9904,6 @@ namespace MainUI
             btnStartTest.TipsText = "1";
             btnStartTest.Click += (this.btnStartTest_Click);
             // 
-            // chkAllNone
-            // 
-            chkAllNone.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte)134);
-            chkAllNone.ForeColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
-            chkAllNone.Location = new Point(0, 444);
-            chkAllNone.MinimumSize = new Size(1, 1);
-            chkAllNone.Name = "chkAllNone";
-            chkAllNone.Size = new Size(125, 29);
-            chkAllNone.TabIndex = 635;
-            chkAllNone.Text = "全选/取消";
-            chkAllNone.CheckedChanged += (this.chkAllNone_CheckedChanged);
-            // 
             // tabs1
             // 
             tabs1.Location = new Point(213, 5);
@@ -9904,9 +9911,9 @@ namespace MainUI
             tabs1.Pages.Add(tabPage1);
             tabs1.Pages.Add(tabPageReport);
             tabs1.Size = new Size(1102, 958);
-            styleCard21.Closable = AntdUI.Tabs.StyleCard2.CloseType.none;
-            styleCard21.Scrollable = true;
-            tabs1.Style = styleCard21;
+            styleCard22.Closable = AntdUI.Tabs.StyleCard2.CloseType.none;
+            styleCard22.Scrollable = true;
+            tabs1.Style = styleCard22;
             tabs1.TabIndex = 635;
             tabs1.Type = AntdUI.TabType.Card2;
             // 
@@ -9929,19 +9936,87 @@ namespace MainUI
             tabPageReport.TabIndex = 0;
             tabPageReport.Text = "报表界面";
             // 
+            // uiGroupBox1
+            // 
+            uiGroupBox1.Controls.Add(btnRecipeSelection);
+            uiGroupBox1.Controls.Add(txtRecipe);
+            uiGroupBox1.Controls.Add(uiLabel74);
+            uiGroupBox1.Controls.Add(uibtnOnekeyChange);
+            uiGroupBox1.Controls.Add(btnIOBox);
+            uiGroupBox1.Font = new Font("微软雅黑", 11F);
+            uiGroupBox1.Location = new Point(3, 127);
+            uiGroupBox1.Margin = new Padding(4, 5, 4, 5);
+            uiGroupBox1.MinimumSize = new Size(1, 1);
+            uiGroupBox1.Name = "uiGroupBox1";
+            uiGroupBox1.Padding = new Padding(0, 32, 0, 0);
+            uiGroupBox1.Size = new Size(207, 191);
+            uiGroupBox1.TabIndex = 646;
+            uiGroupBox1.Text = "IO箱控制";
+            uiGroupBox1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnRecipeSelection
+            // 
+            btnRecipeSelection.Cursor = Cursors.Hand;
+            btnRecipeSelection.Font = new Font("微软雅黑", 11F);
+            btnRecipeSelection.Location = new Point(20, 29);
+            btnRecipeSelection.MinimumSize = new Size(1, 1);
+            btnRecipeSelection.Name = "btnRecipeSelection";
+            btnRecipeSelection.ShowFocusLine = true;
+            btnRecipeSelection.Size = new Size(168, 30);
+            btnRecipeSelection.TabIndex = 72;
+            btnRecipeSelection.Text = "配方选择";
+            btnRecipeSelection.TipsFont = new Font("微软雅黑", 9F);
+            btnRecipeSelection.TipsText = "1";
+            btnRecipeSelection.Click += (this.btnRecipeSelection_Click);
+            // 
+            // txtRecipe
+            // 
+            txtRecipe.Enabled = false;
+            txtRecipe.FillDisableColor = Color.FromArgb((int)(byte)243, (int)(byte)249, (int)(byte)255);
+            txtRecipe.FillReadOnlyColor = Color.FromArgb((int)(byte)243, (int)(byte)249, (int)(byte)255);
+            txtRecipe.Font = new Font("微软雅黑", 11F);
+            txtRecipe.ForeDisableColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
+            txtRecipe.ForeReadOnlyColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
+            txtRecipe.Location = new Point(20, 83);
+            txtRecipe.Margin = new Padding(4, 5, 4, 5);
+            txtRecipe.MinimumSize = new Size(1, 16);
+            txtRecipe.Name = "txtRecipe";
+            txtRecipe.Padding = new Padding(5);
+            txtRecipe.ReadOnly = true;
+            txtRecipe.RectDisableColor = Color.FromArgb((int)(byte)80, (int)(byte)160, (int)(byte)255);
+            txtRecipe.RectReadOnlyColor = Color.FromArgb((int)(byte)80, (int)(byte)160, (int)(byte)255);
+            txtRecipe.ShowText = false;
+            txtRecipe.Size = new Size(169, 29);
+            txtRecipe.Style = UIStyle.Custom;
+            txtRecipe.StyleCustomMode = true;
+            txtRecipe.TabIndex = 71;
+            txtRecipe.TextAlignment = ContentAlignment.MiddleLeft;
+            txtRecipe.Watermark = "请选择";
+            // 
+            // uiLabel74
+            // 
+            uiLabel74.BackColor = Color.Transparent;
+            uiLabel74.Font = new Font("微软雅黑", 11F);
+            uiLabel74.ForeColor = Color.FromArgb((int)(byte)48, (int)(byte)48, (int)(byte)48);
+            uiLabel74.Location = new Point(3, 59);
+            uiLabel74.Name = "uiLabel74";
+            uiLabel74.Size = new Size(75, 23);
+            uiLabel74.TabIndex = 70;
+            uiLabel74.Text = "配方名称";
+            uiLabel74.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // ucHMI
             // 
             this.AutoScaleMode = AutoScaleMode.None;
             this.BackColor = Color.FromArgb((int)(byte)243, (int)(byte)249, (int)(byte)255);
+            this.Controls.Add(uiGroupBox1);
+            this.Controls.Add(uiCheckBoxGroup1);
             this.Controls.Add(tabs1);
             this.Controls.Add(lvTestItem);
-            this.Controls.Add(chkAllNone);
             this.Controls.Add(BtnExhaust);
             this.Controls.Add(btnStartTest);
             this.Controls.Add(uiLine2);
-            this.Controls.Add(uiCheckBoxGroup1);
             this.Controls.Add(uiGroupBox2);
-            this.Controls.Add(uiLine1);
             this.Controls.Add(uiPanel1);
             this.Controls.Add(uiGroupBox4);
             this.Controls.Add(btnStart);
@@ -10086,6 +10161,7 @@ namespace MainUI
             uiTitlePanel8.PerformLayout();
             tabs1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            uiGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
@@ -10687,5 +10763,9 @@ namespace MainUI
         private UIPanel uiPanel203;
         private UIPanel uiPanel204;
         private UIPanel uiPanel205;
+        private UIGroupBox uiGroupBox1;
+        private UITextBox txtRecipe;
+        private UILabel uiLabel74;
+        private UIButton btnRecipeSelection;
     }
 }

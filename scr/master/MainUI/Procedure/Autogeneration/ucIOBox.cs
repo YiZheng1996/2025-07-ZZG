@@ -33,7 +33,9 @@ namespace MainUI.Procedure.Autogeneration
         DODIConfigBLL figebll = new();
         private void ucIOBox_Load(object sender, EventArgs e)
         {
-            DataTable dt = figebll.GetDIDO(VarHelper.ModelID);
+            //DataTable dt = figebll.GetDIDO(VarHelper.ModelID);  // ← 改用型号
+
+            var dt = figebll.GetDIDOBySchemeID(VarHelper.SelectedSchemeId);  // ← 改用配方
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -47,7 +49,7 @@ namespace MainUI.Procedure.Autogeneration
                     string LineDesc = dt.Rows[i]["LineDesc"].ToString(); //线号说明
                     string InitValue = dt.Rows[i]["InitValue"].ToString(); //初始值0:0V，1:110V，2：负信号
 
-                    if (LineNO.ToString().Length == 0)
+                    if (LineNO.Length == 0)
                         continue;
 
                     if (LineType != 0)

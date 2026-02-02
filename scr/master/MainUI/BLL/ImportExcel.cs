@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using RW.Components.Core.BLL;
+using RW.DSL;
 
 namespace MainUI.BLL;
 
@@ -179,7 +180,8 @@ internal class ImportExcel : BaseBLL
         dt.Columns[8].ColumnName = "colPortPattern";
         dt.Columns[9].ColumnName = "colIdentity";
         dt.Columns[10].ColumnName = "colIsRead";
-        dt.Columns[11].ColumnName = "colDescription";
+        dt.Columns[11].ColumnName = "colIsCRC";
+        dt.Columns[12].ColumnName = "colDescription";
         return dt;
     }
 
@@ -220,9 +222,10 @@ internal class ImportExcel : BaseBLL
             var IsRead = row["colIsRead"].ToString().ToBool();
             var PortPattern = row["colPortPattern"].ToString().ToBool();
             var BitValue = row["colBitValue"].ToString().ToDouble();
-            Debug.WriteLine($"数据类型名称：{DataLabel}");
+            var IsCRC = row["colIsCRC"].ToString().ToBool();
+            Debug.WriteLine($"数据类型名称：{DataLabel}，数据行：{row.ItemArray.ToArrayString()}");
             var sql =
-                $"insert into {TableName}(DataLabel,DataType,DataUnit,MVBOffset,MVBPort,[Identity],MVBBit,GroupOffset,Description,ModelNameID,[IsRead],[PortPattern],BitValue,TypeName) values('{DataLabel}','{DataType}','{DataUnit}','{MVBOffset}','{MVBPort}',{Identity},'{MVBBit}','{GroupOffset}','{Description}','{ModelID}',{IsRead},{PortPattern},{BitValue},'{ModelName}')";
+                $"insert into {TableName}(DataLabel,DataType,DataUnit,MVBOffset,MVBPort,[Identity],MVBBit,GroupOffset,Description,ModelNameID,[IsRead],[PortPattern],BitValue,TypeName,IsCRC) values('{DataLabel}','{DataType}','{DataUnit}','{MVBOffset}','{MVBPort}',{Identity},'{MVBBit}','{GroupOffset}','{Description}','{ModelID}',{IsRead},{PortPattern},{BitValue},'{ModelName}',{IsCRC})";
             this.ExecuteNonQuery(sql);
         }
     }

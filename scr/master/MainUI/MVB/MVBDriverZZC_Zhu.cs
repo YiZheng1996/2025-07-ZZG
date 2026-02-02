@@ -118,7 +118,9 @@ namespace MainUI.MVB
                 {
                     isInitSucess = state;//配置成功
                     SendAction();
-                    Wrtie();
+
+                    //TODO:与WrtieValue方法冲突，在生命信号内已经使用WrtieValue方法进行数据发送
+                    //Wrtie();
 
                 }
             }));
@@ -634,7 +636,7 @@ namespace MainUI.MVB
                 }
                 bts.CopyTo(SourceData[port], byteSet);
             }
-            Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port])}");
+            Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", "")}");
             UDP.Send(SourceData[port]);
         }
 
@@ -666,7 +668,7 @@ namespace MainUI.MVB
                     if (bytes != null)
                     {
                         Array.Copy(bytes, 0, SourceData[port], byteSet, bytes.Length);
-                        Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port])}");
+                        Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", " ")}");
                         UDP.Send(SourceData[port]);
                     }
                     break;

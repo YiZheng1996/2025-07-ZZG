@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
 using NPOI.Util;
+using Report;
 using RW.Driver;
 using System.Collections;
 using System.Data;
@@ -34,6 +35,8 @@ namespace MainUI.MVB
 
         bool loaded = false;
         bool init = false;
+
+        readonly List<FullTags> tempCRCTag = []; // CRC配置列表
 
         public void MVBInit()
         {
@@ -326,24 +329,36 @@ namespace MainUI.MVB
 
         void RegisterLife(IEnumerable<IGrouping<int, Ports>> group)
         {
+            // 清空并填充CRC配置
+            tempCRCTag.Clear();
+
             foreach (var item in group)
             {
                 List<Ports> list = [.. item];
-                int rata = item.Key;
+                int rata = item.Key;  // 128ms
                 List<FullTags> tempLifeTag = [];
                 List<FullTags> tempNOLifeTag = [];
+
                 foreach (var pt in list)
                 {
+                    // 查找CRC配置
+                    FullTags CRC = tags.FirstOrDefault(p => p.COMMData.Port == pt.PortNum && p.IsCRC);
+                    if (CRC != null)
+                    {
+                        tempCRCTag.Add(CRC);
+                        Debug.WriteLine($"MVB端口 {pt.Port}({pt.PortNum}) 启用CRC16，偏移: {CRC.COMMData.Offset}");
+                    }
+
+                    // 查找生命信号
                     FullTags mode = tags.Where(p => p.COMMData.Port == pt.PortNum && !pt.IsRead && p.Identity).FirstOrDefault();
                     if (mode != null)
                     {
-                        tempLifeTag.Add(mode);//有生命信号端口
+                        tempLifeTag.Add(mode);
                     }
                     else
                     {
                         FullTags modeNOLife = tags.Where(p => p.COMMData.Port == pt.PortNum && !pt.IsRead && !p.Identity).FirstOrDefault();
-                        if (modeNOLife
-                            != null)
+                        if (modeNOLife != null)
                         {
                             tempNOLifeTag.Add(modeNOLife);
                         }
@@ -353,10 +368,11 @@ namespace MainUI.MVB
                 Thread t = new(new ThreadStart(delegate
                 {
                     double value = 0;
-                    while (!this.IsDisposed && !closed)
+                    while (!this.IsDisposed && !closed)  // 持续循环
                     {
                         try
                         {
+                            // ===== 每个生命信号字段独立处理 =====
                             foreach (var tg in tempLifeTag)
                             {
                                 try
@@ -365,9 +381,21 @@ namespace MainUI.MVB
                                     int sinkSize = mode.DataSize;
                                     byte life = (byte)Convert.ToDouble(Comsum(tg.DataType, ref value));
                                     byte sendValue = (byte)value;
-                                    //这里刷到到界面上的控件，生命信号
+
+                                    // 1. 更新生命信号到SourceData
                                     MVBDriverZZC_Zhu.MVB.SourceData[tg.COMMData.Port][tg.COMMData.Offset] = sendValue;
-                                    MVBDriverZZC_Zhu.MVB.WrtieValue(tg.COMMData.Port, tg.COMMData.Offset, tg.COMMData.Bit, tg.DataType, life);
+
+                                    // 2. 【新增】如果该端口启用了CRC，计算并添加CRC16
+                                    AddCRC16ToSourceData(tg.COMMData.Port);
+
+                                    // 3. 发送数据（每个字段都发送）
+                                    MVBDriverZZC_Zhu.MVB.WrtieValue(
+                                        tg.COMMData.Port,
+                                        tg.COMMData.Offset,
+                                        tg.COMMData.Bit,
+                                        tg.DataType,
+                                        life
+                                    );
                                 }
                                 catch (Exception ex)
                                 {
@@ -383,9 +411,8 @@ namespace MainUI.MVB
                         }
                         finally
                         {
-                            value++;
-                            // MvbDllCall.SetCollection();
-                            System.Threading.Thread.Sleep(rata);
+                            value++;  // 生命信号自增
+                            System.Threading.Thread.Sleep(rata);  // 等待128ms，进入下一轮循环
                         }
                     }
                 }))
@@ -393,8 +420,51 @@ namespace MainUI.MVB
                     IsBackground = true
                 };
                 t.Start();
-                //System.Threading.ThreadPool.QueueUserWorkItem();
+            }
+        }
 
+        /// <summary>
+        /// 为SourceData添加CRC16校验（参考TRDP的SetCRCAndSend方法）
+        /// </summary>
+        /// <param name="port">端口号</param>
+        private void AddCRC16ToSourceData(int port)
+        {
+            // 获取当前端口的CRC配置
+            var crcConfig = tempCRCTag.FirstOrDefault(x => x.COMMData.Port == port);
+
+            if (crcConfig != null && crcConfig.IsCRC)
+            {
+                try
+                {
+                    if (!MVBDriverZZC_Zhu.MVB.SourceData.ContainsKey(port))
+                    {
+                        Debug.WriteLine($"MVB端口 {port}(0x{port:X}) 的SourceData不存在");
+                        return;
+                    }
+
+                    byte[] data = MVBDriverZZC_Zhu.MVB.SourceData[port];
+
+                    if (crcConfig.COMMData.Offset < 0 || crcConfig.COMMData.Offset + 1 >= data.Length)
+                    {
+                        Debug.WriteLine($"MVB端口 {port}(0x{port:X}) CRC偏移 {crcConfig.COMMData.Offset} 越界");
+                        return;
+                    }
+
+                    // 计算CRC16
+                    byte[] crc = MainUI.TRDP.CRC16_FALSEHelper.Instance.CRC16(
+                        data, 0, crcConfig.COMMData.Offset);
+
+                    // 写入CRC（低字节在前，高字节在后）
+                    data[crcConfig.COMMData.Offset] = crc[1];      // 低字节
+                    data[crcConfig.COMMData.Offset + 1] = crc[0];  // 高字节
+
+                    Debug.WriteLine($"MVB端口 {port}(0x{port:X}) CRC16=0x{crc[0]:X2}{crc[1]:X2}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"MVB端口 {port}(0x{port:X}) CRC错误：{ex.Message}");
+                    NlogHelper.Default.Error($"MVB CRC错误 - 端口{port}", ex);
+                }
             }
         }
 

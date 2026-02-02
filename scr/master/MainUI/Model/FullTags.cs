@@ -30,6 +30,9 @@ namespace MainUI.Model
 
         public double WriteRate { get; set; }
 
+        // CRC16校验标志,是否启用CRC16校验
+        public bool IsCRC { get; set; }
+
         public double ReadRate { get; set; }
         public void Init(DataRow row)
         {
@@ -46,6 +49,11 @@ namespace MainUI.Model
             PortPattern = Convert.ToBoolean(row["PortPattern"]);
             BitValue = Convert.ToDouble(row["BitValue"]);
             WriteRate = Convert.ToDouble(row["BitValue"]);
+            // 从数据库读取IsCRC
+            if (row.Table.Columns.Contains("IsCRC"))
+            {
+                IsCRC = Convert.ToBoolean(row["IsCRC"]);
+            }
             COMMData MVB = new()
             {
                 Bit = row["MVBBit"] == DBNull.Value ? 0 : Convert.ToInt32(row["MVBBit"]),

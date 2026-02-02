@@ -636,7 +636,7 @@ namespace MainUI.MVB
                 }
                 bts.CopyTo(SourceData[port], byteSet);
             }
-            Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", "")}");
+            Debug.WriteLine($"设置端口 {port}({port.ToString("X")}) 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", " ")}");
             UDP.Send(SourceData[port]);
         }
 

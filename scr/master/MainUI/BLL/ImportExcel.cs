@@ -210,7 +210,11 @@ internal class ImportExcel : BaseBLL
         for (var i = 0; i < dt.Rows.Count; i++)
         {
             var row = dt.Rows[i];
+            // ========== 新增:跳过空白行 ==========
             var DataLabel = row["colDataLabel"].ToString();
+            if (string.IsNullOrWhiteSpace(DataLabel))
+                continue; // 如果数据标签为空，跳过此行
+            // ==================================== 
             var DataType = row["colDataType"].ToString();
             var DataUnit = row["colDataUnit"].ToString();
             var MVBOffset = row["colMVBOffset"].ToString();

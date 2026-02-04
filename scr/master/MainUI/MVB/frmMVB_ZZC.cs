@@ -388,14 +388,15 @@ namespace MainUI.MVB
                                     // 2. 【新增】如果该端口启用了CRC，计算并添加CRC16
                                     AddCRC16ToSourceData(tg.COMMData.Port);
 
-                                    // 3. 发送数据（每个字段都发送）
-                                    MVBDriverZZC_Zhu.MVB.WrtieValue(
-                                        tg.COMMData.Port,
-                                        tg.COMMData.Offset,
-                                        tg.COMMData.Bit,
-                                        tg.DataType,
-                                        life
-                                    );
+                                    // 不需要在这里发送数据，MVBDriverZZC_Zhu.Wrtie() 会自动发送数据
+                                    //// 3. 发送数据（每个字段都发送）
+                                    //MVBDriverZZC_Zhu.MVB.WrtieValue(
+                                    //    tg.COMMData.Port,
+                                    //    tg.COMMData.Offset,
+                                    //    tg.COMMData.Bit,
+                                    //    tg.DataType,
+                                    //    life
+                                    //);
                                 }
                                 catch (Exception ex)
                                 {
@@ -436,13 +437,11 @@ namespace MainUI.MVB
             {
                 try
                 {
-                    if (!MVBDriverZZC_Zhu.MVB.SourceData.ContainsKey(port))
+                    if (!MVBDriverZZC_Zhu.MVB.SourceData.TryGetValue(port, out byte[] data))
                     {
                         Debug.WriteLine($"MVB端口 {port}(0x{port:X}) 的SourceData不存在");
                         return;
                     }
-
-                    byte[] data = MVBDriverZZC_Zhu.MVB.SourceData[port];
 
                     if (crcConfig.COMMData.Offset < 0 || crcConfig.COMMData.Offset + 1 >= data.Length)
                     {
@@ -458,7 +457,7 @@ namespace MainUI.MVB
                     data[crcConfig.COMMData.Offset] = crc[1];      // 低字节
                     data[crcConfig.COMMData.Offset + 1] = crc[0];  // 高字节
 
-                    Debug.WriteLine($"MVB端口 {port}(0x{port:X}) CRC16=0x{crc[0]:X2}{crc[1]:X2}");
+                    //Debug.WriteLine($"MVB端口 {port}(0x{port:X}) CRC16=0x{crc[0]:X2}{crc[1]:X2}");
                 }
                 catch (Exception ex)
                 {

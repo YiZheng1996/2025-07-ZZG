@@ -119,8 +119,7 @@ namespace MainUI.MVB
                     isInitSucess = state;//配置成功
                     SendAction();
 
-                    //TODO:与WrtieValue方法冲突，在生命信号内已经使用WrtieValue方法进行数据发送
-                    //Wrtie();
+                    Wrtie();
 
                 }
             }));
@@ -636,8 +635,9 @@ namespace MainUI.MVB
                 }
                 bts.CopyTo(SourceData[port], byteSet);
             }
-            Debug.WriteLine($"设置端口 {port}({port.ToString("X")}) 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", " ")}");
-            UDP.Send(SourceData[port]);
+
+            //Debug.WriteLine($"设置端口 {port}({port.ToString("X")}) 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", " ")}");
+            //UDP.Send(SourceData[port]);
         }
 
         #region 改造后SetValue方法
@@ -669,7 +669,7 @@ namespace MainUI.MVB
                     {
                         Array.Copy(bytes, 0, SourceData[port], byteSet, bytes.Length);
                         Debug.WriteLine($"设置端口 {port} 的数据：{BitConverter.ToString(SourceData[port]).Replace("-", " ")}");
-                        UDP.Send(SourceData[port]);
+                        //UDP.Send(SourceData[port]);
                     }
                     break;
             }
